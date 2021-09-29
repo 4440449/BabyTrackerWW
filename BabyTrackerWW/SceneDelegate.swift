@@ -1,16 +1,18 @@
 //
 //  SceneDelegate.swift
-//  BabyTrackerWW
+//  Baby tracker
 //
-//  Created by Max on 29.09.2021.
+//  Created by Max on 09.07.2021.
 //  Copyright © 2021 Max. All rights reserved.
 //
 
 import UIKit
 
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
+    let coreDataStack = CoreDataStackImpl.shared
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
@@ -46,6 +48,11 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Called as the scene transitions from the foreground to the background.
         // Use this method to save data, release shared resources, and store enough scene-specific state information
         // to restore the scene back to its current state.
+
+        // Save changes in the application's managed object context when the application transitions to the background.
+        
+        coreDataStack.saveContext()
+//        (UIApplication.shared.delegate as? AppDelegate)?.saveContext()
     }
 
 

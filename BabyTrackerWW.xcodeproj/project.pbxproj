@@ -7,23 +7,93 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		50B174CD2704C0B000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174CC2704C0B000108B17 /* AppDelegate.swift */; };
-		50B174CF2704C0B000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174CE2704C0B000108B17 /* SceneDelegate.swift */; };
-		50B174D12704C0B000108B17 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174D02704C0B000108B17 /* ViewController.swift */; };
-		50B174D42704C0B000108B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B174D22704C0B000108B17 /* Main.storyboard */; };
-		50B174D62704C0B700108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B174D52704C0B700108B17 /* Assets.xcassets */; };
-		50B174D92704C0B700108B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B174D72704C0B700108B17 /* LaunchScreen.storyboard */; };
+		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
+		50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */; };
+		50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */; };
+		50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */; };
+		50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */; };
+		50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */; };
+		50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */; };
+		50B1753A2704C1F000108B17 /* WakeDetailSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F62704C1EF00108B17 /* WakeDetailSceneViewController.swift */; };
+		50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */; };
+		50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */; };
+		50B1753D2704C1F000108B17 /* DreamDetailSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FD2704C1EF00108B17 /* DreamDetailSceneConfiguratorImpl.swift */; };
+		50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */; };
+		50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175022704C1EF00108B17 /* SelectScenePresenter.swift */; };
+		50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */; };
+		50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */; };
+		50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */; };
+		50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175092704C1EF00108B17 /* SelectSceneRouter.swift */; };
+		50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */; };
+		50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */; };
+		50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */; };
+		50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */; };
+		50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter.swift */; };
+		50B175492704C1F000108B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* Main.storyboard */; };
+		50B1754A2704C1F000108B17 /* LoaderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderStatus.swift */; };
+		50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor.swift */; };
+		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
+		50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751B2704C1EF00108B17 /* AppDelegate.swift */; };
+		50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751E2704C1F000108B17 /* CoreDataStack.swift */; };
+		50B175502704C1F000108B17 /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */; };
+		50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */; };
+		50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */; };
+		50B175532704C1F000108B17 /* PersistenceDreamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */; };
+		50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* LaunchScreen.storyboard */; };
+		50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175262704C1F000108B17 /* SceneDelegate.swift */; };
+		50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* EntityProtocols.swift */; };
+		50B175582704C1F000108B17 /* DreamsCardGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */; };
+		50B175592704C1F000108B17 /* DreamsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752C2704C1F000108B17 /* DreamsCard.swift */; };
+		50B1755A2704C1F000108B17 /* Wake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752E2704C1F000108B17 /* Wake.swift */; };
+		50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752F2704C1F000108B17 /* WakeGateway.swift */; };
+		50B1755C2704C1F000108B17 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175312704C1F000108B17 /* Dream.swift */; };
+		50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175322704C1F000108B17 /* DreamGateway.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50B174CC2704C0B000108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50B174CE2704C0B000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		50B174D02704C0B000108B17 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		50B174D32704C0B000108B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		50B174D52704C0B700108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
-		50B174D82704C0B700108B17 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		50B174DA2704C0B700108B17 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenterswift.swift; sourceTree = "<group>"; };
+		50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController.swift; sourceTree = "<group>"; };
+		50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneConfigurator.swift; sourceTree = "<group>"; };
+		50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerScenePresenter.swift; sourceTree = "<group>"; };
+		50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneViewController.swift; sourceTree = "<group>"; };
+		50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
+		50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
+		50B174F62704C1EF00108B17 /* WakeDetailSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeDetailSceneViewController.swift; sourceTree = "<group>"; };
+		50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeDetailSceneConfigurator.swift; sourceTree = "<group>"; };
+		50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewController.swift; sourceTree = "<group>"; };
+		50B174FD2704C1EF00108B17 /* DreamDetailSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamDetailSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
+		50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
+		50B175022704C1EF00108B17 /* SelectScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScenePresenter.swift; sourceTree = "<group>"; };
+		50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewCell.swift; sourceTree = "<group>"; };
+		50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewController.swift; sourceTree = "<group>"; };
+		50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneConfigurator.swift; sourceTree = "<group>"; };
+		50B175092704C1EF00108B17 /* SelectSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneRouter.swift; sourceTree = "<group>"; };
+		50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScenePresenter.swift; sourceTree = "<group>"; };
+		50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewController.swift; sourceTree = "<group>"; };
+		50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewCell.swift; sourceTree = "<group>"; };
+		50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
+		50B175132704C1EF00108B17 /* MainSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
+		50B175142704C1EF00108B17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		50B175162704C1EF00108B17 /* LoaderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderStatus.swift; sourceTree = "<group>"; };
+		50B175172704C1EF00108B17 /* MainModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModuleInteractor.swift; sourceTree = "<group>"; };
+		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		50B1751B2704C1EF00108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		50B1751E2704C1F000108B17 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		50B175202704C1F000108B17 /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
+		50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceDreamRepository.swift; sourceTree = "<group>"; };
+		50B175242704C1F000108B17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		50B175252704C1F000108B17 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50B175262704C1F000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		50B175292704C1F000108B17 /* EntityProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityProtocols.swift; sourceTree = "<group>"; };
+		50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamsCardGateway.swift; sourceTree = "<group>"; };
+		50B1752C2704C1F000108B17 /* DreamsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamsCard.swift; sourceTree = "<group>"; };
+		50B1752E2704C1F000108B17 /* Wake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wake.swift; sourceTree = "<group>"; };
+		50B1752F2704C1F000108B17 /* WakeGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeGateway.swift; sourceTree = "<group>"; };
+		50B175312704C1F000108B17 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
+		50B175322704C1F000108B17 /* DreamGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamGateway.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +126,354 @@
 		50B174CB2704C0B000108B17 /* BabyTrackerWW */ = {
 			isa = PBXGroup;
 			children = (
-				50B174CC2704C0B000108B17 /* AppDelegate.swift */,
-				50B174CE2704C0B000108B17 /* SceneDelegate.swift */,
-				50B174D02704C0B000108B17 /* ViewController.swift */,
-				50B174D22704C0B000108B17 /* Main.storyboard */,
-				50B174D52704C0B700108B17 /* Assets.xcassets */,
-				50B174D72704C0B700108B17 /* LaunchScreen.storyboard */,
-				50B174DA2704C0B700108B17 /* Info.plist */,
+				50B1751B2704C1EF00108B17 /* AppDelegate.swift */,
+				50B175262704C1F000108B17 /* SceneDelegate.swift */,
+				50B1751C2704C1F000108B17 /* DataLayer */,
+				50B175272704C1F000108B17 /* DomainLayer */,
+				50B174E02704C1EF00108B17 /* PresentationLayer */,
+				50B175252704C1F000108B17 /* LaunchScreen.storyboard */,
+				50B175242704C1F000108B17 /* Info.plist */,
+				50B175182704C1EF00108B17 /* Assets.xcassets */,
 			);
 			path = BabyTrackerWW;
+			sourceTree = "<group>";
+		};
+		50B174E02704C1EF00108B17 /* PresentationLayer */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E12704C1EF00108B17 /* Scenes */,
+				50B175142704C1EF00108B17 /* Main.storyboard */,
+				50B175152704C1EF00108B17 /* Interactor */,
+			);
+			path = PresentationLayer;
+			sourceTree = "<group>";
+		};
+		50B174E12704C1EF00108B17 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E22704C1EF00108B17 /* Calendar */,
+				50B174E92704C1EF00108B17 /* Picker */,
+				50B174F12704C1EF00108B17 /* Detail */,
+				50B175002704C1EF00108B17 /* Select */,
+				50B1750A2704C1EF00108B17 /* Main */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		50B174E22704C1EF00108B17 /* Calendar */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E32704C1EF00108B17 /* Presenter */,
+				50B174E52704C1EF00108B17 /* View */,
+				50B174E72704C1EF00108B17 /* Configurator */,
+			);
+			path = Calendar;
+			sourceTree = "<group>";
+		};
+		50B174E32704C1EF00108B17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		50B174E52704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B174E72704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B174E92704C1EF00108B17 /* Picker */ = {
+			isa = PBXGroup;
+			children = (
+				50B174EA2704C1EF00108B17 /* Presenter */,
+				50B174EC2704C1EF00108B17 /* View */,
+				50B174EE2704C1EF00108B17 /* Configurator */,
+				50B174F02704C1EF00108B17 /* Router */,
+			);
+			path = Picker;
+			sourceTree = "<group>";
+		};
+		50B174EA2704C1EF00108B17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		50B174EC2704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B174EE2704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B174F02704C1EF00108B17 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		50B174F12704C1EF00108B17 /* Detail */ = {
+			isa = PBXGroup;
+			children = (
+				50B174F22704C1EF00108B17 /* Presenter */,
+				50B174F42704C1EF00108B17 /* WakeFlow */,
+				50B174F92704C1EF00108B17 /* DreamFlow */,
+				50B174FE2704C1EF00108B17 /* Router */,
+			);
+			path = Detail;
+			sourceTree = "<group>";
+		};
+		50B174F22704C1EF00108B17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		50B174F42704C1EF00108B17 /* WakeFlow */ = {
+			isa = PBXGroup;
+			children = (
+				50B174F52704C1EF00108B17 /* View */,
+				50B174F72704C1EF00108B17 /* Configurator */,
+			);
+			path = WakeFlow;
+			sourceTree = "<group>";
+		};
+		50B174F52704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B174F62704C1EF00108B17 /* WakeDetailSceneViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B174F72704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B174F92704C1EF00108B17 /* DreamFlow */ = {
+			isa = PBXGroup;
+			children = (
+				50B174FA2704C1EF00108B17 /* View */,
+				50B174FC2704C1EF00108B17 /* Configurator */,
+			);
+			path = DreamFlow;
+			sourceTree = "<group>";
+		};
+		50B174FA2704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B174FC2704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B174FD2704C1EF00108B17 /* DreamDetailSceneConfiguratorImpl.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B174FE2704C1EF00108B17 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		50B175002704C1EF00108B17 /* Select */ = {
+			isa = PBXGroup;
+			children = (
+				50B175012704C1EF00108B17 /* Presenter */,
+				50B175032704C1EF00108B17 /* View */,
+				50B175062704C1EF00108B17 /* Configurator */,
+				50B175082704C1EF00108B17 /* Router */,
+			);
+			path = Select;
+			sourceTree = "<group>";
+		};
+		50B175012704C1EF00108B17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				50B175022704C1EF00108B17 /* SelectScenePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		50B175032704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */,
+				50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B175062704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B175082704C1EF00108B17 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				50B175092704C1EF00108B17 /* SelectSceneRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		50B1750A2704C1EF00108B17 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				50B1750B2704C1EF00108B17 /* Presenter */,
+				50B1750D2704C1EF00108B17 /* View */,
+				50B175102704C1EF00108B17 /* Configurator */,
+				50B175122704C1EF00108B17 /* Router */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		50B1750B2704C1EF00108B17 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		50B1750D2704C1EF00108B17 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */,
+				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		50B175102704C1EF00108B17 /* Configurator */ = {
+			isa = PBXGroup;
+			children = (
+				50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */,
+			);
+			path = Configurator;
+			sourceTree = "<group>";
+		};
+		50B175122704C1EF00108B17 /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				50B175132704C1EF00108B17 /* MainSceneRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		50B175152704C1EF00108B17 /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				50B175162704C1EF00108B17 /* LoaderStatus.swift */,
+				50B175172704C1EF00108B17 /* MainModuleInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		50B1751C2704C1F000108B17 /* DataLayer */ = {
+			isa = PBXGroup;
+			children = (
+				50B1751D2704C1F000108B17 /* CoreData */,
+				50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */,
+			);
+			path = DataLayer;
+			sourceTree = "<group>";
+		};
+		50B1751D2704C1F000108B17 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				50B1751E2704C1F000108B17 /* CoreDataStack.swift */,
+				50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */,
+				50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */,
+				50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		50B175272704C1F000108B17 /* DomainLayer */ = {
+			isa = PBXGroup;
+			children = (
+				50B175282704C1F000108B17 /* Entities */,
+			);
+			path = DomainLayer;
+			sourceTree = "<group>";
+		};
+		50B175282704C1F000108B17 /* Entities */ = {
+			isa = PBXGroup;
+			children = (
+				50B175292704C1F000108B17 /* EntityProtocols.swift */,
+				50B1752A2704C1F000108B17 /* DreamsCard */,
+				50B1752D2704C1F000108B17 /* Wake */,
+				50B175302704C1F000108B17 /* Dream */,
+			);
+			path = Entities;
+			sourceTree = "<group>";
+		};
+		50B1752A2704C1F000108B17 /* DreamsCard */ = {
+			isa = PBXGroup;
+			children = (
+				50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */,
+				50B1752C2704C1F000108B17 /* DreamsCard.swift */,
+			);
+			path = DreamsCard;
+			sourceTree = "<group>";
+		};
+		50B1752D2704C1F000108B17 /* Wake */ = {
+			isa = PBXGroup;
+			children = (
+				50B1752E2704C1F000108B17 /* Wake.swift */,
+				50B1752F2704C1F000108B17 /* WakeGateway.swift */,
+			);
+			path = Wake;
+			sourceTree = "<group>";
+		};
+		50B175302704C1F000108B17 /* Dream */ = {
+			isa = PBXGroup;
+			children = (
+				50B175312704C1F000108B17 /* Dream.swift */,
+				50B175322704C1F000108B17 /* DreamGateway.swift */,
+			);
+			path = Dream;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -99,6 +508,7 @@
 				TargetAttributes = {
 					50B174C82704C0B000108B17 = {
 						CreatedOnToolsVersion = 11.5;
+						LastSwiftMigration = 1150;
 					};
 				};
 			};
@@ -125,9 +535,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50B174D92704C0B700108B17 /* LaunchScreen.storyboard in Resources */,
-				50B174D62704C0B700108B17 /* Assets.xcassets in Resources */,
-				50B174D42704C0B000108B17 /* Main.storyboard in Resources */,
+				50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */,
+				50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */,
+				50B175492704C1F000108B17 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,32 +548,48 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				50B174D12704C0B000108B17 /* ViewController.swift in Sources */,
-				50B174CD2704C0B000108B17 /* AppDelegate.swift in Sources */,
-				50B174CF2704C0B000108B17 /* SceneDelegate.swift in Sources */,
+				50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */,
+				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
+				50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */,
+				50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */,
+				50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */,
+				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
+				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
+				50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */,
+				50B175502704C1F000108B17 /* Baby_tracker.xcdatamodeld in Sources */,
+				50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */,
+				50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */,
+				50B1755C2704C1F000108B17 /* Dream.swift in Sources */,
+				50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */,
+				50B175532704C1F000108B17 /* PersistenceDreamRepository.swift in Sources */,
+				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
+				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
+				50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */,
+				50B175592704C1F000108B17 /* DreamsCard.swift in Sources */,
+				50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */,
+				50B175582704C1F000108B17 /* DreamsCardGateway.swift in Sources */,
+				50B1754A2704C1F000108B17 /* LoaderStatus.swift in Sources */,
+				50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */,
+				50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */,
+				50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */,
+				50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */,
+				50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */,
+				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
+				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
+				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
+				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
+				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,
+				50B1753A2704C1F000108B17 /* WakeDetailSceneViewController.swift in Sources */,
+				50B1753D2704C1F000108B17 /* DreamDetailSceneConfiguratorImpl.swift in Sources */,
+				50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */,
+				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
+				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
+				50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */,
+				50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXVariantGroup section */
-		50B174D22704C0B000108B17 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50B174D32704C0B000108B17 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
-		50B174D72704C0B700108B17 /* LaunchScreen.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				50B174D82704C0B700108B17 /* Base */,
-			);
-			name = LaunchScreen.storyboard;
-			sourceTree = "<group>";
-		};
-/* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
 		50B174DB2704C0B700108B17 /* Debug */ = {
@@ -284,6 +710,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49V2NFTYLV;
 				INFOPLIST_FILE = BabyTrackerWW/Info.plist;
@@ -293,6 +720,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.maximi4.BabyTrackerWW;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -302,6 +730,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 49V2NFTYLV;
 				INFOPLIST_FILE = BabyTrackerWW/Info.plist;
@@ -338,6 +767,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				50B175202704C1F000108B17 /* Baby_tracker.xcdatamodel */,
+			);
+			currentVersion = 50B175202704C1F000108B17 /* Baby_tracker.xcdatamodel */;
+			path = Baby_tracker.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 50B174C12704C0B000108B17 /* Project object */;
 }
