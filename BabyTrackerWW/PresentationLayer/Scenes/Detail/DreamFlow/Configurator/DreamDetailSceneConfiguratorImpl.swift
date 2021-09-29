@@ -7,12 +7,13 @@
 //
 
 
+
+
 final class DreamDetailSceneConfiguratorImpl {
     func configureScene<D>(view: DreamDetailSceneViewController, delegate: D) {
-        guard let delegate = delegate as? DreamDetailSceneDelegate else { return }
+        guard let delegate = delegate as? DetailSceneDelegate else { return }
         let router = DetailSceneRouterImpl() // Единый Роутер!
-        let presenter = DetailScenePresenterImpl(router: router) // Единый Презентер!
-        presenter.dreamDelegate = delegate
+        let presenter = DetailScenePresenterImpl(delegate: delegate, router: router) // Единый Презентер!
         view.presenter = presenter
         view.setButtonLabel()
     }

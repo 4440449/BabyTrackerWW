@@ -38,7 +38,7 @@
 		50B175502704C1F000108B17 /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */; };
 		50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */; };
 		50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */; };
-		50B175532704C1F000108B17 /* PersistenceDreamRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */; };
+		50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */; };
 		50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* LaunchScreen.storyboard */; };
 		50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175262704C1F000108B17 /* SceneDelegate.swift */; };
 		50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* EntityProtocols.swift */; };
@@ -48,6 +48,10 @@
 		50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752F2704C1F000108B17 /* WakeGateway.swift */; };
 		50B1755C2704C1F000108B17 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175312704C1F000108B17 /* Dream.swift */; };
 		50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175322704C1F000108B17 /* DreamGateway.swift */; };
+		50B175602704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755E2704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift */; };
+		50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */; };
+		50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */; };
+		50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistenceRepository.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -83,7 +87,7 @@
 		50B175202704C1F000108B17 /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
 		50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersistenceDreamRepository.swift; sourceTree = "<group>"; };
+		50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepository.swift; sourceTree = "<group>"; };
 		50B175242704C1F000108B17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B175252704C1F000108B17 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50B175262704C1F000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -94,6 +98,10 @@
 		50B1752F2704C1F000108B17 /* WakeGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeGateway.swift; sourceTree = "<group>"; };
 		50B175312704C1F000108B17 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
 		50B175322704C1F000108B17 /* DreamGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamGateway.swift; sourceTree = "<group>"; };
+		50B1755E2704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
+		50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryGateway.swift; sourceTree = "<group>"; };
+		50B175672704DFC500108B17 /* WakePersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepository.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -141,9 +149,9 @@
 		50B174E02704C1EF00108B17 /* PresentationLayer */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E12704C1EF00108B17 /* Scenes */,
 				50B175142704C1EF00108B17 /* Main.storyboard */,
 				50B175152704C1EF00108B17 /* Interactor */,
+				50B174E12704C1EF00108B17 /* Scenes */,
 			);
 			path = PresentationLayer;
 			sourceTree = "<group>";
@@ -151,11 +159,11 @@
 		50B174E12704C1EF00108B17 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E22704C1EF00108B17 /* Calendar */,
-				50B174E92704C1EF00108B17 /* Picker */,
-				50B174F12704C1EF00108B17 /* Detail */,
-				50B175002704C1EF00108B17 /* Select */,
 				50B1750A2704C1EF00108B17 /* Main */,
+				50B175002704C1EF00108B17 /* Select */,
+				50B174E22704C1EF00108B17 /* Calendar */,
+				50B174F12704C1EF00108B17 /* Detail */,
+				50B174E92704C1EF00108B17 /* Picker */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -163,9 +171,9 @@
 		50B174E22704C1EF00108B17 /* Calendar */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E32704C1EF00108B17 /* Presenter */,
-				50B174E52704C1EF00108B17 /* View */,
 				50B174E72704C1EF00108B17 /* Configurator */,
+				50B174E52704C1EF00108B17 /* View */,
+				50B174E32704C1EF00108B17 /* Presenter */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
@@ -197,9 +205,9 @@
 		50B174E92704C1EF00108B17 /* Picker */ = {
 			isa = PBXGroup;
 			children = (
-				50B174EA2704C1EF00108B17 /* Presenter */,
-				50B174EC2704C1EF00108B17 /* View */,
 				50B174EE2704C1EF00108B17 /* Configurator */,
+				50B174EC2704C1EF00108B17 /* View */,
+				50B174EA2704C1EF00108B17 /* Presenter */,
 				50B174F02704C1EF00108B17 /* Router */,
 			);
 			path = Picker;
@@ -239,9 +247,9 @@
 		50B174F12704C1EF00108B17 /* Detail */ = {
 			isa = PBXGroup;
 			children = (
-				50B174F22704C1EF00108B17 /* Presenter */,
 				50B174F42704C1EF00108B17 /* WakeFlow */,
 				50B174F92704C1EF00108B17 /* DreamFlow */,
+				50B174F22704C1EF00108B17 /* Presenter */,
 				50B174FE2704C1EF00108B17 /* Router */,
 			);
 			path = Detail;
@@ -258,8 +266,8 @@
 		50B174F42704C1EF00108B17 /* WakeFlow */ = {
 			isa = PBXGroup;
 			children = (
-				50B174F52704C1EF00108B17 /* View */,
 				50B174F72704C1EF00108B17 /* Configurator */,
+				50B174F52704C1EF00108B17 /* View */,
 			);
 			path = WakeFlow;
 			sourceTree = "<group>";
@@ -283,8 +291,8 @@
 		50B174F92704C1EF00108B17 /* DreamFlow */ = {
 			isa = PBXGroup;
 			children = (
-				50B174FA2704C1EF00108B17 /* View */,
 				50B174FC2704C1EF00108B17 /* Configurator */,
+				50B174FA2704C1EF00108B17 /* View */,
 			);
 			path = DreamFlow;
 			sourceTree = "<group>";
@@ -316,9 +324,9 @@
 		50B175002704C1EF00108B17 /* Select */ = {
 			isa = PBXGroup;
 			children = (
-				50B175012704C1EF00108B17 /* Presenter */,
-				50B175032704C1EF00108B17 /* View */,
 				50B175062704C1EF00108B17 /* Configurator */,
+				50B175032704C1EF00108B17 /* View */,
+				50B175012704C1EF00108B17 /* Presenter */,
 				50B175082704C1EF00108B17 /* Router */,
 			);
 			path = Select;
@@ -360,9 +368,9 @@
 		50B1750A2704C1EF00108B17 /* Main */ = {
 			isa = PBXGroup;
 			children = (
-				50B1750B2704C1EF00108B17 /* Presenter */,
-				50B1750D2704C1EF00108B17 /* View */,
 				50B175102704C1EF00108B17 /* Configurator */,
+				50B1750D2704C1EF00108B17 /* View */,
+				50B1750B2704C1EF00108B17 /* Presenter */,
 				50B175122704C1EF00108B17 /* Router */,
 			);
 			path = Main;
@@ -413,8 +421,8 @@
 		50B1751C2704C1F000108B17 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */,
 				50B1751D2704C1F000108B17 /* CoreData */,
-				50B175232704C1F000108B17 /* PersistenceDreamRepository.swift */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -422,10 +430,9 @@
 		50B1751D2704C1F000108B17 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				50B1751E2704C1F000108B17 /* CoreDataStack.swift */,
-				50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */,
-				50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */,
-				50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */,
+				50B175672704DFC500108B17 /* WakePersistenceRepository.swift */,
+				50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */,
+				50B175642704DF3000108B17 /* Infrastructure */,
 			);
 			path = CoreData;
 			sourceTree = "<group>";
@@ -452,8 +459,8 @@
 		50B1752A2704C1F000108B17 /* DreamsCard */ = {
 			isa = PBXGroup;
 			children = (
-				50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */,
 				50B1752C2704C1F000108B17 /* DreamsCard.swift */,
+				50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */,
 			);
 			path = DreamsCard;
 			sourceTree = "<group>";
@@ -474,6 +481,35 @@
 				50B175322704C1F000108B17 /* DreamGateway.swift */,
 			);
 			path = Dream;
+			sourceTree = "<group>";
+		};
+		50B175622704DD4E00108B17 /* DreamDBEntity */ = {
+			isa = PBXGroup;
+			children = (
+				50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */,
+				50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */,
+			);
+			path = DreamDBEntity;
+			sourceTree = "<group>";
+		};
+		50B175632704DD7D00108B17 /* WakeDBEntity */ = {
+			isa = PBXGroup;
+			children = (
+				50B1755E2704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift */,
+				50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */,
+			);
+			path = WakeDBEntity;
+			sourceTree = "<group>";
+		};
+		50B175642704DF3000108B17 /* Infrastructure */ = {
+			isa = PBXGroup;
+			children = (
+				50B1751E2704C1F000108B17 /* CoreDataStack.swift */,
+				50B1751F2704C1F000108B17 /* Baby_tracker.xcdatamodeld */,
+				50B175622704DD4E00108B17 /* DreamDBEntity */,
+				50B175632704DD7D00108B17 /* WakeDBEntity */,
+			);
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,19 +585,22 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */,
+				50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */,
 				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
 				50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */,
 				50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */,
 				50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
+				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
 				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
 				50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */,
+				50B175602704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift in Sources */,
 				50B175502704C1F000108B17 /* Baby_tracker.xcdatamodeld in Sources */,
 				50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */,
 				50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */,
 				50B1755C2704C1F000108B17 /* Dream.swift in Sources */,
 				50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */,
-				50B175532704C1F000108B17 /* PersistenceDreamRepository.swift in Sources */,
+				50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */,
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
 				50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */,
@@ -577,6 +616,7 @@
 				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
 				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
 				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
+				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
 				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,
 				50B1753A2704C1F000108B17 /* WakeDetailSceneViewController.swift in Sources */,

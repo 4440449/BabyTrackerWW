@@ -12,7 +12,7 @@ import Foundation
 protocol DreamGatewayProtocol {
     
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
-    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Dream, Error>) -> ())
-    func changeDream(_ dream: Dream, callback: @escaping (Result<Dream, Error>) -> ())
+    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
     func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
 }

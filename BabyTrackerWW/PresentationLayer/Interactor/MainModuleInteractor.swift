@@ -43,30 +43,22 @@ protocol CalendarSceneDelegate: AnyObject {
     func changeDate(new date: Date)
 }
 
-protocol DreamDetailSceneDelegate: AnyObject, DreamDelegate { // нах тут протококл ДримДелегат???
-    func showDream() -> Dream
-    func changeDream(new dream: Dream)
-    func getAvailableIndexForDream() -> Int
-   // func showLifeCycle() -> DreamsCard.lifeCycle.self
+protocol DetailSceneDelegate: AnyObject, DreamDelegate { // нах тут протококл ДримДелегат???
+    func showLifeCycle() -> LifeCycle
+    func changeLifeCycle(new lifeCycle: LifeCycle)
+    func getAvailableIndex() -> Int
 }
 
-protocol WakeDetailSceneDelegate: AnyObject {
-    func showWake() -> Wake
-    func changeWake(new wake: Wake)
-    func getAvailableIndexForWake() -> Int
-}
 
 protocol SelectSceneDelegate: AnyObject {
 }
 
 
-
 // MARK: - Implementation -
 
-final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DreamDetailSceneDelegate, WakeDetailSceneDelegate, SelectSceneDelegate {
+final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, /*WakeDetailSceneDelegate,*/ SelectSceneDelegate {
 
-    private let dreamGateway: DreamGatewayProtocol
-    //private let dreamsCardGateway: DreamsGatewayProtocol
+    private let persistenceRepository: DreamsCardGateway
     
     private var notifierStorage: [() -> ()] = []
     private var currentLifecycleIndex: Int?
@@ -90,16 +82,16 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     // ------
 
-    init(dreamGateway: DreamGatewayProtocol) {
-        self.dreamGateway = dreamGateway
+    init(persistenceRepository: DreamsCardGateway) {
+        self.persistenceRepository = persistenceRepository
 //        fetchDreams() // убрать запрос из инициализатора, т.к. нужен прогруз мейн сцены для активации лоадинг анимации и после этого уже запускать запрос в бекграунд поток
     }
     
     func fetchDreams() {
         isLoading = .loading // -------
-        dreamGateway.fetchDreams(at: dreamsCard.date) { [unowned self] result in
+        persistenceRepository.fetchLifeCycle(at: dreamsCard.date) { [unowned self] result in
             switch result {
-            case let .success(dreams): self.dreamsCard.lifeCycle = dreams
+            case let .success(lifeCycle): self.dreamsCard.lifeCycle = lifeCycle
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)")
             }
             self.isLoading = .notLoading // -------
@@ -128,7 +120,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteDream(at index: Int) {
-        dreamGateway.deleteDream(dreamsCard.lifeCycle[index] as! Dream) { [unowned self] result in
+        persistenceRepository.deleteLifeCycle(dreamsCard.lifeCycle[index] as! Dream) { [unowned self] result in
             switch result {
             case .success(): self.dreamsCard.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
@@ -143,10 +135,10 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
-        dreamGateway.fetchDreams(at: date) { [unowned self] result in
+        persistenceRepository.fetchLifeCycle(at: date) { [unowned self] result in
             switch result {
-            case let .success(dreams): self.dreamsCard.date = date;
-            self.dreamsCard.lifeCycle = dreams;
+            case let .success(lifeCycles): self.dreamsCard.date = date;
+            self.dreamsCard.lifeCycle = lifeCycles;
             case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
             }
         }
@@ -154,53 +146,35 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     //MARK: - Dream Detail Scene
     
-    func getAvailableIndexForDream() -> Int {
+    func getAvailableIndex() -> Int {
         // TODO: Не нравится реализация, метод полностью дублируется. Задача - получить последний, свободный индекс
         return dreamsCard.lifeCycle.endIndex
     }
     
-    func showDream() -> Dream {
-        return dreamsCard.lifeCycle[currentLifecycleIndex!] as! Dream
+    func showLifeCycle() -> LifeCycle {
+        return dreamsCard.lifeCycle[currentLifecycleIndex!] // as! Dream
     }
     
-    func changeDream (new dream: Dream) {
+    func changeLifeCycle (new lifeCycle: LifeCycle) {
         if currentLifecycleIndex == nil {
             // addNew Flow
-            dreamGateway.addNewDream(new: dream, at: dreamsCard.date) { [unowned self] result in
+            persistenceRepository.addNewLifeCycle(new: lifeCycle, at: dreamsCard.date) { [unowned self] result in
                 switch result {
-                case let .success(dream): self.dreamsCard.lifeCycle.append(dream)
+                case .success(): self.dreamsCard.lifeCycle.append(lifeCycle)
                 case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
                 }
             }
         } else {
             // didSelectFlow
-            dreamGateway.changeDream(dream) { [unowned self] result in
+            persistenceRepository.changeLifeCycle(lifeCycle) { [unowned self] result in
                 switch result {
-                case let .success(dream): self.dreamsCard.lifeCycle[self.currentLifecycleIndex!] = dream
+                case .success(): self.dreamsCard.lifeCycle[self.currentLifecycleIndex!] = lifeCycle
                 case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
                 }
             }
         }
     }
-    //MARK: - Wake Detail Scene
-    
-    func getAvailableIndexForWake() -> Int {
-        // TODO: Не нравится реализация, метод полностью дублируется. Задача - получить последний, свободный индексс
-        return dreamsCard.lifeCycle.endIndex
-    }
-    
-    func showWake() -> Wake {
-        return dreamsCard.lifeCycle[currentLifecycleIndex!] as! Wake
-    }
-    func changeWake(new wake: Wake) {
-        // if addNewFlow
-        dreamsCard.lifeCycle.append(wake)
-        
-        //if didSelectFlow
-        
-    }
-    
-    
+
     //MARK: - Select Scene
 
 

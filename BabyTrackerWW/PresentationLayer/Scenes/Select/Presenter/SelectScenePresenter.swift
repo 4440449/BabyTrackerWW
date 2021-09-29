@@ -12,10 +12,10 @@ protocol SelectScenePresenterProtocol: AnyObject {
 }
 
 
-class SelectScenePresenterImpl: SelectScenePresenterProtocol {
+final class SelectScenePresenterImpl: SelectScenePresenterProtocol {
     
-    let router: SelectSceneRouterProtocol
-    let delegate: SelectSceneDelegate
+    private let router: SelectSceneRouterProtocol
+    private let delegate: SelectSceneDelegate
     
     init(router: SelectSceneRouterProtocol, delegate: SelectSceneDelegate) {
         self.router = router

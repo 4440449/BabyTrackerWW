@@ -24,10 +24,10 @@ class WakeDetailSceneViewController: UIViewController {
     @IBOutlet weak var signsOutletButton: UIButton!
     
     func setButtonLabel() {
-        presenter.setLabelCallback = { [unowned self] (p1, p2, p3) in
-            self.wakeUpOutletButton.setTitle(p1, for: .normal)
-            self.wakeWindowOutletButton.setTitle(p2, for: .normal)
-            self.signsOutletButton.setTitle(p3, for: .normal)
+        presenter.setLabelCallback = { [unowned self] array in
+            self.wakeUpOutletButton.setTitle(array[0], for: .normal)
+            self.wakeWindowOutletButton.setTitle(array[1], for: .normal)
+            self.signsOutletButton.setTitle(array[2], for: .normal)
         }
     }
     

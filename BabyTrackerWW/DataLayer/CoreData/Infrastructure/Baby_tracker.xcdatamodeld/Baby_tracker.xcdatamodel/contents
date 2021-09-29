@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="16119" systemVersion="19H1217" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithCloudKit="YES" userDefinedModelVersionIdentifier="">
+    <entity name="DreamDBEntity" representedClassName="DreamDBEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="fallAsleep" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="putDown" optional="YES" attributeType="String"/>
+        <attribute name="wakeUp" optional="YES" attributeType="String"/>
+    </entity>
+    <entity name="WakeDBEntity" representedClassName="WakeDBEntity" syncable="YES">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="signs" optional="YES" attributeType="String"/>
+        <attribute name="wakeUp" optional="YES" attributeType="String"/>
+        <attribute name="wakeWindow" optional="YES" attributeType="String"/>
+    </entity>
+    <elements>
+        <element name="DreamDBEntity" positionX="-385.01953125" positionY="-150.8125" width="128" height="133"/>
+        <element name="WakeDBEntity" positionX="-387" positionY="-108" width="128" height="133"/>
+    </elements>
+</model>

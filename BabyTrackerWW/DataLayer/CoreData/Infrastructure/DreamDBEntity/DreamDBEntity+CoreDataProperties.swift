@@ -18,6 +18,7 @@ extension DreamDBEntity {
     }
 
     @NSManaged public var id: UUID?
+    @NSManaged public var index: Int32
     @NSManaged public var date: Date?
     @NSManaged public var putDown: String?
     @NSManaged public var fallAsleep: String?

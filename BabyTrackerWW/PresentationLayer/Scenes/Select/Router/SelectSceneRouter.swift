@@ -20,12 +20,12 @@ class SelectSceneRouterImpl: SelectSceneRouterProtocol {
         
         if let vc = segue.destination as? DreamDetailSceneViewController {
             vc.configurator.configureScene(view: vc, delegate: delegate)
-            vc.presenter.startAddNewFlow()
+            vc.presenter.startAddNewFlow(with: Dream.self)
         
         } else
         if let vc = segue.destination as? WakeDetailSceneViewController {
             vc.configurator.configureScene(view: vc, delegate: delegate)
-            vc.presenter.startAddNewFlow()
+            vc.presenter.startAddNewFlow(with: Wake.self)
         }
     }
     

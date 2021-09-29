@@ -24,10 +24,10 @@ final class DreamDetailSceneViewController: UIViewController {
     @IBOutlet weak var wakeUpOutletButton: UIButton!
     
     func setButtonLabel() {
-        presenter.setLabelCallback = { [unowned self] (p1, p2, p3) in
-            self.putDownOutletButton.setTitle(p1, for: .normal)
-            self.fallAsleepOutletButton.setTitle(p2, for: .normal)
-            self.wakeUpOutletButton.setTitle(p3, for: .normal)
+        presenter.setLabelCallback = { [unowned self] array in
+            self.putDownOutletButton.setTitle(array[0], for: .normal)
+            self.fallAsleepOutletButton.setTitle(array[1], for: .normal)
+            self.wakeUpOutletButton.setTitle(array[2], for: .normal)
         }
     }
     

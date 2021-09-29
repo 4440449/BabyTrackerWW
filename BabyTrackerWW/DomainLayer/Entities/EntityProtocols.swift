@@ -8,6 +8,7 @@
 
 protocol LifeCycle {
     var title: String { get }
+    var index: Int { get set }
 }
 
 protocol LifeCycleProperty {
