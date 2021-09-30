@@ -19,15 +19,15 @@ final class DreamDetailSceneViewController: UIViewController {
         presenter.viewDidLoad()
     }
     
-    @IBOutlet weak var putDownOutletButton: UIButton!
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
-    @IBOutlet weak var wakeUpOutletButton: UIButton!
+    @IBOutlet weak var putDownOutletButton: UIButton!
+//    @IBOutlet weak var wakeUpOutletButton: UIButton!
     
     func setButtonLabel() {
         presenter.setLabelCallback = { [unowned self] array in
-            self.putDownOutletButton.setTitle(array[0], for: .normal)
-            self.fallAsleepOutletButton.setTitle(array[1], for: .normal)
-            self.wakeUpOutletButton.setTitle(array[2], for: .normal)
+            self.fallAsleepOutletButton.setTitle(array[0], for: .normal)
+            self.putDownOutletButton.setTitle(array[1], for: .normal)
+//            self.wakeUpOutletButton.setTitle(array[2], for: .normal)
         }
     }
     
@@ -37,9 +37,9 @@ final class DreamDetailSceneViewController: UIViewController {
     @IBAction func fallAsleepButton(_ sender: Any) {
         self.performSegue(withIdentifier: "FallAsleep", sender: nil)
     }
-    @IBAction func wakeUpButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "WakeUp", sender: nil)
-    }
+//    @IBAction func wakeUpButton(_ sender: Any) {
+//        self.performSegue(withIdentifier: "WakeUp", sender: nil)
+//    }
     
     @IBAction func saveButton(_ sender: Any) {
         presenter.saveButtonTapped()

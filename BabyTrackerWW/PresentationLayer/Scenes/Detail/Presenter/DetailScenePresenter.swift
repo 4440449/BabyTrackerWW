@@ -41,9 +41,8 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
     
     func viewDidLoad() {
         switch self.viewDidLoad {
-        case _ where dream != nil : setLabelCallback([dream!.putDown.rawValue,
-                                                      dream!.fallAsleep.rawValue,
-                                                      dream!.wakeUp.rawValue])
+        case _ where dream != nil : setLabelCallback([dream!.fallAsleep.rawValue,
+                                                      dream!.putDown.rawValue])
         case _ where wake != nil: setLabelCallback([wake!.wakeUp.rawValue,
                                                     wake!.wakeWindow.rawValue,
                                                     wake!.signs.rawValue])
@@ -66,7 +65,7 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
 
     func startAddNewFlow(with type: LifeCycle.Type) {
          switch type {
-         case _ where type is Dream.Type: dream = Dream(index: delegate.getAvailableIndex(), putDown: .brestFeeding, fallAsleep: .crying, wakeUp: .happy)
+         case _ where type is Dream.Type: dream = Dream(index: delegate.getAvailableIndex(), putDown: .brestFeeding, fallAsleep: .crying)
          case _ where type is Wake.Type: wake = Wake(index: delegate.getAvailableIndex(), wakeUp: .calm, wakeWindow: .calm, signs: .crying)
                   default: print("Error! DetailScenePresenterImpl.addNewFlow()") // Потом исправить описание ошибки!
               }
@@ -86,16 +85,14 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
         router.prepare(for: segue) { [unowned self] result in
             if self.dream != nil {
                  switch result {
-                 case _ where result is Dream.PutDown: self.dream!.putDown = result as! Dream.PutDown;
-                 
-                    case _ where result is Dream.FallAsleep: self.dream!.fallAsleep = result as! Dream.FallAsleep
-                    case _ where result is Dream.WakeUp: self.dream!.wakeUp = result as! Dream.WakeUp
+                 case _ where result is Dream.FallAsleep: self.dream!.fallAsleep = result as! Dream.FallAsleep
+                 case _ where result is Dream.PutDown: self.dream!.putDown = result as! Dream.PutDown
+//                    case _ where result is Dream.WakeUp: self.dream!.wakeUp = result as! Dream.WakeUp
                     default: print("Error! Result is not be identify")
                 }
                 //Update view labels
                 self.setLabelCallback([self.dream!.putDown.rawValue,
-                                      self.dream!.fallAsleep.rawValue,
-                                      self.dream!.wakeUp.rawValue])
+                                       self.dream!.fallAsleep.rawValue])
             } else if
                 self.wake != nil {
                   switch result {
@@ -106,8 +103,8 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
                 }
                 //Update view labels
                 self.setLabelCallback([self.wake!.wakeUp.rawValue,
-                                      self.wake!.wakeWindow.rawValue,
-                                      self.wake!.signs.rawValue])
+                                       self.wake!.wakeWindow.rawValue,
+                                       self.wake!.signs.rawValue])
             }
         }
     }

@@ -17,6 +17,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
     // MARK: - Private
     
     private func parseToDomainEntity(dbEntity: WakeDBEntity) -> Wake {
+        print(dbEntity)
         return .init(    id: dbEntity.id!,
                          index: Int(dbEntity.index),
                          wakeUp: Wake.WakeUp(rawValue: dbEntity.wakeUp!)!,

@@ -21,8 +21,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
         return .init(    id: dbEntity.id!,
                          index: Int(dbEntity.index),
                          putDown: Dream.PutDown(rawValue: dbEntity.putDown!)!,
-                         fallAsleep: Dream.FallAsleep(rawValue: dbEntity.fallAsleep!)!,
-                         wakeUp: Dream.WakeUp(rawValue: dbEntity.wakeUp!)! )
+                         fallAsleep: Dream.FallAsleep(rawValue: dbEntity.fallAsleep!)!)
     }
     
     // MARK: - Protocol Implements

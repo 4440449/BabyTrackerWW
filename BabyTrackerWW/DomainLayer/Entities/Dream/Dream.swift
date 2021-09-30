@@ -13,43 +13,43 @@ struct Dream: LifeCycle {
     let id: UUID
     let title = "Сон"
     var index: Int
-    var putDown: PutDown
     var fallAsleep: FallAsleep
-    var wakeUp: WakeUp
+    var putDown: PutDown
+//    var wakeUp: WakeUp
+    
+    enum FallAsleep: String, CaseIterable, RawRepresentable, LifeCycleProperty {
+        case crying = "😭" //"Плакал"
+        case upSet  = "😒" //"Расстроенный"
+        case calm   = "🙂" //"Спокойный"
+        case happy  = "🤪" //"Веселый"
+    }
     
     enum PutDown: String, CaseIterable, RawRepresentable, LifeCycleProperty {
         case brestFeeding = "На груди"
         case holding      = "На руках"
         case themSelfs    = "Самостоятельно"
     }
-    
-    enum FallAsleep: String, CaseIterable, RawRepresentable, LifeCycleProperty {
-        case crying = "Плакал"
-        case upSet  = "Расстроенный"
-        case calm   = "Спокойный"
-        case happy  = "Веселый"
-    }
 
-    enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty { // Удалить
-        case happy  = "Веселый"
-        case crying = "Плакал"
-        case upSet  = "Расстроенный"
-        case calm   = "Спокойный"
-    }
+//    enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty { // Удалить
+//        case happy  = "Веселый"
+//        case crying = "Плакал"
+//        case upSet  = "Расстроенный"
+//        case calm   = "Спокойный"
+//    }
 
-    init (index: Int, putDown: PutDown, fallAsleep: FallAsleep, wakeUp: WakeUp) {
+    init (index: Int, putDown: PutDown, fallAsleep: FallAsleep) {
         self.id = UUID()
         self.index = index
         self.putDown = putDown
         self.fallAsleep = fallAsleep
-        self.wakeUp = wakeUp
+//        self.wakeUp = wakeUp
     }
     
-    init (id: UUID, index: Int, putDown: PutDown, fallAsleep: FallAsleep, wakeUp: WakeUp) {
+    init (id: UUID, index: Int, putDown: PutDown, fallAsleep: FallAsleep) {
         self.id = id
         self.index = index
         self.putDown = putDown
         self.fallAsleep = fallAsleep
-        self.wakeUp = wakeUp
+//        self.wakeUp = wakeUp
     }
 }

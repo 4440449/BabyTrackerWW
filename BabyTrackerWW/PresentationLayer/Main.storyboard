@@ -26,7 +26,7 @@
         <!--Calendar Scene View Controller-->
         <scene sceneID="AJD-1S-sWc">
             <objects>
-                <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B95-aI-t9R">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -78,13 +78,13 @@
         <!--Main Scene Table View Controller-->
         <scene sceneID="d3X-f0-aLd">
             <objects>
-                <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainSceneCell" rowHeight="100" id="fh0-rt-naf" customClass="MainSceneTableViewCell" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainSceneCell" rowHeight="100" id="fh0-rt-naf" customClass="MainSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fh0-rt-naf" id="TNt-0N-vMx">
@@ -141,13 +141,13 @@
         <!--Select Scene Table View Controller-->
         <scene sceneID="pi8-Ho-dga">
             <objects>
-                <tableViewController id="LBA-XT-X1i" customClass="SelectSceneTableViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="LBA-XT-X1i" customClass="SelectSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aGu-BG-7ag">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="wV5-i1-2dh" customClass="SelectSceneTableViewCell" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="wV5-i1-2dh" customClass="SelectSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wV5-i1-2dh" id="t5r-U9-0oF">
@@ -186,13 +186,13 @@
         <!--Dream Detail Scene View Controller-->
         <scene sceneID="vwd-UJ-vJL">
             <objects>
-                <viewController id="rJu-0z-jb4" customClass="DreamDetailSceneViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rJu-0z-jb4" customClass="DreamDetailSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1e-mN-Mv8">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
-                                <rect key="frame" x="20" y="312" width="374" height="60"/>
+                                <rect key="frame" x="20" y="121" width="374" height="60"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                 <state key="normal" title="Плакал">
@@ -203,46 +203,8 @@
                                     <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="FallAsleep" id="Dot-2p-8B9"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
-                                <rect key="frame" x="20" y="122" width="374" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="На груди">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="putDownButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="XmU-BR-y5W"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="PutDown" id="tdi-ZX-3er"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
-                                <rect key="frame" x="20" y="52" width="374" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
-                                <rect key="frame" x="20" y="242" width="374" height="62"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BlT-Co-9d5">
-                                <rect key="frame" x="20" y="500" width="374" height="60"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
-                                <state key="normal" title="Веселый">
-                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="wakeUpButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="YP8-ZP-wQd"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="WakeUp" id="ZRT-wi-kQz"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="862-t1-UeA">
-                                <rect key="frame" x="17" y="430" width="380" height="62"/>
+                                <rect key="frame" x="20" y="51" width="374" height="62"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
                                 <nil key="textColor"/>
@@ -258,6 +220,25 @@
                                     <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="f1M-wF-qB0"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
+                                <rect key="frame" x="20" y="313" width="374" height="60"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="23"/>
+                                <state key="normal" title="На груди">
+                                    <color key="titleColor" cocoaTouchSystemColor="darkTextColor"/>
+                                </state>
+                                <connections>
+                                    <action selector="putDownButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="XmU-BR-y5W"/>
+                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="PutDown" id="tdi-ZX-3er"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
+                                <rect key="frame" x="20" y="243" width="374" height="62"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="25"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="NU4-Sc-z8i"/>
@@ -266,7 +247,6 @@
                     <connections>
                         <outlet property="fallAsleepOutletButton" destination="0OC-h9-VxV" id="GtV-X3-P5s"/>
                         <outlet property="putDownOutletButton" destination="wGe-ue-ZBw" id="MZC-Sl-lKp"/>
-                        <outlet property="wakeUpOutletButton" destination="BlT-Co-9d5" id="RaX-Wp-LZk"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vpa-lY-8Rx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -276,22 +256,13 @@
         <!--Picker View Controller-->
         <scene sceneID="qh4-Ze-wmv">
             <objects>
-                <viewController id="Hoi-qQ-SGb" customClass="PickerViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hoi-qQ-SGb" customClass="PickerViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgL-ro-dBi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <pickerView tag="1" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="200" width="414" height="324"/>
-                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
-                                <connections>
-                                    <outlet property="dataSource" destination="Hoi-qQ-SGb" id="IWg-6k-9Nb"/>
-                                    <outlet property="delegate" destination="Hoi-qQ-SGb" id="AQh-g4-jPo"/>
-                                </connections>
-                            </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
-                                <rect key="frame" x="142" y="647" width="130" height="50"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
+                                <rect key="frame" x="157.5" y="703" width="99" height="36"/>
                                 <color key="backgroundColor" systemColor="systemGreenColor" red="0.20392156859999999" green="0.78039215689999997" blue="0.34901960780000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
                                 <state key="normal" title="Сохранить"/>
@@ -299,8 +270,21 @@
                                     <action selector="saveButton:" destination="Hoi-qQ-SGb" eventType="touchUpInside" id="ehN-rc-69V"/>
                                 </connections>
                             </button>
+                            <pickerView tag="1" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
+                                <rect key="frame" x="0.0" y="133" width="414" height="425"/>
+                                <connections>
+                                    <outlet property="dataSource" destination="Hoi-qQ-SGb" id="IWg-6k-9Nb"/>
+                                    <outlet property="delegate" destination="Hoi-qQ-SGb" id="AQh-g4-jPo"/>
+                                </connections>
+                            </pickerView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="centerY" secondItem="kgL-ro-dBi" secondAttribute="centerY" constant="-75.5" id="C7D-fH-iTs"/>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="centerX" secondItem="kgL-ro-dBi" secondAttribute="centerX" id="k1n-Gz-13h"/>
+                            <constraint firstItem="r9w-By-OOb" firstAttribute="centerY" secondItem="kgL-ro-dBi" secondAttribute="centerY" constant="300" id="z8W-3J-6Xh"/>
+                            <constraint firstItem="r9w-By-OOb" firstAttribute="centerX" secondItem="kgL-ro-dBi" secondAttribute="centerX" id="ziY-cw-956"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="evm-QQ-wgq"/>
                     </view>
                     <navigationItem key="navigationItem" id="aJR-Xs-C3Q"/>
@@ -310,12 +294,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfi-rF-zaP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="101" y="2830"/>
+            <point key="canvasLocation" x="100.00000000000001" y="2829.9107142857142"/>
         </scene>
         <!--Detail Wake Window Scene View Controller-->
         <scene sceneID="P8P-7p-NH3">
             <objects>
-                <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="WakeDetailSceneViewController" customModule="BabyTracker___2_with_WakeWindow" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="WakeDetailSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4j-3h-5UQ">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -400,7 +384,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkZ-ea-8Df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="568" y="1910"/>
+            <point key="canvasLocation" x="532" y="1910"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

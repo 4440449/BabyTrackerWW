@@ -24,9 +24,9 @@ final class DetailSceneRouterImpl: DetailSceneRouterProtocol {
         
         if segue.source is DreamDetailSceneViewController {
              switch segue {
+             case _ where segue.identifier == "FallAsleep": vc.configurator.configureScene(view: vc, type: Dream.FallAsleep.self, callback: callback)
                 case _ where segue.identifier == "PutDown": vc.configurator.configureScene(view: vc, type: Dream.PutDown.self, callback: callback)
-                case _ where segue.identifier == "FallAsleep": vc.configurator.configureScene(view: vc, type: Dream.FallAsleep.self, callback: callback)
-                case _ where segue.identifier == "WakeUp": vc.configurator.configureScene(view: vc, type: Dream.WakeUp.self, callback: callback)
+//                case _ where segue.identifier == "WakeUp": vc.configurator.configureScene(view: vc, type: Dream.WakeUp.self, callback: callback)
                 default: print("Segue have not identifier")
                 }
         } else if

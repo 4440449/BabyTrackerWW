@@ -22,7 +22,7 @@ extension DreamDBEntity {
     @NSManaged public var date: Date?
     @NSManaged public var putDown: String?
     @NSManaged public var fallAsleep: String?
-    @NSManaged public var wakeUp: String?
+//    @NSManaged public var wakeUp: String?
 }
 
 
@@ -31,7 +31,7 @@ extension DreamDBEntity {
     func populateEntity(dream: Dream) {
         self.putDown = dream.putDown.rawValue
         self.fallAsleep = dream.fallAsleep.rawValue
-        self.wakeUp = dream.wakeUp.rawValue
+//        self.wakeUp = dream.wakeUp.rawValue
     }
     
     func populateEntityWithDate(dream: Dream, date: Date) {
@@ -39,7 +39,7 @@ extension DreamDBEntity {
         self.id = dream.id
         self.putDown = dream.putDown.rawValue
         self.fallAsleep = dream.fallAsleep.rawValue
-        self.wakeUp = dream.wakeUp.rawValue
+//        self.wakeUp = dream.wakeUp.rawValue
     }
     
 }

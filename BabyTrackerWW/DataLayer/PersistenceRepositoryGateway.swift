@@ -23,29 +23,28 @@ final class PersistenceRepositoryGateway: DreamsCardGateway {
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
         var resultSuccess: [LifeCycle] = []
-        var resultError: Error? { didSet {callback(.failure(resultError!))} }
+        var resultError: Error? // { didSet {callback(.failure(resultError!))} }
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-            
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)
-                case let .failure(error): resultError = error
-                }
-            }
+                case let .failure(error): resultError = error // не нравится, поработать с логикой!
+                } }
             
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams): resultSuccess.append(contentsOf: dreams)
-                case let .failure(error): resultError = error
-                }
-            }
-            
-            callback(.success(resultSuccess.sorted { $0.index < $1.index }))
+                case let .failure(error): resultError = error // не нравится, поработать с логикой!
+                } }
         }
         
+        if resultError == nil {
+            callback(.success(resultSuccess.sorted { $0.index < $1.index }))
+        }
     }
+    
     
     func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {

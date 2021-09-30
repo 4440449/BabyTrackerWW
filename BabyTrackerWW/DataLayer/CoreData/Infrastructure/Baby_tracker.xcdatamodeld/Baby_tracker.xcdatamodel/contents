@@ -6,7 +6,6 @@
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
         <attribute name="putDown" optional="YES" attributeType="String"/>
-        <attribute name="wakeUp" optional="YES" attributeType="String"/>
     </entity>
     <entity name="WakeDBEntity" representedClassName="WakeDBEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
@@ -17,7 +16,7 @@
         <attribute name="wakeWindow" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DreamDBEntity" positionX="-385.01953125" positionY="-150.8125" width="128" height="133"/>
+        <element name="DreamDBEntity" positionX="-385.01953125" positionY="-150.8125" width="128" height="118"/>
         <element name="WakeDBEntity" positionX="-387" positionY="-108" width="128" height="133"/>
     </elements>
 </model>
