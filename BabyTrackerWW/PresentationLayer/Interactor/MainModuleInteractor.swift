@@ -120,7 +120,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteDream(at index: Int) {
-        persistenceRepository.deleteLifeCycle(dreamsCard.lifeCycle[index] as! Dream) { [unowned self] result in
+        persistenceRepository.deleteLifeCycle(dreamsCard.lifeCycle[index]/* as! Dream*/) { [unowned self] result in
             switch result {
             case .success(): self.dreamsCard.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")

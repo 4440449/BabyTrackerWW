@@ -31,17 +31,21 @@ final class PersistenceRepositoryGateway: DreamsCardGateway {
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)
                 case let .failure(error): resultError = error // не нравится, поработать с логикой!
-                } }
+                }
+            }
             
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams): resultSuccess.append(contentsOf: dreams)
                 case let .failure(error): resultError = error // не нравится, поработать с логикой!
-                } }
+                }
+            }
+            
+            if resultError == nil {
+                callback(.success(resultSuccess.sorted { $0.index < $1.index }))
+                
         }
         
-        if resultError == nil {
-            callback(.success(resultSuccess.sorted { $0.index < $1.index }))
         }
     }
     

@@ -17,9 +17,9 @@ extension WakeDBEntity {
         return NSFetchRequest<WakeDBEntity>(entityName: "WakeDBEntity")
     }
     
+    @NSManaged public var date: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var index: Int32
-    @NSManaged public var date: Date?
     @NSManaged public var wakeUp: String?
     @NSManaged public var wakeWindow: String?
     @NSManaged public var signs: String?
@@ -35,8 +35,8 @@ extension WakeDBEntity {
     }
     
     func populateEntityWithDate(wake: Wake, date: Date) {
-        self.id = wake.id
         self.date = date
+        self.id = wake.id
         self.index = Int32(wake.index)
         self.wakeUp = wake.wakeUp.rawValue
         self.wakeWindow = wake.wakeWindow.rawValue

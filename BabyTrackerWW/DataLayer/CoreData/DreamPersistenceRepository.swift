@@ -40,6 +40,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                 let fetchResult = try coreDataContainer.viewContext.fetch(request)
 //                sleep(4)
                 let dreams = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+                print(dreams.map { $0.index })
                 callback(.success(dreams))
             } catch let error {
                 callback(.failure(error))

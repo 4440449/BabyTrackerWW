@@ -12,6 +12,10 @@ import CoreData
 
 final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
     
+    struct ErrorTest: Error {
+        
+    }
+    
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
     // MARK: - Private
@@ -40,6 +44,8 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
             let wakes = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+//            callback(.failure(ErrorTest()))
+            print(wakes.map { $0.index })
             callback(.success(wakes))
         } catch let error {
             callback(.failure(error))

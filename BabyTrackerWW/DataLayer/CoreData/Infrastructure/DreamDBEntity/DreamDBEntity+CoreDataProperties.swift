@@ -17,9 +17,9 @@ extension DreamDBEntity {
         return NSFetchRequest<DreamDBEntity>(entityName: "DreamDBEntity")
     }
 
+    @NSManaged public var date: Date?
     @NSManaged public var id: UUID?
     @NSManaged public var index: Int32
-    @NSManaged public var date: Date?
     @NSManaged public var putDown: String?
     @NSManaged public var fallAsleep: String?
 //    @NSManaged public var wakeUp: String?
@@ -29,6 +29,7 @@ extension DreamDBEntity {
 extension DreamDBEntity {
     
     func populateEntity(dream: Dream) {
+        self.index = Int32(dream.index)
         self.putDown = dream.putDown.rawValue
         self.fallAsleep = dream.fallAsleep.rawValue
 //        self.wakeUp = dream.wakeUp.rawValue
@@ -37,6 +38,7 @@ extension DreamDBEntity {
     func populateEntityWithDate(dream: Dream, date: Date) {
         self.date = date
         self.id = dream.id
+        self.index = Int32(dream.index)
         self.putDown = dream.putDown.rawValue
         self.fallAsleep = dream.fallAsleep.rawValue
 //        self.wakeUp = dream.wakeUp.rawValue
