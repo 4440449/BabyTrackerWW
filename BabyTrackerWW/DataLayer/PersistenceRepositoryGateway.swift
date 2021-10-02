@@ -41,11 +41,11 @@ final class PersistenceRepositoryGateway: DreamsCardGateway {
                 }
             }
             
-            if resultError == nil {
+            if resultError != nil {
+                callback(.failure(resultError!))
+            } else {
                 callback(.success(resultSuccess.sorted { $0.index < $1.index }))
-                
-        }
-        
+            }
         }
     }
     
