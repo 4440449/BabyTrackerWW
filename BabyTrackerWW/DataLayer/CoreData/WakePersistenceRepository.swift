@@ -100,4 +100,5 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
             }
         }
     }
+    
 }

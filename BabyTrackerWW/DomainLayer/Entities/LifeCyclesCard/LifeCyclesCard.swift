@@ -9,9 +9,9 @@
 import Foundation
 
 
-struct DreamsCard {
+struct LifeCyclesCard {
     var date: Date
-    var lifeCycle: [LifeCycle] = [] // Здесь должен быть массив абстракций, чтобы работать одним кодом с разными типами
+    var lifeCycle: [LifeCycle] = []
     init (date: Date) {
         self.date = date
     }

@@ -45,24 +45,24 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func viewDidLoad() {
-        interactor.fetchDreams()
+        interactor.fetchLifeCycles()
     }
 
     var dateOfCard: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM YYYY"
-        let date = formatter.string(from: interactor.showDreamsCard().date)
+        let date = formatter.string(from: interactor.showLifeCyclesCard().date)
         return date
     }
     
     var numberOfDreams: Int {
-        let count = interactor.showDreamsCard().lifeCycle.count
+        let count = interactor.showLifeCyclesCard().lifeCycle.count
         return count
     }
     
     func setCellLabel(at index: Int) -> String {
-    let label = interactor.showDreamsCard().lifeCycle[index].title
+    let label = interactor.showLifeCyclesCard().lifeCycle[index].title
     return label
     }
     
@@ -72,7 +72,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     
     func didSelectRow(at index: Int, callback: (String) -> ()) {
-        let type = interactor.showDreamDetails(at: index)
+        let type = interactor.showLifeCycleDetails(at: index)
         router.perform(type: type, callback: callback)
     }
     
@@ -81,11 +81,11 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
 //    }
     
     func addNewDreamButtonTapped() {
-        interactor.addNewDream()
+        interactor.addNewLifeCycle()
     }
     
     func deleteRow(at index: Int) {
-        interactor.deleteDream(at: index)
+        interactor.deleteLifeCycle(at: index)
     }
     
     func prepare<T>(for segue: T) {

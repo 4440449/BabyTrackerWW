@@ -42,8 +42,8 @@
 		50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* LaunchScreen.storyboard */; };
 		50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175262704C1F000108B17 /* SceneDelegate.swift */; };
 		50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* EntityProtocols.swift */; };
-		50B175582704C1F000108B17 /* DreamsCardGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */; };
-		50B175592704C1F000108B17 /* DreamsCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752C2704C1F000108B17 /* DreamsCard.swift */; };
+		50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */; };
+		50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752C2704C1F000108B17 /* LifeCyclesCard.swift */; };
 		50B1755A2704C1F000108B17 /* Wake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752E2704C1F000108B17 /* Wake.swift */; };
 		50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752F2704C1F000108B17 /* WakeGateway.swift */; };
 		50B1755C2704C1F000108B17 /* Dream.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175312704C1F000108B17 /* Dream.swift */; };
@@ -92,8 +92,8 @@
 		50B175252704C1F000108B17 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50B175262704C1F000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50B175292704C1F000108B17 /* EntityProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityProtocols.swift; sourceTree = "<group>"; };
-		50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamsCardGateway.swift; sourceTree = "<group>"; };
-		50B1752C2704C1F000108B17 /* DreamsCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamsCard.swift; sourceTree = "<group>"; };
+		50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGateway.swift; sourceTree = "<group>"; };
+		50B1752C2704C1F000108B17 /* LifeCyclesCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesCard.swift; sourceTree = "<group>"; };
 		50B1752E2704C1F000108B17 /* Wake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wake.swift; sourceTree = "<group>"; };
 		50B1752F2704C1F000108B17 /* WakeGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeGateway.swift; sourceTree = "<group>"; };
 		50B175312704C1F000108B17 /* Dream.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Dream.swift; sourceTree = "<group>"; };
@@ -136,8 +136,8 @@
 			children = (
 				50B1751B2704C1EF00108B17 /* AppDelegate.swift */,
 				50B175262704C1F000108B17 /* SceneDelegate.swift */,
-				50B1751C2704C1F000108B17 /* DataLayer */,
 				50B175272704C1F000108B17 /* DomainLayer */,
+				50B1751C2704C1F000108B17 /* DataLayer */,
 				50B174E02704C1EF00108B17 /* PresentationLayer */,
 				50B175252704C1F000108B17 /* LaunchScreen.storyboard */,
 				50B175242704C1F000108B17 /* Info.plist */,
@@ -412,8 +412,8 @@
 		50B175152704C1EF00108B17 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				50B175162704C1EF00108B17 /* LoaderStatus.swift */,
 				50B175172704C1EF00108B17 /* MainModuleInteractor.swift */,
+				50B175162704C1EF00108B17 /* LoaderStatus.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -449,20 +449,20 @@
 			isa = PBXGroup;
 			children = (
 				50B175292704C1F000108B17 /* EntityProtocols.swift */,
-				50B1752A2704C1F000108B17 /* DreamsCard */,
+				50B1752A2704C1F000108B17 /* LifeCyclesCard */,
 				50B1752D2704C1F000108B17 /* Wake */,
 				50B175302704C1F000108B17 /* Dream */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		50B1752A2704C1F000108B17 /* DreamsCard */ = {
+		50B1752A2704C1F000108B17 /* LifeCyclesCard */ = {
 			isa = PBXGroup;
 			children = (
-				50B1752C2704C1F000108B17 /* DreamsCard.swift */,
-				50B1752B2704C1F000108B17 /* DreamsCardGateway.swift */,
+				50B1752C2704C1F000108B17 /* LifeCyclesCard.swift */,
+				50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */,
 			);
-			path = DreamsCard;
+			path = LifeCyclesCard;
 			sourceTree = "<group>";
 		};
 		50B1752D2704C1F000108B17 /* Wake */ = {
@@ -604,9 +604,9 @@
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
 				50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */,
-				50B175592704C1F000108B17 /* DreamsCard.swift in Sources */,
+				50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */,
 				50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */,
-				50B175582704C1F000108B17 /* DreamsCardGateway.swift in Sources */,
+				50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */,
 				50B1754A2704C1F000108B17 /* LoaderStatus.swift in Sources */,
 				50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */,
 				50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */,

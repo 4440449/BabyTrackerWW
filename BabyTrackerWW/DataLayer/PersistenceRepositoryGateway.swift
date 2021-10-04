@@ -9,7 +9,7 @@
 import Foundation
 
 
-final class PersistenceRepositoryGateway: DreamsCardGateway {
+final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
     private let wakeRepository: WakeGatewayProtocol
     private let dreamRepository: DreamGatewayProtocol

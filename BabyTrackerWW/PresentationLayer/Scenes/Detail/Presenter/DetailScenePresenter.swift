@@ -91,8 +91,8 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
                     default: print("Error! Result is not be identify")
                 }
                 //Update view labels
-                self.setLabelCallback([self.dream!.putDown.rawValue,
-                                       self.dream!.fallAsleep.rawValue])
+                self.setLabelCallback([self.dream!.fallAsleep.rawValue,
+                                       self.dream!.putDown.rawValue])
             } else if
                 self.wake != nil {
                   switch result {
