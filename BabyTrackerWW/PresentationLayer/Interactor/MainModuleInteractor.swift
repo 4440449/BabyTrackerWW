@@ -55,7 +55,7 @@ protocol SelectSceneDelegate: AnyObject {
 
 // MARK: - Implementation -
 
-final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, /*WakeDetailSceneDelegate,*/ SelectSceneDelegate {
+final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, SelectSceneDelegate {
 
     private let persistenceRepository: LifeCyclesCardGateway
     
@@ -134,9 +134,9 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func changeDate(new date: Date) {
         persistenceRepository.fetchLifeCycle(at: date) { [unowned self] result in
+            self.lifeCycleCard.date = date
             switch result {
-            case let .success(lifeCycles): self.lifeCycleCard.date = date;
-            self.lifeCycleCard.lifeCycle = lifeCycles;
+            case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles;
             case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
             }
         }

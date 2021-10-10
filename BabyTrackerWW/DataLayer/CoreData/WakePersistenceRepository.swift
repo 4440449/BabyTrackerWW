@@ -11,17 +11,12 @@ import CoreData
 
 
 final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
-    
-    struct ErrorTest: Error {
         
-    }
-    
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
     // MARK: - Private
     
     private func parseToDomainEntity(dbEntity: WakeDBEntity) -> Wake {
-        print(dbEntity)
         return .init(    id: dbEntity.id!,
                          index: Int(dbEntity.index),
                          wakeUp: Wake.WakeUp(rawValue: dbEntity.wakeUp!)!,
@@ -37,15 +32,12 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
         calendar.timeZone = TimeZone.current
         let startOfDay = calendar.startOfDay(for: date)
         let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
-        print("startOfDay = \(startOfDay), endOfDay = \(endOfDay)")
         
         let request: NSFetchRequest = WakeDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfDay as NSDate, endOfDay as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
             let wakes = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
-//            callback(.failure(ErrorTest()))
-            print(wakes.map { $0.index })
             callback(.success(wakes))
         } catch let error {
             callback(.failure(error))
@@ -57,7 +49,6 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
         coreDataContainer.performBackgroundTask { backgroundContext in
             let dbEntity = WakeDBEntity.init(context: backgroundContext)
             dbEntity.populateEntityWithDate(wake: wake, date: date)
-            print(dbEntity.date!)
             do {
                 try backgroundContext.save()
                 callback(.success(()))

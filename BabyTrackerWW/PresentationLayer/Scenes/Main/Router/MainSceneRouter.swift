@@ -54,8 +54,3 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
         }
     }
 }
-
-
-
-//   case _ where segue.identifier == "addNewDreamButton": print("Default flow implementation on Detail Scene")
-

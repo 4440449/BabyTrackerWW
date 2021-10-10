@@ -11,6 +11,10 @@ import Foundation
 
 final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
+    struct PersistenceRepositoryError: Error {
+        var description = [String]()
+    }
+    
     private let wakeRepository: WakeGatewayProtocol
     private let dreamRepository: DreamGatewayProtocol
     
@@ -22,30 +26,31 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
-        var resultSuccess: [LifeCycle] = []
-        var resultError: Error? // { didSet {callback(.failure(resultError!))} }
+        var resultSuccess = [LifeCycle]()
+        var resultError = PersistenceRepositoryError()
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)
-                case let .failure(error): resultError = error // не нравится, поработать с логикой!
+                case let .failure(error): resultError.description.append(error.localizedDescription)
                 }
             }
             
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams): resultSuccess.append(contentsOf: dreams)
-                case let .failure(error): resultError = error // не нравится, поработать с логикой!
+                case let .failure(error): resultError.description.append(error.localizedDescription)
                 }
             }
             
-            if resultError != nil {
-                callback(.failure(resultError!))
+            if !resultError.description.isEmpty {
+                callback(.failure(resultError))
             } else {
                 callback(.success(resultSuccess.sorted { $0.index < $1.index }))
             }
+            // TODO: Более красиво обработать остановку задачи, при наличии хотя бы одной ошибки (Operation?)
         }
     }
     

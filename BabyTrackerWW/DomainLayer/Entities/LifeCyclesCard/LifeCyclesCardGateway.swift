@@ -17,6 +17,3 @@ protocol LifeCyclesCardGateway {
     func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
 
 }
-
-// fix label bug on Detail scene
-// legacy renaming

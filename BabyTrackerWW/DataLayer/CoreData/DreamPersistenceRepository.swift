@@ -13,6 +13,8 @@ import CoreData
 // TODO: - Разобраться с таймс зоной
 final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
     
+//        struct ErrorTest: Error {}
+
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
     // MARK: - Private
@@ -32,7 +34,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
             calendar.timeZone = TimeZone.current
             let startOfDay = calendar.startOfDay(for: date)
             let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
-            print("startOfDay = \(startOfDay), endOfDay = \(endOfDay)")
+//            print("startOfDay = \(startOfDay), endOfDay = \(endOfDay)")
             
             let request: NSFetchRequest = DreamDBEntity.fetchRequest()
             request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfDay as NSDate, endOfDay as NSDate)
@@ -40,8 +42,10 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                 let fetchResult = try coreDataContainer.viewContext.fetch(request)
 //                sleep(4)
                 let dreams = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
-                print(dreams.map { $0.index })
+//                print(dreams.map { $0.index })
                 callback(.success(dreams))
+//                callback(.failure(ErrorTest()))
+                
             } catch let error {
                 callback(.failure(error))
             }
@@ -52,7 +56,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
         coreDataContainer.performBackgroundTask { backgroundContext in
             let dbEntity = DreamDBEntity.init(context: backgroundContext)
             dbEntity.populateEntityWithDate(dream: dream, date: date)
-            print(dbEntity.date!)
+//            print(dbEntity.date!)
             do {
                 try backgroundContext.save()
                 callback(.success(()))
