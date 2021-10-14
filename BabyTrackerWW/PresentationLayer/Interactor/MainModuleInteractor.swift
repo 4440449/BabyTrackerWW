@@ -57,7 +57,7 @@ protocol SelectSceneDelegate: AnyObject {
 
 final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, SelectSceneDelegate {
 
-    private let persistenceRepository: LifeCyclesCardGateway
+    private let persistenceRepository: LifeCyclesCardGateway // dataAccessGateway
     
     private var notifierStorage: [() -> ()] = []
     private var currentLifecycleIndex: Int?
@@ -89,7 +89,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         isLoading = .loading // -------
         persistenceRepository.fetchLifeCycle(at: lifeCycleCard.date) { [unowned self] result in
             switch result {
-            case let .success(lifeCycle): self.lifeCycleCard.lifeCycle = lifeCycle
+            case let .success(lifeCycle): self.lifeCycleCard.lifeCycle = lifeCycle.sorted { $0.index < $1.index }
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)")
             }
             self.isLoading = .notLoading // -------

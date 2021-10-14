@@ -9,6 +9,8 @@
 import Foundation
 
 
+protocol PersistenceRepositoryGatewayProtocol {} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
+
 final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
     struct PersistenceRepositoryError: Error {
@@ -31,6 +33,7 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
+            
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)
@@ -48,7 +51,7 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
             if !resultError.description.isEmpty {
                 callback(.failure(resultError))
             } else {
-                callback(.success(resultSuccess.sorted { $0.index < $1.index }))
+                callback(.success(resultSuccess))
             }
             // TODO: Более красиво обработать остановку задачи, при наличии хотя бы одной ошибки (Operation?)
         }

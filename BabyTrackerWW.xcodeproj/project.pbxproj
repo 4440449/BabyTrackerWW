@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5017169D2718C5BC008DD70C /* NetworkRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017169C2718C5BC008DD70C /* NetworkRepositoryGateway.swift */; };
+		501716A22718C936008DD70C /* DataAccessGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* DataAccessGateway.swift */; };
 		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
 		50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */; };
 		50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */; };
@@ -55,6 +57,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5017169C2718C5BC008DD70C /* NetworkRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryGateway.swift; sourceTree = "<group>"; };
+		501716A12718C936008DD70C /* DataAccessGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataAccessGateway.swift; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenterswift.swift; sourceTree = "<group>"; };
 		50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController.swift; sourceTree = "<group>"; };
@@ -115,6 +119,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5017169E2718C5DA008DD70C /* NetworkInfrastructure */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NetworkInfrastructure;
+			sourceTree = "<group>";
+		};
+		5017169F2718C8A2008DD70C /* PersistenceRepository */ = {
+			isa = PBXGroup;
+			children = (
+				50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */,
+				50B1751D2704C1F000108B17 /* CoreData */,
+			);
+			path = PersistenceRepository;
+			sourceTree = "<group>";
+		};
+		501716A02718C8F7008DD70C /* NetworkRepository */ = {
+			isa = PBXGroup;
+			children = (
+				5017169C2718C5BC008DD70C /* NetworkRepositoryGateway.swift */,
+				5017169E2718C5DA008DD70C /* NetworkInfrastructure */,
+			);
+			path = NetworkRepository;
+			sourceTree = "<group>";
+		};
 		50B174C02704C0B000108B17 = {
 			isa = PBXGroup;
 			children = (
@@ -421,8 +450,9 @@
 		50B1751C2704C1F000108B17 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */,
-				50B1751D2704C1F000108B17 /* CoreData */,
+				501716A12718C936008DD70C /* DataAccessGateway.swift */,
+				501716A02718C8F7008DD70C /* NetworkRepository */,
+				5017169F2718C8A2008DD70C /* PersistenceRepository */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
@@ -590,6 +620,7 @@
 				50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */,
 				50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */,
 				50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */,
+				5017169D2718C5BC008DD70C /* NetworkRepositoryGateway.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
 				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
 				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
@@ -599,6 +630,7 @@
 				50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */,
 				50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */,
 				50B1755C2704C1F000108B17 /* Dream.swift in Sources */,
+				501716A22718C936008DD70C /* DataAccessGateway.swift in Sources */,
 				50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */,
 				50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */,
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
