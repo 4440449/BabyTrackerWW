@@ -16,7 +16,7 @@
         <attribute name="wakeWindow" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DreamDBEntity" positionX="-385.01953125" positionY="-150.8125" width="128" height="118"/>
+        <element name="DreamDBEntity" positionX="-667.12109375" positionY="-107.0390625" width="128" height="118"/>
         <element name="WakeDBEntity" positionX="-387" positionY="-108" width="128" height="133"/>
     </elements>
 </model>

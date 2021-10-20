@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol PersistenceRepositoryGatewayProtocol {} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
+protocol PersistenceRepositoryProtocol {} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
 
 final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
@@ -28,12 +28,12 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
-        var resultSuccess = [LifeCycle]()
         var resultError = PersistenceRepositoryError()
+        var resultSuccess = [LifeCycle]()
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-            
+        //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)

@@ -10,6 +10,7 @@ import Foundation
 
 
 struct Dream: LifeCycle {
+    
     let id: UUID
     let title = "Сон"
     var index: Int

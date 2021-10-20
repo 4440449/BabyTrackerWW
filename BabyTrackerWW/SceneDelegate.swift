@@ -12,7 +12,7 @@ import UIKit
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let coreDataStack = CoreDataStackImpl.shared
+    let coreDataStack = CoreDataStackImpl.shared // Можно использовать многопоточный режим доступа к SQL, в режиме нон мютекс, однако в конкретно этом случае не получится, т.к. весь доступ происходит через синглтон (единственный экземпляр)
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
