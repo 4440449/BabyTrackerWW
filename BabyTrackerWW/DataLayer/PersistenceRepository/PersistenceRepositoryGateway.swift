@@ -9,10 +9,21 @@
 import Foundation
 
 
-protocol PersistenceRepositoryProtocol {} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
+protocol PersistenceRepositoryProtocol {
+    func synchronize(lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ())
+} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
 
-final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
+final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepositoryProtocol {
     
+    func synchronize(lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+         switch lifeCycle {
+               case let lifeCycle as Wake: self.wakeRepository.addNewWake(new: lifeCycle, at: date, callback: callback)
+               case let lifeCycle as Dream: self.dreamRepository.addNewDream(new: lifeCycle, at: date, callback: callback)
+          default: print(" Error in 'func synchronize()' - Default case!" )
+        }
+    }
+    
+   
     struct PersistenceRepositoryError: Error {
         var description = [String]()
     }
@@ -88,3 +99,24 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway {
     
     
 }
+
+
+//    func saveData<T>(date: Date, data: T, callback: @escaping (Result<T, Error>) -> ()) where T : LifeCycle {
+//
+//        CoreDataStackImpl.shared.persistentContainer.performBackgroundTask { (backContext) in
+//            var calendar = Calendar.init(identifier: .gregorian)
+//            calendar.timeZone = TimeZone.current
+//            let startOfDay = calendar.startOfDay(for: date)
+//            let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
+//
+//            let dbRequest = NSFetchRequest<NSFetchRequestResult>(entityName: data.title)
+//            dbRequest.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfDay as NSDate, endOfDay as NSDate)
+//            do {
+//                let fetchResult = try backContext.fetch(dbRequest)
+//                let entities = fetchResult
+//                callback(.success(wakes))
+//            } catch let error {
+//                callback(.failure(error))
+//            }
+//        }
+//    }

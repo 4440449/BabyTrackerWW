@@ -25,8 +25,8 @@ public struct ApiURL {
         case supabase = "lgrxdkchkrkunwoqiwtl.supabase.co"
     }
     enum Path: String {
-        case dreamDB = "/rest/v1/Dream"
-        case wakeDB  = "/rest/v1/Wake"
+        case dream = "/rest/v1/Dream"
+        case wake  = "/rest/v1/Wake"
     }
     
     
@@ -37,7 +37,7 @@ public struct ApiURL {
     }
     
     
-   public func createURL() -> URL? {
+   public func create() -> URL? {
         var urlComp = URLComponents()
         urlComp.scheme = scheme.rawValue
         urlComp.host = host.rawValue
@@ -79,8 +79,8 @@ public struct APIRequest {
     }
     
     
-    func createRequest() -> URLRequest? {
-        guard let url = url.createURL() else { return nil }
+    func create() -> URLRequest? {
+        guard let url = url.create() else { return nil }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
         urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
@@ -95,7 +95,7 @@ public struct APIRequest {
 public enum APISession {
     case `default`
     
-    func createSession() -> URLSession {
+    func create() -> URLSession {
         switch self {
         case .default:
             let session = URLSession(configuration: .default)

@@ -11,6 +11,12 @@ import Foundation
 
 final class DataAccessGateway: LifeCyclesCardGateway {
     
+    struct DataAccessError: Error {
+        var description = [String]()
+    }
+    
+//    private let networkConfig: NetworkRepositoryConfiguratorProtocol
+//    private let network: DTOProxyProtocol
     private let network: NetworkRepositoryConfiguratorProtocol
     private let localStorage: PersistenceRepositoryProtocol
 
@@ -22,10 +28,23 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     // далее на основании полученного конфига создавать нетворк реквест (в следующей сущности) и отправлять его в сеть
     
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        let networkRepo = network.fetch()
-        networkRepo.execute { result in
-            switch result {
-            case let .success(lifeCycle): print("lifeCycle.parseToDomain()")
+        
+        var resultError = DataAccessError()
+        var resultSuccess = [LifeCycle]()
+        
+        //let dreamTask = network.request(with: networkConfig.fetchDreams()) { result in ... }
+        let dreamsTask = network.fetchDreams().execute { result1 in
+            switch result1 {
+            case let .success(dreams): localStorage.synchronize(lifeCycle: dreams, date: date) { result in
+                switch result {
+                case .success(_): callback(result1)
+                case let .failure(error): callback(error)
+                }
+            }
+            // Продумать ход выполнения блоков в функциях, чтобы не было дикой пирамиды (нужна прямая передача один блок в другой, без реализации)
+            // Все чаще прихожу к выводу, что нужен слой с дата мапингом ...
+                
+                print("lifeCycle.parseToDomain()")
             //
             //
             //
@@ -33,6 +52,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
             
             }
         }
+        
         
         //networkCall
         //caching result in persistence repo
@@ -56,3 +76,6 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     
     
 }
+
+
+

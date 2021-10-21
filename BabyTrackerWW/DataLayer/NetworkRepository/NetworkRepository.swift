@@ -27,10 +27,9 @@ public final class NetworkRepository: NetworkRepositoryProtocol {
     
     func execute(callback: @escaping (Result<Data, Error>) -> ()) {
 
-        guard let request = request.createRequest() else { callback(.failure(RequestError.ReqErr)); return }
+        guard let request = request.create() else { callback(.failure(RequestError.ReqErr)); return }
         
-        let dataTask = session.createSession().dataTask(with: request) { data, response, error in
-            
+        let dataTask = session.create().dataTask(with: request) { data, response, error in
             guard let httpUrlResponse = response as? HTTPURLResponse else {
                 callback(.failure(error!))
                 return
@@ -41,7 +40,6 @@ public final class NetworkRepository: NetworkRepositoryProtocol {
             }
             callback(.success(data))
         }
-        
         dataTask.resume()
     }
     

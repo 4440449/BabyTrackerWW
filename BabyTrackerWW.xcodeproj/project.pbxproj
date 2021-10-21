@@ -126,7 +126,6 @@
 		5017169E2718C5DA008DD70C /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				501716A7271F634D008DD70C /* NetworkRepositoryConfigurator.swift */,
 				501716A5271CD6B6008DD70C /* APIConfigurator.swift */,
 			);
 			path = Infrastructure;
@@ -144,6 +143,7 @@
 		501716A02718C8F7008DD70C /* NetworkRepository */ = {
 			isa = PBXGroup;
 			children = (
+				501716A7271F634D008DD70C /* NetworkRepositoryConfigurator.swift */,
 				5017169C2718C5BC008DD70C /* NetworkRepository.swift */,
 				5017169E2718C5DA008DD70C /* Infrastructure */,
 			);
