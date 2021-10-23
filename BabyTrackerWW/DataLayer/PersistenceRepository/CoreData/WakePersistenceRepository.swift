@@ -37,6 +37,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
         for db in dbWake {
             for w in wake {
                 db.populateEntityWithDate(wake: w, date: date)
+                // Не работает! Первый цикл проходит одним элементом по каждому из второго цикла
             }
         }
     }

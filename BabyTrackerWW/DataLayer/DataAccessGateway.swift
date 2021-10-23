@@ -16,7 +16,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
 //    private let networkConfig: NetworkRepositoryConfiguratorProtocol
-//    private let network: DTOProxyProtocol
+//    private let network: DTOMapperProtocol
     private let network: NetworkRepositoryConfiguratorProtocol
     private let localStorage: PersistenceRepositoryProtocol
 
@@ -32,7 +32,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         var resultError = DataAccessError()
         var resultSuccess = [LifeCycle]()
         
-        //let dreamTask = network.request(with: networkConfig.fetchDreams()) { result in ... }
+//        let dreamTask = network.request(with: networkConfig.fetchDreams()) { result in ... }
         let dreamsTask = network.fetchDreams().execute { result1 in
             switch result1 {
             case let .success(dreams): localStorage.synchronize(lifeCycle: dreams, date: date) { result in

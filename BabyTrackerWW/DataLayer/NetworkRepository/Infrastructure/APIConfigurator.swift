@@ -37,16 +37,20 @@ public struct ApiURL {
     }
     
     
-   public func create() -> URL? {
+    public func create() -> URL? {
         var urlComp = URLComponents()
         urlComp.scheme = scheme.rawValue
         urlComp.host = host.rawValue
         urlComp.path = path.rawValue
-        guard let url = urlComp.url else { print("createURL() Error!"); return nil } // Некорректная обработка
+        guard let url = urlComp.url else { return nil }
+//        guard let url = urlComp.url else { print("createURL() Error!"); return nil } // Некорректная обработка
+        
         return url
     }
     
 }
+
+
 
 
 // MARK: - Request
@@ -55,9 +59,17 @@ public struct APIRequest {
     
     private let url: ApiURL
     private let method: HTTPMethod
-    private let header: [String : String]
-    private let body: [String : String]
+    private let header: [String : String] // нужен кастомный объект для создания массива?
+    private let body: [String : String]? // нужен кастомный объект для создания массива?
     
+    
+    private func JSONSerialize(obj: Any) throws -> Data {
+        do {
+            return try JSONSerialization.data(withJSONObject: obj, options: [])
+        } catch {
+            throw NetworkError.JSONSerialization(error.localizedDescription)
+        }
+    }
     
     enum HTTPMethod: String {
         case get     = "GET"
@@ -79,14 +91,38 @@ public struct APIRequest {
     }
     
     
-    func create() -> URLRequest? {
-        guard let url = url.create() else { return nil }
-        var urlRequest = URLRequest(url: url)
-        urlRequest.httpMethod = method.rawValue
-        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
-        urlRequest.httpBody = body.parseToData() // будет ли отрабатывать метод сериализации при пустом значении?
-        return urlRequest
+     func create() throws -> URLRequest {
+
+            guard let url = url.create() else { throw NetworkError.urlCreate("The URL cannot be configured") }
+            var urlRequest = URLRequest(url: url)
+            urlRequest.httpMethod = method.rawValue
+            urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
+            guard let body = body else { return urlRequest }
+            urlRequest.httpBody = try JSONSerialize(obj: body)
+            return urlRequest
+        //        do {
+//        } catch let error {
+//            throw error
+//        }
+//        guard let url = url.create() else { return nil }
+//        var urlRequest = URLRequest(url: url)
+//        urlRequest.httpMethod = method.rawValue
+//        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
+//        guard let body = JSONSerialize(obj: body) else { return nil }
+//        urlRequest.httpBody = body
+//        // будет ли отрабатывать метод сериализации при пустом значении?
+//        return urlRequest
     }
+    
+//    public func create(callback: (Result<Data, Error>) -> ()) -> URLRequest? {
+//        do {
+//            return try self.create()
+//        } catch {
+//            callback(.failure(error));
+//            return nil
+//        }
+//    }
+    
 }
 
 
@@ -105,15 +141,13 @@ public enum APISession {
 }
 
 
-// MARK: - Extensions
 
-extension Dictionary where Key: ExpressibleByStringLiteral, Value: Any {
+enum NetworkError: Error {
+    case urlCreate (String)
+    case JSONSerialization (String)
+    case HTTPURLResponse (statusCode: Int, data: Data?)
     
-    func parseToData() -> Data {
-        do {
-            return try JSONSerialization.data(withJSONObject: self, options: [])
-        } catch {
-            return Data()
-        }
-    }
+//    case requestError // временная мера! Не получается обработать url / serialize ошибки в методе execute NetworkRepository
+    
 }
+
