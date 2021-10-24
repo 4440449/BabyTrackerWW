@@ -25,15 +25,17 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
     func fetchDreams() -> NetworkRepositoryProtocol {
         let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream)
         let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey)
-        let session = APISession.default
-        return NetworkRepository(session: session, request: apiRequest)
+        let apiSession = APISession.default
+        let client = ApiClientImpl()
+        return NetworkRepositoryImpl(request: apiRequest, session: apiSession, client: client)
     }
     
     func fetchWakes() -> NetworkRepositoryProtocol {
         let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake)
         let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey)
-        let session = APISession.default
-        return NetworkRepository(session: session, request: apiRequest)
+        let apiSession = APISession.default
+        let client = ApiClientImpl()
+        return NetworkRepositoryImpl(request: apiRequest, session: apiSession, client: client)
     }
 
     

@@ -14,9 +14,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     struct DataAccessError: Error {
         var description = [String]()
     }
-    
-//    private let networkConfig: NetworkRepositoryConfiguratorProtocol
-//    private let network: DTOMapperProtocol
+
     private let network: NetworkRepositoryConfiguratorProtocol
     private let localStorage: PersistenceRepositoryProtocol
 
@@ -33,27 +31,22 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         var resultSuccess = [LifeCycle]()
         
 //        let dreamTask = network.request(with: networkConfig.fetchDreams()) { result in ... }
-        let dreamsTask = network.fetchDreams().execute { result1 in
-            switch result1 {
-            case let .success(dreams): localStorage.synchronize(lifeCycle: dreams, date: date) { result in
-                switch result {
-                case .success(_): callback(result1)
-                case let .failure(error): callback(error)
-                }
-            }
+        let dreamsTask = network.fetchDreams().fetchRequest { result1 in }
+//            switch result1 {
+//            case let .success(dreams): localStorage.synchronize(lifeCycle: dreams, date: date) { result in
+//                switch result {
+//                case .success(_): callback(result1)
+//                case let .failure(error): callback(error)
+//                }
             // Продумать ход выполнения блоков в функциях, чтобы не было дикой пирамиды (нужна прямая передача один блок в другой, без реализации)
             // Все чаще прихожу к выводу, что нужен слой с дата мапингом ...
-                
-                print("lifeCycle.parseToDomain()")
-            //
-            //
-            //
-            default: print("End")
-            
-            }
-        }
-        
-        
+//
+//                print("lifeCycle.parseToDomain()")
+//            //
+//            //
+//            //
+//            default: print("End")
+                    
         //networkCall
         //caching result in persistence repo
         //

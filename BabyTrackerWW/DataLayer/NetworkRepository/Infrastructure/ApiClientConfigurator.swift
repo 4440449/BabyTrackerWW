@@ -1,5 +1,5 @@
 //
-//  APIRequest.swift
+//  ApiClientConfigurator.swift
 //  BabyTrackerWW
 //
 //  Created by Max on 18.10.2021.
@@ -10,7 +10,7 @@ import Foundation
 
 // MARK: - URL
 
-public struct ApiURL {
+struct ApiURL {
     
     private let scheme: Scheme
     private let host: Host
@@ -37,25 +37,21 @@ public struct ApiURL {
     }
     
     
-    public func create() -> URL? {
+    func create() -> URL? {
         var urlComp = URLComponents()
         urlComp.scheme = scheme.rawValue
         urlComp.host = host.rawValue
         urlComp.path = path.rawValue
         guard let url = urlComp.url else { return nil }
-//        guard let url = urlComp.url else { print("createURL() Error!"); return nil } // Некорректная обработка
-        
         return url
     }
     
 }
 
 
-
-
 // MARK: - Request
 
-public struct APIRequest {
+struct APIRequest {
     
     private let url: ApiURL
     private let method: HTTPMethod
@@ -67,7 +63,7 @@ public struct APIRequest {
         do {
             return try JSONSerialization.data(withJSONObject: obj, options: [])
         } catch {
-            throw NetworkError.JSONSerialization(error.localizedDescription)
+            throw NetworkError.jsonSerialization(error.localizedDescription)
         }
     }
     
@@ -91,44 +87,23 @@ public struct APIRequest {
     }
     
     
-     func create() throws -> URLRequest {
-
-            guard let url = url.create() else { throw NetworkError.urlCreate("The URL cannot be configured") }
-            var urlRequest = URLRequest(url: url)
-            urlRequest.httpMethod = method.rawValue
-            urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
-            guard let body = body else { return urlRequest }
-            urlRequest.httpBody = try JSONSerialize(obj: body)
-            return urlRequest
-        //        do {
-//        } catch let error {
-//            throw error
-//        }
-//        guard let url = url.create() else { return nil }
-//        var urlRequest = URLRequest(url: url)
-//        urlRequest.httpMethod = method.rawValue
-//        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
-//        guard let body = JSONSerialize(obj: body) else { return nil }
-//        urlRequest.httpBody = body
-//        // будет ли отрабатывать метод сериализации при пустом значении?
-//        return urlRequest
+    func create() throws -> URLRequest {
+        
+        guard let url = url.create() else { throw NetworkError.urlCreate("The URL cannot be configured") }
+        var urlRequest = URLRequest(url: url)
+        urlRequest.httpMethod = method.rawValue
+        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
+        guard let body = body else { return urlRequest }
+        urlRequest.httpBody = try JSONSerialize(obj: body)
+        return urlRequest
     }
-    
-//    public func create(callback: (Result<Data, Error>) -> ()) -> URLRequest? {
-//        do {
-//            return try self.create()
-//        } catch {
-//            callback(.failure(error));
-//            return nil
-//        }
-//    }
     
 }
 
 
 // MARK: - Session
 
-public enum APISession {
+enum APISession {
     case `default`
     
     func create() -> URLSession {
@@ -141,13 +116,13 @@ public enum APISession {
 }
 
 
+// MARK: - Errors
 
 enum NetworkError: Error {
     case urlCreate (String)
-    case JSONSerialization (String)
-    case HTTPURLResponse (statusCode: Int, data: Data?)
+    case jsonSerialization (String)
     
-//    case requestError // временная мера! Не получается обработать url / serialize ошибки в методе execute NetworkRepository
-    
+    case badRequest (String)
+    case badResponse (String)
 }
 

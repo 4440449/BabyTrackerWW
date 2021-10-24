@@ -16,6 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
        
         return true
+//        exit(Int32) имитация килинга приложения (свернул - через некоторое время приложение килится системой). Если руками скипать приложение, то метод не работает
     }
 
     // MARK: UISceneSession Lifecycle
