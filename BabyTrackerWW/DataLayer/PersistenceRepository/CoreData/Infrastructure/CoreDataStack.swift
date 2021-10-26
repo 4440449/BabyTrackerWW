@@ -40,3 +40,12 @@ final class CoreDataStackImpl {
       }
     
 }
+
+enum LocalStorageError: Error {
+    
+    case synchronize (String)
+    case fetch (String)
+    case add (String)
+    case change (String)
+    case delete (String)
+}

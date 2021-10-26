@@ -57,6 +57,9 @@
 		50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */; };
 		50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */; };
 		50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistenceRepository.swift */; };
+		50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */; };
+		50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90927272B83005648BA /* WakeNetworkEntity.swift */; };
+		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -112,6 +115,9 @@
 		50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryGateway.swift; sourceTree = "<group>"; };
 		50B175672704DFC500108B17 /* WakePersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepository.swift; sourceTree = "<group>"; };
+		50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkEntity.swift; sourceTree = "<group>"; };
+		50F6C90927272B83005648BA /* WakeNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkEntity.swift; sourceTree = "<group>"; };
+		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,6 +136,7 @@
 			children = (
 				5017169C2718C5BC008DD70C /* ApiClient.swift */,
 				501716A5271CD6B6008DD70C /* ApiClientConfigurator.swift */,
+				50F6C90627272AC5005648BA /* NetworkEntity */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -551,6 +558,16 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
+		50F6C90627272AC5005648BA /* NetworkEntity */ = {
+			isa = PBXGroup;
+			children = (
+				50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */,
+				50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */,
+				50F6C90927272B83005648BA /* WakeNetworkEntity.swift */,
+			);
+			path = NetworkEntity;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -627,6 +644,7 @@
 				50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */,
 				50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */,
 				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
+				50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */,
 				50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */,
 				50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */,
 				50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */,
@@ -656,10 +674,12 @@
 				50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */,
 				50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */,
 				50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */,
+				50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */,
 				50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */,
 				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
 				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
 				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
+				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
 				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
 				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,

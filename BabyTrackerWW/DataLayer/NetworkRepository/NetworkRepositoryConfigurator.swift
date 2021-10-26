@@ -5,43 +5,50 @@
 //  Created by Max on 19.10.2021.
 //  Copyright © 2021 Max. All rights reserved.
 //
+import Foundation
 
 
 protocol NetworkRepositoryConfiguratorProtocol {
     
-    func fetchDreams() -> NetworkRepositoryProtocol
-    func fetchWakes() -> NetworkRepositoryProtocol
+    func fetchDreamsConfig(at date: Date) -> NetworkRepositoryProtocol
+    func fetchWakesConfig() -> NetworkRepositoryProtocol
 }
 
 final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProtocol {
     
-    private var apiKey = ["apiKey" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDUwMDIxNiwiZXhwIjoxOTUwMDc2MjE2fQ.7ZAxW0Odek5URLpm5HOfLcD-mI-JJmdKTfbFUZnpBKk"]
+    private let apiKey: [String : String]
     
     init(apiKey: String) {
         self.apiKey = ["apiKey" : apiKey]
-//        Сделать внешнюю инъекцию ключа через init()
     }
     
-    func fetchDreams() -> NetworkRepositoryProtocol {
+    func fetchDreamsConfig(at date: Date) -> NetworkRepositoryProtocol { // принимаю на вход боди в виде структуры Лайфцикл
         let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream)
         let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey)
         let apiSession = APISession.default
-        let client = ApiClientImpl()
-        return NetworkRepositoryImpl(request: apiRequest, session: apiSession, client: client)
+        let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
+        return NetworkRepositoryImpl(client: client)
+            // 25.10.21  МБ конфигурировать конкретную таску?
     }
     
-    func fetchWakes() -> NetworkRepositoryProtocol {
+    func fetchWakesConfig() -> NetworkRepositoryProtocol {
         let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake)
         let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey)
         let apiSession = APISession.default
-        let client = ApiClientImpl()
-        return NetworkRepositoryImpl(request: apiRequest, session: apiSession, client: client)
+        let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
+        return NetworkRepositoryImpl(client: client)
     }
 
     
     
-    // дописать остальные вызовы
+// Реализовать прием хедера, боди
+    struct ApiParameters {
+        let header: [String : String]?
+        let body: [String : String]?
+    }
     
-    
+//    init(header: String, body: String) {
+//        self.header =
+//    }
     
 }

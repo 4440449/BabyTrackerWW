@@ -10,22 +10,42 @@ import Foundation
 
 
 protocol ApiClientProtocol {
-    func execute(request: URLRequest, session: URLSession, callback: @escaping (Result<Data, Error>) -> ())
+    
+    func execute(callback: @escaping (Result<Data, Error>) -> ())
 }
 
 
+
 final class ApiClientImpl: ApiClientProtocol {
-    func execute(request: URLRequest, session: URLSession, callback: @escaping (Result<Data, Error>) -> ()) {
-        let dataTask = session.dataTask(with: request) { data, response, error in
-            // если сервер не ответил - выкидываю ошибку
-            guard let httpResponse = response as? HTTPURLResponse else {
-                callback(.failure(NetworkError.badRequest(error!.localizedDescription)) ); return }
-            // если сервер ответил неудачно - выкидываю ошибку
-            guard let data = data, (200...299).contains(httpResponse.statusCode) else { callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode) + \(httpResponse.allHeaderFields)")) ); return }
-            callback(.success(data))
-        }
-        dataTask.resume()
+    
+    private let requestConfig: APIRequest
+    private let sessionConfig: APISession
+    
+    init(requestConfig: APIRequest, sessionConfig: APISession) {
+        self.requestConfig = requestConfig
+        self.sessionConfig = sessionConfig
     }
+    
+    func execute(callback: @escaping (Result<Data, Error>) -> ()) {
+        do {
+            let request = try self.requestConfig.createRequest()
+            let session = self.sessionConfig.createSession()
+            
+            let dataTask = session.dataTask(with: request) { data, response, error in
+                // если сервер не ответил - выкидываю ошибку
+                guard error == nil, let httpResponse = response as? HTTPURLResponse else {
+                    callback(.failure(NetworkError.badRequest(error!.localizedDescription)) ); return }
+                // если сервер ответил неудачно - выкидываю ошибку
+                guard let data = data, (200...299).contains(httpResponse.statusCode) else { callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode) + \(httpResponse.allHeaderFields)")) ); return }
+                callback(.success(data))
+            }
+            dataTask.resume()
+            
+        } catch let requestGeneration {
+            callback(.failure(requestGeneration))
+        }
+    }
+    
 }
 
 

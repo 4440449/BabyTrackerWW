@@ -10,30 +10,44 @@ import Foundation
 
 
 protocol PersistenceRepositoryProtocol {
-    func synchronize(lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ())
-} // Подпись на ЛайфцайклВорота должна быть у единого РЕПО.
+    
+    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+}
+    
 
+    
 final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepositoryProtocol {
     
-    func synchronize(lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-         switch lifeCycle {
-               case let lifeCycle as Wake: self.wakeRepository.addNewWake(new: lifeCycle, at: date, callback: callback)
-               case let lifeCycle as Dream: self.dreamRepository.addNewDream(new: lifeCycle, at: date, callback: callback)
-          default: print(" Error in 'func synchronize()' - Default case!" )
+    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        
+        let dreams = lifeCycle.compactMap { $0 as? Dream }
+        let wakes = lifeCycle.compactMap { $0 as? Wake }
+        
+        let serialQ = DispatchQueue.init(label: "serialQ")
+        serialQ.async {
+            self.wakeRepo.synchronize(wakes: wakes, date: date) { result in }
+            //
+            //
+            //
+            //
         }
     }
     
    
     struct PersistenceRepositoryError: Error {
         var description = [String]()
+        // Объединить или убрать эту ошибку
     }
     
     private let wakeRepository: WakeGatewayProtocol
+    private let wakeRepo: WakePersistenceRepositoryProtocol
     private let dreamRepository: DreamGatewayProtocol
     
-    init(wakeRepository: WakeGatewayProtocol, dreamRepository: DreamGatewayProtocol) {
+    init(wakeRepository: WakeGatewayProtocol, dreamRepository: DreamGatewayProtocol, wakeRepo: WakePersistenceRepositoryProtocol) {
         self.wakeRepository = wakeRepository
         self.dreamRepository = dreamRepository
+        
+        self.wakeRepo = wakeRepo
     }
     
     

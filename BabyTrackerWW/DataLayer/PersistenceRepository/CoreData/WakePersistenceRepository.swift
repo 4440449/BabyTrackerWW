@@ -10,7 +10,12 @@ import Foundation
 import CoreData
 
 
-final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
+protocol WakePersistenceRepositoryProtocol {
+    func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+}
+
+
+final class WakePersistenceRepositoryImpl: WakeGatewayProtocol, WakePersistenceRepositoryProtocol {
     
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
@@ -55,7 +60,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
             let wakes = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
             callback(.success(wakes))
         } catch let error {
-            callback(.failure(error))
+            callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
         }
     }
     
@@ -68,7 +73,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
                 try backgroundContext.save()
                 callback(.success(()))
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.add(error.localizedDescription)))
             }
         }
     }
@@ -85,7 +90,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.change(error.localizedDescription)))
             }
         }
     }
@@ -102,7 +107,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.delete(error.localizedDescription)))
             }
         }
     }
@@ -128,7 +133,7 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol {
                 try backgroundContext.save()
                 callback(.success(()))
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
             }
         }
     }

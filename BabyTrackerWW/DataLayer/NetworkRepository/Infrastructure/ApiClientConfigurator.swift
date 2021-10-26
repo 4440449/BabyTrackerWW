@@ -30,14 +30,14 @@ struct ApiURL {
     }
     
     
-    init (scheme: Scheme, host: Host, path: Path) {
+    init(scheme: Scheme, host: Host, path: Path) {
         self.scheme = scheme
         self.host = host
         self.path = path
     }
     
     
-    func create() -> URL? {
+    func createURL() -> URL? {
         var urlComp = URLComponents()
         urlComp.scheme = scheme.rawValue
         urlComp.host = host.rawValue
@@ -87,12 +87,13 @@ struct APIRequest {
     }
     
     
-    func create() throws -> URLRequest {
+    func createRequest() throws -> URLRequest {
         
-        guard let url = url.create() else { throw NetworkError.urlCreate("The URL cannot be configured") }
+        guard let url = url.createURL() else { throw NetworkError.urlCreate("The URL cannot be configured") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method.rawValue
-        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
+        header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
+//        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
         guard let body = body else { return urlRequest }
         urlRequest.httpBody = try JSONSerialize(obj: body)
         return urlRequest
@@ -106,7 +107,7 @@ struct APIRequest {
 enum APISession {
     case `default`
     
-    func create() -> URLSession {
+    func createSession() -> URLSession {
         switch self {
         case .default:
             let session = URLSession(configuration: .default)
@@ -124,5 +125,7 @@ enum NetworkError: Error {
     
     case badRequest (String)
     case badResponse (String)
+    
+    case parseToDomain (String)
 }
 

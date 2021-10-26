@@ -47,7 +47,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
 //                callback(.failure(ErrorTest()))
                 
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
             }
     }
     
@@ -61,7 +61,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                 try backgroundContext.save()
                 callback(.success(()))
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.add(error.localizedDescription)))
             }
         }
     }
@@ -78,7 +78,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.change(error.localizedDescription)))
             }
         }
     }
@@ -95,7 +95,7 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(error))
+                callback(.failure(LocalStorageError.delete(error.localizedDescription)))
             }
         }
     }

@@ -13,8 +13,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
-        // Override point for customization after application launch.
-       
+        
+        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String else {
+            fatalError("ApiKey must not be empty in plist") }
+        let networkConfig = NetworkRepositoryConfiguratorImpl(apiKey: apiKey)
+        
         return true
 //        exit(Int32) имитация килинга приложения (свернул - через некоторое время приложение килится системой). Если руками скипать приложение, то метод не работает
     }
@@ -34,3 +37,4 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 }
 
+// ["apiKey" : "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDUwMDIxNiwiZXhwIjoxOTUwMDc2MjE2fQ.7ZAxW0Odek5URLpm5HOfLcD-mI-JJmdKTfbFUZnpBKk"]
