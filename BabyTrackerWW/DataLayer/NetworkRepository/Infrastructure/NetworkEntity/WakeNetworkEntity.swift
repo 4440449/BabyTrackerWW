@@ -34,6 +34,14 @@ import Foundation
          self.wakeWindow = try container.decode(String.self, forKey: .wakeWindow)
          self.signs = try container.decode(String.self, forKey: .signs)
      }
+    
+    init(domainEntity: Wake) {
+        self.id = domainEntity.id
+        self.index = domainEntity.index
+        self.wakeUp = domainEntity.wakeUp.rawValue
+        self.wakeWindow = domainEntity.wakeWindow.rawValue
+        self.signs = domainEntity.signs.rawValue
+    }
      
     
      func encode(to encoder: Encoder) throws {

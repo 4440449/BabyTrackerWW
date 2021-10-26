@@ -22,7 +22,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
-        network.fetchDreamsConfig(at: date).fetchRequest { result in
+        let task = network.fetch(at: date) { result in
             switch result {
                 
             case let .success(lifeCycle):

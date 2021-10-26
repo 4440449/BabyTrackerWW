@@ -11,6 +11,7 @@ import Foundation
 
 protocol NetworkRepositoryProtocol {
     func fetchRequest(callback: @escaping (Result<[LifeCycle], Error>) -> ())
+    func request(callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
@@ -37,5 +38,15 @@ final class NetworkRepositoryImpl: NetworkRepositoryProtocol {
             }
         }
     }
+    
+    func request(callback: @escaping (Result<Void, Error>) -> ()) {
+        self.client.execute { result in
+            switch result {
+            case .success: callback(.success(()))
+            case let .failure(error): callback(.failure(error))
+            }
+        }
+    }
+
 
 }
