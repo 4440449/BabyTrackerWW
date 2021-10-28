@@ -12,10 +12,14 @@ import Foundation
 protocol PersistenceRepositoryProtocol {
     
     func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func changeLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    
 }
-    
 
-    
+
+
 final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepositoryProtocol {
     
     func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
@@ -33,7 +37,7 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepo
         }
     }
     
-   
+    
     struct PersistenceRepositoryError: Error {
         var description = [String]()
         // Объединить или убрать эту ошибку
@@ -58,7 +62,7 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepo
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-        //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
+            //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)

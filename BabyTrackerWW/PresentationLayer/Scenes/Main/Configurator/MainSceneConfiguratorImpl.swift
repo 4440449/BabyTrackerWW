@@ -12,7 +12,7 @@ final class MainSceneConfiguratorImpl {
     func configureScene(view: MainSceneTableViewController) {
         let wakeRepository = WakePersistenceRepositoryImpl()
         let dreamRepository = DreamPersistenceRepositoryImpl()
-        let persistenceRepository = PersistenceRepositoryGateway(wakeRepository: wakeRepository, dreamRepository: dreamRepository)
+        let persistenceRepository = PersistenceRepositoryGateway(wakeRepository: wakeRepository, dreamRepository: dreamRepository, wakeRepo: wakeRepository)
         let interactor = MainModuleInteractorImpl(persistenceRepository: persistenceRepository)
         let router = MainSceneRouterImpl()
         let presenter = MainScenePresenterImpl(router: router, interactor: interactor)

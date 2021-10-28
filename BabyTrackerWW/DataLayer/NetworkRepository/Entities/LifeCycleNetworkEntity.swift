@@ -10,6 +10,7 @@ import Foundation
 
 
 struct LifeCycleNetworkEntity: Codable {
+    
     var dreams: [DreamNetworkEntity] = []
     var wakes: [WakeNetworkEntity] = []
     

@@ -10,6 +10,7 @@ import Foundation
 
 
 struct DreamNetworkEntity: Codable {
+    
     let id: UUID
     let index: Int
     let fallAsleep: String

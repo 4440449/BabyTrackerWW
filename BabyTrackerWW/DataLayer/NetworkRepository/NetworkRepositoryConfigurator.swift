@@ -11,24 +11,28 @@ import Foundation
 protocol NetworkRepositoryConfiguratorProtocol {
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> ()
-    //    func fetchWakesConfig() -> NetworkRepositoryProtocol
+    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> ()
+    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
 }
+
 
 final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProtocol {
     
     private let apiKey: [String : String]
+    //    private let apiPapams: ApiParams
     
     init(apiKey: String) {
         self.apiKey = ["apiKey" : apiKey]
+        //        self.apiPapams = apiParams
     }
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> () {
         let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.date : date.description])
-        let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey)
+        let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey, body: nil)
         let apiSession = APISession.default
         let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
         return NetworkRepositoryImpl(client: client).fetchRequest(callback: callback)
-        // 25.10.21  МБ конфигурировать конкретную таску?
     }
     
     func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> () {
@@ -36,20 +40,34 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
             
         case let lifeCycle as Dream:
             let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.date : date.description])
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.dream : .dream(.init(domainEntity: lifeCycle))])
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.dream : (DreamNetworkEntity(domainEntity: lifeCycle))])
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryImpl(client: client).request(callback: callback)
             
         case let lifeCycle as Wake:
             let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: [.date : date.description])
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.wake : .wake(.init(domainEntity: lifeCycle))])
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.wake : (WakeNetworkEntity(domainEntity: lifeCycle))])
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryImpl(client: client).request(callback: callback)
             
         default: fatalError("Undefined type for func network.add(new: lifecycle)")
         }
+    }
+    
+    
+    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+        
+        
+    }
+    
+    
+    
+    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+        
+        
+        
     }
     
     

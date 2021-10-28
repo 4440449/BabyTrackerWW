@@ -18,13 +18,11 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         self.network = apiConfigurator
         self.localStorage = localStorage
     }
-
+    
     
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        
         let task = network.fetch(at: date) { result in
             switch result {
-                
             case let .success(lifeCycle):
                 self.localStorage.synchronize(lifeCycle: lifeCycle, date: date) { result in
                     switch result {
@@ -39,18 +37,53 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     
     // 25.10.21  Вовзращать конкретную таску для мониторинга состояния загрузки. // Пока излишне. Состояние загрузки могу пока реализовать просто по входу и выходу из блока в Презент Интеракторе.
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу (Сообщать дата слою об отмене задачи).
-
+    
     
     func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        
+        let task = network.add(new: lifeCycle, at: date) { result in
+            switch result {
+            case .success():
+                self.localStorage.addNewLifeCycle(new: lifeCycle, at: date) { result in
+                    switch result {
+                    case .success: callback(.success(()))
+                    case let .failure(localStorageError): callback(.failure(localStorageError))
+                    }
+                }
+            case let .failure(networkError): callback(.failure(networkError))
+            }
+        }
     }
+    
     
     func changeLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
-        
+        let task = network.change(lifeCycle) { result in
+            switch result {
+            case .success():
+                self.localStorage.changeLifeCycle(lifeCycle) { result in
+                    switch result {
+                    case .success(): callback(.success(()))
+                    case let .failure(localStorageError): callback(.failure(localStorageError))
+                    }
+                }
+            case let .failure(networkError): callback(.failure(networkError))
+            }
+        }
     }
     
+    
     func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
-        
+        let task = network.delete(lifeCycle) { result in
+            switch result {
+            case .success():
+                self.localStorage.deleteLifeCycle(lifeCycle) { result in
+                    switch result {
+                    case .success(): callback(.success(()))
+                    case let .failure(localStorageError): callback(.failure(localStorageError))
+                    }
+                }
+            case let .failure(networkError): callback(.failure(networkError))
+            }
+        }
     }
     
     

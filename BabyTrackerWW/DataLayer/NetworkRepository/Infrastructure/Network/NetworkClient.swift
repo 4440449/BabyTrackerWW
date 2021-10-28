@@ -15,7 +15,6 @@ protocol ApiClientProtocol {
 }
 
 
-
 final class ApiClientImpl: ApiClientProtocol {
     
     private let requestConfig: APIRequest
