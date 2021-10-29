@@ -34,7 +34,6 @@ final class DataAccessGateway: LifeCyclesCardGateway {
             }
         }
     }
-    
     // 25.10.21  Вовзращать конкретную таску для мониторинга состояния загрузки. // Пока излишне. Состояние загрузки могу пока реализовать просто по входу и выходу из блока в Презент Интеракторе.
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу (Сообщать дата слою об отмене задачи).
     
@@ -43,7 +42,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         let task = network.add(new: lifeCycle, at: date) { result in
             switch result {
             case .success():
-                self.localStorage.addNewLifeCycle(new: lifeCycle, at: date) { result in
+                self.localStorage.add(new: lifeCycle, at: date) { result in
                     switch result {
                     case .success: callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -59,7 +58,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         let task = network.change(lifeCycle) { result in
             switch result {
             case .success():
-                self.localStorage.changeLifeCycle(lifeCycle) { result in
+                self.localStorage.change(lifeCycle) { result in
                     switch result {
                     case .success(): callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -75,7 +74,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         let task = network.delete(lifeCycle) { result in
             switch result {
             case .success():
-                self.localStorage.deleteLifeCycle(lifeCycle) { result in
+                self.localStorage.delete(lifeCycle) { result in
                     switch result {
                     case .success(): callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))

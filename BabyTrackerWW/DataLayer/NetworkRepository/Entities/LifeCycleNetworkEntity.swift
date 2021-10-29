@@ -16,8 +16,8 @@ struct LifeCycleNetworkEntity: Codable {
     
     func parseToDomain() throws -> [LifeCycle] {
         let dreamDomain = try dreams.map { try $0.parseToDomain() }
-        let wakeDomain = try wakes.map { try $0.parseToDomain() }
-        let lc: [LifeCycle] = dreamDomain + wakeDomain
+//        let wakeDomain = try wakes.map { try $0.parseToDomain() }
+        let lc: [LifeCycle] = dreamDomain //+ wakeDomain
         return lc
     }
 }

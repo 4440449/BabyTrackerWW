@@ -30,8 +30,8 @@ extension DreamDBEntity {
     
     func populateEntity(dream: Dream) {
         self.index = Int32(dream.index)
-        self.putDown = dream.putDown.rawValue
-        self.fallAsleep = dream.fallAsleep.rawValue
+        self.putDown = dream.putDown
+        self.fallAsleep = dream.fallAsleep
 //        self.wakeUp = dream.wakeUp.rawValue
     }
     
@@ -39,8 +39,8 @@ extension DreamDBEntity {
         self.date = date
         self.id = dream.id
         self.index = Int32(dream.index)
-        self.putDown = dream.putDown.rawValue
-        self.fallAsleep = dream.fallAsleep.rawValue
+        self.putDown = dream.putDown
+        self.fallAsleep = dream.fallAsleep
 //        self.wakeUp = dream.wakeUp.rawValue
     }
     

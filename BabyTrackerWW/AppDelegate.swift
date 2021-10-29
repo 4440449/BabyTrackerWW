@@ -14,9 +14,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String else {
-            fatalError("ApiKey must not be empty in plist") }
-        let networkConfig = NetworkRepositoryConfiguratorImpl(apiKey: apiKey)
+//        guard let apiKey = Bundle.main.object(forInfoDictionaryKey: "ApiKey") as? String else {
+//            fatalError("ApiKey must not be empty in plist") }
+//        let networkConfig = NetworkRepositoryConfiguratorImpl(apiKey: apiKey)
         
         return true
 //        exit(Int32) имитация килинга приложения (свернул - через некоторое время приложение килится системой). Если руками скипать приложение, то метод не работает

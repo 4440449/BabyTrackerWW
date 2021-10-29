@@ -57,7 +57,8 @@ protocol SelectSceneDelegate: AnyObject {
 
 final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, SelectSceneDelegate {
 
-    private let persistenceRepository: LifeCyclesCardGateway // dataAccessGateway
+    private let repository: LifeCyclesCardGateway // dataAccessGateway
+    
     
     private var notifierStorage: [() -> ()] = []
     private var currentLifecycleIndex: Int?
@@ -82,15 +83,15 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     // ------
 
     init(persistenceRepository: LifeCyclesCardGateway) {
-        self.persistenceRepository = persistenceRepository
+        self.repository = persistenceRepository
     }
     
     func fetchLifeCycles() {
         isLoading = .loading // -------
-        persistenceRepository.fetchLifeCycle(at: lifeCycleCard.date) { [unowned self] result in
+        repository.fetchLifeCycle(at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case let .success(lifeCycle): self.lifeCycleCard.lifeCycle = lifeCycle.sorted { $0.index < $1.index }
-            case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)")
+            case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
             }
             self.isLoading = .notLoading // -------
         }
@@ -118,7 +119,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteLifeCycle(at index: Int) {
-        persistenceRepository.deleteLifeCycle(lifeCycleCard.lifeCycle[index]/* as! Dream*/) { [unowned self] result in
+        repository.deleteLifeCycle(lifeCycleCard.lifeCycle[index]/* as! Dream*/) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
@@ -133,7 +134,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
-        persistenceRepository.fetchLifeCycle(at: date) { [unowned self] result in
+        repository.fetchLifeCycle(at: date) { [unowned self] result in
             self.lifeCycleCard.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles;
@@ -155,7 +156,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     func changeLifeCycle (new lifeCycle: LifeCycle) {
         if currentLifecycleIndex == nil {
             // addNew Flow
-            persistenceRepository.addNewLifeCycle(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+            repository.addNewLifeCycle(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
                 switch result {
                 case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
                 case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
@@ -163,7 +164,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             }
         } else {
             // didSelectFlow
-            persistenceRepository.changeLifeCycle(lifeCycle) { [unowned self] result in
+            repository.changeLifeCycle(lifeCycle) { [unowned self] result in
                 switch result {
                 case .success(): self.lifeCycleCard.lifeCycle[self.currentLifecycleIndex!] = lifeCycle
                 case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")

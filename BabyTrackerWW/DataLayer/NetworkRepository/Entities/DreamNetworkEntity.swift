@@ -35,8 +35,8 @@ struct DreamNetworkEntity: Codable {
     init(domainEntity: Dream) {
         self.id = domainEntity.id
         self.index = domainEntity.index
-        self.fallAsleep = domainEntity.fallAsleep.rawValue
-        self.putDown = domainEntity.putDown.rawValue
+        self.fallAsleep = domainEntity.fallAsleep
+        self.putDown = domainEntity.putDown
     }
     
     

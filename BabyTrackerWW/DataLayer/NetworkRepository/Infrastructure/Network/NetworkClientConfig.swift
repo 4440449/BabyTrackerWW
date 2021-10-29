@@ -20,7 +20,7 @@ struct ApiURL {
     
     enum Scheme: String {
         case http  = "http://"
-        case https = "https://"
+        case https = "https"
     }
     enum Host: String {
         case supabase = "lgrxdkchkrkunwoqiwtl.supabase.co"
@@ -29,12 +29,12 @@ struct ApiURL {
         case dream = "/rest/v1/Dream"
         case wake  = "/rest/v1/Wake"
     }
-    enum EndPointKeys: String {
+    enum EndPointKeys: String { // контроль знака равно при генерации урла
         case date = "date"
         case id = "id"
     }
     
-    
+    // LifeCycle API init
     init(scheme: Scheme, host: Host, path: Path, endPoint: [EndPointKeys : String]?) {
         self.scheme = scheme.rawValue
         self.host = host.rawValue
@@ -83,24 +83,20 @@ struct APIRequest {
     
     enum HTTPMethod: String {
         case get     = "GET"
-        case head    = "HEAD"
         case post    = "POST"
-        case put     = "PUT"
-        case patch   = "PATCH"
         case delete  = "DELETE"
-        case trace   = "TRACE"
-        case connect = "CONNECT"
     }
     
-    
+    // LifeCycle API init
     init(url: ApiURL, method: HTTPMethod, header: [String : String], body: [BodyKeys : Codable]?) {
         self.url = url
         self.method = method.rawValue
         self.header = header
         guard body != nil else { self.body = nil; return }
-        self.body = Dictionary(uniqueKeysWithValues: body!.map ({($0.key.rawValue, $0.value) }))
+        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) }))
     }
     
+    // external init
     init(url: ApiURL, method: String, header: [String : String], body: [String : Codable]?) {
         self.url = url
         self.method = method
@@ -120,6 +116,7 @@ struct APIRequest {
         guard let body = body else { return urlRequest }
         print("Is json valid object? \(JSONSerialization.isValidJSONObject(body))")
         urlRequest.httpBody = try JSONSerialize(obj: body)
+        print("urlRequest.httpBody == \(urlRequest.httpBody!)")
         //        print("httpBody == \(urlRequest.httpBody)")
         return urlRequest
     }
@@ -166,6 +163,8 @@ enum NetworkError: Error {
     case badResponse (String)
     
     case parseToDomain (String)
+    
+    case downcasting (String)
 }
 
 

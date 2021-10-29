@@ -9,13 +9,13 @@
 import Foundation
 
 
-protocol NetworkRepositoryProtocol {
+protocol NetworkRepositoryDTOMapperProtocol {
     func fetchRequest(callback: @escaping (Result<[LifeCycle], Error>) -> ())
     func request(callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
-final class NetworkRepositoryImpl: NetworkRepositoryProtocol {
+final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
     
     private let client: ApiClientProtocol
     
@@ -27,8 +27,10 @@ final class NetworkRepositoryImpl: NetworkRepositoryProtocol {
         self.client.execute { result in
             switch result {
             case let .success(data):
+                print("json data == \(String(data: data, encoding: .utf8)!)")
                 do {
                     let domainEntity = try JSONDecoder().decode(LifeCycleNetworkEntity.self, from: data).parseToDomain()
+//                    (LifeCycleNetworkEntity.self, from: data).parseToDomain()
                     callback(.success(domainEntity))
                 } catch {
                     callback(.failure(error))

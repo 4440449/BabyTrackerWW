@@ -6,13 +6,13 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
-import Foundation
+//import Foundation
 
-
-protocol WakeGatewayProtocol {
-    
-    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
-    func addNewWake(new dream: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func changeWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
-    func deleteWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
-}
+//
+//protocol WakeGatewayProtocol {
+//
+//    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
+//    func addNewWake(new dream: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+//    func changeWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
+//    func deleteWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
+//}

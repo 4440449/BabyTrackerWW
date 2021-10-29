@@ -10,8 +10,18 @@ import Foundation
 import CoreData
 
 
+protocol DreamPersistenceRepositoryProtocol {
+    func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
+    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+    func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+}
+
+
+
 // TODO: - Разобраться с таймс зоной
-final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
+final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     
 //        struct ErrorTest: Error {}
 
@@ -25,6 +35,26 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
                          putDown: Dream.PutDown(rawValue: dbEntity.putDown!)!,
                          fallAsleep: Dream.FallAsleep(rawValue: dbEntity.fallAsleep!)!)
     }
+    
+    
+    private func dateInterval(with date: Date) -> (Date, Date) {
+        var calendar = Calendar.init(identifier: .gregorian)
+        calendar.timeZone = TimeZone.current
+        let startOfDay = calendar.startOfDay(for: date)
+        let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
+        return (startOfDay, endOfDay)
+    }
+    
+    
+    private func parse(date: Date, dreams: [Dream], dbDream: inout [DreamDBEntity]) {
+           for db in dbDream {
+               for d in dreams {
+                   db.populateEntityWithDate(dream: d, date: date)
+                   // Не работает! Первый цикл проходит одним элементом по каждому из второго цикла
+               }
+           }
+       }
+    
     
     // MARK: - Protocol Implements
     
@@ -99,4 +129,29 @@ final class DreamPersistenceRepositoryImpl: DreamGatewayProtocol {
             }
         }
     }
+    
+       func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+            coreDataContainer.performBackgroundTask { backgroundContext in
+                // посмотреть утечки!
+                let days: (Date, Date) = self.dateInterval(with: date)
+                let request: NSFetchRequest = DreamDBEntity.fetchRequest()
+                request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
+                do {
+                    let fetchResult = try backgroundContext.fetch(request)
+                    fetchResult.forEach { backgroundContext.delete($0) }
+                    
+                    let emptyDBArray = dreams.map { _ in DreamDBEntity.init(context: backgroundContext) }
+                    print("Debug: emptyDBArray = \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+                    emptyDBArray.forEach { db in dreams.forEach { dream in db.populateEntityWithDate(dream: dream, date: date)} } // Смущает, что ругается о неизменности массива, хотя я его меняю. Если не будет работать, попробовать свой метод с ссылкой в аргементе
+    //                self.parse(date: date, wake: wakes, dbWake: &emptyDBArray)
+                    print("Debug: emptyDBArray = \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+                    
+                    try backgroundContext.save()
+                    callback(.success(()))
+                } catch let error {
+                    callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
+                }
+            }
+        }
+    
 }

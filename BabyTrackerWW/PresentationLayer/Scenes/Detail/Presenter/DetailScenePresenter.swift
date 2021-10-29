@@ -41,8 +41,8 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
     
     func viewDidLoad() {
         switch self.viewDidLoad {
-        case _ where dream != nil : setLabelCallback([dream!.fallAsleep.rawValue,
-                                                      dream!.putDown.rawValue])
+        case _ where dream != nil : setLabelCallback([dream!.fallAsleep,
+                                                      dream!.putDown])
         case _ where wake != nil: setLabelCallback([wake!.wakeUp.rawValue,
                                                     wake!.wakeWindow.rawValue,
                                                     wake!.signs.rawValue])
@@ -85,14 +85,15 @@ final class DetailScenePresenterImpl: DetailScenePresenterProtocol {
         router.prepare(for: segue) { [unowned self] result in
             if self.dream != nil {
                  switch result {
-                 case _ where result is Dream.FallAsleep: self.dream!.fallAsleep = result as! Dream.FallAsleep
-                 case _ where result is Dream.PutDown: self.dream!.putDown = result as! Dream.PutDown
+                    //Протестить!!!!! 28.10.2021
+                 case let result as Dream.FallAsleep: self.dream!.fallAsleep = result.rawValue
+                 case let result as Dream.PutDown: self.dream!.putDown = result.rawValue
 //                    case _ where result is Dream.WakeUp: self.dream!.wakeUp = result as! Dream.WakeUp
                     default: print("Error! Result is not be identify")
                 }
                 //Update view labels
-                self.setLabelCallback([self.dream!.fallAsleep.rawValue,
-                                       self.dream!.putDown.rawValue])
+                self.setLabelCallback([self.dream!.fallAsleep,
+                                       self.dream!.putDown])
             } else if
                 self.wake != nil {
                   switch result {

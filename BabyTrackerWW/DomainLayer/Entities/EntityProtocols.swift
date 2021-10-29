@@ -6,7 +6,11 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
+import Foundation
+
+
 protocol LifeCycle {
+    var id : UUID { get }
     var title: String { get }
     var index: Int { get set }
 }

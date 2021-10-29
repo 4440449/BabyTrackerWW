@@ -48,4 +48,7 @@ enum LocalStorageError: Error {
     case add (String)
     case change (String)
     case delete (String)
+    
+    case downcasting (String)
 }
+

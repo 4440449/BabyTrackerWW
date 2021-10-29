@@ -12,29 +12,22 @@ import Foundation
 protocol PersistenceRepositoryProtocol {
     
     func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func changeLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
-    func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
-    
+    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
 
-final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepositoryProtocol {
+final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     
-    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        
-        let dreams = lifeCycle.compactMap { $0 as? Dream }
-        let wakes = lifeCycle.compactMap { $0 as? Wake }
-        
-        let serialQ = DispatchQueue.init(label: "serialQ")
-        serialQ.async {
-            self.wakeRepo.synchronize(wakes: wakes, date: date) { result in }
-            //
-            //
-            //
-            //
-        }
+    
+    private let wakeRepository: WakePersistenceRepositoryProtocol
+    private let dreamRepository: DreamPersistenceRepositoryProtocol
+    
+    init(wakeRepository: WakePersistenceRepositoryProtocol, dreamRepository: DreamPersistenceRepositoryProtocol) {
+        self.wakeRepository = wakeRepository
+        self.dreamRepository = dreamRepository
     }
     
     
@@ -43,18 +36,43 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepo
         // Объединить или убрать эту ошибку
     }
     
-    private let wakeRepository: WakeGatewayProtocol
-    private let wakeRepo: WakePersistenceRepositoryProtocol
-    private let dreamRepository: DreamGatewayProtocol
     
-    init(wakeRepository: WakeGatewayProtocol, dreamRepository: DreamGatewayProtocol, wakeRepo: WakePersistenceRepositoryProtocol) {
-        self.wakeRepository = wakeRepository
-        self.dreamRepository = dreamRepository
+    // MARK: - Protocol Implements
+    
+    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         
-        self.wakeRepo = wakeRepo
+        //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
+        let dreams = lifeCycle.compactMap { $0 as? Dream }
+        let wakes = lifeCycle.compactMap { $0 as? Wake }
+        
+        var resultError = PersistenceRepositoryError()
+        
+        let serialQ = DispatchQueue.init(label: "serialQ")
+        serialQ.async {
+            
+            self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
+                switch result {
+                case .success(): return
+                case let .failure(wakeRepoError): resultError.description.append(wakeRepoError.localizedDescription)
+                }
+            }
+            
+            self.dreamRepository.synchronize(dreams: dreams, date: date) { result in
+                switch result {
+                case . success(): return
+                case let .failure(dreamRepoError): resultError.description.append(dreamRepoError.localizedDescription)
+                }
+            }
+            
+            if !resultError.description.isEmpty {
+                callback(.failure(resultError))
+            } else {
+                callback(.success(()))
+            }
+        }
     }
     
-    
+    // В текущей логике пока что не использую fetch() из локального хранилища
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
         var resultError = PersistenceRepositoryError()
@@ -87,35 +105,32 @@ final class PersistenceRepositoryGateway: LifeCyclesCardGateway, PersistenceRepo
     }
     
     
-    func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {
         case let lifeCycle as Wake: self.wakeRepository.addNewWake(new: lifeCycle, at: date, callback: callback)
         case let lifeCycle as Dream: self.dreamRepository.addNewDream(new: lifeCycle, at: date, callback: callback)
-        default:
-            print("Error! func addNewLifeCycle()")
+        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.add(new: LifeCycle)")))
         }
     }
     
-    func changeLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+    
+    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {
         case let lifeCycle as Wake: self.wakeRepository.changeWake(lifeCycle, callback: callback)
         case let lifeCycle as Dream: self.dreamRepository.changeDream(lifeCycle, callback: callback)
-        default:
-            print("Error! func changeLifeCycle()")
+        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.change(_: LifeCycle)")))
         }
     }
     
     
-    func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {
         case let lifeCycle as Wake: self.wakeRepository.deleteWake(lifeCycle, callback: callback)
         case let lifeCycle as Dream: self.dreamRepository.deleteDream(lifeCycle, callback: callback)
-        default:
-            print("Error!  func deleteLifeCycle()")
+        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.delete(_: LifeCycle)")))
         }
     }
-    
-    
+
 }
 
 

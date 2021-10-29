@@ -12,10 +12,14 @@ import CoreData
 
 protocol WakePersistenceRepositoryProtocol {
     func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
+    func addNewWake(new dream: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func changeWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
+    func deleteWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
-final class WakePersistenceRepositoryImpl: WakeGatewayProtocol, WakePersistenceRepositoryProtocol {
+final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
@@ -38,9 +42,9 @@ final class WakePersistenceRepositoryImpl: WakeGatewayProtocol, WakePersistenceR
         return (startOfDay, endOfDay)
     }
     
-    private func parse(date: Date, wake: [Wake], dbWake: inout [WakeDBEntity]) {
+    private func parse(date: Date, wakes: [Wake], dbWake: inout [WakeDBEntity]) {
         for db in dbWake {
-            for w in wake {
+            for w in wakes {
                 db.populateEntityWithDate(wake: w, date: date)
                 // Не работает! Первый цикл проходит одним элементом по каждому из второго цикла
             }
