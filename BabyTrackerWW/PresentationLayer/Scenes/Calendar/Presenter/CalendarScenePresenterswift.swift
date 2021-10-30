@@ -34,6 +34,7 @@ final class CalendarScenePresenterImpl: CalendarScenePresenterProtocol {
     }
     
     func format(date: Date) -> String {
+        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM YYYY"

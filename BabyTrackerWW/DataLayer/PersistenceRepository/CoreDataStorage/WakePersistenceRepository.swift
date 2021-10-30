@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-
+//TODO: - Прикрутить слой ДТО мапинга
 protocol WakePersistenceRepositoryProtocol {
     func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
@@ -129,10 +129,10 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
                 fetchResult.forEach { backgroundContext.delete($0) }
                 
                 let emptyDBArray = wakes.map { _ in WakeDBEntity.init(context: backgroundContext) }
-                print("Debug: emptyDBArray = \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
                 emptyDBArray.forEach { db in wakes.forEach { wake in db.populateEntityWithDate(wake: wake, date: date)} } // Смущает, что ругается о неизменности массива, хотя я его меняю. Если не будет работать, попробовать свой метод с ссылкой в аргементе
 //                self.parse(date: date, wake: wakes, dbWake: &emptyDBArray)
-                print("Debug: emptyDBArray = \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
                 
                 try backgroundContext.save()
                 callback(.success(()))

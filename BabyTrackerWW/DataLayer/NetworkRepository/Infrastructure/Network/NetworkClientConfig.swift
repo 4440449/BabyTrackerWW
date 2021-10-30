@@ -19,7 +19,7 @@ struct ApiURL {
     
     
     enum Scheme: String {
-        case http  = "http://"
+        case http  = "http"
         case https = "https"
     }
     enum Host: String {
@@ -41,6 +41,7 @@ struct ApiURL {
         self.path = path.rawValue
         guard endPoint != nil else { self.endPoint = nil; return }
         self.endPoint = Dictionary(uniqueKeysWithValues: endPoint!.map ({($0.key.rawValue, $0.value) }))
+        print("endPoint == \(endPoint)")
     }
     //    external init
     init(scheme: Scheme, host: String, path: String, endPoint: [String : String]?) {
@@ -57,8 +58,12 @@ struct ApiURL {
         urlComponents.scheme = scheme
         urlComponents.host = host
         urlComponents.path = path
-        endPoint?.forEach { urlComponents.queryItems?.append(URLQueryItem(name: $0.key, value: $0.value)) } // Потестить в консоле!!
+        if let endPoint = endPoint { urlComponents.queryItems = []; endPoint.forEach {
+            urlComponents.queryItems?.append(URLQueryItem(name: $0.key, value: $0.value))
+            }
+        }
         print("urlComp == \(urlComponents.description)")
+        print("queryItems == \(urlComponents.queryItems)")
         guard let url = urlComponents.url else { return nil }
         return url
     }
@@ -74,7 +79,7 @@ struct APIRequest {
     //Инкапсулировать поля запроса в отдельный объект?
     private let method: String
     private let header: [String : String]
-    private var body: [String : Codable]?
+    private var body: Codable?
     
     enum BodyKeys: String {
         case dream = "dream"
@@ -88,22 +93,23 @@ struct APIRequest {
     }
     
     // LifeCycle API init
-    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: [BodyKeys : Codable]?) {
+    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: Codable?) {
         self.url = url
         self.method = method.rawValue
         self.header = header
         guard body != nil else { self.body = nil; return }
-        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) }))
+        self.body = body
+//        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) })) // force!
     }
     
     // external init
-    init(url: ApiURL, method: String, header: [String : String], body: [String : Codable]?) {
-        self.url = url
-        self.method = method
-        self.header = header
-        guard body != nil else { self.body = nil; return }
-        self.body = body
-    }
+//    init(url: ApiURL, method: String, header: [String : String], body: [String : Codable]?) {
+//        self.url = url
+//        self.method = method
+//        self.header = header
+//        guard body != nil else { self.body = nil; return }
+////        self.body = body
+//    }
     
     
     func createRequest() throws -> URLRequest {
@@ -115,7 +121,8 @@ struct APIRequest {
         //        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
         guard let body = body else { return urlRequest }
         print("Is json valid object? \(JSONSerialization.isValidJSONObject(body))")
-        urlRequest.httpBody = try JSONSerialize(obj: body)
+        urlRequest.httpBody = try JSONEncoder().encode(body as! DreamNetworkEntity)
+//            try JSONSerialize(obj: body)
         print("urlRequest.httpBody == \(urlRequest.httpBody!)")
         //        print("httpBody == \(urlRequest.httpBody)")
         return urlRequest

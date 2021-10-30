@@ -11,12 +11,14 @@ import Foundation
 
 struct DreamNetworkEntity: Codable {
     
+    private var date: String
     let id: UUID
     let index: Int
     let fallAsleep: String
     let putDown: String
     
     enum CodingKeys: CodingKey {
+        case date
         case id
         case index
         case fallAsleep
@@ -30,18 +32,28 @@ struct DreamNetworkEntity: Codable {
         self.index = try container.decode(Int.self, forKey: .index)
         self.fallAsleep = try container.decode(String.self, forKey: .fallAsleep)
         self.putDown = try container.decode(String.self, forKey: .putDown)
+        self.date = try container.decode(String.self, forKey: .date)
     }
     
-    init(domainEntity: Dream) {
+    init(domainEntity: Dream, date: String) {
+        self.date = date
         self.id = domainEntity.id
         self.index = domainEntity.index
         self.fallAsleep = domainEntity.fallAsleep
         self.putDown = domainEntity.putDown
     }
     
+//    init(domainEntity: Dream) {
+//        self.id = domainEntity.id
+//        self.index = domainEntity.index
+//        self.fallAsleep = domainEntity.fallAsleep
+//        self.putDown = domainEntity.putDown
+//    }
+    
     
     func encode(to encoder: Encoder) throws {
         var container = encoder.container(keyedBy: CodingKeys.self)
+        try container.encode(date, forKey: .date)
         try container.encode(id, forKey: .id)
         try container.encode(index, forKey: .index)
         try container.encode(fallAsleep, forKey: .fallAsleep)

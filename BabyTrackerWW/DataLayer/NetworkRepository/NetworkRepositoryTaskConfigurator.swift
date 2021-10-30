@@ -22,12 +22,13 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
     private let apiKey: [String : String]
     
     init(apiKey: String) {
-        self.apiKey = ["apiKey" : apiKey]
+//        self.apiKey = ["apiKey" : apiKey]
+        self.apiKey = ["apiKey" : apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
     }
     
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> () {
-        let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.date : date.description])
+        let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.date : urlFormat(date)])
         let apiRequest = APIRequest(url: apiURL, method: .get, header: apiKey, body: nil)
         let apiSession = APISession.default
         let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
@@ -39,15 +40,15 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         switch lifeCycle {
             
         case let lifeCycle as Dream:
-            let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.date : date.description])
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.dream : (DreamNetworkEntity(domainEntity: lifeCycle))])
+            let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: nil)
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: (DreamNetworkEntity(domainEntity: lifeCycle, date: apiFormat(date))) )
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
             
         case let lifeCycle as Wake:
-            let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: [.date : date.description])
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: [.wake : (WakeNetworkEntity(domainEntity: lifeCycle))])
+            let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: [.date : urlFormat(date)])
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: apiKey, body: (WakeNetworkEntity(domainEntity: lifeCycle)) )
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
@@ -57,27 +58,30 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         }
     }
     
-    
     func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
-        switch lifeCycle {
-            
-        case let lifeCycle as Dream:
-            let url = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: nil)
-            let request = APIRequest(url: url, method: .post, header: apiKey, body: [.dream : (DreamNetworkEntity(domainEntity: lifeCycle))])
-            let session = APISession.default
-            let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
-            return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
-            
-        case let lifeCycle as Wake:
-            let url = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: nil)
-            let request = APIRequest(url: url, method: .post, header: apiKey, body: [.wake : (WakeNetworkEntity(domainEntity: lifeCycle))])
-            let session = APISession.default
-            let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
-            return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
-            
-        default: callback(.failure(NetworkError.downcasting("Error downcasting! Unexpected input type / func network.change(_: Lifecycle)")))
-        }
+        print("~")
     }
+
+//    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+//        switch lifeCycle {
+//
+//        case let lifeCycle as Dream:
+//            let url = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: nil)
+//            let request = APIRequest(url: url, method: .post, header: apiKey, body: [.dream : (DreamNetworkEntity(domainEntity: lifeCycle))])
+//            let session = APISession.default
+//            let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
+//            return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
+//
+//        case let lifeCycle as Wake:
+//            let url = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: nil)
+//            let request = APIRequest(url: url, method: .post, header: apiKey, body: [.wake : (WakeNetworkEntity(domainEntity: lifeCycle))])
+//            let session = APISession.default
+//            let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
+//            return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
+//
+//        default: callback(.failure(NetworkError.downcasting("Error downcasting! Unexpected input type / func network.change(_: Lifecycle)")))
+//        }
+//    }
     
     
     
@@ -100,6 +104,20 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
             
         default: callback(.failure(NetworkError.downcasting("Error downcasting! Unexpected input type / func network.delete(_: Lifecycle)")))
         }
+    }
+    
+    func urlFormat(_ date: Date) -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "YYYY-MM-dd"
+        let formatDate = "eq.\(formatter.string(from: date))"
+        return formatDate
+    }
+    
+    func apiFormat(_ date: Date) -> String {
+         let formatter = DateFormatter()
+               formatter.dateFormat = "YYYY-MM-dd"
+               let formatDate = formatter.string(from: date)
+               return formatDate
     }
     
 }

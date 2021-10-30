@@ -29,9 +29,13 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
             case let .success(data):
                 print("json data == \(String(data: data, encoding: .utf8)!)")
                 do {
-                    let domainEntity = try JSONDecoder().decode(LifeCycleNetworkEntity.self, from: data).parseToDomain()
+                    let dtoEntity = try JSONDecoder().decode([DreamNetworkEntity].self, from: data)
+                    print("dtoEntity == \(dtoEntity)")
+                    var domainEntity = [Dream]()
+                    try dtoEntity.forEach({domainEntity.append(try $0.parseToDomain())})
+                    print("domainEntity == \(dtoEntity)")
 //                    (LifeCycleNetworkEntity.self, from: data).parseToDomain()
-                    callback(.success(domainEntity))
+                    callback(.success(domainEntity as! [LifeCycle]))// test!
                 } catch {
                     callback(.failure(error))
                 }

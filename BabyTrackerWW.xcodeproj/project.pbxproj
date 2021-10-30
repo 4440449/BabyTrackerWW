@@ -12,7 +12,7 @@
 		501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */; };
 		501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */; };
 		50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */; };
-		50A3E28627218F81008B2A0B /* NetworkRepositoryDTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E28527218F81008B2A0B /* NetworkRepositoryDTOMapper.swift */; };
+		50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */; };
 		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
 		50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */; };
 		50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */; };
@@ -61,6 +61,7 @@
 		50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90927272B83005648BA /* WakeNetworkEntity.swift */; };
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 		50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */; };
+		50F6C914272C81A5005648BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C913272C81A5005648BA /* Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -69,7 +70,7 @@
 		501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientConfig.swift; sourceTree = "<group>"; };
 		501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTaskConfigurator.swift; sourceTree = "<group>"; };
 		50A3E283271F919B008B2A0B /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
-		50A3E28527218F81008B2A0B /* NetworkRepositoryDTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryDTOMapper.swift; sourceTree = "<group>"; };
+		50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapper.swift"; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenterswift.swift; sourceTree = "<group>"; };
 		50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +121,7 @@
 		50F6C90927272B83005648BA /* WakeNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryClient.swift; sourceTree = "<group>"; };
+		50F6C913272C81A5005648BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,7 +157,8 @@
 			isa = PBXGroup;
 			children = (
 				501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */,
-				50A3E28527218F81008B2A0B /* NetworkRepositoryDTOMapper.swift */,
+				50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */,
+				50F6C913272C81A5005648BA /* Extensions.swift */,
 				5017169E2718C5DA008DD70C /* Infrastructure */,
 				50F6C90627272AC5005648BA /* Entities */,
 			);
@@ -670,7 +673,7 @@
 				50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */,
 				5017169D2718C5BC008DD70C /* NetworkClient.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
-				50A3E28627218F81008B2A0B /* NetworkRepositoryDTOMapper.swift in Sources */,
+				50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */,
 				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
 				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
 				501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */,
@@ -706,6 +709,7 @@
 				50B1753A2704C1F000108B17 /* WakeDetailSceneViewController.swift in Sources */,
 				50B1753D2704C1F000108B17 /* DreamDetailSceneConfiguratorImpl.swift in Sources */,
 				50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */,
+				50F6C914272C81A5005648BA /* Extensions.swift in Sources */,
 				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
 				50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */,
