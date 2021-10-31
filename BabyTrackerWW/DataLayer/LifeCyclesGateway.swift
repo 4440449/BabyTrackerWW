@@ -54,8 +54,8 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func changeLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
-        let task = network.change(lifeCycle) { result in
+    func changeLifeCycle(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        let task = network.change(lifeCycle, at: date) { result in
             switch result {
             case .success():
                 self.localStorage.change(lifeCycle) { result in

@@ -29,7 +29,7 @@ struct ApiURL {
         case dream = "/rest/v1/Dream"
         case wake  = "/rest/v1/Wake"
     }
-    enum EndPointKeys: String { // контроль знака равно при генерации урла
+    enum EndPointKeys: String {
         case date = "date"
         case id = "id"
     }
@@ -43,6 +43,7 @@ struct ApiURL {
         self.endPoint = Dictionary(uniqueKeysWithValues: endPoint!.map ({($0.key.rawValue, $0.value) }))
         print("endPoint == \(endPoint)")
     }
+    
     //    external init
     init(scheme: Scheme, host: String, path: String, endPoint: [String : String]?) {
         self.scheme = scheme.rawValue
@@ -79,37 +80,34 @@ struct APIRequest {
     //Инкапсулировать поля запроса в отдельный объект?
     private let method: String
     private let header: [String : String]
-    private var body: Codable?
+    private var body: Encodable?
     
-    enum BodyKeys: String {
-        case dream = "dream"
-        case wake = "wake"
-    }
     
     enum HTTPMethod: String {
         case get     = "GET"
         case post    = "POST"
+        case patch   = "PATCH"
         case delete  = "DELETE"
     }
     
     // LifeCycle API init
-    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: Codable?) {
+    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: Encodable?) {
         self.url = url
         self.method = method.rawValue
         self.header = header
         guard body != nil else { self.body = nil; return }
         self.body = body
-//        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) })) // force!
+//        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) }))
     }
     
     // external init
-//    init(url: ApiURL, method: String, header: [String : String], body: [String : Codable]?) {
-//        self.url = url
-//        self.method = method
-//        self.header = header
-//        guard body != nil else { self.body = nil; return }
-////        self.body = body
-//    }
+    init(url: ApiURL, method: String, header: [String : String], body: Encodable?) {
+        self.url = url
+        self.method = method
+        self.header = header
+        guard body != nil else { self.body = nil; return }
+        self.body = body
+    }
     
     
     func createRequest() throws -> URLRequest {
@@ -118,30 +116,12 @@ struct APIRequest {
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
-        //        urlRequest.setValue(header.values.first, forHTTPHeaderField: header.keys.first ?? "")
         guard let body = body else { return urlRequest }
-        print("Is json valid object? \(JSONSerialization.isValidJSONObject(body))")
-        urlRequest.httpBody = try JSONEncoder().encode(body as! DreamNetworkEntity)
-//            try JSONSerialize(obj: body)
-        print("urlRequest.httpBody == \(urlRequest.httpBody!)")
-        //        print("httpBody == \(urlRequest.httpBody)")
+        urlRequest.httpBody = try body.jsonEncode()
+        print("urlRequest.httpBody == \(urlRequest.httpBody!.base64EncodedString(options: .lineLength64Characters))")
         return urlRequest
     }
-    
-    
-    //    private func JSONEncoderR <T: Encodable> (encoder: T) throws -> Data {
-    //        return try JSONEncoder().encode(encoder)
-    //    }
-    
-    
-    private func JSONSerialize(obj: Any) throws -> Data {
-        do {
-            return try JSONSerialization.data(withJSONObject: obj, options: [])
-        } catch {
-            throw NetworkError.jsonSerialization(error.localizedDescription)
-        }
-    }
-    
+
 }
 
 
@@ -164,7 +144,7 @@ enum APISession {
 
 enum NetworkError: Error {
     case urlCreate (String)
-    case jsonSerialization (String)
+//    case jsonSerialization (String)
     
     case badRequest (String)
     case badResponse (String)
@@ -178,32 +158,52 @@ enum NetworkError: Error {
 
 
 
+//
+//struct ApiParams {
+//
+//    let url: ApiURL
+//    let header: [String : String]
+//    let body: [String : Codable]?
+//
+//
+//    enum HeaderKey: String {
+//        case apiKey = "apiKey"
+//    }
+//
+//
+//    init(url: ApiURL, header: [HeaderKey : String], body: [String : Codable]?) {
+//        self.url = url
+//        self.header = Dictionary(uniqueKeysWithValues: header.map ({($0.key.rawValue, $0.value) }))
+//        guard body != nil else { self.body = nil; return }
+//        self.body = body
+//    }
+//
+//
+//    init(url: ApiURL, header: [String : String], body: [String : Codable]?) {
+//        self.url = url
+//        self.header = header
+//        guard body != nil else { self.body = nil; return }
+//        self.body = body
+//    }
+//
+//}
 
-struct ApiParams {
-    
-    let url: ApiURL
-    let header: [String : String]
-    let body: [String : Codable]?
-    
-    
-    enum HeaderKey: String {
-        case apiKey = "apiKey"
-    }
-    
-    
-    init(url: ApiURL, header: [HeaderKey : String], body: [String : Codable]?) {
-        self.url = url
-        self.header = Dictionary(uniqueKeysWithValues: header.map ({($0.key.rawValue, $0.value) }))
-        guard body != nil else { self.body = nil; return }
-        self.body = body
-    }
-    
-    
-    init(url: ApiURL, header: [String : String], body: [String : Codable]?) {
-        self.url = url
-        self.header = header
-        guard body != nil else { self.body = nil; return }
-        self.body = body
-    }
-    
-}
+
+//    enum BodyKeys: String {
+//        case dream = "dream"
+//        case wake = "wake"
+//    }
+
+
+//        private func JsonEncode <T: Encodable> (encoder: T) throws -> Data {
+//            return try JSONEncoder().encode(encoder)
+//        }
+//
+//
+//    private func JSONSerialize(obj: Any) throws -> Data {
+//        do {
+//            return try JSONSerialization.data(withJSONObject: obj, options: [])
+//        } catch {
+//            throw NetworkError.jsonSerialization(error.localizedDescription)
+//        }
+//    }

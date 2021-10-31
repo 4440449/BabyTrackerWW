@@ -164,7 +164,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             }
         } else {
             // didSelectFlow
-            repository.changeLifeCycle(lifeCycle) { [unowned self] result in
+            repository.changeLifeCycle(lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
                 switch result {
                 case .success(): self.lifeCycleCard.lifeCycle[self.currentLifecycleIndex!] = lifeCycle
                 case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")

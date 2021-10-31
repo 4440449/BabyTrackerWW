@@ -29,6 +29,7 @@ final class ApiClientImpl: ApiClientProtocol {
         do {
             let request = try self.requestConfig.createRequest()
             let session = self.sessionConfig.createSession()
+            print("session == \(session)")
             
             let dataTask = session.dataTask(with: request) { data, response, error in
                 // если сервер не ответил - выкидываю ошибку

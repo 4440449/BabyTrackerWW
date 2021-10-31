@@ -21,6 +21,7 @@ protocol DreamPersistenceRepositoryProtocol {
 
 
 // TODO: - Разобраться с таймс зоной
+// TODO: - Продумать логику порядка отображения данных пользователю. Сейчас нетворк данные пока не засинхронятся с персистент хранилищем, пользователь ожидает. И тут тогда нет смысла выполнять задачу персистент хранилища в бекграунд потоке, т.к. она и так после нетворка в другом потоке
 final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     
 //        struct ErrorTest: Error {}

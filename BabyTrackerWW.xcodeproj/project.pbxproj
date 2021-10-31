@@ -158,7 +158,6 @@
 			children = (
 				501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */,
 				50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */,
-				50F6C913272C81A5005648BA /* Extensions.swift */,
 				5017169E2718C5DA008DD70C /* Infrastructure */,
 				50F6C90627272AC5005648BA /* Entities */,
 			);
@@ -586,6 +585,7 @@
 			children = (
 				5017169C2718C5BC008DD70C /* NetworkClient.swift */,
 				501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */,
+				50F6C913272C81A5005648BA /* Extensions.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
