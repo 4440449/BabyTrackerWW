@@ -32,7 +32,7 @@ final class MainSceneTableViewController: UITableViewController {
         }
         presenter.viewDidLoad()
     }
-        
+    
     func reloadData() {
         tableView.reloadData()
         navigationController?.navigationBar.topItem?.title = presenter.dateOfCard
@@ -48,6 +48,24 @@ final class MainSceneTableViewController: UITableViewController {
         self.performSegue(withIdentifier: "addNewLifeCycleAction", sender: nil)
     }
     
+    @IBAction func editButton(_ sender: Any) {
+       tableView.setEditing(true, animated: true)
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        
+    }
+    
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        tableView.setEditing(false, animated: true)
+//        editButton(self)
+//        editButtonItem.accessibilityElementsHidden = true
+    }
+    
+    
+    
+    
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -57,53 +75,47 @@ final class MainSceneTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainSceneCell", for: indexPath) as! MainSceneTableViewCell
         cell.label.text = presenter.setCellLabel(at: indexPath.row)
-        cell.isEditing = self.tableView(tableView, canMoveRowAt: indexPath)
-
+        //        cell.isEditing = self.tableView(tableView, canMoveRowAt: indexPath)
+        
         return cell
     }
     
     
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        
-//        
-//    }
-    
-    override func setEditing(_ editing: Bool, animated: Bool) {
-        
-    }
-    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
-        return true
-    }
+    //    override func tableView(_ tableView: UITableView, canMoveRowAt indexPath: IndexPath) -> Bool {
+    //        return true
+    //    }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("moveRowAt")
+        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
+        presenter.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
     }
     
     
     // MARK: - Table view delegate -
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        
-        presenter.didSelectRow(at: indexPath.row) { identifire in
-            self.performSegue(withIdentifier: identifire, sender: nil)
+        if !tableView.isEditing {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .none
+            tableView.deselectRow(at: indexPath, animated: true)
+            presenter.didSelectRow(at: indexPath.row) { identifire in
+                self.performSegue(withIdentifier: identifire, sender: nil) }
+        } else {
+            tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
+            
         }
         //Роутер должен дергать сегвей в зависимости от типа объекта
     }
-    
-    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-    
-    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-        return "Удалить"
-    }
+  
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //TODO: - Нет анимации удаления ячейки, сейчас она просто дергается.
+//        tableView.deleteRows(at: [indexPath], with: .fade)
         presenter.deleteRow(at: indexPath.row)
-        tableView.setEditing(false, animated: true)
+//        tableView.setEditing(false, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
+        return .delete
     }
     
     // MARK: - Navigation -
@@ -142,3 +154,24 @@ extension MainSceneTableViewController {
     
     
 }
+
+
+//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+//        // Return false if you do not want the specified item to be editable.
+//        return true
+//    }
+//
+//    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
+//        return "Удалить"
+//    }
+
+
+//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+//
+//
+//    }
+
+//    override func setEditing(_ editing: Bool, animated: Bool) {
+////        super.setEditing(editing, animated: animated)
+////        tableView.setEditing(editing, animated: true)
+//    }

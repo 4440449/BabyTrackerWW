@@ -16,20 +16,25 @@ protocol MainScenePresenterProtocol {
     var dateOfCard: String { get }
     var numberOfDreams: Int { get }
     func setCellLabel(at index: Int) -> String
-
+    
     func addObserver(_ callback: @escaping () -> ())
     func addNewDreamButtonTapped()
     func didSelectRow(at index: Int, callback: (String) -> ())
+    
     func deleteRow(at index: Int)
+    func moveRow(source: Int, destination: Int)
+    func saveChanges()
+    
     func prepare<T>(for segue: T)
     
     func observeActivity(_ callback: @escaping (Loading) -> ())
+    
 }
 
 //MARK: - Implementation -
 
 final class MainScenePresenterImpl: MainScenePresenterProtocol {
-
+    
     private let router: MainSceneRouterProtocol
     private let interactor: MainSceneDelegate // мейби ренейм на ДЕЛЕГАТ!?
     //
@@ -38,16 +43,23 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     //
     // !!! Стейт манагер реализует все протоколы Юз кейсов. и под видом каждого протокола я раскидываю его одного по всем модулям !!!
     //
+    private var tempLifeCycle: [LifeCycle] = []
+    { didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }}
+    
     
     init (router: MainSceneRouterProtocol, interactor: MainSceneDelegate) {
         self.router = router
         self.interactor = interactor
     }
     
+    
     func viewDidLoad() {
         interactor.fetchLifeCycles()
+        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
+            self.tempLifeCycle = lc
+        }
     }
-
+    
     var dateOfCard: String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
@@ -62,8 +74,8 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func setCellLabel(at index: Int) -> String {
-    let label = interactor.showLifeCyclesCard().lifeCycle[index].title
-    return label
+        let label = interactor.showLifeCyclesCard().lifeCycle[index].title
+        return label
     }
     
     func addObserver(_ callback: @escaping () -> ()) {
@@ -76,16 +88,34 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         router.perform(type: type, callback: callback)
     }
     
-//    func didSelectRow(at index: Int, callback: (String) -> ()) {
-//        interactor.showDreamDetails(at: index)
-//    }
+    //    func didSelectRow(at index: Int, callback: (String) -> ()) {
+    //        interactor.showDreamDetails(at: index)
+    //    }
     
     func addNewDreamButtonTapped() {
         interactor.addNewLifeCycle()
     }
     
     func deleteRow(at index: Int) {
-        interactor.deleteLifeCycle(at: index)
+        tempLifeCycle.remove(at: index)
+//        interactor.deleteLifeCycle(at: index)
+    }
+    
+    func moveRow(source: Int, destination: Int) {
+        tempLifeCycle.forEach { print("До изменения \($0.index)") }
+        tempLifeCycle.rearrange(from: source, to: destination)
+        tempLifeCycle.forEach { print("После изменения \($0.index)") }
+        print("tempLifeCycle.count == \(tempLifeCycle.count)")
+        for i in 0...tempLifeCycle.count - 1 {
+            print("i == \(i)")
+            tempLifeCycle[i].index = i
+            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
+        }
+        tempLifeCycle.forEach { print("После цикла \($0.index)") }
+    }
+    
+    func saveChanges() {
+        interactor.reindex(new: tempLifeCycle)
     }
     
     func prepare<T>(for segue: T) {
@@ -96,7 +126,13 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     func observeActivity(_ callback: @escaping (Loading) -> ()) {
         interactor.observeActivity(callback)
     }
-
-
     
+    
+    
+}
+
+extension Array {
+    mutating func rearrange(from: Int, to: Int) {
+        insert(remove(at: from), at: to)
+    }
 }

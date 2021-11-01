@@ -26,6 +26,8 @@ import Foundation
 
 protocol MainSceneDelegate: AnyObject {
     
+    func LCobserve(_ callback: @escaping ([LifeCycle]) -> ())
+    
     func fetchLifeCycles()
     
     func observe(_ callback: @escaping () -> ())
@@ -33,6 +35,7 @@ protocol MainSceneDelegate: AnyObject {
     func showLifeCycleDetails(at index: Int) -> LifeCycle
     func addNewLifeCycle()
     func deleteLifeCycle(at index: Int)
+    func reindex(new elements: [LifeCycle])
     
     func observeActivity(_ callback: @escaping (Loading) -> ())
 }
@@ -64,7 +67,9 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     private var currentLifecycleIndex: Int?
     
     private var lifeCycleCard = LifeCyclesCard(date: Date()) {
-        didSet { DispatchQueue.main.async { self.notifierStorage.forEach{$0()} } }
+        didSet { DispatchQueue.main.async { self.notifierStorage.forEach{$0()}; self.LCnotifierStorage.forEach{$0(self.lifeCycleCard.lifeCycle)}  // 31.10.21 -- test
+            }
+        }
     }
     
     // ------
@@ -99,6 +104,14 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     //MARK: - Main Scene
     
+    // 31.10.21 -- test
+    private var LCnotifierStorage: [([LifeCycle]) -> ()] = []
+    func LCobserve(_ callback: @escaping ([LifeCycle]) -> ()) {
+        LCnotifierStorage.append(callback)
+    }
+    // 31.10.21 -- test
+    
+    
     func observe(_ callback: @escaping () -> ()) { // Обзервинг надо вынести в отдельный протокол для заинтересованных
         self.notifierStorage.append(callback)
     }
@@ -125,6 +138,10 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
             }
         }
+    }
+    
+    func reindex(new elements: [LifeCycle]) {
+        
     }
     
     //MARK: - Calendar Scene

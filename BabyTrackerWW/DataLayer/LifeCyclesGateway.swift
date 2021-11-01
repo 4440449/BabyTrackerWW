@@ -86,6 +86,22 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
+    func synchronize(new elements: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        
+        let task = network.synchronize(elements, date: date) { result in
+            switch result {
+            case .success:
+                self.localStorage.synchronize(lifeCycle: elements, date: date) { result in
+                    switch result {
+                    case .success: callback(.success(()))
+                    case let .failure(localStorageError): callback(.failure(localStorageError))
+                    }
+                }
+            case let .failure(networkError): callback(.failure(networkError))
+            }
+        }
+    }
+    
 }
 
 

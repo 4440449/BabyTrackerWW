@@ -84,75 +84,75 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     
     
     func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        coreDataContainer.performBackgroundTask { backgroundContext in
-            let dbEntity = DreamDBEntity.init(context: backgroundContext)
+//        coreDataContainer.performBackgroundTask { backgroundContext in
+            let dbEntity = DreamDBEntity.init(context: coreDataContainer.viewContext)
             dbEntity.populateEntityWithDate(dream: dream, date: date)
 //            print(dbEntity.date!)
             do {
-                try backgroundContext.save()
+                try coreDataContainer.viewContext.save()
                 callback(.success(()))
             } catch let error {
                 callback(.failure(LocalStorageError.add(error.localizedDescription)))
             }
-        }
+//        }
     }
     
     
     func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
-        coreDataContainer.performBackgroundTask { backgroundContext in
+//        coreDataContainer.performBackgroundTask { backgroundContext in
             let request: NSFetchRequest = DreamDBEntity.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", dream.id as NSUUID)
             do {
-                if let result = try backgroundContext.fetch(request).first {
+                if let result = try coreDataContainer.viewContext.fetch(request).first {
                     result.populateEntity(dream: dream)
-                    try backgroundContext.save()
+                    try coreDataContainer.viewContext.save()
                     callback(.success(()))
                 }
             } catch let error {
                 callback(.failure(LocalStorageError.change(error.localizedDescription)))
             }
-        }
+//        }
     }
     
     
     func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
-        coreDataContainer.performBackgroundTask { backgroundContext in
+//        coreDataContainer.performBackgroundTask { backgroundContext in
             let request: NSFetchRequest = DreamDBEntity.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", dream.id as NSUUID)
             do {
-                if let result = try backgroundContext.fetch(request).first {
-                    backgroundContext.delete(result)
-                    try backgroundContext.save()
+                if let result = try coreDataContainer.viewContext.fetch(request).first {
+                    coreDataContainer.viewContext.delete(result)
+                    try coreDataContainer.viewContext.save()
                     callback(.success(()))
                 }
             } catch let error {
                 callback(.failure(LocalStorageError.delete(error.localizedDescription)))
             }
-        }
+//        }
     }
     
        func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-            coreDataContainer.performBackgroundTask { backgroundContext in
+//            coreDataContainer.performBackgroundTask { backgroundContext in
                 // посмотреть утечки!
                 let days: (Date, Date) = self.dateInterval(with: date)
                 let request: NSFetchRequest = DreamDBEntity.fetchRequest()
                 request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
                 do {
-                    let fetchResult = try backgroundContext.fetch(request)
-                    fetchResult.forEach { backgroundContext.delete($0) }
+                    let fetchResult = try coreDataContainer.viewContext.fetch(request)
+                    fetchResult.forEach { coreDataContainer.viewContext.delete($0) }
                     
-                    let emptyDBArray = dreams.map { _ in DreamDBEntity.init(context: backgroundContext) }
+                    let emptyDBArray = dreams.map { _ in DreamDBEntity.init(context: coreDataContainer.viewContext) }
                     print("Debug: dream emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
                     emptyDBArray.forEach { db in dreams.forEach { dream in db.populateEntityWithDate(dream: dream, date: date)} } // Смущает, что ругается о неизменности массива, хотя я его меняю. Если не будет работать, попробовать свой метод с ссылкой в аргементе
     //                self.parse(date: date, wake: wakes, dbWake: &emptyDBArray)
                     print("Debug: dream emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
                     
-                    try backgroundContext.save()
+                    try coreDataContainer.viewContext.save()
                     callback(.success(()))
                 } catch let error {
                     callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
                 }
-            }
+//            }
         }
     
 }

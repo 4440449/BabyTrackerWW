@@ -79,7 +79,7 @@
         <scene sceneID="d3X-f0-aLd">
             <objects>
                 <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -121,11 +121,28 @@
                                 <action selector="changeDateButton:" destination="8nP-1y-YUj" id="9eF-C9-s9m"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="done" systemItem="add" id="7Fw-qo-IY7">
-                            <connections>
-                                <action selector="addNewDreamButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
-                            </connections>
-                        </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem style="done" systemItem="add" id="7Fw-qo-IY7">
+                                <connections>
+                                    <action selector="addNewDreamButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem style="plain" systemItem="edit" id="P0K-mG-vAO">
+                                <connections>
+                                    <action selector="editButton:" destination="8nP-1y-YUj" id="BW3-8U-qPU"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="save" id="zs7-Rm-ypi">
+                                <connections>
+                                    <action selector="saveButton:" destination="8nP-1y-YUj" id="obZ-on-XOx"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem systemItem="cancel" id="hM3-6N-WTL">
+                                <connections>
+                                    <action selector="cancelButton:" destination="8nP-1y-YUj" id="pKb-qR-Nfi"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <segue destination="DZ4-Dy-YXU" kind="presentation" identifier="changeDateButton" id="HJF-h0-FuU"/>

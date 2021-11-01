@@ -47,7 +47,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
         
         var resultError = PersistenceRepositoryError()
         
-        let serialQ = DispatchQueue.init(label: "serialQ")
+        let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
             
             self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
