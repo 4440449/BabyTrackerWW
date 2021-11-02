@@ -39,40 +39,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     
     // MARK: - Protocol Implements
     
-    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        
-        //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
-        let dreams = lifeCycle.compactMap { $0 as? Dream }
-        let wakes = lifeCycle.compactMap { $0 as? Wake }
-        
-        var resultError = PersistenceRepositoryError()
-        
-        let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
-        serialQ.async {
-            
-            self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
-                switch result {
-                case .success(): return
-                case let .failure(wakeRepoError): resultError.description.append(wakeRepoError.localizedDescription)
-                }
-            }
-            
-            self.dreamRepository.synchronize(dreams: dreams, date: date) { result in
-                switch result {
-                case . success(): return
-                case let .failure(dreamRepoError): resultError.description.append(dreamRepoError.localizedDescription)
-                }
-            }
-            
-            if !resultError.description.isEmpty {
-                callback(.failure(resultError))
-            } else {
-                callback(.success(()))
-            }
-        }
-    }
-    
-    // В текущей логике пока что не использую fetch() из локального хранилища
+        // В текущей логике пока что не использую fetch() из локального хранилища
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
         var resultError = PersistenceRepositoryError()
@@ -131,25 +98,41 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
         }
     }
 
+    
+    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        
+        //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
+        let dreams = lifeCycle.compactMap { $0 as? Dream }
+        print("dreams ===== \(dreams)")
+        let wakes = lifeCycle.compactMap { $0 as? Wake }
+        print("wakes ===== \(wakes)")
+        
+        var resultError = PersistenceRepositoryError()
+        
+        //Многопоточный доступ в кор дату - можно?
+        let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
+        serialQ.async {
+            
+            self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
+                switch result {
+                case .success(): return
+                case let .failure(wakeRepoError): resultError.description.append(wakeRepoError.localizedDescription)
+                }
+            }
+            
+            self.dreamRepository.synchronize(dreams: dreams, date: date) { result in
+                switch result {
+                case . success(): return
+                case let .failure(dreamRepoError): resultError.description.append(dreamRepoError.localizedDescription)
+                }
+            }
+            
+            if !resultError.description.isEmpty {
+                callback(.failure(resultError))
+            } else {
+                callback(.success(()))
+            }
+        }
+    }
+    
 }
-
-
-//    func saveData<T>(date: Date, data: T, callback: @escaping (Result<T, Error>) -> ()) where T : LifeCycle {
-//
-//        CoreDataStackImpl.shared.persistentContainer.performBackgroundTask { (backContext) in
-//            var calendar = Calendar.init(identifier: .gregorian)
-//            calendar.timeZone = TimeZone.current
-//            let startOfDay = calendar.startOfDay(for: date)
-//            let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
-//
-//            let dbRequest = NSFetchRequest<NSFetchRequestResult>(entityName: data.title)
-//            dbRequest.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfDay as NSDate, endOfDay as NSDate)
-//            do {
-//                let fetchResult = try backContext.fetch(dbRequest)
-//                let entities = fetchResult
-//                callback(.success(wakes))
-//            } catch let error {
-//                callback(.failure(error))
-//            }
-//        }
-//    }

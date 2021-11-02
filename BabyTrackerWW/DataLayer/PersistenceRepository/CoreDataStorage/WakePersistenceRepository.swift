@@ -9,7 +9,7 @@
 import Foundation
 import CoreData
 
-//TODO: - Прикрутить слой ДТО мапинга
+
 protocol WakePersistenceRepositoryProtocol {
     func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
@@ -25,15 +25,6 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     
     // MARK: - Private
     
-    
-    private func parseToDomainEntity(dbEntity: WakeDBEntity) -> Wake {
-        return .init(    id: dbEntity.id!,
-                         index: Int(dbEntity.index),
-                         wakeUp: Wake.WakeUp(rawValue: dbEntity.wakeUp!)!,
-                         wakeWindow: Wake.WakeWindow(rawValue: dbEntity.wakeWindow!)!,
-                         signs: Wake.Signs(rawValue: dbEntity.signs!)! )
-    }
-    
     private func dateInterval(with date: Date) -> (Date, Date) {
         var calendar = Calendar.init(identifier: .gregorian)
         calendar.timeZone = TimeZone.current
@@ -42,14 +33,6 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
         return (startOfDay, endOfDay)
     }
     
-    private func parse(date: Date, wakes: [Wake], dbWake: inout [WakeDBEntity]) {
-        for db in dbWake {
-            for w in wakes {
-                db.populateEntityWithDate(wake: w, date: date)
-                // Не работает! Первый цикл проходит одним элементом по каждому из второго цикла
-            }
-        }
-    }
     
     // MARK: - Protocol Implements
     
@@ -61,7 +44,8 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            let wakes = fetchResult.map { self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+            let wakes = fetchResult.map { $0.parseToDomain() }
+//                self.parseToDomainEntity(dbEntity: $0) } // memory ref?
             callback(.success(wakes))
         } catch let error {
             callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
@@ -117,7 +101,6 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     }
     
     
-    
     func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         coreDataContainer.performBackgroundTask { backgroundContext in
             // посмотреть утечки!
@@ -129,11 +112,11 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
                 fetchResult.forEach { backgroundContext.delete($0) }
                 
                 let emptyDBArray = wakes.map { _ in WakeDBEntity.init(context: backgroundContext) }
-                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-                emptyDBArray.forEach { db in wakes.forEach { wake in db.populateEntityWithDate(wake: wake, date: date)} } // Смущает, что ругается о неизменности массива, хотя я его меняю. Если не будет работать, попробовать свой метод с ссылкой в аргементе
-//                self.parse(date: date, wake: wakes, dbWake: &emptyDBArray)
-                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-                
+//                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+                for i in 0..<emptyDBArray.count {
+                    emptyDBArray[i].populateEntityWithDate(wake: wakes[i], date: date)
+                }
+//                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
                 try backgroundContext.save()
                 callback(.success(()))
             } catch let error {

@@ -102,16 +102,16 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func moveRow(source: Int, destination: Int) {
-        tempLifeCycle.forEach { print("До изменения \($0.index)") }
+        tempLifeCycle.forEach { print("До изменения \($0.index) \($0.id)") }
         tempLifeCycle.rearrange(from: source, to: destination)
-        tempLifeCycle.forEach { print("После изменения \($0.index)") }
-        print("tempLifeCycle.count == \(tempLifeCycle.count)")
-        for i in 0...tempLifeCycle.count - 1 {
-            print("i == \(i)")
+        tempLifeCycle.forEach { print("После изменения \($0.index) \($0.id)") }
+//        print("tempLifeCycle.count == \(tempLifeCycle.count)")
+        for i in 0..<tempLifeCycle.count {
+//            print("i == \(i)")
             tempLifeCycle[i].index = i
-            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
+//            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
         }
-        tempLifeCycle.forEach { print("После цикла \($0.index)") }
+        tempLifeCycle.forEach { print("После цикла \($0.index) \($0.id)") }
     }
     
     func saveChanges() {

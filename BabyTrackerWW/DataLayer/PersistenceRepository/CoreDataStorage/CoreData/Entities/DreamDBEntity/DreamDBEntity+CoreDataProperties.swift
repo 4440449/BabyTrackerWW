@@ -22,26 +22,15 @@ extension DreamDBEntity {
     @NSManaged public var index: Int32
     @NSManaged public var putDown: String?
     @NSManaged public var fallAsleep: String?
-    //    @NSManaged public var wakeUp: String?
 }
 
 
 extension DreamDBEntity {
     
-    //TEST
-    convenience init(domainEntity: Dream) {
-        self.init()
-        self.index = Int32(domainEntity.index)
-        self.putDown = domainEntity.putDown
-        self.fallAsleep = domainEntity.fallAsleep
-    }
-    //TEST
-    
     func populateEntity(dream: Dream) {
         self.index = Int32(dream.index)
         self.putDown = dream.putDown
         self.fallAsleep = dream.fallAsleep
-        //        self.wakeUp = dream.wakeUp.rawValue
     }
     
     func populateEntityWithDate(dream: Dream, date: Date) {
@@ -50,7 +39,15 @@ extension DreamDBEntity {
         self.index = Int32(dream.index)
         self.putDown = dream.putDown
         self.fallAsleep = dream.fallAsleep
-        //        self.wakeUp = dream.wakeUp.rawValue
+    }
+    
+    // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
+    func parseToDomain() -> Dream {
+        return .init(id: self.id!,
+                     index: Int(self.index),
+                     putDown: Dream.PutDown(rawValue: self.putDown!)!,
+                     fallAsleep: Dream.FallAsleep(rawValue: self.fallAsleep!)!)
     }
     
 }
+

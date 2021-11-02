@@ -42,4 +42,13 @@ extension WakeDBEntity {
         self.wakeWindow = wake.wakeWindow.rawValue
         self.signs = wake.signs.rawValue
     }
+    
+    // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
+    func parseToDomain() -> Wake {
+        return .init(id: self.id!,
+                     index: Int(self.index),
+                     wakeUp: Wake.WakeUp(rawValue: self.wakeUp!)!,
+                     wakeWindow: Wake.WakeWindow(rawValue: self.wakeWindow!)!,
+                     signs: Wake.Signs(rawValue: self.signs!)!)
+    }
 }

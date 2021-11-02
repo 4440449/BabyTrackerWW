@@ -43,7 +43,7 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         case let lifeCycle as Dream:
             let apiURL = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: nil)
             let addHeader = ["apiKey" : apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: addHeader, body: (DreamNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date))) )
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: addHeader, body: [(DreamNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date)))] )
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
@@ -51,7 +51,7 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         case let lifeCycle as Wake:
             let apiURL = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: [.date : urlFormat(date)])
             let header = ["apiKey" : apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
-            let apiRequest = APIRequest(url: apiURL, method: .post, header: header, body: (WakeNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date))) )
+            let apiRequest = APIRequest(url: apiURL, method: .post, header: header, body: [(WakeNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date)))] )
             let apiSession = APISession.default
             let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
@@ -72,7 +72,7 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         case let lifeCycle as Dream:
             let url = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: [.id : webApiFormat(lifeCycle.id)])
             let changeHeader = ["apiKey" : apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
-            let request = APIRequest(url: url, method: .patch, header: changeHeader, body: DreamNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date)) )
+            let request = APIRequest(url: url, method: .patch, header: changeHeader, body: [DreamNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date))] )
             let session = APISession.default
             let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
@@ -80,7 +80,7 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         case let lifeCycle as Wake:
             let url = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: nil)
             let changeHeader = ["apiKey" : apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
-            let request = APIRequest(url: url, method: .patch, header: changeHeader, body: WakeNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date)) )
+            let request = APIRequest(url: url, method: .patch, header: changeHeader, body: [WakeNetworkEntity(domainEntity: lifeCycle, date: webApiFormat(date))] )
             let session = APISession.default
             let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
             return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
@@ -118,18 +118,38 @@ final class NetworkRepositoryConfiguratorImpl: NetworkRepositoryConfiguratorProt
         let dreams = lifeCycle.compactMap { $0 as? Dream }
         let wakes = lifeCycle.compactMap { $0 as? Wake }
         
-        let group = DispatchGroup()
-        let dreamWorkItem = DispatchWorkItem {
-            
-        }
+//        var resultError = NetworkError()
         
-        let wakeWorkItem = DispatchWorkItem  {
-            
+        let networkGroup = DispatchGroup()
+        if !dreams.isEmpty {
+        DispatchQueue.global().async(group: networkGroup, qos: .userInitiated) {
+            let url = ApiURL(scheme: .https, host: .supabase, path: .dream, endPoint: nil) //[.date : self.webApiFormat(date)])
+            let changeHeader = ["apiKey" : self.apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
+            let request = APIRequest(url: url, method: .patch, header: changeHeader, body: dreams.map { DreamNetworkEntity(domainEntity: $0, date: self.webApiFormat(date)) } )
+            let session = APISession.default
+            let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
+            return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
         }
-        
-        group.notify(queue: .main) {  } 
-  
+        }
+        if !wakes.isEmpty {
+        DispatchQueue.global().async(group: networkGroup, qos: .userInitiated) {
+            let url = ApiURL(scheme: .https, host: .supabase, path: .wake, endPoint: nil) //[.date : self.webApiFormat(date)])
+                let changeHeader = ["apiKey" : self.apiKey, "Content-Type" : "application/json", "Prefer" : "return=representation"]
+                let request = APIRequest(url: url, method: .patch, header: changeHeader, body: wakes.map { WakeNetworkEntity(domainEntity: $0, date: self.webApiFormat(date)) } )
+                let session = APISession.default
+                let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
+                return NetworkRepositoryDTOMapper(client: client).request(callback: callback)
+            }
+        }
     }
+    
+        
+       
+        
+        
+//        group.notify(queue: .main) {  }
+  
+//    }
     
     
     

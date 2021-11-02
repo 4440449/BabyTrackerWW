@@ -15,5 +15,6 @@ protocol LifeCyclesCardGateway {
     func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func changeLifeCycle(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    func synchronize(new elements: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
 
 }

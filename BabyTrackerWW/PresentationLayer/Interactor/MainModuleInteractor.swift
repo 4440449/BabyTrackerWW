@@ -141,7 +141,12 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func reindex(new elements: [LifeCycle]) {
-        
+        repository.synchronize(new: elements, date: lifeCycleCard.date) { result in
+            switch result {
+            case .success(()): self.lifeCycleCard.lifeCycle = elements
+            case let .failure(error): print("reindex() / Error description: \(error)")
+            }
+        }
     }
     
     //MARK: - Calendar Scene

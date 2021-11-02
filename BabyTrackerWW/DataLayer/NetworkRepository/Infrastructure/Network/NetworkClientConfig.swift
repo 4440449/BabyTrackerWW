@@ -80,7 +80,7 @@ struct APIRequest {
     //Инкапсулировать поля запроса в отдельный объект?
     private let method: String
     private let header: [String : String]
-    private var body: Encodable?
+    private var body: [Encodable]?
     
     
     enum HTTPMethod: String {
@@ -91,7 +91,7 @@ struct APIRequest {
     }
     
     // LifeCycle API init
-    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: Encodable?) {
+    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: [Encodable]?) {
         self.url = url
         self.method = method.rawValue
         self.header = header
@@ -101,7 +101,7 @@ struct APIRequest {
     }
     
     // external init
-    init(url: ApiURL, method: String, header: [String : String], body: Encodable?) {
+    init(url: ApiURL, method: String, header: [String : String], body: [Encodable]?) {
         self.url = url
         self.method = method
         self.header = header
@@ -117,8 +117,9 @@ struct APIRequest {
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         guard let body = body else { return urlRequest }
-        urlRequest.httpBody = try body.jsonEncode()
-        print("urlRequest.httpBody == \(urlRequest.httpBody!.base64EncodedString(options: .lineLength64Characters))")
+        let arrayBody = try body.map { try JSONSerialization.jsonObject(with: $0.jsonEncode(), options: []) }
+        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: arrayBody, options: [])
+        print("urlRequest.httpBody == \(arrayBody)")
         return urlRequest
     }
 

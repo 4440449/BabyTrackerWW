@@ -53,7 +53,7 @@ final class MainSceneTableViewController: UITableViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        
+        presenter.saveChanges()
     }
     
     
