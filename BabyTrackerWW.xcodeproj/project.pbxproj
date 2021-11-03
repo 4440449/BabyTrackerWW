@@ -62,6 +62,8 @@
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 		50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */; };
 		50F6C914272C81A5005648BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C913272C81A5005648BA /* Extensions.swift */; };
+		50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity.swift */; };
+		50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -122,6 +124,8 @@
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryClient.swift; sourceTree = "<group>"; };
 		50F6C913272C81A5005648BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		50F6C9152731883E005648BA /* JsonPatchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity.swift; sourceTree = "<group>"; };
+		50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -158,8 +162,9 @@
 			children = (
 				501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */,
 				50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */,
-				5017169E2718C5DA008DD70C /* Infrastructure */,
+				50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */,
 				50F6C90627272AC5005648BA /* Entities */,
+				5017169E2718C5DA008DD70C /* Infrastructure */,
 			);
 			path = NetworkRepository;
 			sourceTree = "<group>";
@@ -563,6 +568,7 @@
 		50F6C90627272AC5005648BA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
+				50F6C9152731883E005648BA /* JsonPatchEntity.swift */,
 				50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */,
 				50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */,
 				50F6C90927272B83005648BA /* WakeNetworkEntity.swift */,
@@ -663,6 +669,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */,
+				50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */,
 				50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */,
 				50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */,
 				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
@@ -711,6 +718,7 @@
 				50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */,
 				50F6C914272C81A5005648BA /* Extensions.swift in Sources */,
 				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
+				50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
 				50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */,
 				50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */,

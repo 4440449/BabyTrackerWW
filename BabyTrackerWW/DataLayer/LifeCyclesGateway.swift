@@ -20,6 +20,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
+    // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
     func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         let task = network.fetch(at: date) { result in
             switch result {
@@ -34,8 +35,6 @@ final class DataAccessGateway: LifeCyclesCardGateway {
             }
         }
     }
-    // 25.10.21  Вовзращать конкретную таску для мониторинга состояния загрузки. // Пока излишне. Состояние загрузки могу пока реализовать просто по входу и выходу из блока в Презент Интеракторе.
-    // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу (Сообщать дата слою об отмене задачи).
     
     
     func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
@@ -70,8 +69,8 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func deleteLifeCycle(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
-        let task = network.delete(lifeCycle) { result in
+    func deleteLifeCycle(_ lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        let task = network.delete(lifeCycle, date: date) { result in
             switch result {
             case .success():
                 self.localStorage.delete(lifeCycle) { result in
@@ -87,8 +86,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     
     
     func synchronize(new elements: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        
-        let task = network.synchronize(elements, date: date) { result in
+        let task = self.network.synchronize(elements, date: date) { result in
             switch result {
             case .success:
                 self.localStorage.synchronize(lifeCycle: elements, date: date) { result in
@@ -97,7 +95,8 @@ final class DataAccessGateway: LifeCyclesCardGateway {
                     case let .failure(localStorageError): callback(.failure(localStorageError))
                     }
                 }
-            case let .failure(networkError): callback(.failure(networkError))
+            case let .failure(networkError):
+                callback(.failure(networkError))
             }
         }
     }

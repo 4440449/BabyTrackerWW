@@ -10,8 +10,8 @@ import Foundation
 
 
 protocol NetworkRepositoryDTOMapperProtocol {
-    func fetchRequest(callback: @escaping (Result<[LifeCycle], Error>) -> ())
-    func request(callback: @escaping (Result<Void, Error>) -> ())
+    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ())
+    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
@@ -22,30 +22,29 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
     init(client: ApiClientProtocol) {
         self.client = client
     }
+
     
-    func fetchRequest(callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
+    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         self.client.execute { result in
             switch result {
             case let .success(data):
-                print("json data == \(String(data: data, encoding: .utf8)!)")
+//                print("json data == \(String(data: data, encoding: .utf8)!)")
                 do {
-                    let dtoEntity = try JSONDecoder().decode([DreamNetworkEntity].self, from: data)
-                    print("dtoEntity == \(dtoEntity)")
-                    var domainEntity = [Dream]()
-                    try dtoEntity.forEach({domainEntity.append(try $0.parseToDomain())})
-                    print("domainEntity == \(dtoEntity)")
-//                    (LifeCycleNetworkEntity.self, from: data).parseToDomain()
-                    callback(.success(domainEntity as! [LifeCycle]))// test!
+                    let networkEntity = try JSONDecoder().decode(LifeCycleNetworkEntity.self, from: data)
+                    let domainEntity = try networkEntity.parseToDomain()
+//                    print("networkEntity == \(networkEntity)")
+//                    print("domainEntity == \(domainEntity)")
+                    callback(.success(domainEntity))
                 } catch {
                     callback(.failure(error))
                 }
-                
             case let .failure(error): callback(.failure(error))
             }
         }
     }
     
-    func request(callback: @escaping (Result<Void, Error>) -> ()) {
+    
+    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ()) {
         self.client.execute { result in
             switch result {
             case .success: callback(.success(()))
@@ -53,6 +52,5 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
             }
         }
     }
-
-
+    
 }

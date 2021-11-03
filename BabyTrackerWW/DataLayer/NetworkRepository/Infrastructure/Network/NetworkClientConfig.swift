@@ -28,6 +28,7 @@ struct ApiURL {
     enum Path: String {
         case dream = "/rest/v1/Dream"
         case wake  = "/rest/v1/Wake"
+        case lifeCycles = "rest/v1/LifeCycles"
     }
     enum EndPointKeys: String {
         case date = "date"
@@ -80,7 +81,7 @@ struct APIRequest {
     //Инкапсулировать поля запроса в отдельный объект?
     private let method: String
     private let header: [String : String]
-    private var body: [Encodable]?
+    private var body: Encodable?
     
     
     enum HTTPMethod: String {
@@ -90,18 +91,18 @@ struct APIRequest {
         case delete  = "DELETE"
     }
     
+    
     // LifeCycle API init
-    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: [Encodable]?) {
+    init(url: ApiURL, method: HTTPMethod, header: [String : String], body: Encodable?) {
         self.url = url
         self.method = method.rawValue
         self.header = header
         guard body != nil else { self.body = nil; return }
         self.body = body
-//        self.body = Dictionary(uniqueKeysWithValues: body!.map ({ ($0.key.rawValue, $0.value) }))
     }
     
     // external init
-    init(url: ApiURL, method: String, header: [String : String], body: [Encodable]?) {
+    init(url: ApiURL, method: String, header: [String : String], body: Encodable?) {
         self.url = url
         self.method = method
         self.header = header
@@ -111,15 +112,13 @@ struct APIRequest {
     
     
     func createRequest() throws -> URLRequest {
-        
         guard let url = url.createURL() else { throw NetworkError.urlCreate("The URL cannot be configured") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         guard let body = body else { return urlRequest }
-        let arrayBody = try body.map { try JSONSerialization.jsonObject(with: $0.jsonEncode(), options: []) }
-        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: arrayBody, options: [])
-        print("urlRequest.httpBody == \(arrayBody)")
+        print("body.jsonEncode() == \(String(data: try body.jsonEncode(), encoding: .utf8)!)")
+        urlRequest.httpBody = try body.jsonEncode()
         return urlRequest
     }
 
@@ -156,6 +155,10 @@ enum NetworkError: Error {
 }
 
 
+
+//        let arrayBody = try body.map { try JSONSerialization.jsonObject(with: $0.jsonEncode(), options: []) }
+//        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: arrayBody, options: [])
+//        print("urlRequest.httpBody == \(arrayBody)")
 
 
 

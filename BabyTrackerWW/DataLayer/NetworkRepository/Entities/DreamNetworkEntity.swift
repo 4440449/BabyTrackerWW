@@ -54,11 +54,9 @@ struct DreamNetworkEntity: Codable {
     
     
     func parseToDomain() throws -> Dream {
-        
         guard let fallAsleep = Dream.FallAsleep.init(rawValue: self.fallAsleep),
-            let putDown = Dream.PutDown.init(rawValue: self.putDown)
-            else { throw NetworkError.parseToDomain("Error parseToDomain(Dream)") }
-
+              let putDown = Dream.PutDown.init(rawValue: self.putDown)
+        else { throw NetworkError.parseToDomain("Error parseToDomain(Dream)") }
         return .init (id: self.id,
                       index: self.index,
                       putDown: putDown,
