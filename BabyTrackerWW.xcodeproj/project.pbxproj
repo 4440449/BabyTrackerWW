@@ -36,7 +36,7 @@
 		50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */; };
 		50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter.swift */; };
 		50B175492704C1F000108B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* Main.storyboard */; };
-		50B1754A2704C1F000108B17 /* LoaderStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderStatus.swift */; };
+		50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderState.swift */; };
 		50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor.swift */; };
 		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
 		50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751B2704C1EF00108B17 /* AppDelegate.swift */; };
@@ -64,6 +64,8 @@
 		50F6C914272C81A5005648BA /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C913272C81A5005648BA /* Extensions.swift */; };
 		50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity.swift */; };
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */; };
+		50F6C91A27332E5E005648BA /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91927332E5E005648BA /* Publisher.swift */; };
+		50F6C91C2735C100005648BA /* Observer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91B2735C100005648BA /* Observer.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -97,7 +99,7 @@
 		50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
 		50B175132704C1EF00108B17 /* MainSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
 		50B175142704C1EF00108B17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
-		50B175162704C1EF00108B17 /* LoaderStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderStatus.swift; sourceTree = "<group>"; };
+		50B175162704C1EF00108B17 /* LoaderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
 		50B175172704C1EF00108B17 /* MainModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModuleInteractor.swift; sourceTree = "<group>"; };
 		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50B1751B2704C1EF00108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -126,6 +128,8 @@
 		50F6C913272C81A5005648BA /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		50F6C9152731883E005648BA /* JsonPatchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions.swift; sourceTree = "<group>"; };
+		50F6C91927332E5E005648BA /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
+		50F6C91B2735C100005648BA /* Observer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observer.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -467,7 +471,9 @@
 			isa = PBXGroup;
 			children = (
 				50B175172704C1EF00108B17 /* MainModuleInteractor.swift */,
-				50B175162704C1EF00108B17 /* LoaderStatus.swift */,
+				50F6C91B2735C100005648BA /* Observer.swift */,
+				50F6C91927332E5E005648BA /* Publisher.swift */,
+				50B175162704C1EF00108B17 /* LoaderState.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -699,8 +705,9 @@
 				50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */,
 				50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */,
 				50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */,
-				50B1754A2704C1F000108B17 /* LoaderStatus.swift in Sources */,
+				50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */,
 				50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */,
+				50F6C91C2735C100005648BA /* Observer.swift in Sources */,
 				50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */,
 				50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */,
 				50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */,
@@ -709,6 +716,7 @@
 				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
 				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
 				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
+				50F6C91A27332E5E005648BA /* Publisher.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
 				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,

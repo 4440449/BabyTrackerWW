@@ -39,15 +39,9 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     // MARK: - Protocol Implements
     
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ()) {
-        
-        var calendar = Calendar.init(identifier: .gregorian)
-        calendar.timeZone = TimeZone.current
-        let startOfDay = calendar.startOfDay(for: date)
-        let endOfDay = calendar.date(byAdding: .hour, value: 24, to: startOfDay)!
-        //            print("startOfDay = \(startOfDay), endOfDay = \(endOfDay)")
-        
+        let days: (Date, Date) = dateInterval(with: date)
         let request: NSFetchRequest = DreamDBEntity.fetchRequest()
-        request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", startOfDay as NSDate, endOfDay as NSDate)
+        request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
             //                sleep(4)
@@ -111,7 +105,7 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     
     func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         //            coreDataContainer.performBackgroundTask { backgroundContext in
-        let days: (Date, Date) = self.dateInterval(with: date)
+        let days: (Date, Date) = dateInterval(with: date)
         let request: NSFetchRequest = DreamDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {

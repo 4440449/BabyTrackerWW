@@ -11,15 +11,17 @@ import Foundation
 
 protocol PersistenceRepositoryProtocol {
     
-    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
+    
     func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
-    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ())
+    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
 
-final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
+final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyclesCardGateway {
     
     
     private let wakeRepository: WakePersistenceRepositoryProtocol
@@ -40,7 +42,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     // MARK: - Protocol Implements
     
         // В текущей логике пока что не использую fetch() из локального хранилища
-    func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
         var resultError = PersistenceRepositoryError()
         var resultSuccess = [LifeCycle]()
@@ -81,7 +83,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     }
     
     
-    func change(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {
         case let lifeCycle as Wake: self.wakeRepository.changeWake(lifeCycle, callback: callback)
         case let lifeCycle as Dream: self.dreamRepository.changeDream(lifeCycle, callback: callback)
@@ -90,7 +92,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     }
     
     
-    func delete(_ lifeCycle: LifeCycle, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         switch lifeCycle {
         case let lifeCycle as Wake: self.wakeRepository.deleteWake(lifeCycle, callback: callback)
         case let lifeCycle as Dream: self.dreamRepository.deleteDream(lifeCycle, callback: callback)
@@ -99,12 +101,12 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol {
     }
 
     
-    func synchronize(lifeCycle: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         
         //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
-        let dreams = lifeCycle.compactMap { $0 as? Dream }
+        let dreams = lifeCycles.compactMap { $0 as? Dream }
         print("dreams ===== \(dreams)")
-        let wakes = lifeCycle.compactMap { $0 as? Wake }
+        let wakes = lifeCycles.compactMap { $0 as? Wake }
         print("wakes ===== \(wakes)")
         
         var resultError = PersistenceRepositoryError()

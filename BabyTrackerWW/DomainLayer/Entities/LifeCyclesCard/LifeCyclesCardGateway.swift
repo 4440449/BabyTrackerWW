@@ -11,10 +11,10 @@ import Foundation
 
 protocol LifeCyclesCardGateway {
     
-    func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
-    func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func changeLifeCycle(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func deleteLifeCycle(_ lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func synchronize(new elements: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
+    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
 
 }

@@ -11,13 +11,15 @@ import Foundation
 
 protocol MainScenePresenterProtocol {
     
+    func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
+    func observeActivityState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
+    
     func viewDidLoad()
     
     var dateOfCard: String { get }
     var numberOfDreams: Int { get }
     func setCellLabel(at index: Int) -> String
     
-    func addObserver(_ callback: @escaping () -> ())
     func addNewDreamButtonTapped()
     func didSelectRow(at index: Int, callback: (String) -> ())
     
@@ -27,38 +29,51 @@ protocol MainScenePresenterProtocol {
     
     func prepare<T>(for segue: T)
     
-    func observeActivity(_ callback: @escaping (Loading) -> ())
     
 }
 
 //MARK: - Implementation -
 
 final class MainScenePresenterImpl: MainScenePresenterProtocol {
-    
+
+    //MARK: - Dependencies
+
     private let router: MainSceneRouterProtocol
     private let interactor: MainSceneDelegate // мейби ренейм на ДЕЛЕГАТ!?
+   
+    init (router: MainSceneRouterProtocol, interactor: MainSceneDelegate) {
+        self.router = router
+        self.interactor = interactor
+    }
     //
     // По идее здесь не должно быть менеджера. Вся коммуникация происходит через Юз Кейсы (отдельная сущность.). Каждый юз кейс должен быть не в мейне (кроме основной его задачи отобразить Мейн скрин), а в каждом модуле ответственным за свой функционал. ... Мысль: При таких раскладах тут вырисовывается совсем другая архитектура!
     // Мысль: Можно просто не делать Юз кейсы отдельными сущностями, а реализовать их в виде внутреннего функционала каждого модуля.
     //
     // !!! Стейт манагер реализует все протоколы Юз кейсов. и под видом каждого протокола я раскидываю его одного по всем модулям !!!
     //
-    private var tempLifeCycle: [LifeCycle] = []
-    { didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }}
-    
-    
-    init (router: MainSceneRouterProtocol, interactor: MainSceneDelegate) {
-        self.router = router
-        self.interactor = interactor
+
+    //MARK: - State
+
+    private var tempLifeCycle: [LifeCycle] = [] {
+        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
     }
     
-    
+
     func viewDidLoad() {
         interactor.fetchLifeCycles()
-        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
-            self.tempLifeCycle = lc
-        }
+//        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
+//            self.tempLifeCycle = lc
+//        }
     }
+    func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
+        interactor.subscribeToCardState(observer, callback)
+    }
+    
+    func observeActivityState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
+        interactor.subscribeToLoadingState(observer, callback)
+    }
+    
+    
     
     var dateOfCard: String {
         let formatter = DateFormatter()
@@ -78,10 +93,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         return label
     }
     
-    func addObserver(_ callback: @escaping () -> ()) {
-        interactor.observe(callback)
-    }
-    
+ 
     
     func didSelectRow(at index: Int, callback: (String) -> ()) {
         let type = interactor.showLifeCycleDetails(at: index)
@@ -97,8 +109,8 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func deleteRow(at index: Int) {
-        tempLifeCycle.remove(at: index)
-//        interactor.deleteLifeCycle(at: index)
+//        tempLifeCycle.remove(at: index)
+        interactor.deleteLifeCycle(at: index)
     }
     
     func moveRow(source: Int, destination: Int) {
@@ -123,9 +135,9 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     
-    func observeActivity(_ callback: @escaping (Loading) -> ()) {
-        interactor.observeActivity(callback)
-    }
+
+    
+    
     
     
     

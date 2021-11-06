@@ -21,23 +21,21 @@
 import Foundation
 
 
-
 // MARK: - Main Module Use Cases -
 
 protocol MainSceneDelegate: AnyObject {
     
-    func LCobserve(_ callback: @escaping ([LifeCycle]) -> ())
+    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
+    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
+    func unsubscribeToCardState(_ observer: AnyObject)
+    func unsubscribeToLoadingState(_ observer: AnyObject)
     
     func fetchLifeCycles()
-    
-    func observe(_ callback: @escaping () -> ())
     func showLifeCyclesCard() -> LifeCyclesCard
     func showLifeCycleDetails(at index: Int) -> LifeCycle
     func addNewLifeCycle()
     func deleteLifeCycle(at index: Int)
-    func reindex(new elements: [LifeCycle])
-    
-    func observeActivity(_ callback: @escaping (Loading) -> ())
+    func reindex(new lifeCycles: [LifeCycle])
 }
 
 protocol CalendarSceneDelegate: AnyObject {
@@ -45,7 +43,7 @@ protocol CalendarSceneDelegate: AnyObject {
     func changeDate(new date: Date)
 }
 
-protocol DetailSceneDelegate: AnyObject { // нах тут протококл ДримДелегат???
+protocol DetailSceneDelegate: AnyObject {
     func showLifeCycle() -> LifeCycle
     func changeLifeCycle(new lifeCycle: LifeCycle)
     func getAvailableIndex() -> Int
@@ -59,62 +57,76 @@ protocol SelectSceneDelegate: AnyObject {
 // MARK: - Implementation -
 
 final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, SelectSceneDelegate {
-
-    private let repository: LifeCyclesCardGateway // dataAccessGateway
     
     
-    private var notifierStorage: [() -> ()] = []
-    private var currentLifecycleIndex: Int?
+    // MARK: - Dependencies
+    
+    private let repository: LifeCyclesCardGateway
+    
+    init(repository: LifeCyclesCardGateway) {
+        self.repository = repository
+    }
+    
+    
+    // MARK: - State
     
     private var lifeCycleCard = LifeCyclesCard(date: Date()) {
-        didSet { DispatchQueue.main.async { self.notifierStorage.forEach{$0()}; self.LCnotifierStorage.forEach{$0(self.lifeCycleCard.lifeCycle)}  // 31.10.21 -- test
+        didSet {
+            DispatchQueue.main.async {
+                self.cardStateNotifierStorage.forEach { $0.callback(()) }
             }
         }
     }
     
-    // ------
-    private var isLoading: Loading? {
+    private var isLoading = Loading.false {
         didSet {
-            DispatchQueue.main.async { self.notifierActivityStorage.forEach{$0(self.isLoading!)} }
+            DispatchQueue.main.async {
+                self.loadingStateNotifierStorage.forEach{ $0.callback(self.isLoading) }
+            }
         }
     }
     
-    private var notifierActivityStorage: [(Loading) -> ()] = []
+    // TODO: убрать это состояние, сделать передачу индекса в виде аргумента и явный вызов функций
+    private var currentLifecycleIndex: Int?
+    
+    // MARK: - Observing
+    
+    private var cardStateNotifierStorage = [Observer<Void>]() { didSet { print(self.cardStateNotifierStorage.count)
+        }
+    }
+    private var loadingStateNotifierStorage = [Observer<Loading>]()
     
     
-    func observeActivity(_ callback: @escaping (Loading) -> ()) {
-        self.notifierActivityStorage.append(callback)
+    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
+        cardStateNotifierStorage.append(Observer(observer, callback))
     }
-    // ------
-
-    init(persistenceRepository: LifeCyclesCardGateway) {
-        self.repository = persistenceRepository
+    
+    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
+        loadingStateNotifierStorage.append(Observer(observer, callback))
     }
+    
+    func unsubscribeToCardState(_ observer: AnyObject) {
+        cardStateNotifierStorage = cardStateNotifierStorage.filter { $0.observer !== observer }
+    }
+    
+    func unsubscribeToLoadingState(_ observer: AnyObject) {
+        loadingStateNotifierStorage = loadingStateNotifierStorage.filter { $0.observer !== observer }
+    }
+    
+    
+    //MARK: - Main Scene
     
     func fetchLifeCycles() {
-        isLoading = .loading // -------
-        repository.fetchLifeCycle(at: lifeCycleCard.date) { [unowned self] result in
+        isLoading = .true
+        repository.fetch(at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case let .success(lifeCycle): self.lifeCycleCard.lifeCycle = lifeCycle.sorted { $0.index < $1.index }
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
             }
-            self.isLoading = .notLoading // -------
+            self.isLoading = .false
         }
     }
     
-    //MARK: - Main Scene
-    
-    // 31.10.21 -- test
-    private var LCnotifierStorage: [([LifeCycle]) -> ()] = []
-    func LCobserve(_ callback: @escaping ([LifeCycle]) -> ()) {
-        LCnotifierStorage.append(callback)
-    }
-    // 31.10.21 -- test
-    
-    
-    func observe(_ callback: @escaping () -> ()) { // Обзервинг надо вынести в отдельный протокол для заинтересованных
-        self.notifierStorage.append(callback)
-    }
     
     func showLifeCyclesCard() -> LifeCyclesCard {
         return lifeCycleCard
@@ -132,7 +144,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteLifeCycle(at index: Int) {
-        repository.deleteLifeCycle(lifeCycleCard.lifeCycle[index], date: lifeCycleCard.date) { [unowned self] result in
+        repository.delete(lifeCycleCard.lifeCycle[index], at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
@@ -140,10 +152,10 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
-    func reindex(new elements: [LifeCycle]) {
-        repository.synchronize(new: elements, date: lifeCycleCard.date) { result in
+    func reindex(new lifeCycles: [LifeCycle]) {
+        repository.synchronize(new: lifeCycles, date: lifeCycleCard.date) { result in
             switch result {
-            case .success(()): self.lifeCycleCard.lifeCycle = elements
+            case .success(()): self.lifeCycleCard.lifeCycle = lifeCycles
             case let .failure(error): print("reindex() / Error description: \(error)")
             }
         }
@@ -156,7 +168,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
-        repository.fetchLifeCycle(at: date) { [unowned self] result in
+        repository.fetch(at: date) { [unowned self] result in
             self.lifeCycleCard.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles;
@@ -176,9 +188,10 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeLifeCycle (new lifeCycle: LifeCycle) {
+        //Передаю с мейн сцены выбранный индекс либо нил
         if currentLifecycleIndex == nil {
             // addNew Flow
-            repository.addNewLifeCycle(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+            repository.add(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
                 switch result {
                 case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
                 case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
@@ -186,7 +199,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             }
         } else {
             // didSelectFlow
-            repository.changeLifeCycle(lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+            repository.change(current: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
                 switch result {
                 case .success(): self.lifeCycleCard.lifeCycle[self.currentLifecycleIndex!] = lifeCycle
                 case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
@@ -194,9 +207,9 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             }
         }
     }
-
+    
     //MARK: - Select Scene
-
-
+    
+    
     
 }

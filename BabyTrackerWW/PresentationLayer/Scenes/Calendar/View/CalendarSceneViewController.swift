@@ -8,6 +8,8 @@
 
 import UIKit
 
+//TODO: - Не хватает кнопки "Сегодня"
+
 final class CalendarSceneViewController: UIViewController {
     
     var configurator = CalendarSceneConfiguratorImpl()

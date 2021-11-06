@@ -21,11 +21,11 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     
     
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
-    func fetchLifeCycle(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         let task = network.fetch(at: date) { result in
             switch result {
             case let .success(lifeCycle):
-                self.localStorage.synchronize(lifeCycle: lifeCycle, date: date) { result in
+                self.localStorage.synchronize(new: lifeCycle, date: date) { result in
                     switch result {
                     case .success: callback(.success(lifeCycle))
                     case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -37,7 +37,7 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func addNewLifeCycle(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         let task = network.add(new: lifeCycle, at: date) { result in
             switch result {
             case .success():
@@ -53,11 +53,11 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func changeLifeCycle(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         let task = network.change(lifeCycle, at: date) { result in
             switch result {
             case .success():
-                self.localStorage.change(lifeCycle) { result in
+                self.localStorage.change(current: lifeCycle, at: date) { result in
                     switch result {
                     case .success(): callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -69,11 +69,11 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func deleteLifeCycle(_ lifeCycle: LifeCycle, date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         let task = network.delete(lifeCycle, date: date) { result in
             switch result {
             case .success():
-                self.localStorage.delete(lifeCycle) { result in
+                self.localStorage.delete(lifeCycle, at: date) { result in
                     switch result {
                     case .success(): callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -85,11 +85,11 @@ final class DataAccessGateway: LifeCyclesCardGateway {
     }
     
     
-    func synchronize(new elements: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        let task = self.network.synchronize(elements, date: date) { result in
+    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        let task = self.network.synchronize(lifeCycles, date: date) { result in
             switch result {
             case .success:
-                self.localStorage.synchronize(lifeCycle: elements, date: date) { result in
+                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
                     switch result {
                     case .success: callback(.success(()))
                     case let .failure(localStorageError): callback(.failure(localStorageError))

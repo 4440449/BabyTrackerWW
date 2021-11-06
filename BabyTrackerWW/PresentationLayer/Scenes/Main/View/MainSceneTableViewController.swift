@@ -20,18 +20,25 @@ final class MainSceneTableViewController: UITableViewController {
         super.viewDidLoad()
         
         configurator.configureScene(view: self)
-        presenter.addObserver { [unowned self] in self.reloadData() } // сделать полноценный обзервер
-        tableView.tableFooterView = UIView(frame: .zero) // скрываю пустые ячейки
+        tableView.tableFooterView = UIView(frame: .zero)
         setupActivityIndicator()
         reloadData()
-        presenter.observeActivity { [unowned self] isLoading in
+        presenter.viewDidLoad()
+        setButton()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        presenter.observeCardState(self) { [unowned self] in self.reloadData() }
+        presenter.observeActivityState(self) { [unowned self] isLoading in
             switch isLoading {
-            case .loading: self.startActivity()
-            case .notLoading: self.stopActivity()
+            case .true: self.startActivity()
+            case .false: self.stopActivity()
             }
         }
-        presenter.viewDidLoad()
     }
+    
+    
+    @IBOutlet weak var addButton: UIBarButtonItem!
     
     func reloadData() {
         tableView.reloadData()
@@ -53,7 +60,8 @@ final class MainSceneTableViewController: UITableViewController {
     }
     
     @IBAction func saveButton(_ sender: Any) {
-        presenter.saveChanges()
+        print("save")
+//        presenter.saveChanges()
     }
     
     
@@ -131,17 +139,25 @@ final class MainSceneTableViewController: UITableViewController {
     deinit {
         // на данный момент деинита мейн сцены не будет тк это рутовый контроллер, так что удалять обзерверы не надо
     }
+    
+    func setButton() {
+        var button = UIButton(type: .system)
+        button.frame = CGRect(x: 250, y: 450 , width: 100, height: 100)
+        button.backgroundColor = .green
+        button.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
+        view.addSubview(button)
+    }
 }
 
 
 extension MainSceneTableViewController {
     
     private func setupActivityIndicator() {
-        activityIndicator.center = self.tableView.center
+        activityIndicator.center = tableView.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.color = UIColor.black
-        self.view.addSubview(activityIndicator)
+        view.addSubview(activityIndicator)
     }
     
     private func startActivity() {
@@ -154,6 +170,8 @@ extension MainSceneTableViewController {
     
     
 }
+
+
 
 
 //    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {

@@ -9,6 +9,6 @@
 
 
 enum Loading {
-    case loading
-    case notLoading
+    case `true`
+    case `false`
 }
