@@ -12,33 +12,30 @@ import UIKit
 class WakeDetailSceneViewController: UIViewController {
     
     let configurator = WakeDetailSceneConfiguratorImpl()
-    var presenter: DetailScenePresenterProtocol!
+    var presenter: DetailWakeScenePresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
-    }
-    
-    @IBOutlet weak var wakeUpOutletButton: UIButton!
-    @IBOutlet weak var wakeWindowOutletButton: UIButton!
-    @IBOutlet weak var signsOutletButton: UIButton!
-    
-    func setButtonLabel() {
-        presenter.setLabelCallback = { [unowned self] array in
+        presenter.subscribeToLabelState(self) { [unowned self] array in
             self.wakeUpOutletButton.setTitle(array[0], for: .normal)
             self.wakeWindowOutletButton.setTitle(array[1], for: .normal)
             self.signsOutletButton.setTitle(array[2], for: .normal)
         }
     }
     
+    @IBOutlet weak var wakeUpOutletButton: UIButton!
+    @IBOutlet weak var wakeWindowOutletButton: UIButton!
+    @IBOutlet weak var signsOutletButton: UIButton!
+    
+    
     @IBAction func wakeUpButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "WakeUp", sender: nil)
+        self.performSegue(withIdentifier: String.init(describing: Wake.WakeUp.self), sender: nil)
     }
     @IBAction func wakeWindowButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "WakeWindow", sender: nil)
+        self.performSegue(withIdentifier: String.init(describing: Wake.WakeWindow.self), sender: nil)
     }
     @IBAction func signsButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "Signs", sender: nil)
+        self.performSegue(withIdentifier: String.init(describing: Wake.Signs.self), sender: nil)
     }
     
     @IBAction func saveWakeButton(_ sender: Any) {

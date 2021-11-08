@@ -11,7 +11,7 @@ import Foundation
 
 protocol CalendarScenePresenterProtocol {
     
-    var currentDate: Date { get }
+    func getCurrentDate() -> Date
     func format(date: Date) -> String
     func dateSelected(new date: Date)
     func saveButtonTapped()
@@ -21,6 +21,7 @@ protocol CalendarScenePresenterProtocol {
 final class CalendarScenePresenterImpl: CalendarScenePresenterProtocol {
  
     private let delegate: CalendarSceneDelegate
+    
     init(delegate: CalendarSceneDelegate) {
         self.delegate = delegate
     }
@@ -28,13 +29,11 @@ final class CalendarScenePresenterImpl: CalendarScenePresenterProtocol {
     private var date: Date!
     
     
-    var currentDate: Date {
-        date = delegate.showDate()
-        return date
+    func getCurrentDate() -> Date {
+        return delegate.shareStateForCalendarScene().date
     }
     
     func format(date: Date) -> String {
-        
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM YYYY"

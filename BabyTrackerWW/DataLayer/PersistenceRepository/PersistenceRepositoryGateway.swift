@@ -67,7 +67,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
             if !resultError.description.isEmpty {
                 callback(.failure(resultError))
             } else {
-                callback(.success(resultSuccess))
+                callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
             }
             // TODO: Более красиво обработать остановку задачи, при наличии хотя бы одной ошибки (Operation?)
         }

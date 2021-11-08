@@ -7,13 +7,13 @@
 //
 
 
+
 final class WakeDetailSceneConfiguratorImpl {
     func configureScene<D>(view: WakeDetailSceneViewController, delegate: D) {
         guard let delegate = delegate as? DetailSceneDelegate else { return }
-        let router = DetailSceneRouterImpl() // Единый Роутер!
-        let presenter = DetailScenePresenterImpl(delegate: delegate, router: router) // Единый Презентер!
+        let router = DetailWakeSceneRouterImpl() // Единый Роутер!
+        let presenter = DetailWakeScenePresenterImpl(delegate: delegate, router: router)
         view.presenter = presenter
-        view.setButtonLabel()
     }
     
     deinit {
@@ -21,5 +21,4 @@ final class WakeDetailSceneConfiguratorImpl {
     }
     
 }
-
 

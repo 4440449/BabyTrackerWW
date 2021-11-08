@@ -24,6 +24,19 @@ class SelectSceneTableViewController: UITableViewController {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+//        print("viewWillAppear")
+    }
+    override func viewDidAppear(_ animated: Bool) {
+//        print("viewDidAppear")
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+//        print("viewWillDisappear")
+    }
+    override func viewDidDisappear(_ animated: Bool) {
+//        print("viewDidDisappear")
+    }
 
     // MARK: - Table view data source
 

@@ -18,16 +18,9 @@ final class MainSceneTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         configurator.configureScene(view: self)
         tableView.tableFooterView = UIView(frame: .zero)
         setupActivityIndicator()
-        reloadData()
-        presenter.viewDidLoad()
-        setButton()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
         presenter.observeCardState(self) { [unowned self] in self.reloadData() }
         presenter.observeActivityState(self) { [unowned self] isLoading in
             switch isLoading {
@@ -35,40 +28,52 @@ final class MainSceneTableViewController: UITableViewController {
             case .false: self.stopActivity()
             }
         }
+        presenter.viewDidLoad()
+        setButton()
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        reloadData()
+        //Set obs
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        //Delete obs
+    }
+    
     
     
     @IBOutlet weak var addButton: UIBarButtonItem!
     
     func reloadData() {
         tableView.reloadData()
-        navigationController?.navigationBar.topItem?.title = presenter.dateOfCard
+        navigationController?.navigationBar.topItem?.title = presenter.getDate()
     }
     
     @IBAction func changeDateButton(_ sender: Any) {
-        //        presenter.changeDateAction()
         self.performSegue(withIdentifier: "changeDateButton", sender: nil)
     }
     
-    @IBAction func addNewDreamButton(_ sender: Any) {
-        presenter.addNewDreamButtonTapped()
-        self.performSegue(withIdentifier: "addNewLifeCycleAction", sender: nil)
+    @IBAction func addNewLifeCycleButton(_ sender: Any) {
+        self.performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
     }
     
     @IBAction func editButton(_ sender: Any) {
-       tableView.setEditing(true, animated: true)
+        tableView.setEditing(true, animated: true)
     }
     
     @IBAction func saveButton(_ sender: Any) {
         print("save")
-//        presenter.saveChanges()
+        //        presenter.saveChanges()
     }
     
     
     @IBAction func cancelButton(_ sender: Any) {
         tableView.setEditing(false, animated: true)
-//        editButton(self)
-//        editButtonItem.accessibilityElementsHidden = true
+        //        editButton(self)
+        //        editButtonItem.accessibilityElementsHidden = true
     }
     
     
@@ -77,12 +82,12 @@ final class MainSceneTableViewController: UITableViewController {
     // MARK: - Table view data source -
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return presenter.numberOfDreams
+        return presenter.getNumberOfLifeCycles()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "MainSceneCell", for: indexPath) as! MainSceneTableViewCell
-        cell.label.text = presenter.setCellLabel(at: indexPath.row)
+        cell.label.text = presenter.getCellLabel(at: indexPath.row)
         //        cell.isEditing = self.tableView(tableView, canMoveRowAt: indexPath)
         
         return cell
@@ -106,20 +111,21 @@ final class MainSceneTableViewController: UITableViewController {
             tableView.cellForRow(at: indexPath)?.accessoryType = .none
             tableView.deselectRow(at: indexPath, animated: true)
             presenter.didSelectRow(at: indexPath.row) { identifire in
-                self.performSegue(withIdentifier: identifire, sender: nil) }
+                self.performSegue(withIdentifier: identifire, sender: nil)
+            }
         } else {
             tableView.cellForRow(at: indexPath)?.accessoryType = .checkmark
             
         }
         //Роутер должен дергать сегвей в зависимости от типа объекта
     }
-  
+    
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         //TODO: - Нет анимации удаления ячейки, сейчас она просто дергается.
-//        tableView.deleteRows(at: [indexPath], with: .fade)
+        //        tableView.deleteRows(at: [indexPath], with: .fade)
         presenter.deleteRow(at: indexPath.row)
-//        tableView.setEditing(false, animated: true)
+        //        tableView.setEditing(false, animated: true)
     }
     
     override func tableView(_ tableView: UITableView, editingStyleForRowAt indexPath: IndexPath) -> UITableViewCell.EditingStyle {
@@ -131,9 +137,9 @@ final class MainSceneTableViewController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         presenter.prepare(for: segue)
     }
-    //    override func performSegue(withIdentifier identifier: String, sender: Any?) {
-    //    }
     
+    
+
     
     
     deinit {

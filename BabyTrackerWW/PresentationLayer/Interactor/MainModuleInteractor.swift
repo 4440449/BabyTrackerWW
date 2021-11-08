@@ -30,28 +30,36 @@ protocol MainSceneDelegate: AnyObject {
     func unsubscribeToCardState(_ observer: AnyObject)
     func unsubscribeToLoadingState(_ observer: AnyObject)
     
+    func shareStateForMainScene() -> LifeCyclesCard
     func fetchLifeCycles()
-    func showLifeCyclesCard() -> LifeCyclesCard
-    func showLifeCycleDetails(at index: Int) -> LifeCycle
-    func addNewLifeCycle()
+    func saveChanges(new lifeCycles: [LifeCycle])
+    
     func deleteLifeCycle(at index: Int)
     func reindex(new lifeCycles: [LifeCycle])
 }
 
+
 protocol CalendarSceneDelegate: AnyObject {
-    func showDate() -> Date
+    
+    func shareStateForCalendarScene() -> LifeCyclesCard
+    
     func changeDate(new date: Date)
 }
 
+
 protocol DetailSceneDelegate: AnyObject {
-    func showLifeCycle() -> LifeCycle
-    func changeLifeCycle(new lifeCycle: LifeCycle)
-    func getAvailableIndex() -> Int
+    
+    func shareStateForDetailScene() -> LifeCyclesCard
+    
+    func add(new lifeCycle: LifeCycle)
+    func change(current lifeCycle: LifeCycle)
 }
 
 
 protocol SelectSceneDelegate: AnyObject {
+    
 }
+
 
 
 // MARK: - Implementation -
@@ -86,8 +94,6 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
-    // TODO: убрать это состояние, сделать передачу индекса в виде аргумента и явный вызов функций
-    private var currentLifecycleIndex: Int?
     
     // MARK: - Observing
     
@@ -116,30 +122,23 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     //MARK: - Main Scene
     
+    func shareStateForMainScene() -> LifeCyclesCard {
+        return lifeCycleCard
+    }
+    
     func fetchLifeCycles() {
         isLoading = .true
         repository.fetch(at: lifeCycleCard.date) { [unowned self] result in
+            print(result)
             switch result {
-            case let .success(lifeCycle): self.lifeCycleCard.lifeCycle = lifeCycle.sorted { $0.index < $1.index }
+            case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
             }
             self.isLoading = .false
         }
     }
     
-    
-    func showLifeCyclesCard() -> LifeCyclesCard {
-        return lifeCycleCard
-    }
-    
-    // addNew flow
-    func addNewLifeCycle() {
-        currentLifecycleIndex = nil
-    }
-    // didSelect flow
-    func showLifeCycleDetails(at index: Int) -> LifeCycle {
-        currentLifecycleIndex = index
-        return lifeCycleCard.lifeCycle[index]
+    func saveChanges(new lifeCycles: [LifeCycle]) {
         
     }
     
@@ -161,10 +160,11 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
+    
     //MARK: - Calendar Scene
     
-    func showDate() -> Date {
-        return lifeCycleCard.date
+    func shareStateForCalendarScene() -> LifeCyclesCard {
+        return lifeCycleCard
     }
     
     func changeDate(new date: Date) {
@@ -177,36 +177,31 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
+    
     //MARK: - Detail Scene
     
-    func getAvailableIndex() -> Int {
-        return lifeCycleCard.lifeCycle.endIndex
+    func shareStateForDetailScene() -> LifeCyclesCard {
+        return lifeCycleCard
     }
     
-    func showLifeCycle() -> LifeCycle {
-        return lifeCycleCard.lifeCycle[currentLifecycleIndex!]
-    }
-    
-    func changeLifeCycle (new lifeCycle: LifeCycle) {
-        //Передаю с мейн сцены выбранный индекс либо нил
-        if currentLifecycleIndex == nil {
-            // addNew Flow
-            repository.add(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
-                switch result {
-                case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
-                case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
-                }
-            }
-        } else {
-            // didSelectFlow
-            repository.change(current: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
-                switch result {
-                case .success(): self.lifeCycleCard.lifeCycle[self.currentLifecycleIndex!] = lifeCycle
-                case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
-                }
+    func add(new lifeCycle: LifeCycle) {
+        repository.add(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+            switch result {
+            case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
+            case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
             }
         }
     }
+    
+    func change(current lifeCycle: LifeCycle) {
+        repository.change(current: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+            switch result {
+            case .success(): self.lifeCycleCard.lifeCycle[lifeCycle.index] = lifeCycle
+            case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
+            }
+        }
+    }
+   
     
     //MARK: - Select Scene
     

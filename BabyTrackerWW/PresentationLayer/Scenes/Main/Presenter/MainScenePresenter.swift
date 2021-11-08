@@ -11,60 +11,52 @@ import Foundation
 
 protocol MainScenePresenterProtocol {
     
+    func viewDidLoad()
     func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
     func observeActivityState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
+    func getDate() -> String
+    func getNumberOfLifeCycles() -> Int
+    func getCellLabel(at index: Int) -> String
     
-    func viewDidLoad()
-    
-    var dateOfCard: String { get }
-    var numberOfDreams: Int { get }
-    func setCellLabel(at index: Int) -> String
-    
-    func addNewDreamButtonTapped()
     func didSelectRow(at index: Int, callback: (String) -> ())
-    
+    func prepare<T>(for segue: T)
     func deleteRow(at index: Int)
     func moveRow(source: Int, destination: Int)
-    func saveChanges()
-    
-    func prepare<T>(for segue: T)
-    
-    
+    func saveButtonTapped()
 }
 
 //MARK: - Implementation -
 
 final class MainScenePresenterImpl: MainScenePresenterProtocol {
-
+    
+    
     //MARK: - Dependencies
-
+    
     private let router: MainSceneRouterProtocol
-    private let interactor: MainSceneDelegate // мейби ренейм на ДЕЛЕГАТ!?
-   
+    private let interactor: MainSceneDelegate
+    
     init (router: MainSceneRouterProtocol, interactor: MainSceneDelegate) {
         self.router = router
         self.interactor = interactor
     }
-    //
-    // По идее здесь не должно быть менеджера. Вся коммуникация происходит через Юз Кейсы (отдельная сущность.). Каждый юз кейс должен быть не в мейне (кроме основной его задачи отобразить Мейн скрин), а в каждом модуле ответственным за свой функционал. ... Мысль: При таких раскладах тут вырисовывается совсем другая архитектура!
-    // Мысль: Можно просто не делать Юз кейсы отдельными сущностями, а реализовать их в виде внутреннего функционала каждого модуля.
-    //
-    // !!! Стейт манагер реализует все протоколы Юз кейсов. и под видом каждого протокола я раскидываю его одного по всем модулям !!!
-    //
-
+    
+    
     //MARK: - State
-
+    
     private var tempLifeCycle: [LifeCycle] = [] {
         didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
     }
     
-
+    
+      // MARK: - View Input
+    
     func viewDidLoad() {
         interactor.fetchLifeCycles()
-//        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
-//            self.tempLifeCycle = lc
-//        }
+        //        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
+        //            self.tempLifeCycle = lc
+        //        }
     }
+    
     func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
         interactor.subscribeToCardState(observer, callback)
     }
@@ -73,43 +65,36 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         interactor.subscribeToLoadingState(observer, callback)
     }
     
-    
-    
-    var dateOfCard: String {
+
+    func getDate() -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM YYYY"
-        let date = formatter.string(from: interactor.showLifeCyclesCard().date)
-        return date
+        return formatter.string(from: interactor.shareStateForMainScene().date)
     }
     
-    var numberOfDreams: Int {
-        let count = interactor.showLifeCyclesCard().lifeCycle.count
-        return count
+    func getNumberOfLifeCycles() -> Int {
+        return interactor.shareStateForMainScene().lifeCycle.count
     }
     
-    func setCellLabel(at index: Int) -> String {
-        let label = interactor.showLifeCyclesCard().lifeCycle[index].title
-        return label
+    func getCellLabel(at index: Int) -> String {
+        return interactor.shareStateForMainScene().lifeCycle[index].title
     }
     
- 
+    
+    //MARK: - View Output
     
     func didSelectRow(at index: Int, callback: (String) -> ()) {
-        let type = interactor.showLifeCycleDetails(at: index)
+        let type = interactor.shareStateForMainScene().lifeCycle[index]
         router.perform(type: type, callback: callback)
     }
     
-    //    func didSelectRow(at index: Int, callback: (String) -> ()) {
-    //        interactor.showDreamDetails(at: index)
-    //    }
-    
-    func addNewDreamButtonTapped() {
-        interactor.addNewLifeCycle()
+    func prepare<T>(for segue: T) {
+        router.prepare(for: segue, delegate: interactor)
     }
     
     func deleteRow(at index: Int) {
-//        tempLifeCycle.remove(at: index)
+        //        tempLifeCycle.remove(at: index)
         interactor.deleteLifeCycle(at: index)
     }
     
@@ -117,31 +102,22 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         tempLifeCycle.forEach { print("До изменения \($0.index) \($0.id)") }
         tempLifeCycle.rearrange(from: source, to: destination)
         tempLifeCycle.forEach { print("После изменения \($0.index) \($0.id)") }
-//        print("tempLifeCycle.count == \(tempLifeCycle.count)")
+        //        print("tempLifeCycle.count == \(tempLifeCycle.count)")
         for i in 0..<tempLifeCycle.count {
-//            print("i == \(i)")
+            //            print("i == \(i)")
             tempLifeCycle[i].index = i
-//            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
+            //            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
         }
         tempLifeCycle.forEach { print("После цикла \($0.index) \($0.id)") }
     }
     
-    func saveChanges() {
+    func saveButtonTapped() {
         interactor.reindex(new: tempLifeCycle)
     }
     
-    func prepare<T>(for segue: T) {
-        router.prepare(for: segue, delegate: interactor)
-    }
-    
-    
-
-    
-    
-    
-    
-    
 }
+
+
 
 extension Array {
     mutating func rearrange(from: Int, to: Int) {

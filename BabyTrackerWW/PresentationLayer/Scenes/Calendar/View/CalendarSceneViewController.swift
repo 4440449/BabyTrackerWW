@@ -25,9 +25,8 @@ final class CalendarSceneViewController: UIViewController {
         datePicker.locale = Locale(identifier: "ru_RU")
         datePicker.preferredDatePickerStyle = .compact
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-        datePicker.date = presenter.currentDate
+        datePicker.date = presenter.getCurrentDate() // get :(
         dateLabel.text = presenter.format(date:datePicker.date)
-
     }
     
     @objc func dateChanged() {

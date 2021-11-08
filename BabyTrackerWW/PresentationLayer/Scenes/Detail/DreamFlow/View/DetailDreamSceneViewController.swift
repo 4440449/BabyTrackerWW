@@ -12,34 +12,26 @@ import UIKit
 final class DreamDetailSceneViewController: UIViewController {
     
     let configurator = DreamDetailSceneConfiguratorImpl()
-    var presenter: DetailScenePresenterProtocol!
+    var presenter: DetailDreamScenePresenterProtocol!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.viewDidLoad()
+        presenter.subscribeToLabelState(self) { [unowned self] array in
+            self.fallAsleepOutletButton.setTitle(array[0], for: .normal)
+            self.putDownOutletButton.setTitle(array[1], for: .normal)
+        }
     }
     
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
     @IBOutlet weak var putDownOutletButton: UIButton!
-//    @IBOutlet weak var wakeUpOutletButton: UIButton!
     
-    func setButtonLabel() {
-        presenter.setLabelCallback = { [unowned self] array in
-            self.fallAsleepOutletButton.setTitle(array[0], for: .normal)
-            self.putDownOutletButton.setTitle(array[1], for: .normal)
-//            self.wakeUpOutletButton.setTitle(array[2], for: .normal)
-        }
-    }
     
-    @IBAction func putDownButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "PutDown", sender: nil)
-    }
     @IBAction func fallAsleepButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "FallAsleep", sender: nil)
+        self.performSegue(withIdentifier: String.init(describing: Dream.FallAsleep.self), sender: nil)
     }
-//    @IBAction func wakeUpButton(_ sender: Any) {
-//        self.performSegue(withIdentifier: "WakeUp", sender: nil)
-//    }
+    @IBAction func putDownButton(_ sender: Any) {
+        self.performSegue(withIdentifier: String.init(describing: Dream.PutDown.self), sender: nil)
+    }
     
     @IBAction func saveButton(_ sender: Any) {
         presenter.saveButtonTapped()

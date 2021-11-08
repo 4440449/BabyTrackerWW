@@ -124,7 +124,7 @@
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="add" id="7Fw-qo-IY7">
                                 <connections>
-                                    <action selector="addNewDreamButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
+                                    <action selector="addNewLifeCycleButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem style="plain" systemItem="edit" id="P0K-mG-vAO">
@@ -147,9 +147,9 @@
                     <connections>
                         <outlet property="addButton" destination="7Fw-qo-IY7" id="JdD-yo-Zev"/>
                         <segue destination="DZ4-Dy-YXU" kind="presentation" identifier="changeDateButton" id="HJF-h0-FuU"/>
-                        <segue destination="LBA-XT-X1i" kind="presentation" identifier="addNewLifeCycleAction" id="1gZ-aV-qV9"/>
-                        <segue destination="rJu-0z-jb4" kind="presentation" identifier="didSelectDreamAction" id="cnm-e9-8oz"/>
-                        <segue destination="7cP-YO-UdJ" kind="presentation" identifier="didSelectWakeAction" id="1Pb-Mk-Qmh"/>
+                        <segue destination="LBA-XT-X1i" kind="presentation" identifier="addNewLifeCycleButton" id="1gZ-aV-qV9"/>
+                        <segue destination="rJu-0z-jb4" kind="presentation" identifier="didSelectDream" id="cnm-e9-8oz"/>
+                        <segue destination="7cP-YO-UdJ" kind="presentation" identifier="didSelectWake" id="1Pb-Mk-Qmh"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwi-Hq-ej5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
