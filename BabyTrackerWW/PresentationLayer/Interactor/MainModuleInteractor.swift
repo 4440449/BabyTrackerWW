@@ -35,7 +35,7 @@ protocol MainSceneDelegate: AnyObject {
     func saveChanges(new lifeCycles: [LifeCycle])
     
     func deleteLifeCycle(at index: Int)
-    func reindex(new lifeCycles: [LifeCycle])
+    func synchronize(new lifeCycles: [LifeCycle])
 }
 
 
@@ -143,20 +143,24 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteLifeCycle(at index: Int) {
+        isLoading = .true
         repository.delete(lifeCycleCard.lifeCycle[index], at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
             }
+            self.isLoading = .false
         }
     }
     
-    func reindex(new lifeCycles: [LifeCycle]) {
+    func synchronize(new lifeCycles: [LifeCycle]) {
+        isLoading = .true
         repository.synchronize(new: lifeCycles, date: lifeCycleCard.date) { result in
             switch result {
             case .success(()): self.lifeCycleCard.lifeCycle = lifeCycles
             case let .failure(error): print("reindex() / Error description: \(error)")
             }
+            self.isLoading = .false
         }
     }
     
@@ -168,12 +172,14 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
+        isLoading = .true
         repository.fetch(at: date) { [unowned self] result in
             self.lifeCycleCard.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles;
             case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
             }
+            self.isLoading = .false
         }
     }
     
@@ -185,23 +191,27 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func add(new lifeCycle: LifeCycle) {
+        isLoading = .true
         repository.add(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
             case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
             }
+            self.isLoading = .false
         }
     }
     
     func change(current lifeCycle: LifeCycle) {
+        isLoading = .true
         repository.change(current: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.lifeCycle[lifeCycle.index] = lifeCycle
             case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
             }
+            self.isLoading = .false
         }
     }
-   
+    
     
     //MARK: - Select Scene
     

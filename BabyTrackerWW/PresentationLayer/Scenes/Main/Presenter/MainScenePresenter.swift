@@ -22,7 +22,7 @@ protocol MainScenePresenterProtocol {
     func prepare<T>(for segue: T)
     func deleteRow(at index: Int)
     func moveRow(source: Int, destination: Int)
-    func saveButtonTapped()
+    func saveChanges()
 }
 
 //MARK: - Implementation -
@@ -93,6 +93,8 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         router.prepare(for: segue, delegate: interactor)
     }
     
+    
+    
     func deleteRow(at index: Int) {
         //        tempLifeCycle.remove(at: index)
         interactor.deleteLifeCycle(at: index)
@@ -111,16 +113,12 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         tempLifeCycle.forEach { print("После цикла \($0.index) \($0.id)") }
     }
     
-    func saveButtonTapped() {
-        interactor.reindex(new: tempLifeCycle)
+    func cancelChanges() {
+        tempLifeCycle = interactor.shareStateForMainScene().lifeCycle
     }
     
-}
-
-
-
-extension Array {
-    mutating func rearrange(from: Int, to: Int) {
-        insert(remove(at: from), at: to)
+    func saveChanges() {
+        interactor.synchronize(new: tempLifeCycle)
     }
+    
 }

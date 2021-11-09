@@ -61,6 +61,7 @@
 		50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */; };
 		50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */; };
 		50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter.swift */; };
+		50EA4CE0273B3AED0040D1F3 /* PresentExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDF273B3AED0040D1F3 /* PresentExtensions.swift */; };
 		50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */; };
 		50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90927272B83005648BA /* WakeNetworkEntity.swift */; };
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
@@ -129,6 +130,7 @@
 		50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneRouter.swift; sourceTree = "<group>"; };
 		50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeScenePresenter.swift; sourceTree = "<group>"; };
 		50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneRouter.swift; sourceTree = "<group>"; };
+		50EA4CDF273B3AED0040D1F3 /* PresentExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PresentExtensions.swift; sourceTree = "<group>"; };
 		50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90927272B83005648BA /* WakeNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
@@ -486,6 +488,7 @@
 				50F6C91B2735C100005648BA /* Observer.swift */,
 				50F6C91927332E5E005648BA /* Publisher.swift */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
+				50EA4CDF273B3AED0040D1F3 /* PresentExtensions.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -764,6 +767,7 @@
 				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
 				50F6C91A27332E5E005648BA /* Publisher.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
+				50EA4CE0273B3AED0040D1F3 /* PresentExtensions.swift in Sources */,
 				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
 				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,

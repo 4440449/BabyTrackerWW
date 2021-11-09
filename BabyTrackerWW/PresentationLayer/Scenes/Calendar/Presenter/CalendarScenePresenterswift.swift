@@ -30,7 +30,8 @@ final class CalendarScenePresenterImpl: CalendarScenePresenterProtocol {
     
     
     func getCurrentDate() -> Date {
-        return delegate.shareStateForCalendarScene().date
+        date = delegate.shareStateForCalendarScene().date
+        return date
     }
     
     func format(date: Date) -> String {
