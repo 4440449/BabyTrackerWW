@@ -26,7 +26,7 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
     // MARK: - Private
-
+    
     private func dateInterval(with date: Date) -> (Date, Date) {
         var calendar = Calendar.init(identifier: .gregorian)
         calendar.timeZone = TimeZone.current
@@ -110,19 +110,19 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            print("fetchResult ================= \(fetchResult)")
+//            print("fetchResult ================= \(fetchResult)")
             fetchResult.forEach { coreDataContainer.viewContext.delete($0) }
             let emptyDBArray = dreams.map { _ in DreamDBEntity.init(context: coreDataContainer.viewContext) }
-            print("Debug: dream emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+//            print("Debug: dream emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
             for i in 0..<dreams.count {
                 emptyDBArray[i].populateEntityWithDate(dream: dreams[i], date: date)
             }
-            print("Debug: dream populateDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+//            print("Debug: dream populateDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
             try coreDataContainer.viewContext.save()
             callback(.success(()))
         } catch let error {
             callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
         }
     }
-    
+        
 }

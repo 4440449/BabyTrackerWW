@@ -89,7 +89,7 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     
     
     deinit {
-        print("DetailScenePresenterImpl - is Deinit!")
+//        print("DetailScenePresenterImpl - is Deinit!")
     }
     
 }

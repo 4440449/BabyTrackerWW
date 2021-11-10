@@ -31,7 +31,7 @@ class SelectSceneRouterImpl: SelectSceneRouterProtocol {
     }
     
     deinit {
-        print("SelectSceneRouterImpl - is Deinit!")
+//        print("SelectSceneRouterImpl - is Deinit!")
     }
     
 }

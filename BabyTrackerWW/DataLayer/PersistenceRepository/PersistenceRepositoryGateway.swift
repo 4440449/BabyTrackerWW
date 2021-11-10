@@ -49,6 +49,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
+            sleep(3)
             //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
@@ -105,9 +106,9 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
         
         //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
         let dreams = lifeCycles.compactMap { $0 as? Dream }
-        print("dreams ===== \(dreams)")
+//        print("dreams ===== \(dreams)")
         let wakes = lifeCycles.compactMap { $0 as? Wake }
-        print("wakes ===== \(wakes)")
+//        print("wakes ===== \(wakes)")
         
         var resultError = PersistenceRepositoryError()
         

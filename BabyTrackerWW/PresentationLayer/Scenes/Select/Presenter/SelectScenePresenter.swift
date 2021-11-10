@@ -28,7 +28,7 @@ final class SelectScenePresenterImpl: SelectScenePresenterProtocol {
     }
         
     deinit {
-        print("SelectScenePresenterImpl - is Deinit!")
+//        print("SelectScenePresenterImpl - is Deinit!")
     }
     
 }

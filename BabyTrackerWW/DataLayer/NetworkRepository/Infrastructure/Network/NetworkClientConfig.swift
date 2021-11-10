@@ -42,7 +42,7 @@ struct ApiURL {
         self.path = path.rawValue
         guard endPoint != nil else { self.endPoint = nil; return }
         self.endPoint = Dictionary(uniqueKeysWithValues: endPoint!.map ({($0.key.rawValue, $0.value) }))
-        print("endPoint == \(endPoint)")
+//        print("endPoint == \(endPoint)")
     }
     
     //    external init
@@ -64,8 +64,8 @@ struct ApiURL {
             urlComponents.queryItems?.append(URLQueryItem(name: $0.key, value: $0.value))
             }
         }
-        print("urlComp == \(urlComponents.description)")
-        print("queryItems == \(urlComponents.queryItems)")
+//        print("urlComp == \(urlComponents.description)")
+//        print("queryItems == \(urlComponents.queryItems)")
         guard let url = urlComponents.url else { return nil }
         return url
     }
@@ -117,7 +117,7 @@ struct APIRequest {
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
         guard let body = body else { return urlRequest }
-        print("body.jsonEncode() == \(String(data: try body.jsonEncode(), encoding: .utf8)!)")
+//        print("body.jsonEncode() == \(String(data: try body.jsonEncode(), encoding: .utf8)!)")
         urlRequest.httpBody = try body.jsonEncode()
         return urlRequest
     }

@@ -25,20 +25,14 @@ final class MainSceneTableViewController: UITableViewController {
         tableView.tableFooterView = UIView(frame: .zero)
         setNavBarButtons()
         setActivityIndicator()
-        presenter.observeCardState(self) { [unowned self] in self.reloadData() }
-        presenter.observeActivityState(self) { [unowned self] isLoading in
-            switch isLoading {
-            case .true: self.startActivity()
-            case .false: self.stopActivity()
-            }
-        }
+        setObservers()
         presenter.viewDidLoad()
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadData()
+//        reloadData()
+//        showNavBarButtons()
         //Set obs
     }
     
@@ -47,10 +41,27 @@ final class MainSceneTableViewController: UITableViewController {
         //Delete obs
     }
     
-    private func reloadData() {
-        tableView.reloadData()
-        navigationController?.navigationBar.topItem?.title = presenter.getDate()
+    
+    // MARK: - Private
+    
+    private func setObservers() {
+        presenter.tempLifeCycle.subscribe(observer: self) { [unowned self] _ in
+            print("reload data Main")
+            self.reloadData()
+        }
+        presenter.isLoading.subscribe(observer: self) { [unowned self] isLoading in
+            switch isLoading {
+            case .true: self.startActivity()
+            case .false: self.stopActivity()
+            }
+        }
     }
+    
+    private func reloadData() {
+           tableView.reloadData()
+           navigationController?.navigationBar.topItem?.title = presenter.getDate()
+            manageDisplayNavBarButtons()
+       }
     
     
     // MARK: - Activity
@@ -70,6 +81,7 @@ final class MainSceneTableViewController: UITableViewController {
     // MARK: - Table view
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        print(presenter.getNumberOfLifeCycles())
         return presenter.getNumberOfLifeCycles()
     }
     
@@ -80,7 +92,7 @@ final class MainSceneTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
+//        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
         presenter.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
     }
     
@@ -95,10 +107,13 @@ final class MainSceneTableViewController: UITableViewController {
         }
     }
     
+    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
+        guard tableView.isEditing else { return false }
+        return true
+    }
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        presenter.deleteRow(at: indexPath.row)
-        print("delete")
-//        tableView.reloadData()
+        presenter.deleteRow(at: indexPath.row)
     }
     
     
@@ -123,19 +138,24 @@ extension MainSceneTableViewController {
         cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
         saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
         editOutletButton = UIBarButtonItem (title: "Редактировать", style: .plain, target: self, action: #selector(editButton))
-        
-        showNavBarButtons()
     }
     
     private func hideNavBarButtons() {
         self.navigationItem.leftBarButtonItems = [cancelOutletButton]
         self.navigationItem.rightBarButtonItems = [saveOutletButton]
-        
     }
     
     private func showNavBarButtons() {
         self.navigationItem.leftBarButtonItems = [changeDateOutletButton]
-        self.navigationItem.rightBarButtonItems = [addNewOutletButton, editOutletButton]
+//        print(presenter.getNumberOfLifeCycles() != 0)
+        self.navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
+    }
+    
+    private func manageDisplayNavBarButtons() {
+        switch self.tableView.isEditing {
+        case true: hideNavBarButtons()
+        case false: showNavBarButtons()
+        }
     }
     
     
@@ -148,20 +168,25 @@ extension MainSceneTableViewController {
     }
     
     @IBAction private func cancelButton(_ sender: Any) {
-        showNavBarButtons()
+        //showNavBarButtons()
         tableView.setEditing(false, animated: true)
-        tableView.reloadData() //
+        manageDisplayNavBarButtons()
+        presenter.cancelChanges()
+//        tableView.reloadData() //
     }
     
     @IBAction private func saveButton(_ sender: Any) {
-        showNavBarButtons()
+//        showNavBarButtons()
         tableView.setEditing(false, animated: true)
+        manageDisplayNavBarButtons()
         presenter.saveChanges()
     }
     
     @IBAction private func editButton(_ sender: Any) {
-        hideNavBarButtons()
+//        guard presenter.getNumberOfLifeCycles() != 0 else { return } // убрать конпку вообще при нулевых снах
+//        hideNavBarButtons()
         tableView.setEditing(true, animated: true)
+        manageDisplayNavBarButtons()
     }
     
 }
@@ -178,11 +203,18 @@ extension MainSceneTableViewController {
     }
     
     private func startActivity() {
+//        self.tableView.numberOfRows(inSection: 0)
+//        self.tableView.reloadData()
+//        view.isOpaque = false
         activityIndicator.startAnimating()
+//        self.tableView.isOpaque = false
+//        self.tableView.isUserInteractionEnabled = false
     }
     
     private func stopActivity() {
         activityIndicator.stopAnimating()
+//        self.tableView.isOpaque = true
+//        self.tableView.isUserInteractionEnabled = true
     }
     
 }

@@ -11,9 +11,9 @@ import Foundation
 
 protocol MainScenePresenterProtocol {
     
+    var tempLifeCycle: Publisher<[LifeCycle]> { get }
+    var isLoading: Publisher<Loading> { get }
     func viewDidLoad()
-    func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
-    func observeActivityState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
     func getDate() -> String
     func getNumberOfLifeCycles() -> Int
     func getCellLabel(at index: Int) -> String
@@ -23,6 +23,7 @@ protocol MainScenePresenterProtocol {
     func deleteRow(at index: Int)
     func moveRow(source: Int, destination: Int)
     func saveChanges()
+    func cancelChanges()
 }
 
 //MARK: - Implementation -
@@ -38,34 +39,44 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     init (router: MainSceneRouterProtocol, interactor: MainSceneDelegate) {
         self.router = router
         self.interactor = interactor
+        setObservers()
     }
     
     
     //MARK: - State
     
-    private var tempLifeCycle: [LifeCycle] = [] {
-        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
+    var tempLifeCycle = Publisher(value: [LifeCycle]())
+//    {
+//        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
+//    }
+    
+    var isLoading = Publisher(value: Loading.false)
+    
+    
+    //MARK: - Private
+    
+    private func setObservers() {
+        interactor.lifeCycleCard.subscribe(observer: self) { [unowned self] card in
+            self.tempLifeCycle.value = card.lifeCycle
+            //Два раза идет уведомление, мб из-за того, что сначала меняется дата, потом массив => два раза уведомляет TODO: -
+        }
+        interactor.isLoading.subscribe(observer: self) { [unowned self] isLoading in
+            self.isLoading.value = isLoading
+        }
+    }
+    
+    private func removeObservers() {
+        interactor.lifeCycleCard.unsubscribe(observer: self)
+        interactor.isLoading.unsubscribe(observer: self)
     }
     
     
-      // MARK: - View Input
+    // MARK: - View Input
     
     func viewDidLoad() {
         interactor.fetchLifeCycles()
-        //        interactor.LCobserve { [unowned self] lc in // 31.10.21 -- test
-        //            self.tempLifeCycle = lc
-        //        }
     }
     
-    func observeCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
-        interactor.subscribeToCardState(observer, callback)
-    }
-    
-    func observeActivityState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
-        interactor.subscribeToLoadingState(observer, callback)
-    }
-    
-
     func getDate() -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
@@ -74,11 +85,13 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func getNumberOfLifeCycles() -> Int {
-        return interactor.shareStateForMainScene().lifeCycle.count
+        return tempLifeCycle.value.count
+        //        return interactor.shareStateForMainScene().lifeCycle.count
     }
     
     func getCellLabel(at index: Int) -> String {
-        return interactor.shareStateForMainScene().lifeCycle[index].title
+        return tempLifeCycle.value[index].title
+        //        return interactor.shareStateForMainScene().lifeCycle[index].title
     }
     
     
@@ -94,31 +107,44 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     
-    
     func deleteRow(at index: Int) {
-        //        tempLifeCycle.remove(at: index)
-        interactor.deleteLifeCycle(at: index)
+        tempLifeCycle.value.remove(at: index)
+        //        interactor.deleteLifeCycle(at: index)
     }
     
     func moveRow(source: Int, destination: Int) {
-        tempLifeCycle.forEach { print("До изменения \($0.index) \($0.id)") }
-        tempLifeCycle.rearrange(from: source, to: destination)
-        tempLifeCycle.forEach { print("После изменения \($0.index) \($0.id)") }
+//        tempLifeCycle.value.forEach { print("До изменения \($0.index) \($0.id)") }
+        tempLifeCycle.value.rearrange(from: source, to: destination)
+//        tempLifeCycle.value.forEach { print("После изменения \($0.index) \($0.id)") }
         //        print("tempLifeCycle.count == \(tempLifeCycle.count)")
-        for i in 0..<tempLifeCycle.count {
+        for i in 0..<tempLifeCycle.value.count {
             //            print("i == \(i)")
-            tempLifeCycle[i].index = i
+            tempLifeCycle.value[i].index = i
             //            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
         }
-        tempLifeCycle.forEach { print("После цикла \($0.index) \($0.id)") }
+//        tempLifeCycle.value.forEach { print("После цикла \($0.index) \($0.id)") }
     }
     
     func cancelChanges() {
-        tempLifeCycle = interactor.shareStateForMainScene().lifeCycle
+        tempLifeCycle.value = interactor.shareStateForMainScene().lifeCycle
     }
     
     func saveChanges() {
-        interactor.synchronize(new: tempLifeCycle)
+        for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1)  {
+            //            print("i", i)
+            //            print("temp", tempLifeCycle.value[i].index, tempLifeCycle.value[i].id)
+            //            print("interact", interactor.lifeCycleCard.value.lifeCycle[i].index, interactor.lifeCycleCard.value.lifeCycle[i].id)
+            //            print(tempLifeCycle.value[i].id == interactor.lifeCycleCard.value.lifeCycle[i].id)
+            if tempLifeCycle.value.count != interactor.lifeCycleCard.value.lifeCycle.count || tempLifeCycle.value[i].id != interactor.lifeCycleCard.value.lifeCycle[i].id {
+                interactor.synchronize(new: tempLifeCycle.value)
+                return
+            }
+        }
+    }
+    
+    
+    deinit {
+        removeObservers()
     }
     
 }

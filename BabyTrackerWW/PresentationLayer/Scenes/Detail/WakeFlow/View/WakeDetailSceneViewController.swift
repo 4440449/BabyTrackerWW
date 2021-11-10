@@ -53,7 +53,7 @@ class WakeDetailSceneViewController: UIViewController {
     
     
     deinit {
-         print("WakeDetailSceneViewController - is Deinit!")
+//         print("WakeDetailSceneViewController - is Deinit!")
     }
     
 }

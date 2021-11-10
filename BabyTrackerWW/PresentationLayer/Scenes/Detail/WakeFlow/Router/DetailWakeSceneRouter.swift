@@ -31,7 +31,7 @@ final class DetailWakeSceneRouterImpl: DetailWakeSceneRouterProtocol {
     
     
     deinit {
-        print("DetailSceneRouterImpl - is Deinit!")
+//        print("DetailSceneRouterImpl - is Deinit!")
     }
     
 }

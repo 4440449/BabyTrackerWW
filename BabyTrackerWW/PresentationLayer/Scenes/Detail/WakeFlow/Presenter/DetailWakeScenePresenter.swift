@@ -92,7 +92,7 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     
     
     deinit {
-        print("DetailScenePresenterImpl - is Deinit!")
+//        print("DetailScenePresenterImpl - is Deinit!")
     }
     
 }

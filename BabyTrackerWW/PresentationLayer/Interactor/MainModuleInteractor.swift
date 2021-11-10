@@ -25,10 +25,10 @@ import Foundation
 
 protocol MainSceneDelegate: AnyObject {
     
-    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
-    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
-    func unsubscribeToCardState(_ observer: AnyObject)
-    func unsubscribeToLoadingState(_ observer: AnyObject)
+//    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
+//    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
+//    func unsubscribeToCardState(_ observer: AnyObject)
+//    func unsubscribeToLoadingState(_ observer: AnyObject)
     
     func shareStateForMainScene() -> LifeCyclesCard
     func fetchLifeCycles()
@@ -36,6 +36,9 @@ protocol MainSceneDelegate: AnyObject {
     
     func deleteLifeCycle(at index: Int)
     func synchronize(new lifeCycles: [LifeCycle])
+    
+    var lifeCycleCard: Publisher<LifeCyclesCard> { get }
+    var isLoading: Publisher<Loading> { get }
 }
 
 
@@ -78,63 +81,65 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     // MARK: - State
     
-    private var lifeCycleCard = LifeCyclesCard(date: Date()) {
-        didSet {
-            DispatchQueue.main.async {
-                self.cardStateNotifierStorage.forEach { $0.callback(()) }
-            }
-        }
-    }
+    var lifeCycleCard = Publisher(value: LifeCyclesCard(date: Date()))
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.cardStateNotifierStorage.forEach { $0.callback(()) }
+//            }
+//        }
+//    }
     
-    private var isLoading = Loading.false {
-        didSet {
-            DispatchQueue.main.async {
-                self.loadingStateNotifierStorage.forEach{ $0.callback(self.isLoading) }
-            }
-        }
-    }
-    
+    var isLoading = Publisher(value: Loading.false)
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.loadingStateNotifierStorage.forEach{ $0.callback(self.isLoading) }
+//            }
+//        }
+//    }
+        
     
     // MARK: - Observing
     
-    private var cardStateNotifierStorage = [Observer<Void>]() { didSet { print(self.cardStateNotifierStorage.count)
-        }
-    }
-    private var loadingStateNotifierStorage = [Observer<Loading>]()
-    
-    
-    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
-        cardStateNotifierStorage.append(Observer(observer, callback))
-    }
-    
-    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
-        loadingStateNotifierStorage.append(Observer(observer, callback))
-    }
-    
-    func unsubscribeToCardState(_ observer: AnyObject) {
-        cardStateNotifierStorage = cardStateNotifierStorage.filter { $0.observer !== observer }
-    }
-    
-    func unsubscribeToLoadingState(_ observer: AnyObject) {
-        loadingStateNotifierStorage = loadingStateNotifierStorage.filter { $0.observer !== observer }
-    }
+//    private var cardStateNotifierStorage = [Observer<Void>]() { didSet { print(self.cardStateNotifierStorage.count)
+//        }
+//    }
+//    private var loadingStateNotifierStorage = [Observer<Loading>]()
+//
+//
+//    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
+//        cardStateNotifierStorage.append(Observer(observer, callback))
+//    }
+//
+//    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
+//        loadingStateNotifierStorage.append(Observer(observer, callback))
+//    }
+//
+//    func unsubscribeToCardState(_ observer: AnyObject) {
+//        cardStateNotifierStorage = cardStateNotifierStorage.filter { $0.observer !== observer }
+//    }
+//
+//    func unsubscribeToLoadingState(_ observer: AnyObject) {
+//        loadingStateNotifierStorage = loadingStateNotifierStorage.filter { $0.observer !== observer }
+//    }
     
     
     //MARK: - Main Scene
     
     func shareStateForMainScene() -> LifeCyclesCard {
-        return lifeCycleCard
+        return lifeCycleCard.value
     }
     
     func fetchLifeCycles() {
-        isLoading = .true
-        repository.fetch(at: lifeCycleCard.date) { [unowned self] result in
-            print(result)
+        isLoading.value = .true
+        repository.fetch(at: lifeCycleCard.value.date) { [unowned self] result in
+//            print(result)
             switch result {
-            case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles
+            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     
@@ -143,24 +148,24 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func deleteLifeCycle(at index: Int) {
-        isLoading = .true
-        repository.delete(lifeCycleCard.lifeCycle[index], at: lifeCycleCard.date) { [unowned self] result in
+        isLoading.value = .true
+        repository.delete(lifeCycleCard.value.lifeCycle[index], at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
-            case .success(): self.lifeCycleCard.lifeCycle.remove(at: index)
+            case .success(): self.lifeCycleCard.value.lifeCycle.remove(at: index)
             case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     
     func synchronize(new lifeCycles: [LifeCycle]) {
-        isLoading = .true
-        repository.synchronize(new: lifeCycles, date: lifeCycleCard.date) { result in
+        isLoading.value = .true
+        repository.synchronize(new: lifeCycles, date: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(()): self.lifeCycleCard.lifeCycle = lifeCycles
+            case .success(()): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error): print("reindex() / Error description: \(error)")
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     
@@ -168,18 +173,18 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     //MARK: - Calendar Scene
     
     func shareStateForCalendarScene() -> LifeCyclesCard {
-        return lifeCycleCard
+        return lifeCycleCard.value
     }
     
     func changeDate(new date: Date) {
-        isLoading = .true
+        isLoading.value = .true
         repository.fetch(at: date) { [unowned self] result in
-            self.lifeCycleCard.date = date
+            self.lifeCycleCard.value.date = date
             switch result {
-            case let .success(lifeCycles): self.lifeCycleCard.lifeCycle = lifeCycles;
+            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles;
             case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     
@@ -187,28 +192,28 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     //MARK: - Detail Scene
     
     func shareStateForDetailScene() -> LifeCyclesCard {
-        return lifeCycleCard
+        return lifeCycleCard.value
     }
     
     func add(new lifeCycle: LifeCycle) {
-        isLoading = .true
-        repository.add(new: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+        isLoading.value = .true
+        repository.add(new: lifeCycle, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
-            case .success(): self.lifeCycleCard.lifeCycle.append(lifeCycle)
+            case .success(): self.lifeCycleCard.value.lifeCycle.append(lifeCycle)
             case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     
     func change(current lifeCycle: LifeCycle) {
-        isLoading = .true
-        repository.change(current: lifeCycle, at: lifeCycleCard.date) { [unowned self] result in
+        isLoading.value = .true
+        repository.change(current: lifeCycle, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
-            case .success(): self.lifeCycleCard.lifeCycle[lifeCycle.index] = lifeCycle
+            case .success(): self.lifeCycleCard.value.lifeCycle[lifeCycle.index] = lifeCycle
             case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
             }
-            self.isLoading = .false
+            self.isLoading.value = .false
         }
     }
     

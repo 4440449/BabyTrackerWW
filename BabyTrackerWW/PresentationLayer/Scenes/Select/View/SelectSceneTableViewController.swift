@@ -115,7 +115,7 @@ class SelectSceneTableViewController: UITableViewController {
     
     
     deinit {
-           print("SelectSceneTableViewController - is Deinit!")
+//           print("SelectSceneTableViewController - is Deinit!")
        }
 
 }

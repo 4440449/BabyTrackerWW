@@ -37,7 +37,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     // MARK: - Protocol Implements
     
     func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ()) {
-
+        
         let days: (Date, Date) = dateInterval(with: date)
         
         let request: NSFetchRequest = WakeDBEntity.fetchRequest()
@@ -45,7 +45,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
             let wakes = fetchResult.map { $0.parseToDomain() }
-//                self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+            //                self.parseToDomainEntity(dbEntity: $0) } // memory ref?
             callback(.success(wakes))
         } catch let error {
             callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
@@ -102,26 +102,26 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     
     
     func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        coreDataContainer.performBackgroundTask { backgroundContext in
-            // посмотреть утечки!
-            let days: (Date, Date) = self.dateInterval(with: date)
-            let request: NSFetchRequest = WakeDBEntity.fetchRequest()
-            request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
-            do {
-                let fetchResult = try backgroundContext.fetch(request)
-                fetchResult.forEach { backgroundContext.delete($0) }
-                
-                let emptyDBArray = wakes.map { _ in WakeDBEntity.init(context: backgroundContext) }
-//                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-                for i in 0..<emptyDBArray.count {
-                    emptyDBArray[i].populateEntityWithDate(wake: wakes[i], date: date)
-                }
-//                print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-                try backgroundContext.save()
-                callback(.success(()))
-            } catch let error {
-                callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
+        //        coreDataContainer.performBackgroundTask { backgroundContext in
+        // посмотреть утечки!
+        let days: (Date, Date) = self.dateInterval(with: date)
+        let request: NSFetchRequest = WakeDBEntity.fetchRequest()
+        request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
+        do {
+            let fetchResult = try coreDataContainer.viewContext.fetch(request)
+            
+            fetchResult.forEach { coreDataContainer.viewContext.delete($0) }
+//            print("fetchResult ================= \(fetchResult)")
+            let emptyDBArray = wakes.map { _ in WakeDBEntity.init(context: coreDataContainer.viewContext) }
+//            print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+            for i in 0..<emptyDBArray.count {
+                emptyDBArray[i].populateEntityWithDate(wake: wakes[i], date: date)
             }
+//            print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
+            try coreDataContainer.viewContext.save()
+            callback(.success(()))
+        } catch let error {
+            callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
         }
     }
     
