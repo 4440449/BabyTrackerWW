@@ -7,8 +7,8 @@
 //
 
 //import Foundation
-//
-//
+
+
 //struct Observer<T> {
 //    weak var observer: AnyObject?
 //    let callback: (T) -> ()

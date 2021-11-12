@@ -16,11 +16,21 @@ final class DreamDetailSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.subscribeToLabelState(self) { [unowned self] array in
-            self.fallAsleepOutletButton.setTitle(array[0], for: .normal)
-            self.putDownOutletButton.setTitle(array[1], for: .normal)
+        presenter.dream.subscribe(observer: self) { [unowned self] dream in
+        self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
+        self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
         }
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+//        presenter.dream.unsubscribe(observer: self)
+    }
+    
     
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
     @IBOutlet weak var putDownOutletButton: UIButton!
@@ -44,6 +54,7 @@ final class DreamDetailSceneViewController: UIViewController {
     }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
+        super.performSegue(withIdentifier: identifier, sender: sender)
     }
     
     

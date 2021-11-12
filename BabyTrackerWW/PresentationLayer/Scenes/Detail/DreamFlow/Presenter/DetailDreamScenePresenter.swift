@@ -11,7 +11,8 @@ import Foundation
 
 protocol DetailDreamScenePresenterProtocol: AnyObject {
     
-    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
+//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
+    var dream: Publisher<Dream> { get }
     func didSelectFlow(at index: Int)
     func addNewFlow()
     func saveButtonTapped()
@@ -37,51 +38,34 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     // MARK: - State
     
     private var selectIndex: Int?
-    private var dream: Dream! {
-        didSet {
-            DispatchQueue.main.async {
-                self.labelStateNotifierStorage.forEach {
-                    $0.callback([self.dream.fallAsleep,
-                                 self.dream.putDown])
-                }
-            }
-        }
-    }
-    
-    // MARK: - View Input (Observing)
-    
-    // Отписку не буду делать, т.к. и так все задеинитится
-    private var labelStateNotifierStorage = [Observer<[String]>]()
-    
-    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ()) {
-        labelStateNotifierStorage.append(Observer(observer, callback))
-    }
+    var dream = Publisher(value: Dream(index: 0, fallAsleep: .crying, putDown: .brestFeeding))
+
     
     //MARK: - View Output
     
     func addNewFlow() {
-        dream = Dream(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
-                      putDown: .brestFeeding,
-                      fallAsleep: .crying)
+        dream.value = Dream(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
+                            fallAsleep: .crying,
+                            putDown: .brestFeeding)
     }
     
     func didSelectFlow(at index: Int) {
         selectIndex = index
-        dream = delegate.shareStateForDetailScene().lifeCycle[index] as? Dream
+        dream.value = delegate.shareStateForDetailScene().lifeCycle[index] as! Dream
     }
     
     func saveButtonTapped() {
         selectIndex == nil ?
-        delegate.add(new: dream)
+            delegate.add(new: dream.value)
         :
-        delegate.change(current: dream)
+            delegate.change(current: dream.value)
     }
     
     func prepare<S>(for segue: S) {
         router.prepare(for: segue) { [unowned self] result in
             switch result {
-            case let result as Dream.FallAsleep: self.dream.fallAsleep = result.rawValue
-            case let result as Dream.PutDown: self.dream.putDown = result.rawValue
+            case let result as Dream.FallAsleep: self.dream.value.fallAsleep = result.rawValue
+            case let result as Dream.PutDown: self.dream.value.putDown = result.rawValue
             default: print("Error! Result type \(result) is not be recognized")
             }
         }
@@ -89,7 +73,7 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     
     
     deinit {
-//        print("DetailScenePresenterImpl - is Deinit!")
+        print("DetailScenePresenterImpl - is Deinit!")
     }
     
 }

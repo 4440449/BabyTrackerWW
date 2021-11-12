@@ -30,7 +30,7 @@ final class Publisher<V>: Observable {
     
     var value: V { didSet { notify() } }
 //        ; print(self, "didSet!", self.value) } }
-    private var observers = [Observer<V>]()
+    private var observers = [Observer<V>]() { didSet { print("")}}
     
     init(value: V) {
         self.value = value
@@ -49,10 +49,14 @@ final class Publisher<V>: Observable {
     }
     
     func unsubscribe(observer: AnyObject) {
+        print("Defore", observers)
         observers = observers.filter { $0.observer !== observer }
+        print("After", observers)
     }
     
-    
+    deinit {
+        print("Publisher is deinit")
+    }
 }
 
 

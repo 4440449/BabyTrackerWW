@@ -11,7 +11,8 @@ import Foundation
 
 protocol DetailWakeScenePresenterProtocol: AnyObject {
     
-    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
+//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
+    var wake: Publisher<Wake> { get }
     func didSelectFlow(at index: Int)
     func addNewFlow()
     func saveButtonTapped()
@@ -37,54 +38,55 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     // MARK: - State
     
     private var selectIndex: Int?
-    private var wake: Wake! {
-        didSet {
-            DispatchQueue.main.async {
-                self.labelStateNotifierStorage.forEach {
-                    $0.callback([self.wake.wakeUp.rawValue,
-                                 self.wake.wakeWindow.rawValue,
-                                 self.wake.signs.rawValue])
-                }
-            }
-        }
-    }
+    var wake = Publisher(value: Wake(index: 0, wakeUp: .crying, wakeWindow: .calm, signs: .crying))
+//    {
+//        didSet {
+//            DispatchQueue.main.async {
+//                self.labelStateNotifierStorage.forEach {
+//                    $0.callback([self.wake.wakeUp.rawValue,
+//                                 self.wake.wakeWindow.rawValue,
+//                                 self.wake.signs.rawValue])
+//                }
+//            }
+//        }
+//    }
     
     // MARK: - View Input (Observing)
     
     // Отписку не буду делать, т.к. и так все задеинитится
-    private var labelStateNotifierStorage = [Observer<[String]>]()
-    
-    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ()) {
-        labelStateNotifierStorage.append(Observer(observer, callback))
-    }
+//    private var labelStateNotifierStorage = [Observer<[String]>]()
+//
+//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ()) {
+//        labelStateNotifierStorage.append(Observer(observer, callback))
+//    }
     
     //MARK: - View Output
     
     func addNewFlow() {
-        wake = Wake(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
-                    wakeUp: .calm,
+        wake.value = Wake(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
+                    wakeUp: .crying,
                     wakeWindow: .calm,
                     signs: .crying)
     }
     
     func didSelectFlow(at index: Int) {
         selectIndex = index
-        wake = delegate.shareStateForDetailScene().lifeCycle[index] as? Wake
+        wake.value = delegate.shareStateForDetailScene().lifeCycle[index] as! Wake
     }
     
     func saveButtonTapped() {
         selectIndex == nil ?
-            delegate.add(new: wake)
+            delegate.add(new: wake.value)
             :
-            delegate.change(current: wake)
+            delegate.change(current: wake.value)
     }
     
     func prepare<S>(for segue: S) {
         router.prepare(for: segue) { [unowned self] result in
             switch result {
-            case let result as Wake.WakeUp: self.wake.wakeUp = result
-            case let result as Wake.WakeWindow: self.wake.wakeWindow = result
-            case let result as Wake.Signs: self.wake.signs = result
+            case let result as Wake.WakeUp: self.wake.value.wakeUp = result
+            case let result as Wake.WakeWindow: self.wake.value.wakeWindow = result
+            case let result as Wake.Signs: self.wake.value.signs = result
             default: print("Error! Result type \(result) is not be recognized")
             }
         }
@@ -92,7 +94,7 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     
     
     deinit {
-//        print("DetailScenePresenterImpl - is Deinit!")
+        print("DetailScenePresenterImpl - is Deinit!")
     }
     
 }

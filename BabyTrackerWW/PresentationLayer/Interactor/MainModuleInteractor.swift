@@ -177,6 +177,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
+        guard date != lifeCycleCard.value.date else { return }
         isLoading.value = .true
         repository.fetch(at: date) { [unowned self] result in
             self.lifeCycleCard.value.date = date

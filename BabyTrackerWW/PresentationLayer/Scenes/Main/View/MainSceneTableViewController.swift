@@ -22,6 +22,7 @@ final class MainSceneTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configureScene(view: self)
+//        tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView(frame: .zero)
         setNavBarButtons()
         setActivityIndicator()
@@ -59,6 +60,8 @@ final class MainSceneTableViewController: UITableViewController {
     
     private func reloadData() {
            tableView.reloadData()
+//        navigationController?.navigationBar.topItem?. = UIBarButtonItem(title: presenter.getDate(), style: .plain, target: self, action: #selector(changeDateButton))
+        
            navigationController?.navigationBar.topItem?.title = presenter.getDate()
             manageDisplayNavBarButtons()
        }
@@ -140,23 +143,24 @@ extension MainSceneTableViewController {
         editOutletButton = UIBarButtonItem (title: "Редактировать", style: .plain, target: self, action: #selector(editButton))
     }
     
-    private func hideNavBarButtons() {
-        self.navigationItem.leftBarButtonItems = [cancelOutletButton]
-        self.navigationItem.rightBarButtonItems = [saveOutletButton]
-    }
-    
-    private func showNavBarButtons() {
-        self.navigationItem.leftBarButtonItems = [changeDateOutletButton]
-//        print(presenter.getNumberOfLifeCycles() != 0)
-        self.navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
-    }
     
     private func manageDisplayNavBarButtons() {
-        switch self.tableView.isEditing {
+        switch tableView.isEditing {
         case true: hideNavBarButtons()
         case false: showNavBarButtons()
         }
     }
+    
+    private func hideNavBarButtons() {
+        navigationItem.leftBarButtonItems = [cancelOutletButton]
+        navigationItem.rightBarButtonItems = [saveOutletButton]
+    }
+    
+    private func showNavBarButtons() {
+        navigationItem.leftBarButtonItems = [changeDateOutletButton]
+        navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
+    }
+    
     
     
     @IBAction private func changeDateButton(_ sender: Any) {
@@ -183,7 +187,6 @@ extension MainSceneTableViewController {
     }
     
     @IBAction private func editButton(_ sender: Any) {
-//        guard presenter.getNumberOfLifeCycles() != 0 else { return } // убрать конпку вообще при нулевых снах
 //        hideNavBarButtons()
         tableView.setEditing(true, animated: true)
         manageDisplayNavBarButtons()

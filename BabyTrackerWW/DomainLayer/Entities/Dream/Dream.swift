@@ -38,11 +38,11 @@ struct Dream: LifeCycle {
 //        case calm   = "Спокойный"
 //    }
 
-    init (index: Int, putDown: PutDown, fallAsleep: FallAsleep) {
+    init (index: Int, fallAsleep: FallAsleep, putDown: PutDown) {
         self.id = UUID()
         self.index = index
-        self.putDown = putDown.rawValue
         self.fallAsleep = fallAsleep.rawValue
+        self.putDown = putDown.rawValue
 //        self.wakeUp = wakeUp
     }
     

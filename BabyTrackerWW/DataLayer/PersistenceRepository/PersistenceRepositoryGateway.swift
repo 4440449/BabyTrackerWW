@@ -44,7 +44,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
         // В текущей логике пока что не использую fetch() из локального хранилища
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
-        var resultError = PersistenceRepositoryError()
+        var resultError = PersistenceRepositoryError() // TODO: - Extension native Error type (add [description] property)
         var resultSuccess = [LifeCycle]()
         
         let serialQ = DispatchQueue.init(label: "serialQ")

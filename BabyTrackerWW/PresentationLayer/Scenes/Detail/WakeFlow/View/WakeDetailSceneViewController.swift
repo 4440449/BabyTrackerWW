@@ -16,10 +16,10 @@ class WakeDetailSceneViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.subscribeToLabelState(self) { [unowned self] array in
-            self.wakeUpOutletButton.setTitle(array[0], for: .normal)
-            self.wakeWindowOutletButton.setTitle(array[1], for: .normal)
-            self.signsOutletButton.setTitle(array[2], for: .normal)
+        presenter.wake.subscribe(observer: self) { [unowned self] wake in
+            self.wakeUpOutletButton.setTitle(wake.wakeUp.rawValue, for: .normal)
+            self.wakeWindowOutletButton.setTitle(wake.wakeWindow.rawValue, for: .normal)
+            self.signsOutletButton.setTitle(wake.signs.rawValue, for: .normal)
         }
     }
     
