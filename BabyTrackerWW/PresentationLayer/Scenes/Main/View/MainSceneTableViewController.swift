@@ -22,9 +22,9 @@ final class MainSceneTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configureScene(view: self)
-//        tableView.backgroundColor = .clear
         tableView.tableFooterView = UIView(frame: .zero)
         setNavBarButtons()
+        setBlure()
         setActivityIndicator()
         setObservers()
         presenter.viewDidLoad()
@@ -32,8 +32,9 @@ final class MainSceneTableViewController: UITableViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-//        reloadData()
-//        showNavBarButtons()
+        
+        //        reloadData()
+        //        showNavBarButtons()
         //Set obs
     }
     
@@ -52,24 +53,26 @@ final class MainSceneTableViewController: UITableViewController {
         }
         presenter.isLoading.subscribe(observer: self) { [unowned self] isLoading in
             switch isLoading {
-            case .true: self.startActivity()
-            case .false: self.stopActivity()
+            case .true: self.startActivity(); self.manageDisplayNavBarButtons() //
+            case .false: self.stopActivity(); self.manageDisplayNavBarButtons() //
             }
         }
     }
     
     private func reloadData() {
-           tableView.reloadData()
-//        navigationController?.navigationBar.topItem?. = UIBarButtonItem(title: presenter.getDate(), style: .plain, target: self, action: #selector(changeDateButton))
+        tableView.reloadData()
+        //        navigationController?.navigationBar.topItem?. = UIBarButtonItem(title: presenter.getDate(), style: .plain, target: self, action: #selector(changeDateButton))
         
-           navigationController?.navigationBar.topItem?.title = presenter.getDate()
-            manageDisplayNavBarButtons()
-       }
+        navigationController?.navigationBar.topItem?.title = presenter.getDate()
+        manageDisplayNavBarButtons()
+    }
     
     
-    // MARK: - Activity
+    // MARK: - UI
     
-    private let activityIndicator = UIActivityIndicatorView()
+ private let activityIndicator = UIActivityIndicatorView()
+  
+ private let blure = UIVisualEffectView()
     
     
     // MARK: - Navigation Bar
@@ -95,7 +98,7 @@ final class MainSceneTableViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-//        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
+        //        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
         presenter.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
     }
     
@@ -145,7 +148,7 @@ extension MainSceneTableViewController {
     
     
     private func manageDisplayNavBarButtons() {
-        switch tableView.isEditing {
+        switch tableView.isEditing { // TODO: -  || !activityIndicator.isHidden
         case true: hideNavBarButtons()
         case false: showNavBarButtons()
         }
@@ -176,18 +179,18 @@ extension MainSceneTableViewController {
         tableView.setEditing(false, animated: true)
         manageDisplayNavBarButtons()
         presenter.cancelChanges()
-//        tableView.reloadData() //
+        //        tableView.reloadData() //
     }
     
     @IBAction private func saveButton(_ sender: Any) {
-//        showNavBarButtons()
+        //        showNavBarButtons()
         tableView.setEditing(false, animated: true)
         manageDisplayNavBarButtons()
         presenter.saveChanges()
     }
     
     @IBAction private func editButton(_ sender: Any) {
-//        hideNavBarButtons()
+        //        hideNavBarButtons()
         tableView.setEditing(true, animated: true)
         manageDisplayNavBarButtons()
     }
@@ -197,8 +200,10 @@ extension MainSceneTableViewController {
 
 extension MainSceneTableViewController {
     
+    // MARK: - Activity
+    
     private func setActivityIndicator() {
-        activityIndicator.center = tableView.center
+        activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.color = UIColor.black
@@ -206,21 +211,47 @@ extension MainSceneTableViewController {
     }
     
     private func startActivity() {
-//        self.tableView.numberOfRows(inSection: 0)
-//        self.tableView.reloadData()
-//        view.isOpaque = false
+        showBlure()
         activityIndicator.startAnimating()
-//        self.tableView.isOpaque = false
-//        self.tableView.isUserInteractionEnabled = false
+        //        self.tableView.numberOfRows(inSection: 0)
+        //        self.tableView.reloadData()
+        //        view.isOpaque = false
+        //        self.tableView.isOpaque = false
+        //        self.tableView.isUserInteractionEnabled = false
     }
     
     private func stopActivity() {
+        hideBlure()
         activityIndicator.stopAnimating()
-//        self.tableView.isOpaque = true
-//        self.tableView.isUserInteractionEnabled = true
+        //        self.tableView.isOpaque = true
+        //        self.tableView.isUserInteractionEnabled = true
+    }
+    
+
+    
+    
+        // MARK: - Blure
+    
+    private func setBlure() {
+        let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?
+            .systemThinMaterialDark : .systemThinMaterialLight
+        let blurEffect = UIBlurEffect(style: style)
+        blure.effect = blurEffect
+        blure.frame = view.bounds
+        blure.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(blure)
+    }
+    
+    private func showBlure() {
+        blure.isHidden = false
+    }
+    
+    private func hideBlure() {
+        blure.isHidden = true
     }
     
 }
+
 
 
 

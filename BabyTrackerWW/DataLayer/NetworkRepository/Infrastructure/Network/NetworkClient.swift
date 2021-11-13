@@ -32,11 +32,12 @@ final class ApiClientImpl: ApiClientProtocol {
 //            print("session == \(session)")
             
             let dataTask = session.dataTask(with: request) { data, response, error in
-                // если сервер не ответил - выкидываю ошибку
                 guard error == nil, let httpResponse = response as? HTTPURLResponse else {
-                    callback(.failure(NetworkError.badRequest(error!.localizedDescription)) ); return }
-                // если сервер ответил неудачно - выкидываю ошибку
-                guard let data = data, (200...299).contains(httpResponse.statusCode) else { callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode) + \(httpResponse.allHeaderFields)")) ); return }
+                    // сервер не ответил
+                    callback(.failure(NetworkError.badRequest(error!)) ); return }
+                guard let data = data, (200...299).contains(httpResponse.statusCode) else {
+                    // сервер ответил неудачно
+                    callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode) -- \(httpResponse.allHeaderFields)")) ); return }
                 callback(.success(data))
             }
             dataTask.resume()

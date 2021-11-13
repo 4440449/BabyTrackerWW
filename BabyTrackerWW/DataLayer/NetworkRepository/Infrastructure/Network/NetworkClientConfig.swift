@@ -112,7 +112,7 @@ struct APIRequest {
     
     
     func createRequest() throws -> URLRequest {
-        guard let url = url.createURL() else { throw NetworkError.urlCreate("The URL cannot be configured") }
+        guard let url = url.createURL() else { throw NetworkError.urlCreate("Invalid URL") }
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
@@ -133,8 +133,7 @@ enum APISession {
     func createSession() -> URLSession {
         switch self {
         case .default:
-            let session = URLSession(configuration: .default)
-            return session
+            return URLSession(configuration: .default)
         }
     }
 }
@@ -144,14 +143,9 @@ enum APISession {
 
 enum NetworkError: Error {
     case urlCreate (String)
-//    case jsonSerialization (String)
-    
-    case badRequest (String)
+    case badRequest (Error)
     case badResponse (String)
-    
     case parseToDomain (String)
-    
-    case downcasting (String)
 }
 
 

@@ -497,8 +497,8 @@
 			isa = PBXGroup;
 			children = (
 				501716A12718C936008DD70C /* LifeCyclesGateway.swift */,
-				501716A02718C8F7008DD70C /* NetworkRepository */,
 				5017169F2718C8A2008DD70C /* PersistenceRepository */,
+				501716A02718C8F7008DD70C /* NetworkRepository */,
 			);
 			path = DataLayer;
 			sourceTree = "<group>";
