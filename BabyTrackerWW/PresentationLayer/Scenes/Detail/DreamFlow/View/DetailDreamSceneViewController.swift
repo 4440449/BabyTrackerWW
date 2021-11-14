@@ -22,6 +22,7 @@ final class DreamDetailSceneViewController: UIViewController {
         }
     }
     
+    
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
     }
@@ -46,15 +47,18 @@ final class DreamDetailSceneViewController: UIViewController {
     @IBAction func saveButton(_ sender: Any) {
         presenter.saveButtonTapped()
         //TODO: - Сделать нормальный роутинг!
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+      }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         presenter.prepare(for: segue)
     }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
-        super.performSegue(withIdentifier: identifier, sender: sender)
     }
     
     

@@ -41,8 +41,14 @@ class WakeDetailSceneViewController: UIViewController {
     @IBAction func saveWakeButton(_ sender: Any) {
         presenter.saveButtonTapped()
         //TODO: - Сделать нормальный роутинг!
-        self.presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
     }
+    
+    @IBAction func backButton(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         presenter.prepare(for: segue)

@@ -70,9 +70,9 @@ final class MainSceneTableViewController: UITableViewController {
     
     // MARK: - UI
     
- private let activityIndicator = UIActivityIndicatorView()
-  
- private let blure = UIVisualEffectView()
+    private let activityIndicator = UIActivityIndicatorView()
+    
+    private let blure = UIVisualEffectView()
     
     
     // MARK: - Navigation Bar
@@ -148,7 +148,8 @@ extension MainSceneTableViewController {
     
     
     private func manageDisplayNavBarButtons() {
-        switch tableView.isEditing { // TODO: -  || !activityIndicator.isHidden
+        guard activityIndicator.isHidden else { showLoadingStateNavBarButtons(); return }
+        switch tableView.isEditing {
         case true: hideNavBarButtons()
         case false: showNavBarButtons()
         }
@@ -162,6 +163,11 @@ extension MainSceneTableViewController {
     private func showNavBarButtons() {
         navigationItem.leftBarButtonItems = [changeDateOutletButton]
         navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
+    }
+    
+    private func showLoadingStateNavBarButtons() {
+        navigationItem.leftBarButtonItems = [changeDateOutletButton]
+        navigationItem.rightBarButtonItems = [addNewOutletButton]
     }
     
     
@@ -227,10 +233,10 @@ extension MainSceneTableViewController {
         //        self.tableView.isUserInteractionEnabled = true
     }
     
-
     
     
-        // MARK: - Blure
+    
+    // MARK: - Blure
     
     private func setBlure() {
         let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?

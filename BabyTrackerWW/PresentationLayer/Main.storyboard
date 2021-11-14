@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="umT-Rc-EHo">
-    <device id="retina5_9" orientation="portrait" appearance="light"/>
+    <device id="retina5_9" orientation="portrait" appearance="dark"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -32,10 +32,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-IZ-MYP">
-                                <rect key="frame" x="0.0" y="236" width="375" height="278"/>
+                                <rect key="frame" x="0.0" y="190" width="375" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-0C-eYy">
-                                <rect key="frame" x="20" y="176" width="335" height="35"/>
+                                <rect key="frame" x="20" y="130" width="335" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="eZk-FG-Xsb"/>
                                 </constraints>
@@ -60,13 +60,12 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="cYA-0C-eYy" firstAttribute="leading" secondItem="UXq-Vz-aDI" secondAttribute="leading" constant="20" id="9j9-iJ-zaP"/>
+                            <constraint firstItem="cYA-0C-eYy" firstAttribute="top" secondItem="UXq-Vz-aDI" secondAttribute="top" constant="130" id="Btl-81-QCW"/>
                             <constraint firstItem="3dh-IZ-MYP" firstAttribute="top" secondItem="cYA-0C-eYy" secondAttribute="bottom" constant="25" id="Kjf-Fe-MGU"/>
                             <constraint firstItem="UXq-Vz-aDI" firstAttribute="bottom" secondItem="5jN-ug-EFf" secondAttribute="bottom" constant="70" id="W8Q-C9-K49"/>
                             <constraint firstItem="3dh-IZ-MYP" firstAttribute="leading" secondItem="UXq-Vz-aDI" secondAttribute="leading" id="fIR-YR-CtF"/>
                             <constraint firstAttribute="trailing" secondItem="3dh-IZ-MYP" secondAttribute="trailing" id="iZ1-LG-j54"/>
                             <constraint firstItem="UXq-Vz-aDI" firstAttribute="trailing" secondItem="cYA-0C-eYy" secondAttribute="trailing" constant="20" id="mcq-fj-gKx"/>
-                            <constraint firstItem="cYA-0C-eYy" firstAttribute="top" secondItem="UXq-Vz-aDI" secondAttribute="top" constant="176" id="sEm-u8-81r"/>
-                            <constraint firstItem="5jN-ug-EFf" firstAttribute="top" secondItem="3dh-IZ-MYP" secondAttribute="bottom" constant="85" id="x72-4j-xen"/>
                             <constraint firstItem="5jN-ug-EFf" firstAttribute="centerX" secondItem="B95-aI-t9R" secondAttribute="centerX" id="yr9-FR-brb"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="UXq-Vz-aDI"/>
@@ -199,7 +198,7 @@
                     <navigationItem key="navigationItem" id="fDl-bT-oeC"/>
                     <connections>
                         <segue destination="rJu-0z-jb4" kind="presentation" identifier="addNewDreamAction" id="4m8-RR-V0Z"/>
-                        <segue destination="7cP-YO-UdJ" kind="presentation" identifier="addNewWakeAction" id="EZV-1j-gYF"/>
+                        <segue destination="7cP-YO-UdJ" kind="presentation" identifier="addNewWakeAction" id="jSZ-BW-T6s"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="781-id-q1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -214,89 +213,108 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
-                                <rect key="frame" x="20" y="118" width="335" height="60"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHU-os-GMi">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="724"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
+                                        <rect key="frame" x="122.66666666666669" y="389.33333333333331" width="130" height="55"/>
+                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="EPG-Gj-bwj"/>
+                                            <constraint firstAttribute="width" constant="130" id="ug5-3V-fW9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Сохранить">
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="7IN-Cd-Wud"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
+                                        <rect key="frame" x="20" y="90" width="335" height="27.666666666666671"/>
+                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
+                                        <rect key="frame" x="20" y="125.66666666666669" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Плакал">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="fallAsleepButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="M6b-57-G6I"/>
+                                            <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="FallAsleep" id="Dot-2p-8B9"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
+                                        <rect key="frame" x="20" y="214.66666666666666" width="335" height="27.666666666666657"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
+                                        <rect key="frame" x="20" y="250.33333333333337" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="На груди">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="putDownButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="XmU-BR-y5W"/>
+                                            <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="PutDown" id="tdi-ZX-3er"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="pdP-4g-e08"/>
+                                    <constraint firstItem="ZID-iq-Fhv" firstAttribute="top" secondItem="wGe-ue-ZBw" secondAttribute="bottom" constant="100" id="3Yz-dK-iFN"/>
+                                    <constraint firstItem="ufL-7i-iXL" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="4rM-Z5-raC"/>
+                                    <constraint firstItem="ufL-7i-iXL" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="6nL-bz-YWA"/>
+                                    <constraint firstAttribute="trailing" secondItem="0OC-h9-VxV" secondAttribute="trailing" constant="20" id="9Ya-Qs-3OJ"/>
+                                    <constraint firstItem="ZID-iq-Fhv" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="9eE-Ez-eq7"/>
+                                    <constraint firstItem="cA9-ml-Jyd" firstAttribute="top" secondItem="0OC-h9-VxV" secondAttribute="bottom" constant="50" id="9st-WD-yot"/>
+                                    <constraint firstItem="wGe-ue-ZBw" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="Ctr-dX-Ncq"/>
+                                    <constraint firstItem="ufL-7i-iXL" firstAttribute="top" secondItem="GHU-os-GMi" secondAttribute="top" constant="90" id="D5v-V5-fEF"/>
+                                    <constraint firstItem="cA9-ml-Jyd" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="E1Y-8D-bwT"/>
+                                    <constraint firstAttribute="trailing" secondItem="ufL-7i-iXL" secondAttribute="trailing" constant="20" id="G2D-RQ-0eu"/>
+                                    <constraint firstAttribute="trailing" secondItem="wGe-ue-ZBw" secondAttribute="trailing" constant="20" id="ImG-oq-wcA"/>
+                                    <constraint firstItem="0OC-h9-VxV" firstAttribute="top" secondItem="ufL-7i-iXL" secondAttribute="bottom" constant="8" id="Jlo-fe-m7T"/>
+                                    <constraint firstAttribute="trailing" secondItem="cA9-ml-Jyd" secondAttribute="trailing" constant="20" id="QU1-LM-ICU"/>
+                                    <constraint firstItem="0OC-h9-VxV" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="R7K-VO-d1q"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZID-iq-Fhv" secondAttribute="bottom" constant="329.66666666666674" id="RLr-3y-KfL"/>
+                                    <constraint firstItem="0OC-h9-VxV" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="YYn-go-MCw"/>
+                                    <constraint firstItem="cA9-ml-Jyd" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="efO-As-UoJ"/>
+                                    <constraint firstItem="wGe-ue-ZBw" firstAttribute="top" secondItem="cA9-ml-Jyd" secondAttribute="bottom" constant="8" id="q57-ok-d67"/>
+                                    <constraint firstItem="wGe-ue-ZBw" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="rbr-an-zg9"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Плакал">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="fallAsleepButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="M6b-57-G6I"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="FallAsleep" id="Dot-2p-8B9"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
-                                <rect key="frame" x="20" y="50" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="SIb-Zp-PO1"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
-                                <rect key="frame" x="20" y="296" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="EiQ-VO-fNd"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="На груди">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="putDownButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="XmU-BR-y5W"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="PutDown" id="tdi-ZX-3er"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
-                                <rect key="frame" x="20" y="228" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="kST-qn-kLr"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
-                                <rect key="frame" x="122.66666666666669" y="599" width="130" height="55"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="BFN-Hu-Vs3"/>
-                                    <constraint firstAttribute="width" constant="130" id="uyV-g0-5uq"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Сохранить">
-                                    <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                </state>
-                                <connections>
-                                    <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="7IN-Cd-Wud"/>
-                                </connections>
-                            </button>
+                            </scrollView>
+                            <navigationBar alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvO-qv-ce7">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="56"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <items>
+                                    <navigationItem id="HaA-Pe-gq8">
+                                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.left" catalog="system" id="Okn-y0-2ts">
+                                            <connections>
+                                                <action selector="backButton:" destination="rJu-0z-jb4" id="NhT-Zy-A7e"/>
+                                            </connections>
+                                        </barButtonItem>
+                                    </navigationItem>
+                                </items>
+                            </navigationBar>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="0OC-h9-VxV" firstAttribute="top" secondItem="ufL-7i-iXL" secondAttribute="bottom" constant="8" id="0Zg-6w-Dnm"/>
-                            <constraint firstItem="wGe-ue-ZBw" firstAttribute="top" secondItem="cA9-ml-Jyd" secondAttribute="bottom" constant="8" id="3vB-q4-Iom"/>
-                            <constraint firstItem="ufL-7i-iXL" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" constant="20" id="63R-no-ybt"/>
-                            <constraint firstItem="NU4-Sc-z8i" firstAttribute="trailing" secondItem="ufL-7i-iXL" secondAttribute="trailing" constant="20" id="9xH-rf-tyD"/>
-                            <constraint firstItem="cA9-ml-Jyd" firstAttribute="top" secondItem="0OC-h9-VxV" secondAttribute="bottom" constant="50" id="HlH-VI-mLv"/>
-                            <constraint firstItem="ZID-iq-Fhv" firstAttribute="centerX" secondItem="V1e-mN-Mv8" secondAttribute="centerX" id="IPG-fJ-9fl"/>
-                            <constraint firstItem="ufL-7i-iXL" firstAttribute="top" secondItem="NU4-Sc-z8i" secondAttribute="top" constant="50" id="KYK-EC-7bR"/>
-                            <constraint firstItem="cA9-ml-Jyd" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" constant="20" id="Mfg-K8-6VQ"/>
-                            <constraint firstItem="ZID-iq-Fhv" firstAttribute="top" secondItem="wGe-ue-ZBw" secondAttribute="bottom" constant="243" id="R5Z-Na-lW2"/>
-                            <constraint firstItem="NU4-Sc-z8i" firstAttribute="bottom" secondItem="ZID-iq-Fhv" secondAttribute="bottom" constant="70" id="S9C-Qv-pcv"/>
-                            <constraint firstItem="NU4-Sc-z8i" firstAttribute="trailing" secondItem="wGe-ue-ZBw" secondAttribute="trailing" constant="20" id="V8r-Ok-rRt"/>
-                            <constraint firstItem="NU4-Sc-z8i" firstAttribute="trailing" secondItem="0OC-h9-VxV" secondAttribute="trailing" constant="20" id="VXp-X8-Ynd"/>
-                            <constraint firstItem="NU4-Sc-z8i" firstAttribute="trailing" secondItem="cA9-ml-Jyd" secondAttribute="trailing" constant="20" id="ah3-Dg-1t1"/>
-                            <constraint firstItem="wGe-ue-ZBw" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" constant="20" id="gl8-wa-uuq"/>
-                            <constraint firstItem="0OC-h9-VxV" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" constant="20" id="tzj-G7-a8f"/>
+                            <constraint firstItem="kvO-qv-ce7" firstAttribute="top" secondItem="NU4-Sc-z8i" secondAttribute="top" id="8U6-B3-3c0"/>
+                            <constraint firstItem="GHU-os-GMi" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" id="IO6-si-weU"/>
+                            <constraint firstItem="GHU-os-GMi" firstAttribute="trailing" secondItem="NU4-Sc-z8i" secondAttribute="trailing" id="Lqy-Ng-K8p"/>
+                            <constraint firstItem="GHU-os-GMi" firstAttribute="bottom" secondItem="NU4-Sc-z8i" secondAttribute="bottom" id="QMQ-SZ-Oef"/>
+                            <constraint firstItem="kvO-qv-ce7" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" id="YNA-3F-CWI"/>
+                            <constraint firstItem="GHU-os-GMi" firstAttribute="top" secondItem="NU4-Sc-z8i" secondAttribute="top" id="bvu-Un-qs9"/>
+                            <constraint firstItem="kvO-qv-ce7" firstAttribute="trailing" secondItem="NU4-Sc-z8i" secondAttribute="trailing" id="mxM-Zr-U2V"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NU4-Sc-z8i"/>
                     </view>
-                    <navigationItem key="navigationItem" id="VjC-Nb-HaO"/>
                     <connections>
                         <outlet property="fallAsleepOutletButton" destination="0OC-h9-VxV" id="GtV-X3-P5s"/>
                         <outlet property="putDownOutletButton" destination="wGe-ue-ZBw" id="MZC-Sl-lKp"/>
@@ -304,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vpa-lY-8Rx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-433.33333333333337" y="1909.8214285714284"/>
+            <point key="canvasLocation" x="-357.60000000000002" y="1907.1428571428571"/>
         </scene>
         <!--Picker View Controller-->
         <scene sceneID="qh4-Ze-wmv">
@@ -315,7 +333,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="133" width="375" height="316"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -339,11 +357,10 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="VVt-pp-6TI" firstAttribute="top" secondItem="evm-QQ-wgq" secondAttribute="top" constant="133" id="8Nk-0D-7L1"/>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="top" secondItem="evm-QQ-wgq" secondAttribute="top" constant="130" id="8Nk-0D-7L1"/>
                             <constraint firstItem="VVt-pp-6TI" firstAttribute="trailing" secondItem="evm-QQ-wgq" secondAttribute="trailing" id="CDN-Rn-lji"/>
                             <constraint firstItem="VVt-pp-6TI" firstAttribute="leading" secondItem="evm-QQ-wgq" secondAttribute="leading" id="UeY-xn-fL9"/>
                             <constraint firstItem="evm-QQ-wgq" firstAttribute="bottom" secondItem="r9w-By-OOb" secondAttribute="bottom" constant="70" id="ZRn-D1-gpM"/>
-                            <constraint firstItem="r9w-By-OOb" firstAttribute="top" secondItem="VVt-pp-6TI" secondAttribute="bottom" constant="150" id="gTO-SP-Kuj"/>
                             <constraint firstItem="r9w-By-OOb" firstAttribute="centerX" secondItem="kgL-ro-dBi" secondAttribute="centerX" id="hNW-eG-e6H"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="evm-QQ-wgq"/>
@@ -365,116 +382,129 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="758"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFt-gR-L5p">
-                                <rect key="frame" x="20" y="296" width="335" height="60"/>
+                            <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jbD-g9-QX1">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="675"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
+                                        <rect key="frame" x="122.66666666666669" y="541.33333333333337" width="130" height="55"/>
+                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" constant="130" id="hNj-Yc-7lU"/>
+                                            <constraint firstAttribute="height" constant="55" id="wq0-Mm-vgK"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Сохранить"/>
+                                        <connections>
+                                            <action selector="saveWakeButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="JrF-xd-YHc"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
+                                        <rect key="frame" x="20" y="90" width="335" height="55"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ7-IN-Xix">
+                                        <rect key="frame" x="20" y="153" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Спокойный">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="wakeUpButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="yAf-o5-zJd"/>
+                                            <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="WakeUp" id="k7h-2P-fhO"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как прошло бодрствование?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXQ-VT-M62">
+                                        <rect key="frame" x="20" y="242" width="335" height="27.666666666666686"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFt-gR-L5p">
+                                        <rect key="frame" x="20" y="277.66666666666669" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Капризничал">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="wakeWindowButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="lIU-Yp-gbb"/>
+                                            <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="WakeWindow" id="kb9-cV-kiQ"/>
+                                        </connections>
+                                    </button>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сигналы к укладыванию" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF9-hf-HII">
+                                        <rect key="frame" x="20" y="366.66666666666669" width="335" height="27.666666666666686"/>
+                                        <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-aV-PMP">
+                                        <rect key="frame" x="20" y="402.33333333333331" width="335" height="39"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="22"/>
+                                        <state key="normal" title="Замедлился">
+                                            <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="signsButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="jzJ-5I-W81"/>
+                                            <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="Signs" id="cLA-m7-zfg"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="BRp-VU-LEV"/>
+                                    <constraint firstItem="FXQ-VT-M62" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="0l4-2j-tq2"/>
+                                    <constraint firstItem="qJ7-IN-Xix" firstAttribute="top" secondItem="Z7g-PK-kK4" secondAttribute="bottom" constant="8" id="1M9-Ya-WkK"/>
+                                    <constraint firstAttribute="trailing" secondItem="UFt-gR-L5p" secondAttribute="trailing" constant="20" id="AHe-tR-aW3"/>
+                                    <constraint firstAttribute="trailing" secondItem="fF9-hf-HII" secondAttribute="trailing" constant="20" id="AL6-2X-g72"/>
+                                    <constraint firstAttribute="trailing" secondItem="FXQ-VT-M62" secondAttribute="trailing" constant="20" id="COk-fI-Ocp"/>
+                                    <constraint firstItem="Z7g-PK-kK4" firstAttribute="centerX" secondItem="jbD-g9-QX1" secondAttribute="centerX" id="Dwm-ax-4IJ"/>
+                                    <constraint firstAttribute="trailing" secondItem="Z7g-PK-kK4" secondAttribute="trailing" constant="20" id="Ebd-Q3-f9j"/>
+                                    <constraint firstItem="fF9-hf-HII" firstAttribute="top" secondItem="UFt-gR-L5p" secondAttribute="bottom" constant="50" id="Ih7-rO-3r1"/>
+                                    <constraint firstItem="r2b-aV-PMP" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="JLQ-Ri-VY0"/>
+                                    <constraint firstItem="fF9-hf-HII" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="Jfz-6A-bXy"/>
+                                    <constraint firstItem="qJ7-IN-Xix" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="M4v-OA-ywA"/>
+                                    <constraint firstItem="FXQ-VT-M62" firstAttribute="top" secondItem="qJ7-IN-Xix" secondAttribute="bottom" constant="50" id="PvG-K6-kfO"/>
+                                    <constraint firstItem="Z7g-PK-kK4" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="SJP-Rb-OyL"/>
+                                    <constraint firstItem="UFt-gR-L5p" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="aW1-yk-h96"/>
+                                    <constraint firstItem="Z7g-PK-kK4" firstAttribute="top" secondItem="jbD-g9-QX1" secondAttribute="top" constant="90" id="dUu-tW-3wx"/>
+                                    <constraint firstItem="r2b-aV-PMP" firstAttribute="top" secondItem="fF9-hf-HII" secondAttribute="bottom" constant="8" id="fUm-ni-g2q"/>
+                                    <constraint firstAttribute="trailing" secondItem="r2b-aV-PMP" secondAttribute="trailing" constant="20" id="gD9-1Y-H01"/>
+                                    <constraint firstAttribute="trailing" secondItem="qJ7-IN-Xix" secondAttribute="trailing" constant="20" id="i0M-fs-dns"/>
+                                    <constraint firstAttribute="bottom" secondItem="Zvz-Oj-TY3" secondAttribute="bottom" constant="152.66666666666663" id="ihv-c0-lqM"/>
+                                    <constraint firstItem="Zvz-Oj-TY3" firstAttribute="top" secondItem="r2b-aV-PMP" secondAttribute="bottom" constant="100" id="jLC-NI-L0i"/>
+                                    <constraint firstItem="UFt-gR-L5p" firstAttribute="top" secondItem="FXQ-VT-M62" secondAttribute="bottom" constant="8" id="klG-Ul-3iU"/>
+                                    <constraint firstItem="Zvz-Oj-TY3" firstAttribute="centerX" secondItem="jbD-g9-QX1" secondAttribute="centerX" id="yXH-vc-6Fn"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Капризничал">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                            </scrollView>
+                            <navigationBar alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vjp-nY-M0m">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </navigationBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Jj2-Aj-EUX">
+                                <rect key="frame" x="16" y="11" width="18" height="23"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <state key="normal" image="chevron.left" catalog="system">
+                                    <preferredSymbolConfiguration key="preferredSymbolConfiguration" configurationType="pointSize" pointSize="24" scale="medium" weight="medium"/>
                                 </state>
                                 <connections>
-                                    <action selector="wakeWindowButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="lIU-Yp-gbb"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="WakeWindow" id="kb9-cV-kiQ"/>
-                                </connections>
-                            </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ7-IN-Xix">
-                                <rect key="frame" x="20" y="118" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="T9B-qK-sMF"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Спокойный">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="wakeUpButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="yAf-o5-zJd"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="WakeUp" id="k7h-2P-fhO"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
-                                <rect key="frame" x="20" y="50" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="bMg-06-7OI"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как прошло бодрствование?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXQ-VT-M62">
-                                <rect key="frame" x="20" y="228" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="Fhg-ac-5aN"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-aV-PMP">
-                                <rect key="frame" x="20" y="474" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="vxQ-Zn-YzU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="22"/>
-                                <state key="normal" title="Замедлился">
-                                    <color key="titleColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                </state>
-                                <connections>
-                                    <action selector="signsButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="jzJ-5I-W81"/>
-                                    <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="Signs" id="cLA-m7-zfg"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сигналы к укладыванию" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF9-hf-HII">
-                                <rect key="frame" x="20" y="406" width="335" height="60"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="60" id="dqu-l0-wm2"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
-                                <rect key="frame" x="122.66666666666669" y="599" width="130" height="55"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="55" id="ZrR-zp-7rl"/>
-                                    <constraint firstAttribute="width" constant="130" id="hNj-Yc-7lU"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                <state key="normal" title="Сохранить"/>
-                                <connections>
-                                    <action selector="saveWakeButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="JrF-xd-YHc"/>
+                                    <action selector="backButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="I9k-y0-wjd"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="qJ7-IN-Xix" secondAttribute="trailing" constant="20" id="29x-YU-cVr"/>
-                            <constraint firstItem="qJ7-IN-Xix" firstAttribute="top" secondItem="Z7g-PK-kK4" secondAttribute="bottom" constant="8" id="4gh-jp-X2S"/>
-                            <constraint firstItem="qJ7-IN-Xix" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="8sg-J8-B6a"/>
-                            <constraint firstItem="r2b-aV-PMP" firstAttribute="top" secondItem="fF9-hf-HII" secondAttribute="bottom" constant="8" id="Dk0-7Z-o1c"/>
-                            <constraint firstItem="Z7g-PK-kK4" firstAttribute="top" secondItem="kuQ-KD-LwS" secondAttribute="top" constant="50" id="HvV-9D-hPA"/>
-                            <constraint firstItem="Zvz-Oj-TY3" firstAttribute="top" secondItem="r2b-aV-PMP" secondAttribute="bottom" constant="65" id="IEx-UC-qms"/>
-                            <constraint firstItem="FXQ-VT-M62" firstAttribute="top" secondItem="qJ7-IN-Xix" secondAttribute="bottom" constant="50" id="JIc-cw-Dyy"/>
-                            <constraint firstItem="FXQ-VT-M62" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="Ojp-ch-0m5"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="UFt-gR-L5p" secondAttribute="trailing" constant="20" id="QfK-Mc-bMw"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="Z7g-PK-kK4" secondAttribute="trailing" constant="20" id="Rp1-Bt-TL5"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="bottom" secondItem="Zvz-Oj-TY3" secondAttribute="bottom" constant="70" id="TJS-Dq-Og4"/>
-                            <constraint firstItem="Zvz-Oj-TY3" firstAttribute="centerX" secondItem="n4j-3h-5UQ" secondAttribute="centerX" id="XiX-Ra-6T1"/>
-                            <constraint firstItem="UFt-gR-L5p" firstAttribute="top" secondItem="FXQ-VT-M62" secondAttribute="bottom" constant="8" id="b2i-dt-Pci"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="fF9-hf-HII" secondAttribute="trailing" constant="20" id="cZm-dM-iuq"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="FXQ-VT-M62" secondAttribute="trailing" constant="20" id="ej7-tg-ieG"/>
-                            <constraint firstItem="fF9-hf-HII" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="ihf-5I-YkE"/>
-                            <constraint firstItem="Z7g-PK-kK4" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="nhT-Kb-11G"/>
-                            <constraint firstItem="kuQ-KD-LwS" firstAttribute="trailing" secondItem="r2b-aV-PMP" secondAttribute="trailing" constant="20" id="rkj-dw-cra"/>
-                            <constraint firstItem="fF9-hf-HII" firstAttribute="top" secondItem="UFt-gR-L5p" secondAttribute="bottom" constant="50" id="tWU-tz-vwZ"/>
-                            <constraint firstItem="r2b-aV-PMP" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="xpq-c0-L5E"/>
-                            <constraint firstItem="UFt-gR-L5p" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" constant="20" id="yhJ-GZ-k3C"/>
+                            <constraint firstItem="vjp-nY-M0m" firstAttribute="trailing" secondItem="kuQ-KD-LwS" secondAttribute="trailing" id="0cZ-RT-QaI"/>
+                            <constraint firstItem="jbD-g9-QX1" firstAttribute="trailing" secondItem="kuQ-KD-LwS" secondAttribute="trailing" id="8zK-ie-H0x"/>
+                            <constraint firstItem="jbD-g9-QX1" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" id="EBo-Ox-6gR"/>
+                            <constraint firstItem="vjp-nY-M0m" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" id="d35-R0-xV7"/>
+                            <constraint firstItem="jbD-g9-QX1" firstAttribute="top" secondItem="kuQ-KD-LwS" secondAttribute="top" id="ddB-Yi-Ntw"/>
+                            <constraint firstItem="jbD-g9-QX1" firstAttribute="bottom" secondItem="kuQ-KD-LwS" secondAttribute="bottom" id="hCg-ZA-CMC"/>
+                            <constraint firstItem="vjp-nY-M0m" firstAttribute="top" secondItem="kuQ-KD-LwS" secondAttribute="top" id="pLe-fR-4cS"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="kuQ-KD-LwS"/>
                     </view>
-                    <navigationItem key="navigationItem" id="Tze-7G-zIl"/>
+                    <toolbarItems/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="signsOutletButton" destination="r2b-aV-PMP" id="6eW-yY-6bs"/>
                         <outlet property="wakeUpOutletButton" destination="qJ7-IN-Xix" id="v0j-tP-dVg"/>
@@ -483,12 +513,15 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkZ-ea-8Df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="567" y="1910"/>
+            <point key="canvasLocation" x="532" y="1906.4039408866995"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="EZV-1j-gYF"/>
-        <segue reference="k7h-2P-fhO"/>
+        <segue reference="jSZ-BW-T6s"/>
+        <segue reference="Dot-2p-8B9"/>
         <segue reference="4m8-RR-V0Z"/>
     </inferredMetricsTieBreakers>
+    <resources>
+        <image name="chevron.left" catalog="system" width="96" height="128"/>
+    </resources>
 </document>

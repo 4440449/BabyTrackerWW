@@ -49,7 +49,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-//            sleep(3)
+            sleep(3)
             //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
@@ -115,6 +115,7 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
         //Многопоточный доступ в кор дату - можно?
         let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
+            sleep(3)
             
             self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
                 switch result {
