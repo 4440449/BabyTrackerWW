@@ -27,10 +27,10 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     
     // MARK: - Dependencies
     
-    private let delegate: DetailSceneDelegate
+    private let delegate: DetailWakeSceneDelegate
     private let router: DetailWakeSceneRouterProtocol
     
-    init (delegate: DetailSceneDelegate, router: DetailWakeSceneRouterProtocol) {
+    init (delegate: DetailWakeSceneDelegate, router: DetailWakeSceneRouterProtocol) {
         self.delegate = delegate
         self.router = router
     }
@@ -63,7 +63,7 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     //MARK: - View Output
     
     func addNewFlow() {
-        wake.value = Wake(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
+        wake.value = Wake(index: delegate.shareStateForDetailWakeScene().lifeCycle.endIndex,
                     wakeUp: .crying,
                     wakeWindow: .calm,
                     signs: .crying)
@@ -71,14 +71,14 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     
     func didSelectFlow(at index: Int) {
         selectIndex = index
-        wake.value = delegate.shareStateForDetailScene().lifeCycle[index] as! Wake
+        wake.value = delegate.shareStateForDetailWakeScene().lifeCycle[index] as! Wake
     }
     
     func saveButtonTapped() {
         selectIndex == nil ?
             delegate.add(new: wake.value)
             :
-            delegate.change(current: wake.value)
+            delegate.change(wake.value)
     }
     
     func prepare<S>(for segue: S) {

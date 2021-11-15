@@ -9,9 +9,9 @@
 import UIKit
 
 
-final class DreamDetailSceneViewController: UIViewController {
+final class DetailDreamSceneViewController: UIViewController {
     
-    let configurator = DreamDetailSceneConfiguratorImpl()
+    let configurator = DetailDreamSceneConfiguratorImpl()
     var presenter: DetailDreamScenePresenterProtocol!
     
     override func viewDidLoad() {

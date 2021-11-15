@@ -33,7 +33,7 @@ final class MainSceneTableViewController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        //        reloadData()
+                reloadData()
         //        showNavBarButtons()
         //Set obs
     }

@@ -8,9 +8,9 @@
 
 
 
-final class DreamDetailSceneConfiguratorImpl {
-    func configureScene<D>(view: DreamDetailSceneViewController, delegate: D) {
-        guard let delegate = delegate as? DetailSceneDelegate else { return }
+final class DetailDreamSceneConfiguratorImpl {
+    func configureScene<D>(view: DetailDreamSceneViewController, delegate: D) {
+        guard let delegate = delegate as? DetailDreamSceneDelegate else { return }
         let router = DetailDreamSceneRouterImpl()
         let presenter = DetailDreamScenePresenterImpl(delegate: delegate, router: router)
         view.presenter = presenter

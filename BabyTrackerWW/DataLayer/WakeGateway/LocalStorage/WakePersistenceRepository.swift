@@ -11,11 +11,12 @@ import CoreData
 
 
 protocol WakePersistenceRepositoryProtocol {
-    func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    
     func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
-    func addNewWake(new dream: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func changeWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
-    func deleteWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
+    func update(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func change(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
@@ -53,7 +54,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     }
     
     
-    func addNewWake(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         coreDataContainer.performBackgroundTask { backgroundContext in
             let dbEntity = WakeDBEntity.init(context: backgroundContext)
             dbEntity.populateEntityWithDate(wake: wake, date: date)
@@ -67,7 +68,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     }
     
     
-    func changeWake(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ()) {
+    func change(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ()) {
         coreDataContainer.performBackgroundTask { backgroundContext in
             let request: NSFetchRequest = WakeDBEntity.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", wake.id as NSUUID)
@@ -84,7 +85,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     }
     
     
-    func deleteWake(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ()) {
         coreDataContainer.performBackgroundTask { backgroundContext in
             let request: NSFetchRequest = WakeDBEntity.fetchRequest()
             request.predicate = NSPredicate(format: "id == %@", wake.id as NSUUID)
@@ -101,7 +102,7 @@ final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
     }
     
     
-    func synchronize(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func update(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         // посмотреть утечки!
         let days: (Date, Date) = self.dateInterval(with: date)

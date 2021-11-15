@@ -6,13 +6,13 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
-//import Foundation
-//
-//
-//protocol DreamGatewayProtocol {
-//
+import Foundation
+
+
+protocol DreamGatewayProtocol {
+
 //    func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
-//    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-//    func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func change(_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
 //    func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
-//}
+}

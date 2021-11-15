@@ -24,12 +24,12 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
     func prepare<S,D>(for segue: S, delegate: D) {
         guard let segue = segue as? UIStoryboardSegue else { return }
         
-        if let vc = segue.destination as? DreamDetailSceneViewController, let index = selectIndex {
+        if let vc = segue.destination as? DetailDreamSceneViewController, let index = selectIndex {
             vc.configurator.configureScene(view: vc, delegate: delegate)
             vc.presenter.didSelectFlow(at: index)
             
         } else
-        if let vc = segue.destination as? WakeDetailSceneViewController, let index = selectIndex {
+        if let vc = segue.destination as? DetailWakeSceneViewController, let index = selectIndex {
             vc.configurator.configureScene(view: vc, delegate: delegate)
             vc.presenter.didSelectFlow(at: index)
             

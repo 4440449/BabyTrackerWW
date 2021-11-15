@@ -27,10 +27,10 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     
     // MARK: - Dependencies
     
-    private let delegate: DetailSceneDelegate
+    private let delegate: DetailDreamSceneDelegate
     private let router: DetailDreamSceneRouterProtocol
     
-    init (delegate: DetailSceneDelegate, router: DetailDreamSceneRouterProtocol) {
+    init (delegate: DetailDreamSceneDelegate, router: DetailDreamSceneRouterProtocol) {
         self.delegate = delegate
         self.router = router
     }
@@ -44,21 +44,21 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     //MARK: - View Output
     
     func addNewFlow() {
-        dream.value = Dream(index: delegate.shareStateForDetailScene().lifeCycle.endIndex,
+        dream.value = Dream(index: delegate.shareStateForDetailDreamScene().lifeCycle.endIndex,
                             fallAsleep: .crying,
                             putDown: .brestFeeding)
     }
     
     func didSelectFlow(at index: Int) {
         selectIndex = index
-        dream.value = delegate.shareStateForDetailScene().lifeCycle[index] as! Dream
+        dream.value = delegate.shareStateForDetailDreamScene().lifeCycle[index] as! Dream
     }
     
     func saveButtonTapped() {
         selectIndex == nil ?
             delegate.add(new: dream.value)
         :
-            delegate.change(current: dream.value)
+            delegate.change(dream.value)
     }
     
     func prepare<S>(for segue: S) {

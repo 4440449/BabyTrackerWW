@@ -46,9 +46,9 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     //MARK: - State
     
     var tempLifeCycle = Publisher(value: [LifeCycle]())
-//    {
-//        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
-//    }
+    //    {
+    //        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
+    //    }
     
     var isLoading = Publisher(value: Loading.false)
     
@@ -113,16 +113,16 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func moveRow(source: Int, destination: Int) {
-//        tempLifeCycle.value.forEach { print("До изменения \($0.index) \($0.id)") }
+        //        tempLifeCycle.value.forEach { print("До изменения \($0.index) \($0.id)") }
         tempLifeCycle.value.rearrange(from: source, to: destination)
-//        tempLifeCycle.value.forEach { print("После изменения \($0.index) \($0.id)") }
+        //        tempLifeCycle.value.forEach { print("После изменения \($0.index) \($0.id)") }
         //        print("tempLifeCycle.count == \(tempLifeCycle.count)")
         for i in 0..<tempLifeCycle.value.count {
             //            print("i == \(i)")
             tempLifeCycle.value[i].index = i
             //            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
         }
-//        tempLifeCycle.value.forEach { print("После цикла \($0.index) \($0.id)") }
+        //        tempLifeCycle.value.forEach { print("После цикла \($0.index) \($0.id)") }
     }
     
     func cancelChanges() {
@@ -147,4 +147,12 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         removeObservers()
     }
     
+}
+
+//MARK: - Extensions
+
+extension Array {
+    mutating func rearrange(from: Int, to: Int) {
+        insert(remove(at: from), at: to)
+    }
 }

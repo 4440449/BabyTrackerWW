@@ -9,9 +9,9 @@
 import UIKit
 
 
-class WakeDetailSceneViewController: UIViewController {
+class DetailWakeSceneViewController: UIViewController {
     
-    let configurator = WakeDetailSceneConfiguratorImpl()
+    let configurator = DetailWakeSceneConfiguratorImpl()
     var presenter: DetailWakeScenePresenterProtocol!
     
     override func viewDidLoad() {

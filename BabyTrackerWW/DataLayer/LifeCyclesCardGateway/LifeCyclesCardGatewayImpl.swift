@@ -9,20 +9,24 @@
 import Foundation
 
 
-final class DataAccessGateway: LifeCyclesCardGateway {
+final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
     
-    private let network: NetworkRepositoryConfiguratorProtocol
-    private let localStorage: PersistenceRepositoryProtocol
+    // MARK: - Dependencies
+
+    private let network: LifeCyclesCardNetworkRepositoryProtocol
+    private let localStorage: LifeCyclesCardPersistenceRepositoryProtocol
     
-    init(apiConfigurator: NetworkRepositoryConfiguratorProtocol, localStorage: PersistenceRepositoryProtocol) {
-        self.network = apiConfigurator
+    init(network: LifeCyclesCardNetworkRepositoryProtocol, localStorage: LifeCyclesCardPersistenceRepositoryProtocol) {
+        self.network = network
         self.localStorage = localStorage
     }
     
     
+    // MARK: - Implements
+
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        let task = network.fetch(at: date) { result in
+        network.fetch(at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
             switch result {
             case let .success(lifeCycle):
                 self.localStorage.synchronize(new: lifeCycle, date: date) { result in
@@ -36,6 +40,26 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         }
     }
     
+    func update(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        self.network.synchronize(lifeCycles, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+            switch result {
+            case .success:
+                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
+                    switch result {
+                    case .success: callback(.success(()))
+                    case let .failure(localStorageError): callback(.failure(localStorageError))
+                    }
+                }
+            case let .failure(networkError):
+                callback(.failure(networkError))
+            }
+        }
+    }
+    
+}
+    
+    
+    /*
     
     func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         let task = network.add(new: lifeCycle, at: date) { result in
@@ -84,24 +108,9 @@ final class DataAccessGateway: LifeCyclesCardGateway {
         }
     }
     
+    */
     
-    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        let task = self.network.synchronize(lifeCycles, date: date) { result in
-            switch result {
-            case .success:
-                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
-                    switch result {
-                    case .success: callback(.success(()))
-                    case let .failure(localStorageError): callback(.failure(localStorageError))
-                    }
-                }
-            case let .failure(networkError):
-                callback(.failure(networkError))
-            }
-        }
-    }
-    
-}
+
 
 
 

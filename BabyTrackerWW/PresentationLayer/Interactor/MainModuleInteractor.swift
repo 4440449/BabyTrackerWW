@@ -25,41 +25,41 @@ import Foundation
 
 protocol MainSceneDelegate: AnyObject {
     
-//    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ())
-//    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ())
-//    func unsubscribeToCardState(_ observer: AnyObject)
-//    func unsubscribeToLoadingState(_ observer: AnyObject)
-    
-    func shareStateForMainScene() -> LifeCyclesCard
-    func fetchLifeCycles()
-    func saveChanges(new lifeCycles: [LifeCycle])
-    
-    func deleteLifeCycle(at index: Int)
-    func synchronize(new lifeCycles: [LifeCycle])
-    
     var lifeCycleCard: Publisher<LifeCyclesCard> { get }
     var isLoading: Publisher<Loading> { get }
+    func shareStateForMainScene() -> LifeCyclesCard
+    
+    func fetchLifeCycles()
+    func synchronize(new lifeCycles: [LifeCycle])
 }
 
 
 protocol CalendarSceneDelegate: AnyObject {
     
     func shareStateForCalendarScene() -> LifeCyclesCard
-    
     func changeDate(new date: Date)
 }
 
 
-protocol DetailSceneDelegate: AnyObject {
+protocol DetailDreamSceneDelegate: AnyObject {
     
-    func shareStateForDetailScene() -> LifeCyclesCard
+    func shareStateForDetailDreamScene() -> LifeCyclesCard
     
-    func add(new lifeCycle: LifeCycle)
-    func change(current lifeCycle: LifeCycle)
+    func add(new dream: Dream)
+    func change(_ dream: Dream)
 }
 
 
-protocol SelectSceneDelegate: AnyObject {
+protocol DetailWakeSceneDelegate: AnyObject {
+    
+    func shareStateForDetailWakeScene() -> LifeCyclesCard
+    
+    func add(new wake: Wake)
+    func change(_ wake: Wake)
+}
+
+
+protocol SelectSceneDelegate {
     
 }
 
@@ -67,62 +67,26 @@ protocol SelectSceneDelegate: AnyObject {
 
 // MARK: - Implementation -
 
-final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailSceneDelegate, SelectSceneDelegate {
+final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailDreamSceneDelegate, DetailWakeSceneDelegate, SelectSceneDelegate {
     
     
     // MARK: - Dependencies
     
-    private let repository: LifeCyclesCardGateway
+    private let dreamRepository: DreamGatewayProtocol
+    private let wakeRepository: WakeGatewayProtocol
+    private let lifecycleCardRepository: LifeCyclesCardGateway
     
-    init(repository: LifeCyclesCardGateway) {
-        self.repository = repository
+    init(dreamRepository: DreamGatewayProtocol, wakeRepository: WakeGatewayProtocol, lifecycleCardRepository: LifeCyclesCardGateway) {
+        self.dreamRepository = dreamRepository
+        self.wakeRepository = wakeRepository
+        self.lifecycleCardRepository = lifecycleCardRepository
     }
     
     
     // MARK: - State
     
     var lifeCycleCard = Publisher(value: LifeCyclesCard(date: Date()))
-//    {
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.cardStateNotifierStorage.forEach { $0.callback(()) }
-//            }
-//        }
-//    }
-    
     var isLoading = Publisher(value: Loading.false)
-//    {
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.loadingStateNotifierStorage.forEach{ $0.callback(self.isLoading) }
-//            }
-//        }
-//    }
-        
-    
-    // MARK: - Observing
-    
-//    private var cardStateNotifierStorage = [Observer<Void>]() { didSet { print(self.cardStateNotifierStorage.count)
-//        }
-//    }
-//    private var loadingStateNotifierStorage = [Observer<Loading>]()
-//
-//
-//    func subscribeToCardState(_ observer: AnyObject, _ callback: @escaping () -> ()) {
-//        cardStateNotifierStorage.append(Observer(observer, callback))
-//    }
-//
-//    func subscribeToLoadingState(_ observer: AnyObject, _ callback: @escaping (Loading) -> ()) {
-//        loadingStateNotifierStorage.append(Observer(observer, callback))
-//    }
-//
-//    func unsubscribeToCardState(_ observer: AnyObject) {
-//        cardStateNotifierStorage = cardStateNotifierStorage.filter { $0.observer !== observer }
-//    }
-//
-//    func unsubscribeToLoadingState(_ observer: AnyObject) {
-//        loadingStateNotifierStorage = loadingStateNotifierStorage.filter { $0.observer !== observer }
-//    }
     
     
     //MARK: - Main Scene
@@ -133,7 +97,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func fetchLifeCycles() {
         isLoading.value = .true
-        repository.fetch(at: lifeCycleCard.value.date) { [unowned self] result in
+        lifecycleCardRepository.fetch(at: lifeCycleCard.value.date) { [unowned self] result in
 //            print(result)
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
@@ -143,24 +107,9 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
-    func saveChanges(new lifeCycles: [LifeCycle]) {
-        
-    }
-    
-    func deleteLifeCycle(at index: Int) {
-        isLoading.value = .true
-        repository.delete(lifeCycleCard.value.lifeCycle[index], at: lifeCycleCard.value.date) { [unowned self] result in
-            switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle.remove(at: index)
-            case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
-            }
-            self.isLoading.value = .false
-        }
-    }
-    
     func synchronize(new lifeCycles: [LifeCycle]) {
         isLoading.value = .true
-        repository.synchronize(new: lifeCycles, date: lifeCycleCard.value.date) { result in
+        lifecycleCardRepository.update(new: lifeCycles, date: lifeCycleCard.value.date) { result in
             switch result {
             case .success(()): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error): print("reindex() / Error description: \(error)")
@@ -169,6 +118,16 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
+    //    func deleteLifeCycle(at index: Int) {
+    //        isLoading.value = .true
+    //        repository.delete(lifeCycleCard.value.lifeCycle[index], at: lifeCycleCard.value.date) { [unowned self] result in
+    //            switch result {
+    //            case .success(): self.lifeCycleCard.value.lifeCycle.remove(at: index)
+    //            case let .failure(error): print("deleteAction() / Dream cannot be deleted. Error description: \(error)")
+    //            }
+    //            self.isLoading.value = .false
+    //        }
+    //    }
     
     //MARK: - Calendar Scene
     
@@ -179,7 +138,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     func changeDate(new date: Date) {
         guard date != lifeCycleCard.value.date else { return }
         isLoading.value = .true
-        repository.fetch(at: date) { [unowned self] result in
+        lifecycleCardRepository.fetch(at: date) { [unowned self] result in
             self.lifeCycleCard.value.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles;
@@ -190,28 +149,28 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     
-    //MARK: - Detail Scene
+    //MARK: - Detail Dream Scene
     
-    func shareStateForDetailScene() -> LifeCyclesCard {
+    func shareStateForDetailDreamScene() -> LifeCyclesCard {
         return lifeCycleCard.value
     }
     
-    func add(new lifeCycle: LifeCycle) {
+    func add(new dream: Dream) {
         isLoading.value = .true
-        repository.add(new: lifeCycle, at: lifeCycleCard.value.date) { [unowned self] result in
+        dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle.append(lifeCycle)
+            case .success(): self.lifeCycleCard.value.lifeCycle.append(dream)
             case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
             }
             self.isLoading.value = .false
         }
     }
     
-    func change(current lifeCycle: LifeCycle) {
+    func change(_ dream: Dream) {
         isLoading.value = .true
-        repository.change(current: lifeCycle, at: lifeCycleCard.value.date) { [unowned self] result in
+        dreamRepository.change(dream, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle[lifeCycle.index] = lifeCycle
+            case .success(): self.lifeCycleCard.value.lifeCycle[dream.index] = dream
             case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
             }
             self.isLoading.value = .false
@@ -219,8 +178,32 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     
-    //MARK: - Select Scene
-    
-    
+    //MARK: - Detail Wake Scene
+
+    func shareStateForDetailWakeScene() -> LifeCyclesCard {
+           return lifeCycleCard.value
+       }
+       
+      func add(new wake: Wake) {
+           isLoading.value = .true
+           wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { [unowned self] result in
+               switch result {
+               case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
+               case let .failure(error): print("setWake() / New Wake cannot be added. Error description: \(error)")
+               }
+               self.isLoading.value = .false
+           }
+       }
+       
+       func change(_ wake: Wake) {
+           isLoading.value = .true
+           wakeRepository.change(wake, at: lifeCycleCard.value.date) { [unowned self] result in
+               switch result {
+               case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
+               case let .failure(error): print("setWake() / Wake cannot be changed. Error description: \(error)")
+               }
+               self.isLoading.value = .false
+           }
+       }
     
 }

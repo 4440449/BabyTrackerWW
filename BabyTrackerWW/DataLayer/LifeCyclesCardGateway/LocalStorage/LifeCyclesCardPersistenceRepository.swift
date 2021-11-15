@@ -1,47 +1,43 @@
 //
-//  PersistenceRepositoryGateway.swift
+//  LifeCyclesCardPersistenceRepository.swift
 //  BabyTrackerWW
 //
-//  Created by Max on 29.09.2021.
+//  Created by Max on 14.11.2021.
 //  Copyright © 2021 Max. All rights reserved.
 //
 
 import Foundation
 
 
-protocol PersistenceRepositoryProtocol {
+protocol LifeCyclesCardPersistenceRepositoryProtocol {
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
-    
-    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
 
-final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyclesCardGateway {
+final class LifeCyclesCardPersistenceRepositoryImpl: LifeCyclesCardPersistenceRepositoryProtocol {
     
     
-    private let wakeRepository: WakePersistenceRepositoryProtocol
+    // MARK: - Dependencies
+    
     private let dreamRepository: DreamPersistenceRepositoryProtocol
+    private let wakeRepository: WakePersistenceRepositoryProtocol
     
-    init(wakeRepository: WakePersistenceRepositoryProtocol, dreamRepository: DreamPersistenceRepositoryProtocol) {
+    init(dreamRepository: DreamPersistenceRepositoryProtocol,
+        wakeRepository: WakePersistenceRepositoryProtocol) {
         self.wakeRepository = wakeRepository
         self.dreamRepository = dreamRepository
     }
-    
     
     struct PersistenceRepositoryError: Error {
         var description = [String]()
         // Объединить или убрать эту ошибку
     }
     
-    
-    // MARK: - Protocol Implements
-    
-        // В текущей логике пока что не использую fetch() из локального хранилища
+    // MARK: - Implements
+
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
         var resultError = PersistenceRepositoryError() // TODO: - Extension native Error type (add [description] property)
@@ -75,49 +71,20 @@ final class PersistenceRepositoryGateway: PersistenceRepositoryProtocol, LifeCyc
     }
     
     
-    func add(new lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        switch lifeCycle {
-        case let lifeCycle as Wake: self.wakeRepository.addNewWake(new: lifeCycle, at: date, callback: callback)
-        case let lifeCycle as Dream: self.dreamRepository.addNewDream(new: lifeCycle, at: date, callback: callback)
-        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.add(new: LifeCycle)")))
-        }
-    }
-    
-    
-    func change(current lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        switch lifeCycle {
-        case let lifeCycle as Wake: self.wakeRepository.changeWake(lifeCycle, callback: callback)
-        case let lifeCycle as Dream: self.dreamRepository.changeDream(lifeCycle, callback: callback)
-        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.change(_: LifeCycle)")))
-        }
-    }
-    
-    
-    func delete(_ lifeCycle: LifeCycle, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        switch lifeCycle {
-        case let lifeCycle as Wake: self.wakeRepository.deleteWake(lifeCycle, callback: callback)
-        case let lifeCycle as Dream: self.dreamRepository.deleteDream(lifeCycle, callback: callback)
-        default: callback(.failure(LocalStorageError.downcasting("Error downcasting! Unexpected input type / func localStorage.delete(_: LifeCycle)")))
-        }
-    }
-
-    
     func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         
         //Оттестить значения, если в одном из придет нил, проинитится пустой массив? Вообще безопасная конструкция?
         let dreams = lifeCycles.compactMap { $0 as? Dream }
-//        print("dreams ===== \(dreams)")
+        //        print("dreams ===== \(dreams)")
         let wakes = lifeCycles.compactMap { $0 as? Wake }
-//        print("wakes ===== \(wakes)")
-        
+        //        print("wakes ===== \(wakes)")
         var resultError = PersistenceRepositoryError()
-        
         //Многопоточный доступ в кор дату - можно?
         let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
             sleep(3)
             
-            self.wakeRepository.synchronize(wakes: wakes, date: date) { result in
+            self.wakeRepository.update(wakes: wakes, date: date) { result in
                 switch result {
                 case .success(): return
                 case let .failure(wakeRepoError): resultError.description.append(wakeRepoError.localizedDescription)

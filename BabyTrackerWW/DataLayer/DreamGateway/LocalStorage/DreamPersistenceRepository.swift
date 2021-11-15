@@ -13,8 +13,10 @@ import CoreData
 protocol DreamPersistenceRepositoryProtocol {
     func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
-    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+    
+    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func change(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+    
     func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
 }
 
@@ -54,7 +56,7 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     }
     
     
-    func addNewDream(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         let dbEntity = DreamDBEntity.init(context: coreDataContainer.viewContext)
         dbEntity.populateEntityWithDate(dream: dream, date: date)
@@ -69,7 +71,7 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     }
     
     
-    func changeDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
+    func change(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         let request: NSFetchRequest = DreamDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", dream.id as NSUUID)

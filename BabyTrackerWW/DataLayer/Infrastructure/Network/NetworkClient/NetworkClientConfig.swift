@@ -149,6 +149,15 @@ enum NetworkError: Error {
 }
 
 
+// MARK: - Extensions
+
+extension Encodable {
+    func jsonEncode() throws -> Data {
+        return try JSONEncoder().encode(self)
+    }
+}
+
+
 
 //        let arrayBody = try body.map { try JSONSerialization.jsonObject(with: $0.jsonEncode(), options: []) }
 //        urlRequest.httpBody = try JSONSerialization.data(withJSONObject: arrayBody, options: [])

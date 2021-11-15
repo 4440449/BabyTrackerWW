@@ -8,9 +8,9 @@
 
 
 
-final class WakeDetailSceneConfiguratorImpl {
-    func configureScene<D>(view: WakeDetailSceneViewController, delegate: D) {
-        guard let delegate = delegate as? DetailSceneDelegate else { return }
+final class DetailWakeSceneConfiguratorImpl {
+    func configureScene<D>(view: DetailWakeSceneViewController, delegate: D) {
+        guard let delegate = delegate as? DetailWakeSceneDelegate else { return }
         let router = DetailWakeSceneRouterImpl() // Единый Роутер!
         let presenter = DetailWakeScenePresenterImpl(delegate: delegate, router: router)
         view.presenter = presenter
