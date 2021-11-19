@@ -17,6 +17,8 @@ class SelectSceneTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        transitioningDelegate = self
+        modalPresentationStyle = .custom
         
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
@@ -37,6 +39,10 @@ class SelectSceneTableViewController: UITableViewController {
     override func viewDidDisappear(_ animated: Bool) {
         //        print("viewDidDisappear")
     }
+    
+    // MARK: - UI
+    
+    private let animation = UIDynamicAnimator()
     
     // MARK: - Table view data source
     
@@ -117,5 +123,9 @@ class SelectSceneTableViewController: UITableViewController {
     deinit {
         //           print("SelectSceneTableViewController - is Deinit!")
     }
+    
+}
+
+extension SelectSceneTableViewController: UIViewControllerTransitioningDelegate {
     
 }

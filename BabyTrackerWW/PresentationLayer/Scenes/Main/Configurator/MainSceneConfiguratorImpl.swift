@@ -16,13 +16,13 @@ final class MainSceneConfiguratorImpl {
         let wakeNetworkRepository = WakeNetworkRepository(apiKey: apiKey)
         let lifeCyclesCardNetworkRepository = LifeCyclesCardNetworkRepositoryImpl(apiKey: apiKey)
         
-        let dreamPersistenceRepository = DreamPersistenceRepositoryImpl()
-        let wakePersistenceRepository = WakePersistenceRepositoryImpl()
-        let lifeCyclesCardPersistenceRepository = LifeCyclesCardPersistenceRepositoryImpl(dreamRepository: dreamPersistenceRepository, wakeRepository: wakePersistenceRepository)
+        let dreamPersistentRepository = DreamPersistentRepositoryImpl()
+        let wakePersistentRepository = WakePersistentRepositoryImpl()
+        let lifeCyclesCardPersistentRepository = LifeCyclesCardPersistentRepositoryImpl(dreamRepository: dreamPersistentRepository, wakeRepository: wakePersistentRepository)
         
-        let dreamGateway = DreamGatewayImpl(network: dreamNetworkRepository, localStorage: dreamPersistenceRepository)
-        let wakeGateway = WakeGatewayImpl(network: wakeNetworkRepository, localStorage: wakePersistenceRepository)
-        let lifeCyclesCardGateway = LifeCyclesCardGatewayImpl(network: lifeCyclesCardNetworkRepository, localStorage: lifeCyclesCardPersistenceRepository)
+        let dreamGateway = DreamGatewayImpl(network: dreamNetworkRepository, localStorage: dreamPersistentRepository)
+        let wakeGateway = WakeGatewayImpl(network: wakeNetworkRepository, localStorage: wakePersistentRepository)
+        let lifeCyclesCardGateway = LifeCyclesCardGatewayImpl(network: lifeCyclesCardNetworkRepository, localStorage: lifeCyclesCardPersistentRepository)
         
         
         let interactor = MainModuleInteractorImpl(dreamRepository: dreamGateway, wakeRepository: wakeGateway, lifecycleCardRepository: lifeCyclesCardGateway)

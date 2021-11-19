@@ -15,9 +15,9 @@ final class DreamGatewayImpl: DreamGatewayProtocol {
     // MARK: - Dependencies
 
     private let network: DreamNetworkRepositoryProtocol
-    private let localStorage: DreamPersistenceRepositoryProtocol
+    private let localStorage: DreamPersistentRepositoryProtocol
     
-    init(network: DreamNetworkRepositoryProtocol, localStorage: DreamPersistenceRepositoryProtocol) {
+    init(network: DreamNetworkRepositoryProtocol, localStorage: DreamPersistentRepositoryProtocol) {
         self.network = network
         self.localStorage = localStorage
     }

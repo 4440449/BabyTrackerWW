@@ -1,5 +1,5 @@
 //
-//  PersistenceStorageManager.swift
+//  PersistentStorageManager.swift
 //  Baby tracker
 //
 //  Created by Max on 29.07.2021.
@@ -10,8 +10,8 @@ import Foundation
 import CoreData
 
 
-protocol DreamPersistenceRepositoryProtocol {
-    func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+protocol DreamPersistentRepositoryProtocol {
+    func update(_ dreams: [Dream], at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
     
     func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
@@ -23,7 +23,7 @@ protocol DreamPersistenceRepositoryProtocol {
 
 
 // TODO: - Разобраться с таймс зоной
-final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
+final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
     
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     
@@ -105,7 +105,7 @@ final class DreamPersistenceRepositoryImpl: DreamPersistenceRepositoryProtocol {
     }
     
     
-    func synchronize(dreams: [Dream], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func update(_ dreams: [Dream], at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         //            coreDataContainer.performBackgroundTask { backgroundContext in
         let days: (Date, Date) = dateInterval(with: date)
         let request: NSFetchRequest = DreamDBEntity.fetchRequest()

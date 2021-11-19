@@ -14,9 +14,9 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
     // MARK: - Dependencies
 
     private let network: LifeCyclesCardNetworkRepositoryProtocol
-    private let localStorage: LifeCyclesCardPersistenceRepositoryProtocol
+    private let localStorage: LifeCyclesCardPersistentRepositoryProtocol
     
-    init(network: LifeCyclesCardNetworkRepositoryProtocol, localStorage: LifeCyclesCardPersistenceRepositoryProtocol) {
+    init(network: LifeCyclesCardNetworkRepositoryProtocol, localStorage: LifeCyclesCardPersistentRepositoryProtocol) {
         self.network = network
         self.localStorage = localStorage
     }

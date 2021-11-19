@@ -15,9 +15,9 @@ final class WakeGatewayImpl: WakeGatewayProtocol {
     // MARK: - Dependencies
 
     private let network: WakeNetworkRepositoryProtocol
-    private let localStorage: WakePersistenceRepositoryProtocol
+    private let localStorage: WakePersistentRepositoryProtocol
     
-    init(network: WakeNetworkRepositoryProtocol, localStorage: WakePersistenceRepositoryProtocol) {
+    init(network: WakeNetworkRepositoryProtocol, localStorage: WakePersistentRepositoryProtocol) {
         self.network = network
         self.localStorage = localStorage
     }

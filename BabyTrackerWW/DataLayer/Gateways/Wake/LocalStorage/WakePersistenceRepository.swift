@@ -10,7 +10,7 @@ import Foundation
 import CoreData
 
 
-protocol WakePersistenceRepositoryProtocol {
+protocol WakePersistentRepositoryProtocol {
     
     func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
     func update(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
@@ -20,7 +20,7 @@ protocol WakePersistenceRepositoryProtocol {
 }
 
 
-final class WakePersistenceRepositoryImpl: WakePersistenceRepositoryProtocol {
+final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
     
     private let coreDataContainer = CoreDataStackImpl.shared.persistentContainer
     

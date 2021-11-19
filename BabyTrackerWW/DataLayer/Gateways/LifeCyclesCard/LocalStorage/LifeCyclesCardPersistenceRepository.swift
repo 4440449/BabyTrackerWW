@@ -1,5 +1,5 @@
 //
-//  LifeCyclesCardPersistenceRepository.swift
+//  LifeCyclesCardPersistentRepository.swift
 //  BabyTrackerWW
 //
 //  Created by Max on 14.11.2021.
@@ -9,7 +9,7 @@
 import Foundation
 
 
-protocol LifeCyclesCardPersistenceRepositoryProtocol {
+protocol LifeCyclesCardPersistentRepositoryProtocol {
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
     func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
@@ -17,21 +17,21 @@ protocol LifeCyclesCardPersistenceRepositoryProtocol {
 
 
 
-final class LifeCyclesCardPersistenceRepositoryImpl: LifeCyclesCardPersistenceRepositoryProtocol {
+final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepositoryProtocol {
     
     
     // MARK: - Dependencies
     
-    private let dreamRepository: DreamPersistenceRepositoryProtocol
-    private let wakeRepository: WakePersistenceRepositoryProtocol
+    private let dreamRepository: DreamPersistentRepositoryProtocol
+    private let wakeRepository: WakePersistentRepositoryProtocol
     
-    init(dreamRepository: DreamPersistenceRepositoryProtocol,
-        wakeRepository: WakePersistenceRepositoryProtocol) {
+    init(dreamRepository: DreamPersistentRepositoryProtocol,
+        wakeRepository: WakePersistentRepositoryProtocol) {
         self.wakeRepository = wakeRepository
         self.dreamRepository = dreamRepository
     }
     
-    struct PersistenceRepositoryError: Error {
+    struct PersistentRepositoryError: Error {
         var description = [String]()
         // Объединить или убрать эту ошибку
     }
@@ -40,7 +40,7 @@ final class LifeCyclesCardPersistenceRepositoryImpl: LifeCyclesCardPersistenceRe
 
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         
-        var resultError = PersistenceRepositoryError() // TODO: - Extension native Error type (add [description] property)
+        var resultError = PersistentRepositoryError() // TODO: - Extension native Error type (add [description] property)
         var resultSuccess = [LifeCycle]()
         
         let serialQ = DispatchQueue.init(label: "serialQ")
@@ -78,7 +78,7 @@ final class LifeCyclesCardPersistenceRepositoryImpl: LifeCyclesCardPersistenceRe
         //        print("dreams ===== \(dreams)")
         let wakes = lifeCycles.compactMap { $0 as? Wake }
         //        print("wakes ===== \(wakes)")
-        var resultError = PersistenceRepositoryError()
+        var resultError = PersistentRepositoryError()
         //Многопоточный доступ в кор дату - можно?
         let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
@@ -91,7 +91,7 @@ final class LifeCyclesCardPersistenceRepositoryImpl: LifeCyclesCardPersistenceRe
                 }
             }
             
-            self.dreamRepository.synchronize(dreams: dreams, date: date) { result in
+            self.dreamRepository.update(dreams, at: date) { result in
                 switch result {
                 case . success(): return
                 case let .failure(dreamRepoError): resultError.description.append(dreamRepoError.localizedDescription)

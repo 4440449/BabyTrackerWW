@@ -189,34 +189,34 @@
 			path = Infrastructure;
 			sourceTree = "<group>";
 		};
-		508CEE93274182EE0086051A /* LifeCyclesCardGateway */ = {
+		508CEE93274182EE0086051A /* LifeCyclesCard */ = {
 			isa = PBXGroup;
 			children = (
 				501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */,
 				508CEE9B274186A30086051A /* Network */,
 				508CEE962741864B0086051A /* LocalStorage */,
 			);
-			path = LifeCyclesCardGateway;
+			path = LifeCyclesCard;
 			sourceTree = "<group>";
 		};
-		508CEE94274184500086051A /* DreamGateway */ = {
+		508CEE94274184500086051A /* Dream */ = {
 			isa = PBXGroup;
 			children = (
 				508CEE8D274177C70086051A /* DreamGatewayImpl.swift */,
 				508CEE9E274186DB0086051A /* Network */,
 				508CEE97274186550086051A /* LocalStorage */,
 			);
-			path = DreamGateway;
+			path = Dream;
 			sourceTree = "<group>";
 		};
-		508CEE952741845D0086051A /* WakeGateway */ = {
+		508CEE952741845D0086051A /* Wake */ = {
 			isa = PBXGroup;
 			children = (
 				508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */,
 				508CEEA1274187120086051A /* Network */,
 				508CEE98274186640086051A /* LocalStorage */,
 			);
-			path = WakeGateway;
+			path = Wake;
 			sourceTree = "<group>";
 		};
 		508CEE962741864B0086051A /* LocalStorage */ = {
@@ -291,6 +291,16 @@
 				501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */,
 			);
 			path = Deprecated;
+			sourceTree = "<group>";
+		};
+		508CEEA52742957A0086051A /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+				508CEE93274182EE0086051A /* LifeCyclesCard */,
+				508CEE94274184500086051A /* Dream */,
+				508CEE952741845D0086051A /* Wake */,
+			);
+			path = Gateways;
 			sourceTree = "<group>";
 		};
 		50B174C02704C0B000108B17 = {
@@ -603,9 +613,7 @@
 		50B1751C2704C1F000108B17 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE93274182EE0086051A /* LifeCyclesCardGateway */,
-				508CEE94274184500086051A /* DreamGateway */,
-				508CEE952741845D0086051A /* WakeGateway */,
+				508CEEA52742957A0086051A /* Gateways */,
 				508CEEA2274187510086051A /* Infrastructure */,
 			);
 			path = DataLayer;
