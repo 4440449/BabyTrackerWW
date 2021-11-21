@@ -40,8 +40,7 @@ class DetailWakeSceneViewController: UIViewController {
     
     @IBAction func saveWakeButton(_ sender: Any) {
         presenter.saveButtonTapped()
-        //TODO: - Сделать нормальный роутинг!
-        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backButton(_ sender: Any) {

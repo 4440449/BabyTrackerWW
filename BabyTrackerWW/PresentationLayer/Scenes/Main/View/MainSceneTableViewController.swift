@@ -9,7 +9,7 @@
 import UIKit
 
 
-final class MainSceneTableViewController: UITableViewController {
+final class MainSceneTableViewController: UITableViewController, UIPopoverPresentationControllerDelegate {
     
     // MARK: - Dependencies
     
@@ -78,7 +78,7 @@ final class MainSceneTableViewController: UITableViewController {
     // MARK: - Navigation Bar
     
     private var changeDateOutletButton: UIBarButtonItem!
-    private var addNewOutletButton: UIBarButtonItem!
+    var addNewOutletButton: UIBarButtonItem!
     private var cancelOutletButton: UIBarButtonItem!
     private var saveOutletButton: UIBarButtonItem!
     private var editOutletButton: UIBarButtonItem!
@@ -105,9 +105,10 @@ final class MainSceneTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !tableView.isEditing {
             tableView.deselectRow(at: indexPath, animated: true)
-            presenter.didSelectRow(at: indexPath.row) { identifire in
-                self.performSegue(withIdentifier: identifire, sender: nil)
-            }
+            presenter.didSelectRow(at: indexPath.row, vc: self)
+//            presenter.didSelectRow(at: indexPath.row) { identifire in
+//                self.performSegue(withIdentifier: identifire, sender: nil)
+//            }
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -126,7 +127,11 @@ final class MainSceneTableViewController: UITableViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        presenter.prepare(for: segue)
+        presenter.prepare(for: segue, parentVC: self)
+    }
+    
+    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+        return .none
     }
     
     deinit {
@@ -178,6 +183,7 @@ extension MainSceneTableViewController {
     
     @IBAction private func addNewButton(_ sender: Any) {
         self.performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
+        
     }
     
     @IBAction private func cancelButton(_ sender: Any) {
@@ -255,6 +261,13 @@ extension MainSceneTableViewController {
     private func hideBlure() {
         blure.isHidden = true
     }
+    
+//    private func setPopover() {
+//        popoverPresentationController?.delegate = self
+//        popoverPresentationController?.sourceRect = CGRect(x: tableView.center.x, y: tableView.center.y, width: 0, height: 0)
+//        preferredContentSize = CGSize(width: 350, height: 120)
+//        popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+//    }
     
 }
 

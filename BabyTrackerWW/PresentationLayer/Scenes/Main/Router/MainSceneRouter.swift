@@ -9,50 +9,65 @@
 import UIKit
 
 
-// Роутер - логика переходов. Вью - глупые переходы по идентификатору со сториборда
 protocol MainSceneRouterProtocol {
-    func prepare<S,D>(for segue: S, delegate: D)
-    func perform(type: LifeCycle, callback: (String) -> ())
+    func prepare<S,D,V>(for segue: S, delegate: D, parentVC: V?)
+    func perform<V>(type: LifeCycle, vc: V)
 }
 
 //MARK: - Implementation -
 
 final class MainSceneRouterImpl: MainSceneRouterProtocol {
-
+    
     private var selectIndex: Int?
     
-    func prepare<S,D>(for segue: S, delegate: D) {
+    func prepare<S,D,V>(for segue: S, delegate: D, parentVC: V?) {
         guard let segue = segue as? UIStoryboardSegue else { return }
         
-        if let vc = segue.destination as? DetailDreamSceneViewController, let index = selectIndex {
-            vc.configurator.configureScene(view: vc, delegate: delegate)
-            vc.presenter.didSelectFlow(at: index)
-            
+        if let detailDreamVC = segue.destination as? DetailDreamSceneViewController {
+            detailDreamVC.configurator.configureScene(view: detailDreamVC, delegate: delegate)
+            selectIndex != nil ?
+                detailDreamVC.presenter.didSelectFlow(at: selectIndex!) : detailDreamVC.presenter.addNewFlow()
         } else
-        if let vc = segue.destination as? DetailWakeSceneViewController, let index = selectIndex {
-            vc.configurator.configureScene(view: vc, delegate: delegate)
-            vc.presenter.didSelectFlow(at: index)
             
-        } else
-        if let vc = segue.destination as? SelectSceneTableViewController {
-            vc.configurator.configureScene(view: vc, delegate: delegate)
-            
-        } else
-        if let vc = segue.destination as? CalendarSceneViewController {
-            vc.configurator.configureScene(view: vc, delegate: delegate)
-            }
+            if let detailWakeVC = segue.destination as? DetailWakeSceneViewController {
+                detailWakeVC.configurator.configureScene(view: detailWakeVC, delegate: delegate)
+                selectIndex != nil ?
+                    detailWakeVC.presenter.didSelectFlow(at: selectIndex!) : detailWakeVC.presenter.addNewFlow()
+                
+            } else
+                if let selectVC = segue.destination as? SelectSceneTableViewController,
+                    let parentVC = parentVC as? MainSceneTableViewController {
+//                    selectVC.configurator.configureScene(view: selectVC, delegate: delegate)
+                    selectVC.popoverPresentationController?.delegate = parentVC
+                    selectVC.segueCallback = { identifire in
+                        switch identifire {
+                        case 0: parentVC.performSegue(withIdentifier: "addNew" + String.init(describing: Dream.self), sender: nil)
+                        case 1: parentVC.performSegue(withIdentifier: "addNew" + String.init(describing: Wake.self), sender: nil)
+                        default: print("Error! Input identifire \(identifire) cannot be recognized")
+                        }
+                    }
+                    
+                } else
+                    if let calendarVC = segue.destination as? CalendarSceneViewController {
+                        calendarVC.configurator.configureScene(view: calendarVC, delegate: delegate)
+        }
     }
-    //    deinit {
-    //        print("MainSceneRouterImpl - is Deinit!")
-    //    }
     
-    func perform(type: LifeCycle, callback: (String) -> ()) {
+    
+    func perform<V>(type: LifeCycle, vc: V) {
+        guard let vc = vc as? MainSceneTableViewController else { return }
         selectIndex = type.index
         switch type {
-        case _ where type is Dream: callback("didSelect" + String.init(describing: Dream.self))
-        case _ where type is Wake: callback ("didSelect" + String.init(describing: Wake.self))
+        case _ where type is Dream: vc.performSegue(withIdentifier: "didSelect" + String.init(describing: Dream.self), sender: nil)
+        //            callback("didSelect" + String.init(describing: Dream.self))
+        case _ where type is Wake: vc.performSegue(withIdentifier: "didSelect" + String.init(describing: Wake.self), sender: nil)
+        //            callback ("didSelect" + String.init(describing: Wake.self))
         default:
             print("Error! Input type \(type) cannot be recognized")
         }
     }
+    
+    //    deinit {
+    //        print("MainSceneRouterImpl - is Deinit!")
+    //    }
 }

@@ -46,8 +46,7 @@ final class DetailDreamSceneViewController: UIViewController {
     
     @IBAction func saveButton(_ sender: Any) {
         presenter.saveButtonTapped()
-        //TODO: - Сделать нормальный роутинг!
-        presentingViewController?.presentingViewController?.dismiss(animated: true, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func backButton(_ sender: Any) {

@@ -18,8 +18,8 @@ protocol MainScenePresenterProtocol {
     func getNumberOfLifeCycles() -> Int
     func getCellLabel(at index: Int) -> String
     
-    func didSelectRow(at index: Int, callback: (String) -> ())
-    func prepare<T>(for segue: T)
+    func didSelectRow<V>(at index: Int, vc: V)
+    func prepare<T,V>(for segue: T, parentVC: V)
     func deleteRow(at index: Int)
     func moveRow(source: Int, destination: Int)
     func saveChanges()
@@ -97,13 +97,13 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     //MARK: - View Output
     
-    func didSelectRow(at index: Int, callback: (String) -> ()) {
+    func didSelectRow<V>(at index: Int, vc: V) {
         let type = interactor.shareStateForMainScene().lifeCycle[index]
-        router.perform(type: type, callback: callback)
+        router.perform(type: type, vc: vc)
     }
     
-    func prepare<T>(for segue: T) {
-        router.prepare(for: segue, delegate: interactor)
+    func prepare<T,V>(for segue: T, parentVC: V) {
+        router.prepare(for: segue, delegate: interactor, parentVC: parentVC)
     }
     
     

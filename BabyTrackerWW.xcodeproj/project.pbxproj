@@ -349,7 +349,7 @@
 			children = (
 				50B175142704C1EF00108B17 /* Main.storyboard */,
 				50B1750A2704C1EF00108B17 /* Main */,
-				50B175002704C1EF00108B17 /* Select */,
+				50B175002704C1EF00108B17 /* Select (Popover) */,
 				50B174E22704C1EF00108B17 /* Calendar */,
 				50B174F12704C1EF00108B17 /* Detail */,
 				50B174E92704C1EF00108B17 /* Picker */,
@@ -514,7 +514,7 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		50B175002704C1EF00108B17 /* Select */ = {
+		50B175002704C1EF00108B17 /* Select (Popover) */ = {
 			isa = PBXGroup;
 			children = (
 				50B175062704C1EF00108B17 /* Configurator */,
@@ -522,7 +522,7 @@
 				50B175012704C1EF00108B17 /* Presenter */,
 				50B175082704C1EF00108B17 /* Router */,
 			);
-			path = Select;
+			path = "Select (Popover)";
 			sourceTree = "<group>";
 		};
 		50B175012704C1EF00108B17 /* Presenter */ = {
@@ -536,8 +536,8 @@
 		50B175032704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */,
 				50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */,
+				50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
