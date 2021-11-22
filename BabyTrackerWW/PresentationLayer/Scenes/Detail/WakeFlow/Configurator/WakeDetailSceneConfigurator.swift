@@ -17,7 +17,7 @@ final class DetailWakeSceneConfiguratorImpl {
     }
     
     deinit {
-//        print("WakeDetailSceneConfiguratorImpl - is Deinit!")
+        print("WakeDetailSceneConfiguratorImpl - is Deinit!")
     }
     
 }

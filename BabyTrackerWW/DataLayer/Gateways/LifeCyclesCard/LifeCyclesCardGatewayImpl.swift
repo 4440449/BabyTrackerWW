@@ -26,38 +26,57 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
 
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        network.fetch(at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+        
+        localStorage.fetch(at: date) { result in
             switch result {
-            case let .success(lifeCycle):
-                self.localStorage.synchronize(new: lifeCycle, date: date) { result in
-                    switch result {
-                    case .success: callback(.success(lifeCycle))
-                    case let .failure(localStorageError): callback(.failure(localStorageError))
-                    }
-                }
-            case let .failure(networkError): callback(.failure(networkError))
+            case let .success(lifecycles): callback(.success(lifecycles))
+            case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        
+//        network.fetch(at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//            switch result {
+//            case let .success(lifeCycle):
+//                self.localStorage.synchronize(new: lifeCycle, date: date) { result in
+//                    switch result {
+//                    case .success: callback(.success(lifeCycle))
+//                    case let .failure(localStorageError): callback(.failure(localStorageError))
+//                    }
+//                }
+//            case let .failure(networkError): callback(.failure(networkError))
+//            }
+//        }
     }
     
     func update(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        self.network.synchronize(lifeCycles, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+        localStorage.synchronize(new: lifeCycles, date: date) { result in
             switch result {
-            case .success:
-                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
-                    switch result {
-                    case .success: callback(.success(()))
-                    case let .failure(localStorageError): callback(.failure(localStorageError))
-                    }
-                }
-            case let .failure(networkError):
-                callback(.failure(networkError))
+            case .success: callback(.success(()))
+            case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        
+//        self.network.synchronize(lifeCycles, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//            switch result {
+//            case .success:
+//                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
+//                    switch result {
+//                    case .success: callback(.success(()))
+//                    case let .failure(localStorageError): callback(.failure(localStorageError))
+//                    }
+//                }
+//            case let .failure(networkError):
+//                callback(.failure(networkError))
+//            }
+//        }
     }
     
 }
     
+
+
+
+
     
     /*
     

@@ -17,7 +17,7 @@ final class DetailDreamSceneConfiguratorImpl {
     }
     
     deinit {
-//        print("DreamDetailSceneConfiguratorImpl - is Deinit!")
+        print("DreamDetailSceneConfiguratorImpl - is Deinit!")
     }
     
 }

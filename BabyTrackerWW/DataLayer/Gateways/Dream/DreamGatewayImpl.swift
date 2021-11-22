@@ -26,35 +26,51 @@ final class DreamGatewayImpl: DreamGatewayProtocol {
     // MARK: - Protocol Implements
 
     func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        network.add(new: dream, at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+        
+        localStorage.add(new: dream, at: date) { result in
             switch result {
-            case .success():
-                self.localStorage.add(new: dream, at: date) { result in
-                    switch result {
-                    case .success: callback(.success(()))
-                    case let .failure(localStorageError): callback(.failure(localStorageError))
-                    }
-                }
-            case let .failure(networkError): callback(.failure(networkError))
+            case .success: callback(.success(()))
+            case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        
+//        network.add(new: dream, at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//            switch result {
+//            case .success():
+//                self.localStorage.add(new: dream, at: date) { result in
+//                    switch result {
+//                    case .success: callback(.success(()))
+//                    case let .failure(localStorageError): callback(.failure(localStorageError))
+//                    }
+//                }
+//            case let .failure(networkError): callback(.failure(networkError))
+//            }
+//        }
         
     }
     
     
     func change(_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-       network.change(dream, at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+        
+        localStorage.change(dream) { result in
             switch result {
-            case .success():
-                self.localStorage.change(dream) { result in
-                    switch result {
-                    case .success(): callback(.success(()))
-                    case let .failure(localStorageError): callback(.failure(localStorageError))
-                    }
-                }
-            case let .failure(networkError): callback(.failure(networkError))
+            case .success(): callback(.success(()))
+            case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        
+//       network.change(dream, at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//            switch result {
+//            case .success():
+//                self.localStorage.change(dream) { result in
+//                    switch result {
+//                    case .success(): callback(.success(()))
+//                    case let .failure(localStorageError): callback(.failure(localStorageError))
+//                    }
+//                }
+//            case let .failure(networkError): callback(.failure(networkError))
+//            }
+//        }
         
     }
     

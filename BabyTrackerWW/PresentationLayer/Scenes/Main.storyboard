@@ -14,7 +14,11 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mhC-5s-RDn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <gestureRecognizers/>
                     </navigationBar>
+                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PgN-82-yLN">
+                        <autoresizingMask key="autoresizingMask"/>
+                    </toolbar>
                     <connections>
                         <segue destination="8nP-1y-YUj" kind="relationship" relationship="rootViewController" id="5eR-lK-n0p"/>
                     </connections>
@@ -202,6 +206,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="fDl-bT-oeC"/>
+                    <value key="contentSizeForViewInPopover" type="size" width="250" height="87"/>
                     <size key="freeformSize" width="350" height="200"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="781-id-q1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

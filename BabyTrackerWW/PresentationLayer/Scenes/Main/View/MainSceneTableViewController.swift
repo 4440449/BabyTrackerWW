@@ -23,18 +23,17 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         super.viewDidLoad()
         configurator.configureScene(view: self)
         tableView.tableFooterView = UIView(frame: .zero)
-        setNavBarButtons()
-        setBlure()
-        setActivityIndicator()
+        setupNavBarButtons()
+        setupSwipeGestures()
+        setupBlure()
+        setupActivityIndicator()
         setObservers()
         presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        
-                reloadData()
-        //        showNavBarButtons()
+        reloadData()
         //Set obs
     }
     
@@ -53,16 +52,20 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         }
         presenter.isLoading.subscribe(observer: self) { [unowned self] isLoading in
             switch isLoading {
-            case .true: self.startActivity(); self.manageDisplayNavBarButtons() //
-            case .false: self.stopActivity(); self.manageDisplayNavBarButtons() //
+            case .true:
+                self.startActivity();
+                self.manageDisplayNavBarButtons();
+                self.manageSwipeGestures() //
+            case .false:
+                self.stopActivity();
+                self.manageDisplayNavBarButtons();
+                self.manageSwipeGestures() //
             }
         }
     }
     
     private func reloadData() {
         tableView.reloadData()
-        //        navigationController?.navigationBar.topItem?. = UIBarButtonItem(title: presenter.getDate(), style: .plain, target: self, action: #selector(changeDateButton))
-        
         navigationController?.navigationBar.topItem?.title = presenter.getDate()
         manageDisplayNavBarButtons()
     }
@@ -71,23 +74,35 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     // MARK: - UI
     
     private let activityIndicator = UIActivityIndicatorView()
-    
     private let blure = UIVisualEffectView()
     
     
     // MARK: - Navigation Bar
     
     private var changeDateOutletButton: UIBarButtonItem!
-    var addNewOutletButton: UIBarButtonItem!
+    private var addNewOutletButton: UIBarButtonItem!
     private var cancelOutletButton: UIBarButtonItem!
     private var saveOutletButton: UIBarButtonItem!
     private var editOutletButton: UIBarButtonItem!
+    
+    // MARK: - Gestures
+    
+    private let left: UISwipeGestureRecognizer = {
+        let gest = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
+        gest.direction = .left
+        return gest
+    }()
+    private let right: UISwipeGestureRecognizer = {
+        let gest = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipe))
+        gest.direction = .right
+        return gest
+    }()
     
     
     // MARK: - Table view
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print(presenter.getNumberOfLifeCycles())
+        //        print(presenter.getNumberOfLifeCycles())
         return presenter.getNumberOfLifeCycles()
     }
     
@@ -106,9 +121,6 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         if !tableView.isEditing {
             tableView.deselectRow(at: indexPath, animated: true)
             presenter.didSelectRow(at: indexPath.row, vc: self)
-//            presenter.didSelectRow(at: indexPath.row) { identifire in
-//                self.performSegue(withIdentifier: identifire, sender: nil)
-//            }
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -134,23 +146,61 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         return .none
     }
     
+    
     deinit {
         // Root VC
     }
     
 }
 
+// MARK: - Internal setup - Behaviours -
 
 extension MainSceneTableViewController {
     
-    private func setNavBarButtons() {
+    // MARK: - Gestures
+    
+    private func setupSwipeGestures() {
+//        print("before", tableView.gestureRecognizers)
+        tableView.addGestureRecognizer(left)
+        tableView.addGestureRecognizer(right)
+//        print("after", tableView.gestureRecognizers)
+
+    }
+    
+    private func manageSwipeGestures() {
+        print("+++", !tableView.isEditing || activityIndicator.isHidden)
+        guard (!tableView.isEditing || activityIndicator.isHidden) else { removeSwipeGestures(); return }
+        setupSwipeGestures()
+    }
+    
+    private func removeSwipeGestures() {
+        tableView.removeGestureRecognizer(left)
+        tableView.removeGestureRecognizer(right)
+        print(tableView.gestureRecognizers)
+    }
+    
+    @objc private func leftSwipe() {
+        print("left")
+        //        guard !tableView.isEditing && activityIndicator.isHidden else { return }
+        presenter.swipe(gesture: .left)
+    }
+    
+    @objc private func rightSwipe() {
+        print("right")
+        //        guard !tableView.isEditing && activityIndicator.isHidden else { return }
+        presenter.swipe(gesture: .right)
+    }
+    
+    
+    // MARK: - Navigation bar
+    
+    private func setupNavBarButtons() {
         changeDateOutletButton = UIBarButtonItem(title: "Изменить дату", style: .plain, target: self, action: #selector(changeDateButton))
         addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
         cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
         saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
         editOutletButton = UIBarButtonItem (title: "Редактировать", style: .plain, target: self, action: #selector(editButton))
     }
-    
     
     private func manageDisplayNavBarButtons() {
         guard activityIndicator.isHidden else { showLoadingStateNavBarButtons(); return }
@@ -176,7 +226,6 @@ extension MainSceneTableViewController {
     }
     
     
-    
     @IBAction private func changeDateButton(_ sender: Any) {
         self.performSegue(withIdentifier: "changeDateButton", sender: nil)
     }
@@ -187,34 +236,29 @@ extension MainSceneTableViewController {
     }
     
     @IBAction private func cancelButton(_ sender: Any) {
-        //showNavBarButtons()
         tableView.setEditing(false, animated: true)
         manageDisplayNavBarButtons()
+        manageSwipeGestures()
         presenter.cancelChanges()
-        //        tableView.reloadData() //
     }
     
     @IBAction private func saveButton(_ sender: Any) {
-        //        showNavBarButtons()
         tableView.setEditing(false, animated: true)
         manageDisplayNavBarButtons()
+        manageSwipeGestures()
         presenter.saveChanges()
     }
     
     @IBAction private func editButton(_ sender: Any) {
-        //        hideNavBarButtons()
         tableView.setEditing(true, animated: true)
         manageDisplayNavBarButtons()
+        manageSwipeGestures()
     }
     
-}
-
-
-extension MainSceneTableViewController {
     
-    // MARK: - Activity
+    // MARK: - Activity indicator
     
-    private func setActivityIndicator() {
+    private func setupActivityIndicator() {
         activityIndicator.center = view.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
@@ -240,11 +284,9 @@ extension MainSceneTableViewController {
     }
     
     
+    // MARK: - Blure effect
     
-    
-    // MARK: - Blure
-    
-    private func setBlure() {
+    private func setupBlure() {
         let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?
             .systemThinMaterialDark : .systemThinMaterialLight
         let blurEffect = UIBlurEffect(style: style)
@@ -262,43 +304,8 @@ extension MainSceneTableViewController {
         blure.isHidden = true
     }
     
-//    private func setPopover() {
-//        popoverPresentationController?.delegate = self
-//        popoverPresentationController?.sourceRect = CGRect(x: tableView.center.x, y: tableView.center.y, width: 0, height: 0)
-//        preferredContentSize = CGSize(width: 350, height: 120)
-//        popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
-//    }
-    
 }
 
 
 
 
-
-//    override func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
-//        // Return false if you do not want the specified item to be editable.
-//        return true
-//    }
-//
-//    override func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
-//        return "Удалить"
-//    }
-
-
-//    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//
-//
-//    }
-
-//    override func setEditing(_ editing: Bool, animated: Bool) {
-////        super.setEditing(editing, animated: animated)
-////        tableView.setEditing(editing, animated: true)
-//    }
-
-//    func setButton() {
-//        var button = UIButton(type: .system)
-//        button.frame = CGRect(x: 250, y: 450 , width: 100, height: 100)
-//        button.backgroundColor = .green
-////        button.addTarget(self, action: #selector(saveButton), for: .touchUpInside)
-//        view.addSubview(button)
-//    }

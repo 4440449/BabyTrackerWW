@@ -29,7 +29,7 @@ protocol MainSceneDelegate: AnyObject {
     var isLoading: Publisher<Loading> { get }
     func shareStateForMainScene() -> LifeCyclesCard
     
-    func fetchLifeCycles()
+    func fetchLifeCycles(at date: Date)
     func synchronize(new lifeCycles: [LifeCycle])
 }
 
@@ -95,10 +95,10 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         return lifeCycleCard.value
     }
     
-    func fetchLifeCycles() {
+    func fetchLifeCycles(at date: Date) { // (at: Date)
         isLoading.value = .true
-        lifecycleCardRepository.fetch(at: lifeCycleCard.value.date) { [unowned self] result in
-//            print(result)
+        lifecycleCardRepository.fetch(at: date) { [unowned self] result in
+            self.lifeCycleCard.value.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
@@ -137,15 +137,17 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func changeDate(new date: Date) {
         guard date != lifeCycleCard.value.date else { return }
-        isLoading.value = .true
-        lifecycleCardRepository.fetch(at: date) { [unowned self] result in
-            self.lifeCycleCard.value.date = date
-            switch result {
-            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles;
-            case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
-            }
-            self.isLoading.value = .false
-        }
+//        isLoading.value = .true
+        fetchLifeCycles(at: date)
+        
+//        lifecycleCardRepository.fetch(at: date) { [unowned self] result in
+//            self.lifeCycleCard.value.date = date
+//            switch result {
+//            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles;
+//            case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
+//            }
+//            self.isLoading.value = .false
+//        }
     }
     
     

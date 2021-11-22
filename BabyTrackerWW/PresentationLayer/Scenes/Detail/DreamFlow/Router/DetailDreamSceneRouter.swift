@@ -30,7 +30,7 @@ final class DetailDreamSceneRouterImpl: DetailDreamSceneRouterProtocol {
     
     
     deinit {
-//        print("DetailSceneRouterImpl - is Deinit!")
+        print("DetailSceneRouterImpl - is Deinit!")
     }
     
 }

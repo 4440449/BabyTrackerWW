@@ -38,10 +38,11 @@ class SelectSceneTableViewController: UITableViewController {
     
     //    private let animation = UIDynamicAnimator()
     private func setupPopoverSettings() {
-        preferredContentSize = CGSize(width: 250, height: 87)
-        popoverPresentationController?.permittedArrowDirections = UIPopoverArrowDirection(rawValue: 0)
+//        preferredContentSize = CGSize(width: 250, height: 87)
+        popoverPresentationController?.permittedArrowDirections = .init(rawValue: 0)
         popoverPresentationController?.popoverLayoutMargins = UIEdgeInsets(top: 40, left: 160, bottom: 0, right: 20)
         tableView.tableFooterView = UIView(frame: .zero)
+        
     }
     
     // MARK: - Table view data source

@@ -62,7 +62,7 @@ final class DetailDreamSceneViewController: UIViewController {
     
     
     deinit {
-//         print("DreamDetailSceneViewController - is Deinit!")
+         print("DreamDetailSceneViewController - is Deinit!")
     }
     
 }

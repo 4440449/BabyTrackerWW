@@ -25,14 +25,16 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
         
         if let detailDreamVC = segue.destination as? DetailDreamSceneViewController {
             detailDreamVC.configurator.configureScene(view: detailDreamVC, delegate: delegate)
-            selectIndex != nil ?
-                detailDreamVC.presenter.didSelectFlow(at: selectIndex!) : detailDreamVC.presenter.addNewFlow()
+            guard selectIndex != nil else { detailDreamVC.presenter.addNewFlow(); return }
+            detailDreamVC.presenter.didSelectFlow(at: selectIndex!)
+            selectIndex = nil
+
         } else
-            
             if let detailWakeVC = segue.destination as? DetailWakeSceneViewController {
                 detailWakeVC.configurator.configureScene(view: detailWakeVC, delegate: delegate)
-                selectIndex != nil ?
-                    detailWakeVC.presenter.didSelectFlow(at: selectIndex!) : detailWakeVC.presenter.addNewFlow()
+                guard selectIndex != nil else { detailWakeVC.presenter.addNewFlow(); return }
+                detailWakeVC.presenter.didSelectFlow(at: selectIndex!)
+                selectIndex = nil
                 
             } else
                 if let selectVC = segue.destination as? SelectSceneTableViewController,

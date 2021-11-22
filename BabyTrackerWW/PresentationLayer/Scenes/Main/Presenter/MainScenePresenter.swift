@@ -24,6 +24,8 @@ protocol MainScenePresenterProtocol {
     func moveRow(source: Int, destination: Int)
     func saveChanges()
     func cancelChanges()
+    
+    func swipe(gesture: Swipe)
 }
 
 //MARK: - Implementation -
@@ -74,7 +76,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     // MARK: - View Input
     
     func viewDidLoad() {
-        interactor.fetchLifeCycles()
+        interactor.fetchLifeCycles(at: interactor.shareStateForMainScene().date)
     }
     
     func getDate() -> String {
@@ -147,12 +149,50 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         removeObservers()
     }
     
+    
+    func swipe(gesture: Swipe) {
+        switch gesture {
+        case .left:
+            guard let dayAfter = interactor.shareStateForMainScene().date.after() else { print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: dayAfter)
+//            interactor.change(date: dayAfter)
+            
+        case .right:
+            guard let dayBefore = interactor.shareStateForMainScene().date.before() else { print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: dayBefore)
+//            interactor.change(date: dayBefore)
+        }
+    }
+    
+    
+
+    
 }
 
 //MARK: - Extensions
 
 extension Array {
+    
     mutating func rearrange(from: Int, to: Int) {
         insert(remove(at: from), at: to)
     }
+}
+
+extension Date {
+    
+    func after() -> Date? {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone.current
+        let dayAfter = calendar.date(byAdding: .hour, value: 24, to: self)
+        return dayAfter
+    }
+    
+    func before() -> Date? {
+        var calendar = Calendar(identifier: .gregorian)
+        calendar.timeZone = TimeZone.current
+        let dayBefore = calendar.date(byAdding: .hour, value: -24, to: self)
+        return dayBefore
+    }
+    
+    
 }

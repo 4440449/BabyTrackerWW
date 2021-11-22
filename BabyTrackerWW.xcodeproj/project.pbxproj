@@ -17,6 +17,7 @@
 		508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE992741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift */; };
 		508CEE9D274186D20086051A /* DreamNetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9C274186D20086051A /* DreamNetworkRepositoryProtocol.swift */; };
 		508CEEA02741870C0086051A /* WakeNetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9F2741870C0086051A /* WakeNetworkRepositoryProtocol.swift */; };
+		508CEEA7274AEA870086051A /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEEA6274AEA870086051A /* Swipe.swift */; };
 		50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */; };
 		50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */; };
 		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
@@ -87,6 +88,7 @@
 		508CEE992741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardNetworkRepositoryImpl.swift; sourceTree = "<group>"; };
 		508CEE9C274186D20086051A /* DreamNetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
 		508CEE9F2741870C0086051A /* WakeNetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
+		508CEEA6274AEA870086051A /* Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipe.swift; sourceTree = "<group>"; };
 		50A3E283271F919B008B2A0B /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
 		50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapper.swift"; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -185,6 +187,7 @@
 			children = (
 				50F6C91927332E5E005648BA /* Publisher.swift */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
+				508CEEA6274AEA870086051A /* Swipe.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -888,6 +891,7 @@
 				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
 				50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
+				508CEEA7274AEA870086051A /* Swipe.swift in Sources */,
 				50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */,
 				50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */,
 			);
