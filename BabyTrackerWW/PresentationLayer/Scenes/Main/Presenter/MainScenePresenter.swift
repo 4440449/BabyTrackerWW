@@ -47,7 +47,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     //MARK: - State
     
-    var tempLifeCycle = Publisher(value: [LifeCycle]())
+    var tempLifeCycle = Publisher(value: [LifeCycle]()) // TODO: Из за переиндексирования, каждый элемент уведомляет обзервер об изменении, из за этого каждый элемент обновляет мейн скрин, ПЛОХО ПО ПЕРФОРМАНСУ?
     //    {
     //        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
     //    }

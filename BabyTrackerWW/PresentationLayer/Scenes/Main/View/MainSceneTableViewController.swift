@@ -55,11 +55,11 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
             case .true:
                 self.startActivity();
                 self.manageDisplayNavBarButtons();
-                self.manageSwipeGestures() //
+                self.manageSwipeGestures()
             case .false:
                 self.stopActivity();
                 self.manageDisplayNavBarButtons();
-                self.manageSwipeGestures() //
+                self.manageSwipeGestures()
             }
         }
     }
@@ -67,7 +67,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     private func reloadData() {
         tableView.reloadData()
         navigationController?.navigationBar.topItem?.title = presenter.getDate()
-        manageDisplayNavBarButtons()
+//        manageDisplayNavBarButtons() // проверить нужен ли здесь вызов метода?
     }
     
     
@@ -87,12 +87,12 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     
     // MARK: - Gestures
     
-    private let left: UISwipeGestureRecognizer = {
+    private lazy var left: UISwipeGestureRecognizer = {
         let gest = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
         gest.direction = .left
         return gest
     }()
-    private let right: UISwipeGestureRecognizer = {
+    private lazy var right: UISwipeGestureRecognizer = {
         let gest = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipe))
         gest.direction = .right
         return gest
@@ -160,34 +160,43 @@ extension MainSceneTableViewController {
     // MARK: - Gestures
     
     private func setupSwipeGestures() {
-//        print("before", tableView.gestureRecognizers)
         tableView.addGestureRecognizer(left)
         tableView.addGestureRecognizer(right)
-//        print("after", tableView.gestureRecognizers)
-
+        print(left)
+        print(right)
     }
     
     private func manageSwipeGestures() {
-        print("+++", !tableView.isEditing || activityIndicator.isHidden)
-        guard (!tableView.isEditing || activityIndicator.isHidden) else { removeSwipeGestures(); return }
-        setupSwipeGestures()
+        if (!tableView.isEditing && activityIndicator.isHidden) {
+            enableSwipeGestures()
+        } else {
+            disableSwipeGestures()
+        }
     }
     
-    private func removeSwipeGestures() {
-        tableView.removeGestureRecognizer(left)
-        tableView.removeGestureRecognizer(right)
-        print(tableView.gestureRecognizers)
+    private func enableSwipeGestures() {
+        tableView.gestureRecognizers?.forEach {
+            if ($0 == left || $0 == right) {
+                $0.isEnabled = true
+            }
+        }
+    }
+    
+    private func disableSwipeGestures() {
+        tableView.gestureRecognizers?.forEach {
+            if ($0 == left || $0 == right) {
+                $0.isEnabled = false
+            }
+        }
     }
     
     @objc private func leftSwipe() {
         print("left")
-        //        guard !tableView.isEditing && activityIndicator.isHidden else { return }
         presenter.swipe(gesture: .left)
     }
     
     @objc private func rightSwipe() {
         print("right")
-        //        guard !tableView.isEditing && activityIndicator.isHidden else { return }
         presenter.swipe(gesture: .right)
     }
     

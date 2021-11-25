@@ -45,7 +45,7 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-//            sleep(1/2)
+            sleep(1)
             //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
