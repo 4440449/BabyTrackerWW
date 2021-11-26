@@ -25,15 +25,12 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         tableView.tableFooterView = UIView(frame: .zero)
         setupNavBarButtons()
         setupSwipeGestures()
-        setupBlure()
-        setupActivityIndicator()
-        setObservers()
+        setupObservers()
         presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        reloadData()
         //Set obs
     }
     
@@ -45,7 +42,22 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     
     // MARK: - Private
     
-    private func setObservers() {
+    private func setupObservers() {
+        //Рутовый контроллер - Навигационный; обращаюсь к сцен делегату через него
+        if let sceneDelegate =
+            self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
+            sceneDelegate.sceneState.subscribe(observer: self) { [unowned self] sceneState in
+                print("sceneState accepted == \(sceneState)")
+                switch sceneState {
+                case .foreground:
+                    self.setupBlureEffect()
+                    self.setupActivityIndicator()
+                case .background:
+                    self.removeBlureEffect()
+                    self.removeActivityIndicator()
+                }
+            }
+        }
         presenter.tempLifeCycle.subscribe(observer: self) { [unowned self] _ in
             print("reload data Main")
             self.reloadData()
@@ -67,7 +79,6 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     private func reloadData() {
         tableView.reloadData()
         navigationController?.navigationBar.topItem?.title = presenter.getDate()
-//        manageDisplayNavBarButtons() // проверить нужен ли здесь вызов метода?
     }
     
     
@@ -162,8 +173,6 @@ extension MainSceneTableViewController {
     private func setupSwipeGestures() {
         tableView.addGestureRecognizer(left)
         tableView.addGestureRecognizer(right)
-        print(left)
-        print(right)
     }
     
     private func manageSwipeGestures() {
@@ -191,12 +200,10 @@ extension MainSceneTableViewController {
     }
     
     @objc private func leftSwipe() {
-        print("left")
         presenter.swipe(gesture: .left)
     }
     
     @objc private func rightSwipe() {
-        print("right")
         presenter.swipe(gesture: .right)
     }
     
@@ -241,7 +248,6 @@ extension MainSceneTableViewController {
     
     @IBAction private func addNewButton(_ sender: Any) {
         self.performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
-        
     }
     
     @IBAction private func cancelButton(_ sender: Any) {
@@ -268,41 +274,48 @@ extension MainSceneTableViewController {
     // MARK: - Activity indicator
     
     private func setupActivityIndicator() {
-        activityIndicator.center = view.center
+        print("setupActivityIndicator")
+        let color: UIColor = .systemGray
+        activityIndicator.center = tableView.center
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
-        activityIndicator.color = UIColor.black
-        view.addSubview(activityIndicator)
+        activityIndicator.color = color
+        tableView.addSubview(activityIndicator)
+    }
+    
+    private func removeActivityIndicator() {
+        print("removeActivityIndicator")
+        activityIndicator.removeFromSuperview()
     }
     
     private func startActivity() {
         showBlure()
         activityIndicator.startAnimating()
-        //        self.tableView.numberOfRows(inSection: 0)
-        //        self.tableView.reloadData()
-        //        view.isOpaque = false
-        //        self.tableView.isOpaque = false
-        //        self.tableView.isUserInteractionEnabled = false
     }
     
     private func stopActivity() {
         hideBlure()
         activityIndicator.stopAnimating()
-        //        self.tableView.isOpaque = true
-        //        self.tableView.isUserInteractionEnabled = true
     }
     
     
     // MARK: - Blure effect
     
-    private func setupBlure() {
+    private func setupBlureEffect() {
+        print("setupBlureEffect")
+         // if #available(iOS 13.0, *)
         let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?
             .systemThinMaterialDark : .systemThinMaterialLight
         let blurEffect = UIBlurEffect(style: style)
         blure.effect = blurEffect
-        blure.frame = view.bounds
+        blure.frame = tableView.bounds
         blure.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(blure)
+        tableView.addSubview(blure)
+    }
+    
+    private func removeBlureEffect() {
+        print("removeBlureEffect")
+        blure.removeFromSuperview()
     }
     
     private func showBlure() {

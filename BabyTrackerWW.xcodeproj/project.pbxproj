@@ -11,6 +11,7 @@
 		501716A22718C936008DD70C /* LifeCyclesCardGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */; };
 		501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */; };
 		501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */; };
+		5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083ADB5275061BD00F1BF73 /* SceneState.swift */; };
 		508CEE8E274177C70086051A /* DreamGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamGatewayImpl.swift */; };
 		508CEE9027417B2D0086051A /* WakeGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */; };
 		508CEE9227417E540086051A /* LifeCyclesCardPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9127417E540086051A /* LifeCyclesCardPersistenceRepository.swift */; };
@@ -82,6 +83,7 @@
 		501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGatewayImpl.swift; sourceTree = "<group>"; };
 		501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientConfig.swift; sourceTree = "<group>"; };
 		501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTaskConfigurator.swift; sourceTree = "<group>"; };
+		5083ADB5275061BD00F1BF73 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		508CEE8D274177C70086051A /* DreamGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamGatewayImpl.swift; sourceTree = "<group>"; };
 		508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeGatewayImpl.swift; sourceTree = "<group>"; };
 		508CEE9127417E540086051A /* LifeCyclesCardPersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistenceRepository.swift; sourceTree = "<group>"; };
@@ -188,6 +190,7 @@
 				50F6C91927332E5E005648BA /* Publisher.swift */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
+				5083ADB5275061BD00F1BF73 /* SceneState.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -829,6 +832,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */,
 				50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */,
 				50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter.swift in Sources */,
 				50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */,
