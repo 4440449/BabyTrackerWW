@@ -218,27 +218,12 @@
             <objects>
                 <viewController id="rJu-0z-jb4" customClass="DetailDreamSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1e-mN-Mv8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="GHU-os-GMi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="730"/>
                                 <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
-                                        <rect key="frame" x="122.5" y="389" width="130" height="55"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="55" id="EPG-Gj-bwj"/>
-                                            <constraint firstAttribute="width" constant="130" id="ug5-3V-fW9"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
-                                        <state key="normal" title="Сохранить">
-                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        </state>
-                                        <connections>
-                                            <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="7IN-Cd-Wud"/>
-                                        </connections>
-                                    </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
                                         <rect key="frame" x="20" y="90" width="335" height="27.5"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -274,11 +259,33 @@
                                             <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="PutDown" id="tdi-ZX-3er"/>
                                         </connections>
                                     </button>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVv-up-3sd">
+                                        <rect key="frame" x="20" y="339" width="335" height="100"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
+                                        <rect key="frame" x="122" y="543" width="130" height="55"/>
+                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="55" id="EPG-Gj-bwj"/>
+                                            <constraint firstAttribute="width" constant="130" id="ug5-3V-fW9"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                        <state key="normal" title="Сохранить">
+                                            <color key="titleColor" systemColor="linkColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </state>
+                                        <connections>
+                                            <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="7IN-Cd-Wud"/>
+                                        </connections>
+                                    </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstItem="ZID-iq-Fhv" firstAttribute="top" secondItem="wGe-ue-ZBw" secondAttribute="bottom" constant="100" id="3Yz-dK-iFN"/>
                                     <constraint firstItem="ufL-7i-iXL" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="4rM-Z5-raC"/>
                                     <constraint firstItem="ufL-7i-iXL" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="6nL-bz-YWA"/>
+                                    <constraint firstItem="aVv-up-3sd" firstAttribute="top" secondItem="wGe-ue-ZBw" secondAttribute="bottom" constant="50" id="75k-El-hcn"/>
                                     <constraint firstAttribute="trailing" secondItem="0OC-h9-VxV" secondAttribute="trailing" constant="20" id="9Ya-Qs-3OJ"/>
                                     <constraint firstItem="ZID-iq-Fhv" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="9eE-Ez-eq7"/>
                                     <constraint firstItem="cA9-ml-Jyd" firstAttribute="top" secondItem="0OC-h9-VxV" secondAttribute="bottom" constant="50" id="9st-WD-yot"/>
@@ -288,13 +295,16 @@
                                     <constraint firstAttribute="trailing" secondItem="ufL-7i-iXL" secondAttribute="trailing" constant="20" id="G2D-RQ-0eu"/>
                                     <constraint firstAttribute="trailing" secondItem="wGe-ue-ZBw" secondAttribute="trailing" constant="20" id="ImG-oq-wcA"/>
                                     <constraint firstItem="0OC-h9-VxV" firstAttribute="top" secondItem="ufL-7i-iXL" secondAttribute="bottom" constant="8" id="Jlo-fe-m7T"/>
+                                    <constraint firstItem="aVv-up-3sd" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="QAd-WE-svF"/>
                                     <constraint firstAttribute="trailing" secondItem="cA9-ml-Jyd" secondAttribute="trailing" constant="20" id="QU1-LM-ICU"/>
                                     <constraint firstItem="0OC-h9-VxV" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="R7K-VO-d1q"/>
                                     <constraint firstItem="0OC-h9-VxV" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="YYn-go-MCw"/>
                                     <constraint firstItem="cA9-ml-Jyd" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="efO-As-UoJ"/>
-                                    <constraint firstAttribute="bottom" secondItem="ZID-iq-Fhv" secondAttribute="bottom" constant="150" id="msg-u0-nW9"/>
+                                    <constraint firstItem="ZID-iq-Fhv" firstAttribute="top" secondItem="aVv-up-3sd" secondAttribute="bottom" constant="100" id="jsq-cI-xqo"/>
+                                    <constraint firstAttribute="bottom" secondItem="ZID-iq-Fhv" secondAttribute="bottom" constant="150" id="n3R-mu-jhT"/>
                                     <constraint firstItem="wGe-ue-ZBw" firstAttribute="top" secondItem="cA9-ml-Jyd" secondAttribute="bottom" constant="8" id="q57-ok-d67"/>
                                     <constraint firstItem="wGe-ue-ZBw" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="rbr-an-zg9"/>
+                                    <constraint firstAttribute="trailing" secondItem="aVv-up-3sd" secondAttribute="trailing" constant="20" id="wWN-zv-Wge"/>
                                 </constraints>
                             </scrollView>
                             <navigationBar alpha="0.97999999999999998" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kvO-qv-ce7">
@@ -323,6 +333,7 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="NU4-Sc-z8i"/>
                     </view>
+                    <size key="freeformSize" width="375" height="750"/>
                     <connections>
                         <outlet property="fallAsleepOutletButton" destination="0OC-h9-VxV" id="GtV-X3-P5s"/>
                         <outlet property="putDownOutletButton" destination="wGe-ue-ZBw" id="MZC-Sl-lKp"/>
@@ -330,7 +341,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Vpa-lY-8Rx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-809" y="1790"/>
+            <point key="canvasLocation" x="-810.39999999999998" y="1789.2053973013494"/>
         </scene>
         <!--Picker View Controller-->
         <scene sceneID="qh4-Ze-wmv">
@@ -394,7 +405,7 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
-                                        <rect key="frame" x="122.5" y="541" width="130" height="55"/>
+                                        <rect key="frame" x="122.5" y="619.5" width="130" height="55"/>
                                         <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="hNj-Yc-7lU"/>
@@ -457,6 +468,11 @@
                                             <segue destination="Hoi-qQ-SGb" kind="presentation" identifier="Signs" id="cLA-m7-zfg"/>
                                         </connections>
                                     </button>
+                                    <textField opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="bezel" placeholder="Примечание" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9lM-7W-znL">
+                                        <rect key="frame" x="20" y="491" width="335" height="29.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                 </subviews>
                                 <constraints>
                                     <constraint firstItem="FXQ-VT-M62" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="0l4-2j-tq2"/>
@@ -469,17 +485,20 @@
                                     <constraint firstItem="fF9-hf-HII" firstAttribute="top" secondItem="UFt-gR-L5p" secondAttribute="bottom" constant="50" id="Ih7-rO-3r1"/>
                                     <constraint firstItem="r2b-aV-PMP" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="JLQ-Ri-VY0"/>
                                     <constraint firstItem="fF9-hf-HII" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="Jfz-6A-bXy"/>
+                                    <constraint firstItem="9lM-7W-znL" firstAttribute="top" secondItem="r2b-aV-PMP" secondAttribute="bottom" constant="50" id="Khm-DF-R5f"/>
                                     <constraint firstItem="qJ7-IN-Xix" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="M4v-OA-ywA"/>
                                     <constraint firstItem="FXQ-VT-M62" firstAttribute="top" secondItem="qJ7-IN-Xix" secondAttribute="bottom" constant="50" id="PvG-K6-kfO"/>
                                     <constraint firstAttribute="bottom" secondItem="Zvz-Oj-TY3" secondAttribute="bottom" constant="50" id="RjA-se-AlK"/>
                                     <constraint firstItem="Z7g-PK-kK4" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="SJP-Rb-OyL"/>
                                     <constraint firstItem="UFt-gR-L5p" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="aW1-yk-h96"/>
+                                    <constraint firstAttribute="trailing" secondItem="9lM-7W-znL" secondAttribute="trailing" constant="20" id="bEX-n6-gYE"/>
                                     <constraint firstItem="Z7g-PK-kK4" firstAttribute="top" secondItem="jbD-g9-QX1" secondAttribute="top" constant="90" id="dUu-tW-3wx"/>
                                     <constraint firstItem="r2b-aV-PMP" firstAttribute="top" secondItem="fF9-hf-HII" secondAttribute="bottom" constant="8" id="fUm-ni-g2q"/>
                                     <constraint firstAttribute="trailing" secondItem="r2b-aV-PMP" secondAttribute="trailing" constant="20" id="gD9-1Y-H01"/>
                                     <constraint firstAttribute="trailing" secondItem="qJ7-IN-Xix" secondAttribute="trailing" constant="20" id="i0M-fs-dns"/>
-                                    <constraint firstItem="Zvz-Oj-TY3" firstAttribute="top" secondItem="r2b-aV-PMP" secondAttribute="bottom" constant="100" id="jLC-NI-L0i"/>
+                                    <constraint firstItem="Zvz-Oj-TY3" firstAttribute="top" secondItem="9lM-7W-znL" secondAttribute="bottom" constant="100" id="jLC-NI-L0i"/>
                                     <constraint firstItem="UFt-gR-L5p" firstAttribute="top" secondItem="FXQ-VT-M62" secondAttribute="bottom" constant="8" id="klG-Ul-3iU"/>
+                                    <constraint firstItem="9lM-7W-znL" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="pKH-tP-NId"/>
                                     <constraint firstItem="Zvz-Oj-TY3" firstAttribute="centerX" secondItem="jbD-g9-QX1" secondAttribute="centerX" id="wl0-O8-A9N"/>
                                 </constraints>
                             </scrollView>
@@ -519,7 +538,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zkZ-ea-8Df" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="36" y="1790"/>
+            <point key="canvasLocation" x="-4" y="1752"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

@@ -47,7 +47,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     //MARK: - State
     
-    var tempLifeCycle = Publisher(value: [LifeCycle]()) // TODO: Из за переиндексирования, каждый элемент уведомляет обзервер об изменении, из за этого каждый элемент обновляет мейн скрин, ПЛОХО ПО ПЕРФОРМАНСУ?
+    var tempLifeCycle = Publisher(value: [LifeCycle]())
     //    {
     //        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
     //    }
@@ -111,20 +111,15 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     func deleteRow(at index: Int) {
         tempLifeCycle.value.remove(at: index)
-        //        interactor.deleteLifeCycle(at: index)
     }
     
     func moveRow(source: Int, destination: Int) {
-        //        tempLifeCycle.value.forEach { print("До изменения \($0.index) \($0.id)") }
-        tempLifeCycle.value.rearrange(from: source, to: destination)
-        //        tempLifeCycle.value.forEach { print("После изменения \($0.index) \($0.id)") }
-        //        print("tempLifeCycle.count == \(tempLifeCycle.count)")
-        for i in 0..<tempLifeCycle.value.count {
-            //            print("i == \(i)")
-            tempLifeCycle.value[i].index = i
-            //            print("tempLifeCycle[i].index == \(tempLifeCycle[i].index)")
+        var lc = tempLifeCycle.value
+        lc.rearrange(from: source, to: destination)
+        for i in 0..<lc.count {
+            lc[i].index = i
         }
-        //        tempLifeCycle.value.forEach { print("После цикла \($0.index) \($0.id)") }
+        tempLifeCycle.value = lc
     }
     
     func cancelChanges() {
@@ -132,7 +127,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     }
     
     func saveChanges() {
-        for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1)  {
+        for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1) {
             //            print("i", i)
             //            print("temp", tempLifeCycle.value[i].index, tempLifeCycle.value[i].id)
             //            print("interact", interactor.lifeCycleCard.value.lifeCycle[i].index, interactor.lifeCycleCard.value.lifeCycle[i].id)

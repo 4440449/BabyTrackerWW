@@ -40,7 +40,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     
-    // MARK: - Private
+    // MARK: - Input data flow
     
     private func setupObservers() {
         //Рутовый контроллер - Навигационный; обращаюсь к сцен делегату через него

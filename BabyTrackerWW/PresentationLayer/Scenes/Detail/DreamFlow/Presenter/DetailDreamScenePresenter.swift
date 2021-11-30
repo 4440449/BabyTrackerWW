@@ -14,7 +14,7 @@ protocol DetailDreamScenePresenterProtocol: AnyObject {
 //    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
     var dream: Publisher<Dream> { get }
     func didSelectFlow(at index: Int)
-    func addNewFlow()
+    func addNewFlow() // в отдельный протокол?
     func saveButtonTapped()
     func prepare<S>(for segue: S)
 }
