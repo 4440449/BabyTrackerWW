@@ -11,17 +11,20 @@ import UIKit
 
 final class DetailDreamSceneViewController: UIViewController {
     
+    // MARK: - Dependencies
+    
     let configurator = DetailDreamSceneConfiguratorImpl()
     var presenter: DetailDreamScenePresenterProtocol!
     
+    
+    // MARK: - Lifecycle View
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter.dream.subscribe(observer: self) { [unowned self] dream in
-        self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
-        self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
-        }
+        setupOutletButtons()
+        setupTextView()
+        setupObservers()
     }
-    
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
@@ -29,12 +32,32 @@ final class DetailDreamSceneViewController: UIViewController {
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-//        presenter.dream.unsubscribe(observer: self)
+        //        presenter.dream.unsubscribe(observer: self)
     }
     
     
+    // MARK: - Input data flow
+    
+    private func setupObservers() {
+        presenter.dream.subscribe(observer: self) { [unowned self] dream in
+            self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
+            self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
+    
+    
+    // MARK: - UI
+    
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
     @IBOutlet weak var putDownOutletButton: UIButton!
+    @IBOutlet weak var saveOutletButton: UIButton!
+    @IBOutlet weak var textView: UITextView!
+    @IBOutlet weak var scrollView: UIScrollView!
+    @IBOutlet weak var placeholderLabel: UILabel!
     
     
     @IBAction func fallAsleepButton(_ sender: Any) {
@@ -51,8 +74,21 @@ final class DetailDreamSceneViewController: UIViewController {
     
     @IBAction func backButton(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
-      }
+    }
     
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        textView.resignFirstResponder()
+    }
+    
+    @IBAction func tapOnScrollViewGesture(_ sender: UITapGestureRecognizer) {
+        textView.resignFirstResponder()
+    }
+    
+    
+    // MARK: - Navigation
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         presenter.prepare(for: segue)
     }
@@ -61,8 +97,62 @@ final class DetailDreamSceneViewController: UIViewController {
     }
     
     
+    // MARK: - Deinit
+
     deinit {
-         print("DreamDetailSceneViewController - is Deinit!")
+        print("DreamDetailSceneViewController - is Deinit!")
+    }
+    
+}
+
+
+
+// MARK: - UI Setup
+
+extension DetailDreamSceneViewController: UITextViewDelegate {
+    
+    // MARK: - Buttons
+    
+    private func setupOutletButtons() {
+        fallAsleepOutletButton.layer.cornerRadius = 5
+        putDownOutletButton.layer.cornerRadius = 5
+        saveOutletButton.layer.cornerRadius = 5
+    }
+    
+    
+    // MARK: - TextView
+
+    private func setupTextView() {
+        textView.delegate = self
+//        textView.backgroundColor = .systemGray5
+        textView.layer.cornerRadius = 10
+    }
+    
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        placeholderLabel.isHidden = true
+        
+    }
+    
+    func textViewDidEndEditing(_ textView: UITextView) {
+        guard textView.text.isEmpty else { return }
+        placeholderLabel.isHidden = false
+    }
+    
+    @objc func adjustKeyboardFrame(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String : Any],
+            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        //if rotation enabled {
+//        let keyboardViewFrame = view.convert(keyboardFrame, from: view.window)
+//    }
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset.bottom = .zero
+        } else
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
+            scrollView.scrollRectToVisible(textView.frame, animated: true)
+        } else {
+            return
+        }
     }
     
 }
