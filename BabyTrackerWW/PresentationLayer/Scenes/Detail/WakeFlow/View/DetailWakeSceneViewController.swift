@@ -51,6 +51,7 @@ class DetailWakeSceneViewController: UIViewController {
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var counterTextViewLabel: UILabel!
     
     
     @IBAction func wakeUpButton(_ sender: Any) {
@@ -120,6 +121,8 @@ extension DetailWakeSceneViewController: UITextViewDelegate {
     
     // MARK: - TextView
     
+    private var maxTextViewLenghtCount: Int { get { 500 } }
+    
     private func setupTextView() {
         textView.delegate = self
         //        textView.backgroundColor = .systemGray5
@@ -151,6 +154,17 @@ extension DetailWakeSceneViewController: UITextViewDelegate {
             } else {
                 return
         }
+    }
+    
+    func textViewDidChange(_ textView: UITextView) {
+        let clippedText = String(textView.text.prefix(maxTextViewLenghtCount))
+        self.textView.text = clippedText
+        counterTextViewLabel.text = "\(maxTextViewLenghtCount - clippedText.count)"
+    }
+    
+    func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
+        guard (textView.text.count <= maxTextViewLenghtCount) || (range.length >= 1) else { return false }
+        return true
     }
     
 }

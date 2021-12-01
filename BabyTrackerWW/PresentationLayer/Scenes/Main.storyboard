@@ -284,17 +284,23 @@
                                             <action selector="saveButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="7IN-Cd-Wud"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Введите текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9E-Ff-ed0">
-                                        <rect key="frame" x="33" y="349" width="130" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9E-Ff-ed0">
+                                        <rect key="frame" x="30" y="349" width="114" height="21"/>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-6n-2De">
+                                        <rect key="frame" x="316" y="460" width="29" height="19"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </label>
                                 </subviews>
                                 <gestureRecognizers/>
                                 <constraints>
+                                    <constraint firstItem="I9E-Ff-ed0" firstAttribute="top" secondItem="aVv-up-3sd" secondAttribute="top" constant="10" id="0Iu-Aw-VOc"/>
+                                    <constraint firstItem="I9E-Ff-ed0" firstAttribute="leading" secondItem="aVv-up-3sd" secondAttribute="leading" constant="10" id="4c3-wZ-KLt"/>
                                     <constraint firstItem="ufL-7i-iXL" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="4rM-Z5-raC"/>
                                     <constraint firstItem="ufL-7i-iXL" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="70" id="6nL-bz-YWA"/>
                                     <constraint firstAttribute="trailing" secondItem="0OC-h9-VxV" secondAttribute="trailing" constant="130" id="9Ya-Qs-3OJ"/>
@@ -310,12 +316,14 @@
                                     <constraint firstItem="aVv-up-3sd" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="20" id="QAd-WE-svF"/>
                                     <constraint firstAttribute="trailing" secondItem="cA9-ml-Jyd" secondAttribute="trailing" constant="80" id="QU1-LM-ICU"/>
                                     <constraint firstItem="0OC-h9-VxV" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="130" id="R7K-VO-d1q"/>
+                                    <constraint firstItem="aVv-up-3sd" firstAttribute="bottom" secondItem="sXy-6n-2De" secondAttribute="bottom" constant="10" id="Rlz-Gr-o0R"/>
                                     <constraint firstItem="0OC-h9-VxV" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="YYn-go-MCw"/>
                                     <constraint firstItem="cA9-ml-Jyd" firstAttribute="centerX" secondItem="GHU-os-GMi" secondAttribute="centerX" id="efO-As-UoJ"/>
                                     <constraint firstItem="ZID-iq-Fhv" firstAttribute="top" secondItem="aVv-up-3sd" secondAttribute="bottom" constant="50" id="l6u-Zj-DgM"/>
                                     <constraint firstItem="wGe-ue-ZBw" firstAttribute="top" secondItem="cA9-ml-Jyd" secondAttribute="bottom" constant="8" id="q57-ok-d67"/>
                                     <constraint firstItem="aVv-up-3sd" firstAttribute="top" secondItem="wGe-ue-ZBw" secondAttribute="bottom" constant="50" id="ras-aQ-2UY"/>
                                     <constraint firstItem="wGe-ue-ZBw" firstAttribute="leading" secondItem="GHU-os-GMi" secondAttribute="leading" constant="130" id="rbr-an-zg9"/>
+                                    <constraint firstItem="aVv-up-3sd" firstAttribute="trailing" secondItem="sXy-6n-2De" secondAttribute="trailing" constant="10" id="vB3-Ty-QGf"/>
                                     <constraint firstAttribute="trailing" secondItem="aVv-up-3sd" secondAttribute="trailing" constant="20" id="wWN-zv-Wge"/>
                                 </constraints>
                                 <connections>
@@ -350,8 +358,9 @@
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
+                        <outlet property="counterTextViewLabel" destination="sXy-6n-2De" id="Y38-TZ-hbz"/>
                         <outlet property="fallAsleepOutletButton" destination="0OC-h9-VxV" id="GtV-X3-P5s"/>
-                        <outlet property="placeholderLabel" destination="I9E-Ff-ed0" id="rTh-Jf-ZAd"/>
+                        <outlet property="placeholderTextViewLabel" destination="I9E-Ff-ed0" id="rTh-Jf-ZAd"/>
                         <outlet property="putDownOutletButton" destination="wGe-ue-ZBw" id="MZC-Sl-lKp"/>
                         <outlet property="saveOutletButton" destination="ZID-iq-Fhv" id="5gL-K7-hep"/>
                         <outlet property="scrollView" destination="GHU-os-GMi" id="BRC-uq-AkI"/>
@@ -504,13 +513,17 @@
                                             <action selector="saveWakeButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="JrF-xd-YHc"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Введите текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-aW-SX3">
-                                        <rect key="frame" x="32" y="558" width="130" height="21"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xxe-aW-SX3">
+                                        <rect key="frame" x="30" y="556" width="114" height="21"/>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="j5l-eD-xAu">
+                                        <rect key="frame" x="316" y="666" width="29" height="20"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
                                 </subviews>
                                 <gestureRecognizers/>
@@ -519,15 +532,18 @@
                                     <constraint firstItem="qJ7-IN-Xix" firstAttribute="top" secondItem="Z7g-PK-kK4" secondAttribute="bottom" constant="8" id="1M9-Ya-WkK"/>
                                     <constraint firstAttribute="trailing" secondItem="UFt-gR-L5p" secondAttribute="trailing" constant="120" id="AHe-tR-aW3"/>
                                     <constraint firstAttribute="trailing" secondItem="fF9-hf-HII" secondAttribute="trailing" constant="80" id="AL6-2X-g72"/>
+                                    <constraint firstItem="J27-iz-chv" firstAttribute="bottom" secondItem="j5l-eD-xAu" secondAttribute="bottom" constant="10" id="AhD-ab-8mF"/>
                                     <constraint firstAttribute="trailing" secondItem="FXQ-VT-M62" secondAttribute="trailing" constant="80" id="COk-fI-Ocp"/>
                                     <constraint firstItem="Z7g-PK-kK4" firstAttribute="centerX" secondItem="jbD-g9-QX1" secondAttribute="centerX" id="Dwm-ax-4IJ"/>
                                     <constraint firstItem="J27-iz-chv" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="20" id="ELz-Wi-r6k"/>
                                     <constraint firstItem="J27-iz-chv" firstAttribute="top" secondItem="r2b-aV-PMP" secondAttribute="bottom" constant="50" id="Ea2-9z-4nF"/>
                                     <constraint firstAttribute="trailing" secondItem="Z7g-PK-kK4" secondAttribute="trailing" constant="75" id="Ebd-Q3-f9j"/>
+                                    <constraint firstItem="Xxe-aW-SX3" firstAttribute="leading" secondItem="J27-iz-chv" secondAttribute="leading" constant="10" id="I5a-K3-77o"/>
                                     <constraint firstItem="fF9-hf-HII" firstAttribute="top" secondItem="UFt-gR-L5p" secondAttribute="bottom" constant="50" id="Ih7-rO-3r1"/>
                                     <constraint firstItem="r2b-aV-PMP" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="120" id="JLQ-Ri-VY0"/>
                                     <constraint firstItem="fF9-hf-HII" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="80" id="Jfz-6A-bXy"/>
                                     <constraint firstItem="qJ7-IN-Xix" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="130" id="M4v-OA-ywA"/>
+                                    <constraint firstItem="Xxe-aW-SX3" firstAttribute="top" secondItem="J27-iz-chv" secondAttribute="top" constant="10" id="PjW-hz-xhg"/>
                                     <constraint firstItem="FXQ-VT-M62" firstAttribute="top" secondItem="qJ7-IN-Xix" secondAttribute="bottom" constant="50" id="PvG-K6-kfO"/>
                                     <constraint firstItem="Z7g-PK-kK4" firstAttribute="leading" secondItem="jbD-g9-QX1" secondAttribute="leading" constant="75" id="SJP-Rb-OyL"/>
                                     <constraint firstAttribute="trailing" secondItem="J27-iz-chv" secondAttribute="trailing" constant="20" id="XdX-3x-v4F"/>
@@ -537,6 +553,7 @@
                                     <constraint firstAttribute="trailing" secondItem="r2b-aV-PMP" secondAttribute="trailing" constant="120" id="gD9-1Y-H01"/>
                                     <constraint firstAttribute="trailing" secondItem="qJ7-IN-Xix" secondAttribute="trailing" constant="130" id="i0M-fs-dns"/>
                                     <constraint firstItem="UFt-gR-L5p" firstAttribute="top" secondItem="FXQ-VT-M62" secondAttribute="bottom" constant="8" id="klG-Ul-3iU"/>
+                                    <constraint firstItem="J27-iz-chv" firstAttribute="trailing" secondItem="j5l-eD-xAu" secondAttribute="trailing" constant="10" id="pzp-cj-PIr"/>
                                     <constraint firstAttribute="bottom" secondItem="Zvz-Oj-TY3" secondAttribute="bottom" constant="50" id="u3U-gk-vCd"/>
                                     <constraint firstItem="Zvz-Oj-TY3" firstAttribute="top" secondItem="J27-iz-chv" secondAttribute="bottom" constant="50" id="wgw-nG-ZXs"/>
                                     <constraint firstItem="Zvz-Oj-TY3" firstAttribute="centerX" secondItem="jbD-g9-QX1" secondAttribute="centerX" id="wl0-O8-A9N"/>
@@ -574,6 +591,7 @@
                     <toolbarItems/>
                     <size key="freeformSize" width="375" height="817"/>
                     <connections>
+                        <outlet property="counterTextViewLabel" destination="j5l-eD-xAu" id="kzN-4i-qD9"/>
                         <outlet property="placeholderLabel" destination="Xxe-aW-SX3" id="cle-F5-aus"/>
                         <outlet property="saveOutletButton" destination="Zvz-Oj-TY3" id="VuF-bn-zqw"/>
                         <outlet property="scrollView" destination="jbD-g9-QX1" id="P5R-CI-uaw"/>
@@ -590,7 +608,7 @@
                     </connections>
                 </tapGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-2" y="1856"/>
+            <point key="canvasLocation" x="-2.3999999999999999" y="1855.3223388305848"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
