@@ -42,6 +42,9 @@ final class DetailDreamSceneViewController: UIViewController {
         presenter.dream.subscribe(observer: self) { [unowned self] dream in
             self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
             self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
+            self.textView.text = dream.note
+            self.counterTextViewLabel.text = "\(self.maxTextViewLenghtCount - dream.note.count)"
+            self.manageTextViewPlaceholder()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -89,7 +92,7 @@ final class DetailDreamSceneViewController: UIViewController {
     
     
     // MARK: - Navigation
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         presenter.prepare(for: segue)
     }
@@ -99,7 +102,7 @@ final class DetailDreamSceneViewController: UIViewController {
     
     
     // MARK: - Deinit
-
+    
     deinit {
         print("DreamDetailSceneViewController - is Deinit!")
     }
@@ -124,47 +127,57 @@ extension DetailDreamSceneViewController: UITextViewDelegate {
     // MARK: - TextView
     
     private var maxTextViewLenghtCount: Int { get { 500 } }
-
+    
     private func setupTextView() {
         textView.delegate = self
         textView.layer.cornerRadius = 10
     }
     
+    private func manageTextViewPlaceholder() {
+        if textView.text.isEmpty {
+            placeholderTextViewLabel.isHidden = false
+        } else {
+            placeholderTextViewLabel.isHidden = true
+        }
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderTextViewLabel.isHidden = true
-        
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard textView.text.isEmpty else { return }
-        placeholderTextViewLabel.isHidden = false
+        manageTextViewPlaceholder()
     }
     
     @objc func adjustKeyboardFrame(notification: Notification) {
         guard let userInfo = notification.userInfo as? [String : Any],
             let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
         //if rotation enabled {
-//        let keyboardViewFrame = view.convert(keyboardFrame, from: view.window)
-//    }
+        //        let keyboardViewFrame = view.convert(keyboardFrame, from: view.window)
+        //    }
         if notification.name == UIResponder.keyboardWillHideNotification {
             scrollView.contentInset.bottom = .zero
         } else
-        if notification.name == UIResponder.keyboardWillShowNotification {
-            scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
-            scrollView.scrollRectToVisible(textView.frame, animated: true)
-        } else {
-            return
+            if notification.name == UIResponder.keyboardWillShowNotification {
+                scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
+                scrollView.scrollRectToVisible(textView.frame, animated: true)
+            } else {
+                return
         }
     }
+    
     func textViewDidChange(_ textView: UITextView) {
-        let clippedText = String(textView.text.prefix(maxTextViewLenghtCount))
-        self.textView.text = clippedText
-        counterTextViewLabel.text = "\(maxTextViewLenghtCount - clippedText.count)"
+        //Text validation
+        let validatedText = String(textView.text.prefix(maxTextViewLenghtCount))
+        presenter.textViewDidChange(text: validatedText)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard (textView.text.count <= maxTextViewLenghtCount) || (range.length >= 1) else { return false }
-        return true
+        if (textView.text.count <= maxTextViewLenghtCount) || (range.length >= 1) {
+            return true
+        } else {
+            return false
+        }
     }
     
 }

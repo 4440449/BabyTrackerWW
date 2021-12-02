@@ -15,6 +15,7 @@ protocol DetailDreamScenePresenterProtocol: AnyObject {
     var dream: Publisher<Dream> { get }
     func didSelectFlow(at index: Int)
     func addNewFlow() // в отдельный протокол?
+    func textViewDidChange(text: String)
     func saveButtonTapped()
     func prepare<S>(for segue: S)
 }
@@ -52,6 +53,10 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     func didSelectFlow(at index: Int) {
         selectIndex = index
         dream.value = delegate.shareStateForDetailDreamScene().lifeCycle[index] as! Dream
+    }
+    
+    func textViewDidChange(text: String) {
+        dream.value.note = text
     }
     
     func saveButtonTapped() {

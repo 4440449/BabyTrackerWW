@@ -60,7 +60,9 @@ struct DreamNetworkEntity: Codable {
         return .init (id: self.id,
                       index: self.index,
                       putDown: putDown,
-                      fallAsleep: fallAsleep)
+                      fallAsleep: fallAsleep,
+                      note: "")
+        //TODO: Обновить Нетворк сущность. Добавилось поле "note"
     }
     
 }

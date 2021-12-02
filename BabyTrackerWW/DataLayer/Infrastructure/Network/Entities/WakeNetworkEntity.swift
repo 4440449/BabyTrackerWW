@@ -69,6 +69,8 @@ struct WakeNetworkEntity: Codable {
                       index: self.index,
                       wakeUp: wakeUp,
                       wakeWindow: wakeWindow,
-                      signs: signs)
+                      signs: signs,
+                      note: "")
+        //TODO: Обновить Нетворк сущность. Добавилось поле "note"
     }
 }

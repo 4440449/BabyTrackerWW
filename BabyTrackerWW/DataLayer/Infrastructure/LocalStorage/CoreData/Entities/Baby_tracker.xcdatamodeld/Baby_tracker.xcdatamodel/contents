@@ -5,18 +5,20 @@
         <attribute name="fallAsleep" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="putDown" optional="YES" attributeType="String"/>
     </entity>
     <entity name="WakeDBEntity" representedClassName="WakeDBEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
         <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="signs" optional="YES" attributeType="String"/>
         <attribute name="wakeUp" optional="YES" attributeType="String"/>
         <attribute name="wakeWindow" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="DreamDBEntity" positionX="-667.12109375" positionY="-107.0390625" width="128" height="118"/>
-        <element name="WakeDBEntity" positionX="-387" positionY="-108" width="128" height="133"/>
+        <element name="DreamDBEntity" positionX="-667.12109375" positionY="-107.0390625" width="128" height="133"/>
+        <element name="WakeDBEntity" positionX="-387" positionY="-108" width="128" height="148"/>
     </elements>
 </model>

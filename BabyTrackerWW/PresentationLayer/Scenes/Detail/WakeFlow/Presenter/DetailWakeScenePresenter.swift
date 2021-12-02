@@ -15,6 +15,7 @@ protocol DetailWakeScenePresenterProtocol: AnyObject {
     var wake: Publisher<Wake> { get }
     func didSelectFlow(at index: Int)
     func addNewFlow()
+    func textViewDidChange(text: String)
     func saveButtonTapped()
     func prepare<S>(for segue: S)
 }
@@ -72,6 +73,10 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     func didSelectFlow(at index: Int) {
         selectIndex = index
         wake.value = delegate.shareStateForDetailWakeScene().lifeCycle[index] as! Wake
+    }
+    
+    func textViewDidChange(text: String) {
+        wake.value.note = text
     }
     
     func saveButtonTapped() {

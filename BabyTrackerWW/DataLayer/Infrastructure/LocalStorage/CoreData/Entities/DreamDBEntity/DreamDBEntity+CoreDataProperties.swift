@@ -22,6 +22,7 @@ extension DreamDBEntity {
     @NSManaged public var index: Int32
     @NSManaged public var putDown: String?
     @NSManaged public var fallAsleep: String?
+    @NSManaged public var note: String?
 }
 
 
@@ -31,6 +32,7 @@ extension DreamDBEntity {
         self.index = Int32(dream.index)
         self.putDown = dream.putDown
         self.fallAsleep = dream.fallAsleep
+        self.note = dream.note
     }
     
     func populateEntityWithDate(dream: Dream, date: Date) {
@@ -39,6 +41,7 @@ extension DreamDBEntity {
         self.index = Int32(dream.index)
         self.putDown = dream.putDown
         self.fallAsleep = dream.fallAsleep
+        self.note = dream.note
     }
     
     // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
@@ -46,7 +49,8 @@ extension DreamDBEntity {
         return .init(id: self.id!,
                      index: Int(self.index),
                      putDown: Dream.PutDown(rawValue: self.putDown!)!,
-                     fallAsleep: Dream.FallAsleep(rawValue: self.fallAsleep!)!)
+                     fallAsleep: Dream.FallAsleep(rawValue: self.fallAsleep!)!,
+                     note: self.note!)
     }
     
 }

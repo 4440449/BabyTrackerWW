@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="umT-Rc-EHo">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,6 +16,7 @@
                         <gestureRecognizers/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PgN-82-yLN">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </toolbar>
                     <connections>
@@ -32,14 +32,14 @@
             <objects>
                 <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B95-aI-t9R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-IZ-MYP">
-                                <rect key="frame" x="0.0" y="190" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="190" width="600" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-0C-eYy">
-                                <rect key="frame" x="20" y="130" width="335" height="35"/>
+                                <rect key="frame" x="20" y="130" width="560" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="eZk-FG-Xsb"/>
                                 </constraints>
@@ -48,7 +48,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-ug-EFf">
-                                <rect key="frame" x="122.5" y="522" width="130" height="55"/>
+                                <rect key="frame" x="235" y="455" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="aI3-c9-ued"/>
@@ -219,7 +219,7 @@
             <objects>
                 <viewController id="rJu-0z-jb4" customClass="DetailDreamSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1e-mN-Mv8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHU-os-GMi">
@@ -381,11 +381,11 @@
             <objects>
                 <viewController id="Hoi-qQ-SGb" customClass="PickerViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgL-ro-dBi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="130" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="130" width="600" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -394,7 +394,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
-                                <rect key="frame" x="122.5" y="522" width="130" height="55"/>
+                                <rect key="frame" x="235" y="455" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9YW-K0-Pug"/>
@@ -431,7 +431,7 @@
             <objects>
                 <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="DetailWakeSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4j-3h-5UQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="797"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="817"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbD-g9-QX1">
@@ -592,7 +592,7 @@
                     <size key="freeformSize" width="375" height="817"/>
                     <connections>
                         <outlet property="counterTextViewLabel" destination="j5l-eD-xAu" id="kzN-4i-qD9"/>
-                        <outlet property="placeholderLabel" destination="Xxe-aW-SX3" id="cle-F5-aus"/>
+                        <outlet property="placeholderTextViewLabel" destination="Xxe-aW-SX3" id="cle-F5-aus"/>
                         <outlet property="saveOutletButton" destination="Zvz-Oj-TY3" id="VuF-bn-zqw"/>
                         <outlet property="scrollView" destination="jbD-g9-QX1" id="P5R-CI-uaw"/>
                         <outlet property="signsOutletButton" destination="r2b-aV-PMP" id="6eW-yY-6bs"/>

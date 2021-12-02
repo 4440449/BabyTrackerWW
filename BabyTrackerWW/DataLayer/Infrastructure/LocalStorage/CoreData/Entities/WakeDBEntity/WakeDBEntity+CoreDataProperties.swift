@@ -23,6 +23,7 @@ extension WakeDBEntity {
     @NSManaged public var wakeUp: String?
     @NSManaged public var wakeWindow: String?
     @NSManaged public var signs: String?
+    @NSManaged public var note: String?
 }
 
 extension WakeDBEntity {
@@ -32,6 +33,7 @@ extension WakeDBEntity {
         self.wakeUp = wake.wakeUp.rawValue
         self.wakeWindow = wake.wakeWindow.rawValue
         self.signs = wake.signs.rawValue
+        self.note = wake.note
     }
     
     func populateEntityWithDate(wake: Wake, date: Date) {
@@ -41,6 +43,7 @@ extension WakeDBEntity {
         self.wakeUp = wake.wakeUp.rawValue
         self.wakeWindow = wake.wakeWindow.rawValue
         self.signs = wake.signs.rawValue
+        self.note = wake.note
     }
     
     // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
@@ -49,6 +52,7 @@ extension WakeDBEntity {
                      index: Int(self.index),
                      wakeUp: Wake.WakeUp(rawValue: self.wakeUp!)!,
                      wakeWindow: Wake.WakeWindow(rawValue: self.wakeWindow!)!,
-                     signs: Wake.Signs(rawValue: self.signs!)!)
+                     signs: Wake.Signs(rawValue: self.signs!)!,
+                     note: self.note!)
     }
 }

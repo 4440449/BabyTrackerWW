@@ -16,6 +16,7 @@ struct Wake: LifeCycle {
     var wakeUp: WakeUp
     var wakeWindow: WakeWindow
     var signs: Signs
+    var note: String = ""
     
     enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty { //в каком настроении проснулся?
         case crying = "😭"// "Плакал"
@@ -46,12 +47,13 @@ struct Wake: LifeCycle {
         self.signs = signs
     }
     
-    init(id: UUID, index: Int, wakeUp: WakeUp, wakeWindow: WakeWindow, signs: Signs) {
+    init(id: UUID, index: Int, wakeUp: WakeUp, wakeWindow: WakeWindow, signs: Signs, note: String) {
         self.id = id
         self.index = index
         self.wakeUp = wakeUp
         self.wakeWindow = wakeWindow
         self.signs = signs
+        self.note = note
     }
     
 }

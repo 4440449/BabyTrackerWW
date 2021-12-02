@@ -34,6 +34,9 @@ class DetailWakeSceneViewController: UIViewController {
             self.wakeUpOutletButton.setTitle(wake.wakeUp.rawValue, for: .normal)
             self.wakeWindowOutletButton.setTitle(wake.wakeWindow.rawValue, for: .normal)
             self.signsOutletButton.setTitle(wake.signs.rawValue, for: .normal)
+            self.textView.text = wake.note
+            self.counterTextViewLabel.text = "\(self.maxTextViewLenghtCount - wake.note.count)"
+            self.manageTextViewPlaceholder()
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
@@ -50,7 +53,7 @@ class DetailWakeSceneViewController: UIViewController {
     @IBOutlet weak var saveOutletButton: UIButton!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
-    @IBOutlet weak var placeholderLabel: UILabel!
+    @IBOutlet weak var placeholderTextViewLabel: UILabel!
     @IBOutlet weak var counterTextViewLabel: UILabel!
     
     
@@ -125,18 +128,23 @@ extension DetailWakeSceneViewController: UITextViewDelegate {
     
     private func setupTextView() {
         textView.delegate = self
-        //        textView.backgroundColor = .systemGray5
         textView.layer.cornerRadius = 10
     }
     
+    private func manageTextViewPlaceholder() {
+        if textView.text.isEmpty {
+            placeholderTextViewLabel.isHidden = false
+        } else {
+            placeholderTextViewLabel.isHidden = true
+        }
+    }
+    
     func textViewDidBeginEditing(_ textView: UITextView) {
-        placeholderLabel.isHidden = true
-        
+        placeholderTextViewLabel.isHidden = true
     }
     
     func textViewDidEndEditing(_ textView: UITextView) {
-        guard textView.text.isEmpty else { return }
-        placeholderLabel.isHidden = false
+        manageTextViewPlaceholder()
     }
     
     @objc func adjustKeyboardFrame(notification: Notification) {
@@ -157,14 +165,17 @@ extension DetailWakeSceneViewController: UITextViewDelegate {
     }
     
     func textViewDidChange(_ textView: UITextView) {
-        let clippedText = String(textView.text.prefix(maxTextViewLenghtCount))
-        self.textView.text = clippedText
-        counterTextViewLabel.text = "\(maxTextViewLenghtCount - clippedText.count)"
+        //Text validation
+        let validatedText = String(textView.text.prefix(maxTextViewLenghtCount))
+        presenter.textViewDidChange(text: validatedText)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
-        guard (textView.text.count <= maxTextViewLenghtCount) || (range.length >= 1) else { return false }
-        return true
+        if (textView.text.count <= maxTextViewLenghtCount) || (range.length >= 1) {
+            return true
+        } else {
+            return false
+        }
     }
     
 }
