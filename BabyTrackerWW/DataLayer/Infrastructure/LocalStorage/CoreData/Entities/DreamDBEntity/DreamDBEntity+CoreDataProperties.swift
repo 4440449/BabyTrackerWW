@@ -28,29 +28,38 @@ extension DreamDBEntity {
 
 extension DreamDBEntity {
     
-    func populateEntity(dream: Dream) {
-        self.index = Int32(dream.index)
-        self.putDown = dream.putDown
-        self.fallAsleep = dream.fallAsleep
-        self.note = dream.note
+    func parseToDBEntity(dream: Dream) {
+        index = Int32(dream.index)
+        putDown = dream.putDown
+        fallAsleep = dream.fallAsleep
+        note = dream.note
     }
     
-    func populateEntityWithDate(dream: Dream, date: Date) {
+    func parseToDBEntityWithDate(dream: Dream, date: Date) {
         self.date = date
-        self.id = dream.id
-        self.index = Int32(dream.index)
-        self.putDown = dream.putDown
-        self.fallAsleep = dream.fallAsleep
-        self.note = dream.note
+        id = dream.id
+        index = Int32(dream.index)
+        putDown = dream.putDown
+        fallAsleep = dream.fallAsleep
+        note = dream.note
     }
     
-    // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
-    func parseToDomain() -> Dream {
-        return .init(id: self.id!,
-                     index: Int(self.index),
-                     putDown: Dream.PutDown(rawValue: self.putDown!)!,
-                     fallAsleep: Dream.FallAsleep(rawValue: self.fallAsleep!)!,
-                     note: self.note!)
+    func parseToDomainEntity() throws -> Dream {
+        //Вместо nil, index default == некорректному значению; Т.к. Objc не видит Type: (Int32?)
+        guard index != -1,
+            let index = Int(exactly: index),
+            let id = id,
+            let putDownRawValue = putDown,
+            let putDown = Dream.PutDown.init(rawValue: putDownRawValue),
+            let fallAsleepRawValue = fallAsleep,
+            let fallAsleep = Dream.FallAsleep(rawValue: fallAsleepRawValue),
+            let note = note
+            else { throw LocalStorageError.parseToDomain("Error parse to domain DreamDBEntity!") }
+        return .init(id: id,
+                     index: index,
+                     putDown: putDown,
+                     fallAsleep: fallAsleep,
+                     note: note)
     }
     
 }

@@ -46,13 +46,24 @@ extension WakeDBEntity {
         self.note = wake.note
     }
     
-    // TODO: - сделать throws и хендлинг ошибки парсинга в доменную сущность
-    func parseToDomain() -> Wake {
-        return .init(id: self.id!,
-                     index: Int(self.index),
-                     wakeUp: Wake.WakeUp(rawValue: self.wakeUp!)!,
-                     wakeWindow: Wake.WakeWindow(rawValue: self.wakeWindow!)!,
-                     signs: Wake.Signs(rawValue: self.signs!)!,
-                     note: self.note!)
+    func parseToDomain() throws -> Wake {
+        //Вместо nil, index default == некорректному значению; Т.к. Objc не видит Type: (Int32?)
+        guard index != -1,
+            let index = Int(exactly: index),
+            let id = id,
+            let wakeUpRawValue = wakeUp,
+            let wakeUp = Wake.WakeUp(rawValue: wakeUpRawValue),
+            let wakeWindowRawValue = wakeWindow,
+            let wakeWindow = Wake.WakeWindow(rawValue: wakeWindowRawValue),
+            let signsRawValue = signs,
+            let signs = Wake.Signs(rawValue: signsRawValue),
+            let note = note
+            else { throw LocalStorageError.parseToDomain("Error parse to domain WakeDBEntity!") }
+        return .init(id: id,
+                     index: index,
+                     wakeUp: wakeUp,
+                     wakeWindow: wakeWindow,
+                     signs: signs,
+                     note: note)
     }
 }

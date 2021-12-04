@@ -32,7 +32,7 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
     }
     
     struct PersistentRepositoryError: Error {
-        var description = [String]()
+        var description = [Error]()
         // Объединить или убрать эту ошибку
     }
     
@@ -42,6 +42,8 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
         
         var resultError = PersistentRepositoryError() // TODO: - Extension native Error type (add [description] property)
         var resultSuccess = [LifeCycle]()
+//        var f = LocalStorageError.array([])
+        
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
@@ -50,14 +52,14 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
                 case let .success(wakes): resultSuccess.append(contentsOf: wakes)
-                case let .failure(error): resultError.description.append(error.localizedDescription)
+                case let .failure(error): resultError.description.append(error)
                 }
             }
             
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams): resultSuccess.append(contentsOf: dreams)
-                case let .failure(error): resultError.description.append(error.localizedDescription)
+                case let .failure(error): resultError.description.append(error)
                 }
             }
             
@@ -87,14 +89,14 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
             self.wakeRepository.update(wakes: wakes, date: date) { result in
                 switch result {
                 case .success(): return
-                case let .failure(wakeRepoError): resultError.description.append(wakeRepoError.localizedDescription)
+                case let .failure(wakeRepoError): resultError.description.append(wakeRepoError)
                 }
             }
             
             self.dreamRepository.update(dreams, at: date) { result in
                 switch result {
                 case . success(): return
-                case let .failure(dreamRepoError): resultError.description.append(dreamRepoError.localizedDescription)
+                case let .failure(dreamRepoError): resultError.description.append(dreamRepoError)
                 }
             }
             

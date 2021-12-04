@@ -95,14 +95,14 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         return lifeCycleCard.value
     }
     
-    func fetchLifeCycles(at date: Date) { // (at: Date)
+    func fetchLifeCycles(at date: Date) {
         isLoading.value = .true
         lifecycleCardRepository.fetch(at: date) { [unowned self] result in
-            self.lifeCycleCard.value.date = date
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
-            }
+   }
+            self.lifeCycleCard.value.date = date
             self.isLoading.value = .false
         }
     }
@@ -136,18 +136,9 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
+        print("input date == \(date), current value date == \(lifeCycleCard.value.date)")
         guard date != lifeCycleCard.value.date else { return }
-//        isLoading.value = .true
         fetchLifeCycles(at: date)
-        
-//        lifecycleCardRepository.fetch(at: date) { [unowned self] result in
-//            self.lifeCycleCard.value.date = date
-//            switch result {
-//            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles;
-//            case let .failure(error): print("setDate() / Dreams cannot be received on the selected date. Error description: \(error)")
-//            }
-//            self.isLoading.value = .false
-//        }
     }
     
     

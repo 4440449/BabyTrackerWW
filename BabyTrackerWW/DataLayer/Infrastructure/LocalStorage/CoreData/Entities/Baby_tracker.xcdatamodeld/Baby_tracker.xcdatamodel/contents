@@ -4,14 +4,14 @@
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="fallAsleep" optional="YES" attributeType="String"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="YES"/>
-        <attribute name="index" optional="YES" attributeType="Integer 32" usesScalarValueType="YES"/>
+        <attribute name="index" attributeType="Integer 32" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="putDown" optional="YES" attributeType="String"/>
     </entity>
     <entity name="WakeDBEntity" representedClassName="WakeDBEntity" syncable="YES">
         <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
         <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="index" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="index" attributeType="Integer 32" defaultValueString="-1" usesScalarValueType="YES"/>
         <attribute name="note" optional="YES" attributeType="String"/>
         <attribute name="signs" optional="YES" attributeType="String"/>
         <attribute name="wakeUp" optional="YES" attributeType="String"/>

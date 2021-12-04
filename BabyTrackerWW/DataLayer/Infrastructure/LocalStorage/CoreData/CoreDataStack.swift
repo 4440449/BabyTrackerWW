@@ -43,12 +43,13 @@ final class CoreDataStackImpl {
 
 enum LocalStorageError: Error {
     
-    case synchronize (String)
-    case fetch (String)
-    case add (String)
-    case change (String)
-    case delete (String)
+    case synchronize (Error)
+    case fetch (Error)
+    case add (Error)
+    case change (Error)
+    case delete (Error)
     
-    case downcasting (String)
+//    case downcasting (String)
+    case parseToDomain (String)
 }
 

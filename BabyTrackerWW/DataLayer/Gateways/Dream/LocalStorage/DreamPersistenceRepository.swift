@@ -46,12 +46,10 @@ final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            //                sleep(4)
-            let dreams = fetchResult.map { $0.parseToDomain() }
-            // self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+            let dreams = try fetchResult.map { try $0.parseToDomainEntity() }
             callback(.success(dreams))
         } catch let error {
-            callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
+            callback(.failure(LocalStorageError.fetch(error)))
         }
     }
     
@@ -59,13 +57,13 @@ final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
     func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         let dbEntity = DreamDBEntity.init(context: coreDataContainer.viewContext)
-        dbEntity.populateEntityWithDate(dream: dream, date: date)
+        dbEntity.parseToDBEntityWithDate(dream: dream, date: date)
         //            print(dbEntity.date!)
         do {
             try coreDataContainer.viewContext.save()
             callback(.success(()))
         } catch let error {
-            callback(.failure(LocalStorageError.add(error.localizedDescription)))
+            callback(.failure(LocalStorageError.add(error)))
         }
         //        }
     }
@@ -77,12 +75,12 @@ final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
         request.predicate = NSPredicate(format: "id == %@", dream.id as NSUUID)
         do {
             if let result = try coreDataContainer.viewContext.fetch(request).first {
-                result.populateEntity(dream: dream)
+                result.parseToDBEntity(dream: dream)
                 try coreDataContainer.viewContext.save()
                 callback(.success(()))
             }
         } catch let error {
-            callback(.failure(LocalStorageError.change(error.localizedDescription)))
+            callback(.failure(LocalStorageError.change(error)))
         }
         //        }
     }
@@ -99,7 +97,7 @@ final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
                 callback(.success(()))
             }
         } catch let error {
-            callback(.failure(LocalStorageError.delete(error.localizedDescription)))
+            callback(.failure(LocalStorageError.delete(error)))
         }
         //        }
     }
@@ -117,13 +115,13 @@ final class DreamPersistentRepositoryImpl: DreamPersistentRepositoryProtocol {
             let emptyDBArray = dreams.map { _ in DreamDBEntity.init(context: coreDataContainer.viewContext) }
 //            print("Debug: dream emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
             for i in 0..<dreams.count {
-                emptyDBArray[i].populateEntityWithDate(dream: dreams[i], date: date)
+                emptyDBArray[i].parseToDBEntityWithDate(dream: dreams[i], date: date)
             }
 //            print("Debug: dream populateDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
             try coreDataContainer.viewContext.save()
             callback(.success(()))
         } catch let error {
-            callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
+            callback(.failure(LocalStorageError.synchronize(error)))
         }
     }
         

@@ -58,10 +58,11 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
                 }
             }
         }
+        
         presenter.tempLifeCycle.subscribe(observer: self) { [unowned self] _ in
-            print("reload data Main")
             self.reloadData()
         }
+        
         presenter.isLoading.subscribe(observer: self) { [unowned self] isLoading in
             switch isLoading {
             case .true:
@@ -113,7 +114,6 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     // MARK: - Table view
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        //        print(presenter.getNumberOfLifeCycles())
         return presenter.getNumberOfLifeCycles()
     }
     
@@ -124,7 +124,6 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        //        print("source index == \(sourceIndexPath.row),,, destination index == \(destinationIndexPath.row)")
         presenter.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
     }
     
@@ -303,7 +302,7 @@ extension MainSceneTableViewController {
     
     private func setupBlureEffect() {
         print("setupBlureEffect")
-         // if #available(iOS 13.0, *)
+        // if #available(iOS 13.0, *)
         let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?
             .systemThinMaterialDark : .systemThinMaterialLight
         let blurEffect = UIBlurEffect(style: style)

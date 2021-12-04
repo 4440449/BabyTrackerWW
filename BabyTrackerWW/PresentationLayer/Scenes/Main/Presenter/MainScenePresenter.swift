@@ -48,10 +48,6 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     //MARK: - State
     
     var tempLifeCycle = Publisher(value: [LifeCycle]())
-    //    {
-    //        didSet { print("tempLC ==========++++========== \(self.tempLifeCycle)") }
-    //    }
-    
     var isLoading = Publisher(value: Loading.false)
     
     
@@ -60,7 +56,6 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     private func setObservers() {
         interactor.lifeCycleCard.subscribe(observer: self) { [unowned self] card in
             self.tempLifeCycle.value = card.lifeCycle
-            //Два раза идет уведомление, мб из-за того, что сначала меняется дата, потом массив => два раза уведомляет TODO: -
         }
         interactor.isLoading.subscribe(observer: self) { [unowned self] isLoading in
             self.isLoading.value = isLoading
@@ -88,12 +83,10 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     func getNumberOfLifeCycles() -> Int {
         return tempLifeCycle.value.count
-        //        return interactor.shareStateForMainScene().lifeCycle.count
     }
     
     func getCellLabel(at index: Int) -> String {
         return tempLifeCycle.value[index].title
-        //        return interactor.shareStateForMainScene().lifeCycle[index].title
     }
     
     
@@ -128,14 +121,22 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     func saveChanges() {
         for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1) {
-            //            print("i", i)
-            //            print("temp", tempLifeCycle.value[i].index, tempLifeCycle.value[i].id)
-            //            print("interact", interactor.lifeCycleCard.value.lifeCycle[i].index, interactor.lifeCycleCard.value.lifeCycle[i].id)
-            //            print(tempLifeCycle.value[i].id == interactor.lifeCycleCard.value.lifeCycle[i].id)
             if tempLifeCycle.value.count != interactor.lifeCycleCard.value.lifeCycle.count || tempLifeCycle.value[i].id != interactor.lifeCycleCard.value.lifeCycle[i].id {
                 interactor.synchronize(new: tempLifeCycle.value)
                 return
             }
+        }
+    }
+    
+    func swipe(gesture: Swipe) {
+        switch gesture {
+        case .left:
+            guard let dayAfter = interactor.shareStateForMainScene().date.after() else { print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: dayAfter)
+            
+        case .right:
+            guard let dayBefore = interactor.shareStateForMainScene().date.before() else { print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: dayBefore)
         }
     }
     
@@ -144,23 +145,6 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         removeObservers()
     }
     
-    
-    func swipe(gesture: Swipe) {
-        switch gesture {
-        case .left:
-            guard let dayAfter = interactor.shareStateForMainScene().date.after() else { print("Error fetch date"); return }
-            interactor.fetchLifeCycles(at: dayAfter)
-//            interactor.change(date: dayAfter)
-            
-        case .right:
-            guard let dayBefore = interactor.shareStateForMainScene().date.before() else { print("Error fetch date"); return }
-            interactor.fetchLifeCycles(at: dayBefore)
-//            interactor.change(date: dayBefore)
-        }
-    }
-    
-    
-
     
 }
 

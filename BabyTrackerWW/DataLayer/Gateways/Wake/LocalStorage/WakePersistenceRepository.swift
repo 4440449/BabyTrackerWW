@@ -45,11 +45,10 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            let wakes = fetchResult.map { $0.parseToDomain() }
-            //                self.parseToDomainEntity(dbEntity: $0) } // memory ref?
+            let wakes = try fetchResult.map { try $0.parseToDomain() }
             callback(.success(wakes))
         } catch let error {
-            callback(.failure(LocalStorageError.fetch(error.localizedDescription)))
+            callback(.failure(LocalStorageError.fetch(error)))
         }
     }
     
@@ -62,7 +61,7 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
                 try backgroundContext.save()
                 callback(.success(()))
             } catch let error {
-                callback(.failure(LocalStorageError.add(error.localizedDescription)))
+                callback(.failure(LocalStorageError.add(error)))
             }
         }
     }
@@ -79,7 +78,7 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(LocalStorageError.change(error.localizedDescription)))
+                callback(.failure(LocalStorageError.change(error)))
             }
         }
     }
@@ -96,7 +95,7 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
                     callback(.success(()))
                 }
             } catch let error {
-                callback(.failure(LocalStorageError.delete(error.localizedDescription)))
+                callback(.failure(LocalStorageError.delete(error)))
             }
         }
     }
@@ -122,7 +121,7 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
             try coreDataContainer.viewContext.save()
             callback(.success(()))
         } catch let error {
-            callback(.failure(LocalStorageError.synchronize(error.localizedDescription)))
+            callback(.failure(LocalStorageError.synchronize(error)))
         }
     }
     
