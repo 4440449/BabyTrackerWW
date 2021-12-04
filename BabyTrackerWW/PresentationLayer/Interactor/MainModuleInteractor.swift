@@ -27,6 +27,7 @@ protocol MainSceneDelegate: AnyObject {
     
     var lifeCycleCard: Publisher<LifeCyclesCard> { get }
     var isLoading: Publisher<Loading> { get }
+    var error: Publisher<String> { get }
     func shareStateForMainScene() -> LifeCyclesCard
     
     func fetchLifeCycles(at date: Date)
@@ -87,6 +88,14 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     var lifeCycleCard = Publisher(value: LifeCyclesCard(date: Date()))
     var isLoading = Publisher(value: Loading.false)
+    var error = Publisher(value: "")
+    
+    
+    // MARK: - Private
+    
+    private func handleError(error: Error) {
+        print(error)
+    }
     
     
     //MARK: - Main Scene
@@ -100,8 +109,8 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         lifecycleCardRepository.fetch(at: date) { [unowned self] result in
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
-            case let .failure(error): print("fetchDreamsCard() / Dreams cannot be received. Error description: \(error)") // handle error!
-   }
+            case let .failure(error): print(error)//self.handleError(error: error)
+            }
             self.lifeCycleCard.value.date = date
             self.isLoading.value = .false
         }
@@ -112,7 +121,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         lifecycleCardRepository.update(new: lifeCycles, date: lifeCycleCard.value.date) { result in
             switch result {
             case .success(()): self.lifeCycleCard.value.lifeCycle = lifeCycles
-            case let .failure(error): print("reindex() / Error description: \(error)")
+            case let .failure(error): self.handleError(error: error)
             }
             self.isLoading.value = .false
         }
@@ -136,7 +145,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     }
     
     func changeDate(new date: Date) {
-        print("input date == \(date), current value date == \(lifeCycleCard.value.date)")
+//        print("input date == \(date), current value date == \(lifeCycleCard.value.date)")
         guard date != lifeCycleCard.value.date else { return }
         fetchLifeCycles(at: date)
     }
@@ -153,7 +162,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle.append(dream)
-            case let .failure(error): print("setDream() / New Dream cannot be added. Error description: \(error)")
+            case let .failure(error): self.handleError(error: error)
             }
             self.isLoading.value = .false
         }
@@ -164,7 +173,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         dreamRepository.change(dream, at: lifeCycleCard.value.date) { [unowned self] result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle[dream.index] = dream
-            case let .failure(error): print("setDream() / Dream cannot be changed. Error description: \(error)")
+            case let .failure(error): self.handleError(error: error)
             }
             self.isLoading.value = .false
         }
@@ -172,31 +181,31 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     
     //MARK: - Detail Wake Scene
-
+    
     func shareStateForDetailWakeScene() -> LifeCyclesCard {
-           return lifeCycleCard.value
-       }
-       
-      func add(new wake: Wake) {
-           isLoading.value = .true
-           wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { [unowned self] result in
-               switch result {
-               case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
-               case let .failure(error): print("setWake() / New Wake cannot be added. Error description: \(error)")
-               }
-               self.isLoading.value = .false
-           }
-       }
-       
-       func change(_ wake: Wake) {
-           isLoading.value = .true
-           wakeRepository.change(wake, at: lifeCycleCard.value.date) { [unowned self] result in
-               switch result {
-               case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
-               case let .failure(error): print("setWake() / Wake cannot be changed. Error description: \(error)")
-               }
-               self.isLoading.value = .false
-           }
-       }
+        return lifeCycleCard.value
+    }
+    
+    func add(new wake: Wake) {
+        isLoading.value = .true
+        wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { [unowned self] result in
+            switch result {
+            case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
+            case let .failure(error): self.handleError(error: error)
+            }
+            self.isLoading.value = .false
+        }
+    }
+    
+    func change(_ wake: Wake) {
+        isLoading.value = .true
+        wakeRepository.change(wake, at: lifeCycleCard.value.date) { [unowned self] result in
+            switch result {
+            case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
+            case let .failure(error): self.handleError(error: error)
+            }
+            self.isLoading.value = .false
+        }
+    }
     
 }

@@ -49,6 +49,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     
     var tempLifeCycle = Publisher(value: [LifeCycle]())
     var isLoading = Publisher(value: Loading.false)
+    var error = Publisher(value: "")
     
     
     //MARK: - Private

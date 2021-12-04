@@ -55,7 +55,7 @@ struct ApiURL {
     }
     
     
-    func createURL() -> URL? {
+    func createURL() throws -> URL {
         var urlComponents = URLComponents()
         urlComponents.scheme = scheme
         urlComponents.host = host
@@ -66,7 +66,7 @@ struct ApiURL {
         }
 //        print("urlComp == \(urlComponents.description)")
 //        print("queryItems == \(urlComponents.queryItems)")
-        guard let url = urlComponents.url else { return nil }
+        guard let url = urlComponents.url else { throw NetworkError.urlCreate("Invalid URL --- URLComponents log: \(urlComponents.debugDescription)") }
         return url
     }
     
@@ -112,7 +112,7 @@ struct APIRequest {
     
     
     func createRequest() throws -> URLRequest {
-        guard let url = url.createURL() else { throw NetworkError.urlCreate("Invalid URL") }
+        let url = try self.url.createURL()
         var urlRequest = URLRequest(url: url)
         urlRequest.httpMethod = method
         header.forEach { urlRequest.setValue($0.value, forHTTPHeaderField: $0.key) }
