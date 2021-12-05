@@ -12,7 +12,7 @@ import Foundation
 protocol LifeCyclesCardPersistentRepositoryProtocol {
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ())
-    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func synchronize(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
@@ -42,7 +42,7 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
         serialQ.async {
             sleep(1)
             var breakTask = false
-            //Несколько обращений к базе - плохая практика, проседает перформанс / Разве в моем случае можно по другому? :(
+            
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams): resultSuccess.append(contentsOf: dreams)
@@ -63,30 +63,59 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
     }
     
     
-    func synchronize(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func synchronize(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
         
-        let dreams = lifeCycles.compactMap { $0 as? Dream }
-        let wakes = lifeCycles.compactMap { $0 as? Wake }
+        let newValueDreams = newValue.compactMap { $0 as? Dream }
+        let newValueWakes = newValue.compactMap { $0 as? Wake }
+        
+        let oldValueDreams = oldValue.compactMap { $0 as? Dream }
+        //        let oldValuesWakes = lifeCycles.compactMap { $0 as? Wake }
         //Многопоточный доступ в кор дату - можно?
         
         let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
             var breakTask = false
             
-            self.dreamRepository.update(dreams, at: date) { result in
+            self.dreamRepository.update(newValueDreams, at: date) { result in
                 switch result {
-                case . success(): return
-                case let .failure(dreamRepoError): breakTask = true; callback(.failure(dreamRepoError))
+                case .success(): return
+                case let .failure(dreamRepoError):
+                    breakTask = true;
+                    callback(.failure(dreamRepoError))
                 }
             }
             
             guard !breakTask else { return }
             
-            self.wakeRepository.update(wakes: wakes, date: date) { result in
+            self.wakeRepository.update(wakes: newValueWakes, date: date) { result in
                 switch result {
-                case .success(): return
-                case let .failure(wakeRepoError): callback(.failure(wakeRepoError))
+                case .success(): callback(.success(()))
+                case let .failure(wakeRepoError):
+                    self.cancelChanges(dreams: oldValueDreams, date: date);
+                    callback(.failure(wakeRepoError))
                 }
+            }
+        }
+        
+    }
+    
+    
+    // MARK: - Private
+    
+    private func cancelChanges(dreams: [Dream], date: Date) {
+        dreamRepository.update(dreams, at: date) { result in
+            switch result {
+            case .success: print("Сhanges canceled after failed synchronization")
+            case let .failure(syncError): print("Сhangesare not canceled after failed synchronization :: Error \(syncError)")
+            }
+        }
+    }
+    
+    private func cancelChanges(wakes: [Wake], date: Date) {
+        wakeRepository.update(wakes: wakes, date: date) { result in
+            switch result {
+            case .success: print("Сhanges canceled after failed synchronization")
+            case let .failure(syncError): print("Сhangesare not canceled after failed synchronization :: Error \(syncError)")
             }
         }
     }

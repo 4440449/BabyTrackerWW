@@ -48,8 +48,8 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
 //        }
     }
     
-    func update(new lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        localStorage.synchronize(new: lifeCycles, date: date) { result in
+    func update(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+        localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
             switch result {
             case .success: callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))

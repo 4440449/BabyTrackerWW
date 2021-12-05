@@ -37,7 +37,8 @@ final class ApiClientImpl: ApiClientProtocol {
                     callback(.failure(NetworkError.badRequest(error!)) ); return }
                 guard let data = data, (200...299).contains(httpResponse.statusCode) else {
                     // сервер ответил неудачно
-                    callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode) -- \(httpResponse.allHeaderFields)")) ); return }
+                    callback(.failure(NetworkError.badResponse("\(httpResponse.statusCode)")) ); return }
+//                        -- \(httpResponse.allHeaderFields)")) ); return }
                 callback(.success(data))
             }
             dataTask.resume()

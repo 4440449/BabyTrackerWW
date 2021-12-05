@@ -36,10 +36,11 @@ final class Publisher<V>: Observable {
         self.value = value
     }
     
-    private func notify() {
+    func notify() {
 //        print("notify! value == \(value)")
         DispatchQueue.main.async {
-            self.observers.forEach { $0.callback(self.value) }
+            self.observers.forEach { print(" \n notify! self == \(self.observers) :::::: \n value == \(self.value)");
+                $0.callback(self.value) }
         }
     }
     

@@ -123,7 +123,7 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     func saveChanges() {
         for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1) {
             if tempLifeCycle.value.count != interactor.lifeCycleCard.value.lifeCycle.count || tempLifeCycle.value[i].id != interactor.lifeCycleCard.value.lifeCycle[i].id {
-                interactor.synchronize(new: tempLifeCycle.value)
+                interactor.synchronize(newValue: tempLifeCycle.value)
                 return
             }
         }
