@@ -30,7 +30,8 @@ class DetailWakeSceneViewController: UIViewController {
     // MARK: - Input data flow
     
     private func setupObservers() {
-        presenter.wake.subscribe(observer: self) { [unowned self] wake in
+        presenter.wake.subscribe(observer: self) { [weak self] wake in
+            guard let self = self else { return }
             self.wakeUpOutletButton.setTitle(wake.wakeUp.rawValue, for: .normal)
             self.wakeWindowOutletButton.setTitle(wake.wakeWindow.rawValue, for: .normal)
             self.signsOutletButton.setTitle(wake.signs.rawValue, for: .normal)

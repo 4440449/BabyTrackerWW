@@ -13,6 +13,7 @@ protocol MainScenePresenterProtocol {
     
     var tempLifeCycle: Publisher<[LifeCycle]> { get }
     var isLoading: Publisher<Loading> { get }
+    var error: Publisher<String> { get }
     func viewDidLoad()
     func getDate() -> String
     func getNumberOfLifeCycles() -> Int
@@ -24,7 +25,6 @@ protocol MainScenePresenterProtocol {
     func moveRow(source: Int, destination: Int)
     func saveChanges()
     func cancelChanges()
-    
     func swipe(gesture: Swipe)
 }
 
@@ -55,11 +55,14 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     //MARK: - Private
     
     private func setObservers() {
-        interactor.lifeCycleCard.subscribe(observer: self) { [unowned self] card in
-            self.tempLifeCycle.value = card.lifeCycle
+        interactor.lifeCycleCard.subscribe(observer: self) { [weak self] card in
+            self?.tempLifeCycle.value = card.lifeCycle
         }
-        interactor.isLoading.subscribe(observer: self) { [unowned self] isLoading in
-            self.isLoading.value = isLoading
+        interactor.isLoading.subscribe(observer: self) { [weak self] isLoading in
+            self?.isLoading.value = isLoading
+        }
+        interactor.error.subscribe(observer: self) { [weak self] error in
+            self?.error.value = error
         }
     }
     
@@ -132,11 +135,11 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     func swipe(gesture: Swipe) {
         switch gesture {
         case .left:
-            guard let dayAfter = interactor.shareStateForMainScene().date.after() else { print("Error fetch date"); return }
+            guard let dayAfter = interactor.shareStateForMainScene().date.nextDay() else { print("Error fetch date"); return }
             interactor.fetchLifeCycles(at: dayAfter)
             
         case .right:
-            guard let dayBefore = interactor.shareStateForMainScene().date.before() else { print("Error fetch date"); return }
+            guard let dayBefore = interactor.shareStateForMainScene().date.previousDay() else { print("Error fetch date"); return }
             interactor.fetchLifeCycles(at: dayBefore)
         }
     }
@@ -160,18 +163,18 @@ extension Array {
 
 extension Date {
     
-    func after() -> Date? {
+    func nextDay() -> Date? {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone.current
-        let dayAfter = calendar.date(byAdding: .hour, value: 24, to: self)
-        return dayAfter
+        let nextDay = calendar.date(byAdding: .hour, value: 24, to: self)
+        return nextDay
     }
     
-    func before() -> Date? {
+    func previousDay() -> Date? {
         var calendar = Calendar(identifier: .gregorian)
         calendar.timeZone = TimeZone.current
-        let dayBefore = calendar.date(byAdding: .hour, value: -24, to: self)
-        return dayBefore
+        let previousDay = calendar.date(byAdding: .hour, value: -24, to: self)
+        return previousDay
     }
     
     

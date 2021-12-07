@@ -46,34 +46,38 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         //Рутовый контроллер - Навигационный; обращаюсь к сцен делегату через него
         if let sceneDelegate =
             self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [unowned self] sceneState in
+            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
                 print("sceneState accepted == \(sceneState)")
                 switch sceneState {
                 case .foreground:
-                    self.setupBlureEffect()
-                    self.setupActivityIndicator()
+                    self?.setupBlureEffect()
+                    self?.setupActivityIndicator()
                 case .background:
-                    self.removeBlureEffect()
-                    self.removeActivityIndicator()
+                    self?.removeBlureEffect()
+                    self?.removeActivityIndicator()
                 }
             }
         }
         
-        presenter.tempLifeCycle.subscribe(observer: self) { [unowned self] _ in
-            self.reloadData()
+        presenter.tempLifeCycle.subscribe(observer: self) { [weak self] _ in
+            self?.reloadData()
         }
         
-        presenter.isLoading.subscribe(observer: self) { [unowned self] isLoading in
+        presenter.isLoading.subscribe(observer: self) { [weak self] isLoading in
             switch isLoading {
             case .true:
-                self.startActivity();
-                self.manageDisplayNavBarButtons();
-                self.manageSwipeGestures()
+                self?.startActivity();
+                self?.manageDisplayNavBarButtons();
+                self?.manageSwipeGestures()
             case .false:
-                self.stopActivity();
-                self.manageDisplayNavBarButtons();
-                self.manageSwipeGestures()
+                self?.stopActivity();
+                self?.manageDisplayNavBarButtons();
+                self?.manageSwipeGestures()
             }
+        }
+        
+        presenter.error.subscribe(observer: self) { [weak self] error in
+            self?.showErrorAlert(errorMessage: error)
         }
     }
     
@@ -156,6 +160,15 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         return .none
     }
     
+    
+    // MARK: - UIAlert
+    
+    private func showErrorAlert(errorMessage: String) {
+        let alert = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: .alert)
+        let action = UIAlertAction(title: "Ок", style: .default, handler: nil)
+        alert.addAction(action)
+        self.present(alert, animated: true)
+    }
     
     deinit {
         // Root VC

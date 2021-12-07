@@ -29,18 +29,15 @@ final class Publisher<V>: Observable {
     }
     
     var value: V { didSet { notify() } }
-//        ; print(self, "didSet!", self.value) } }
-    private var observers = [Observer<V>]() //{ didSet { print("")}}
+    private var observers = [Observer<V>]()
     
     init(value: V) {
         self.value = value
     }
     
     func notify() {
-//        print("notify! value == \(value)")
         DispatchQueue.main.async {
-            self.observers.forEach { print(" \n notify! self == \(self.observers) :::::: \n value == \(self.value)");
-                $0.callback(self.value) }
+            self.observers.forEach { $0.callback(self.value) }
         }
     }
     
@@ -50,9 +47,7 @@ final class Publisher<V>: Observable {
     }
     
     func unsubscribe(observer: AnyObject) {
-//        print("Defore", observers)
         observers = observers.filter { $0.observer !== observer }
-//        print("After", observers)
     }
     
     deinit {

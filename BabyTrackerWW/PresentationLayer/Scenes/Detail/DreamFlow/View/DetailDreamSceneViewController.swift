@@ -39,7 +39,8 @@ final class DetailDreamSceneViewController: UIViewController {
     // MARK: - Input data flow
     
     private func setupObservers() {
-        presenter.dream.subscribe(observer: self) { [unowned self] dream in
+        presenter.dream.subscribe(observer: self) { [weak self] dream in
+            guard let self = self else { return }
             self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
             self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
             self.textView.text = dream.note

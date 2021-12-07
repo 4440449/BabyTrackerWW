@@ -118,8 +118,9 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
                 emptyDBArray[i].populateEntityWithDate(wake: wakes[i], date: date)
             }
 //            print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-            try coreDataContainer.viewContext.save()
-            callback(.success(()))
+            callback(.failure(LocalStorageError.parseToDomain("Test")))
+//            try coreDataContainer.viewContext.save()
+//            callback(.success(()))
         } catch let error {
             callback(.failure(LocalStorageError.synchronize(error)))
         }
