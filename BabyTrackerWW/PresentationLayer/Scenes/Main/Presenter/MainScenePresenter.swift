@@ -135,12 +135,13 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
     func swipe(gesture: Swipe) {
         switch gesture {
         case .left:
-            guard let dayAfter = interactor.shareStateForMainScene().date.nextDay() else { print("Error fetch date"); return }
-            interactor.fetchLifeCycles(at: dayAfter)
+            guard let previousDay = interactor.shareStateForMainScene().date.previousDay() else { print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: previousDay)
             
         case .right:
-            guard let dayBefore = interactor.shareStateForMainScene().date.previousDay() else { print("Error fetch date"); return }
-            interactor.fetchLifeCycles(at: dayBefore)
+            guard let nextDay = interactor.shareStateForMainScene().date.nextDay() else {
+             print("Error fetch date"); return }
+            interactor.fetchLifeCycles(at: nextDay)
         }
     }
     

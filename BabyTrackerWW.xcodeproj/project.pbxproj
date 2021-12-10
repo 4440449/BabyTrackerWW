@@ -11,6 +11,7 @@
 		501716A22718C936008DD70C /* LifeCyclesCardGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */; };
 		501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */; };
 		501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */; };
+		507FACB827625F01002773B7 /* GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureExtension.swift */; };
 		5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083ADB5275061BD00F1BF73 /* SceneState.swift */; };
 		508CEE8E274177C70086051A /* DreamGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamGatewayImpl.swift */; };
 		508CEE9027417B2D0086051A /* WakeGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */; };
@@ -45,7 +46,7 @@
 		50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter.swift */; };
 		50B175492704C1F000108B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* Main.storyboard */; };
 		50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderState.swift */; };
-		50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor.swift */; };
+		50B1754B2704C1F000108B17 /* MainModuleInteractor+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */; };
 		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
 		50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751B2704C1EF00108B17 /* AppDelegate.swift */; };
 		50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751E2704C1F000108B17 /* CoreDataStack.swift */; };
@@ -83,6 +84,7 @@
 		501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGatewayImpl.swift; sourceTree = "<group>"; };
 		501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientConfig.swift; sourceTree = "<group>"; };
 		501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTaskConfigurator.swift; sourceTree = "<group>"; };
+		507FACB727625F01002773B7 /* GestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureExtension.swift; sourceTree = "<group>"; };
 		5083ADB5275061BD00F1BF73 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		508CEE8D274177C70086051A /* DreamGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamGatewayImpl.swift; sourceTree = "<group>"; };
 		508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeGatewayImpl.swift; sourceTree = "<group>"; };
@@ -118,7 +120,7 @@
 		50B175132704C1EF00108B17 /* MainSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
 		50B175142704C1EF00108B17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		50B175162704C1EF00108B17 /* LoaderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
-		50B175172704C1EF00108B17 /* MainModuleInteractor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainModuleInteractor.swift; sourceTree = "<group>"; };
+		50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainModuleInteractor+State.swift"; sourceTree = "<group>"; };
 		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50B1751B2704C1EF00108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B1751E2704C1F000108B17 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
@@ -588,6 +590,7 @@
 			children = (
 				50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */,
 				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */,
+				507FACB727625F01002773B7 /* GestureExtension.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -611,7 +614,7 @@
 		50B175152704C1EF00108B17 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				50B175172704C1EF00108B17 /* MainModuleInteractor.swift */,
+				50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -849,6 +852,7 @@
 				5017169D2718C5BC008DD70C /* NetworkClient.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
 				50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */,
+				507FACB827625F01002773B7 /* GestureExtension.swift in Sources */,
 				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
 				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
 				508CEEA02741870C0086051A /* WakeNetworkRepositoryProtocol.swift in Sources */,
@@ -891,7 +895,7 @@
 				50B1753D2704C1F000108B17 /* DetailDreamSceneConfiguratorImpl.swift in Sources */,
 				50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter.swift in Sources */,
 				50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter.swift in Sources */,
-				50B1754B2704C1F000108B17 /* MainModuleInteractor.swift in Sources */,
+				50B1754B2704C1F000108B17 /* MainModuleInteractor+State.swift in Sources */,
 				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
 				50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,

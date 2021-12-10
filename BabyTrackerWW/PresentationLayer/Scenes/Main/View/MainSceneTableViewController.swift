@@ -22,9 +22,9 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     override func viewDidLoad() {
         super.viewDidLoad()
         configurator.configureScene(view: self)
-        tableView.tableFooterView = UIView(frame: .zero)
+        setupTableView()
         setupNavBarButtons()
-        setupSwipeGestures()
+        setupNavBarGestures()
         setupObservers()
         presenter.viewDidLoad()
     }
@@ -50,6 +50,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
                 print("sceneState accepted == \(sceneState)")
                 switch sceneState {
                 case .foreground:
+                    self?.setupSuperviewBackgroudColor()
                     self?.setupBlureEffect()
                     self?.setupActivityIndicator()
                 case .background:
@@ -101,21 +102,22 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     private var saveOutletButton: UIBarButtonItem!
     private var editOutletButton: UIBarButtonItem!
     
+    
+    // MARK: - System
+    
+    private let feedbackGenerator = UISelectionFeedbackGenerator()
+    
+    
     // MARK: - Gestures
     
-    private lazy var left: UISwipeGestureRecognizer = {
-        let gest = UISwipeGestureRecognizer(target: self, action: #selector(leftSwipe))
-        gest.direction = .left
-        return gest
-    }()
-    private lazy var right: UISwipeGestureRecognizer = {
-        let gest = UISwipeGestureRecognizer(target: self, action: #selector(rightSwipe))
-        gest.direction = .right
-        return gest
-    }()
+    private lazy var directionPan = PanDirectionGestureRecognizer(direction: .horizontal, target: self, action: #selector(didPan(_:)))
     
-    
+ 
     // MARK: - Table view
+    
+    private func setupTableView() {
+        tableView.tableFooterView = UIView(frame: .zero)
+    }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return presenter.getNumberOfLifeCycles()
@@ -182,41 +184,58 @@ extension MainSceneTableViewController {
     
     // MARK: - Gestures
     
-    private func setupSwipeGestures() {
-        tableView.addGestureRecognizer(left)
-        tableView.addGestureRecognizer(right)
+    private func setupNavBarGestures() {
+        navigationController?.navigationBar.addGestureRecognizer(directionPan)
     }
     
     private func manageSwipeGestures() {
         if (!tableView.isEditing && activityIndicator.isHidden) {
-            enableSwipeGestures()
+            enableNavBarGestures()
         } else {
-            disableSwipeGestures()
+            disableNavBarGestures()
         }
     }
     
-    private func enableSwipeGestures() {
-        tableView.gestureRecognizers?.forEach {
-            if ($0 == left || $0 == right) {
+    private func enableNavBarGestures() {
+        navigationController?.navigationBar.gestureRecognizers?.forEach {
+            if $0 == directionPan {
                 $0.isEnabled = true
             }
         }
     }
     
-    private func disableSwipeGestures() {
-        tableView.gestureRecognizers?.forEach {
-            if ($0 == left || $0 == right) {
+    private func disableNavBarGestures() {
+        navigationController?.navigationBar.gestureRecognizers?.forEach {
+            if $0 == directionPan {
                 $0.isEnabled = false
             }
         }
     }
     
-    @objc private func leftSwipe() {
-        presenter.swipe(gesture: .left)
-    }
-    
-    @objc private func rightSwipe() {
-        presenter.swipe(gesture: .right)
+    @objc func didPan(_ panGesture: UIPanGestureRecognizer) {
+        guard let centerX = navigationController?.navigationBar.center.x else { return }
+        guard let midXbounds = navigationController?.navigationBar.bounds.midX else { return }
+        let positiveXOffset = midXbounds + 140
+        let negativeXOffset = midXbounds - 140
+        let gestureOffset = panGesture.translation(in: navigationController?.navigationBar.superview)
+        let newXPosition = gestureOffset.x + centerX
+        navigationController?.navigationBar.center.x = newXPosition
+        panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
+        
+        switch panGesture.state {
+        case .ended:
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
+                self.navigationController?.navigationBar.frame.origin.x = .zero
+                self.feedbackGenerator.selectionChanged()
+                if newXPosition > positiveXOffset {
+                    self.presenter.swipe(gesture: .left)
+                } else if newXPosition < negativeXOffset {
+                    self.presenter.swipe(gesture: .right)
+                }
+            })
+        default:
+            return
+        }
     }
     
     
@@ -224,33 +243,38 @@ extension MainSceneTableViewController {
     
     private func setupNavBarButtons() {
         changeDateOutletButton = UIBarButtonItem(title: "Изменить дату", style: .plain, target: self, action: #selector(changeDateButton))
+        changeDateOutletButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(changeDateButton))
         addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
         cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
         saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
-        editOutletButton = UIBarButtonItem (title: "Редактировать", style: .plain, target: self, action: #selector(editButton))
+        editOutletButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(editButton))
     }
     
     private func manageDisplayNavBarButtons() {
-        guard activityIndicator.isHidden else { showLoadingStateNavBarButtons(); return }
+        guard activityIndicator.isHidden else { showLoadingModeNavBarButtons(); return }
         switch tableView.isEditing {
-        case true: hideNavBarButtons()
-        case false: showNavBarButtons()
+        case true: showEditModeNavBarButtons()
+        case false: showNotEditModeNavBarButtons()
         }
     }
     
-    private func hideNavBarButtons() {
+    private func showEditModeNavBarButtons() {
         navigationItem.leftBarButtonItems = [cancelOutletButton]
         navigationItem.rightBarButtonItems = [saveOutletButton]
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
     }
     
-    private func showNavBarButtons() {
+    private func showNotEditModeNavBarButtons() {
         navigationItem.leftBarButtonItems = [changeDateOutletButton]
         navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
     }
     
-    private func showLoadingStateNavBarButtons() {
-        navigationItem.leftBarButtonItems = [changeDateOutletButton]
-        navigationItem.rightBarButtonItems = [addNewOutletButton]
+    private func showLoadingModeNavBarButtons() {
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = false }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = false }
     }
     
     
@@ -301,7 +325,7 @@ extension MainSceneTableViewController {
     }
     
     private func startActivity() {
-        showBlure()
+        //        showBlure()
         activityIndicator.startAnimating()
     }
     
@@ -320,9 +344,12 @@ extension MainSceneTableViewController {
             .systemThinMaterialDark : .systemThinMaterialLight
         let blurEffect = UIBlurEffect(style: style)
         blure.effect = blurEffect
-        blure.frame = tableView.bounds
+        //        blure.frame = tableView.frame
         blure.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        tableView.addSubview(blure)
+        blure.alpha = 0.7
+        //        tableView.addSubview(blure)
+        //        navigationController?.navigationBar.addSubview(blure)
+        
     }
     
     private func removeBlureEffect() {
@@ -337,6 +364,15 @@ extension MainSceneTableViewController {
     private func hideBlure() {
         blure.isHidden = true
     }
+    
+    
+    // MARK: -
+    
+    private func setupSuperviewBackgroudColor() {
+        let color: UIColor = .systemBackground
+        tableView.superview?.backgroundColor = color
+    }
+    
     
 }
 

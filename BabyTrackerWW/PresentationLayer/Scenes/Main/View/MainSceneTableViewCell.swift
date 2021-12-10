@@ -21,4 +21,7 @@ final class MainSceneTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+    
+    
+    
 }

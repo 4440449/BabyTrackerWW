@@ -11,13 +11,16 @@
         <scene sceneID="peO-r7-I3Y">
             <objects>
                 <navigationController id="umT-Rc-EHo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mhC-5s-RDn">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="96"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="mhC-5s-RDn">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <gestureRecognizers/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PgN-82-yLN">
                         <autoresizingMask key="autoresizingMask"/>
+                        <gestureRecognizers/>
                     </toolbar>
                     <connections>
                         <segue destination="8nP-1y-YUj" kind="relationship" relationship="rootViewController" id="5eR-lK-n0p"/>
@@ -32,14 +35,14 @@
             <objects>
                 <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B95-aI-t9R">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-IZ-MYP">
-                                <rect key="frame" x="0.0" y="190" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="190" width="375" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-0C-eYy">
-                                <rect key="frame" x="20" y="130" width="560" height="35"/>
+                                <rect key="frame" x="20" y="130" width="335" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="eZk-FG-Xsb"/>
                                 </constraints>
@@ -48,7 +51,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-ug-EFf">
-                                <rect key="frame" x="235" y="455" width="130" height="55"/>
+                                <rect key="frame" x="122.5" y="522" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="aI3-c9-ued"/>
@@ -88,7 +91,7 @@
             <objects>
                 <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <prototypes>
@@ -114,6 +117,7 @@
                                     </constraints>
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <gestureRecognizers/>
                                 <connections>
                                     <outlet property="label" destination="5KJ-3t-Hdi" id="xGj-SB-58K"/>
                                 </connections>
@@ -125,7 +129,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="G6K-J5-4QK">
-                        <barButtonItem key="leftBarButtonItem" title="Изменить дату" style="done" id="0pa-fU-XIu">
+                        <barButtonItem key="leftBarButtonItem" title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
                             <connections>
                                 <action selector="changeDateButton:" destination="8nP-1y-YUj" id="9eF-C9-s9m"/>
                             </connections>
@@ -136,7 +140,7 @@
                                     <action selector="addNewButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem systemItem="edit" id="P0K-mG-vAO">
+                            <barButtonItem title="Item" image="pencil" catalog="system" id="P0K-mG-vAO">
                                 <connections>
                                     <action selector="editButton:" destination="8nP-1y-YUj" id="BW3-8U-qPU"/>
                                 </connections>
@@ -167,7 +171,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwi-Hq-ej5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-392.75362318840581" y="944.86607142857133"/>
+            <point key="canvasLocation" x="-392.80000000000001" y="944.07796101949032"/>
         </scene>
         <!--Select Scene Table View Controller-->
         <scene sceneID="pi8-Ho-dga">
@@ -212,7 +216,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="781-id-q1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="533" y="945"/>
+            <point key="canvasLocation" x="518" y="945"/>
         </scene>
         <!--Detail Dream Scene View Controller-->
         <scene sceneID="vwd-UJ-vJL">
@@ -381,11 +385,11 @@
             <objects>
                 <viewController id="Hoi-qQ-SGb" customClass="PickerViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgL-ro-dBi">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="580"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="130" width="600" height="216"/>
+                                <rect key="frame" x="0.0" y="130" width="375" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -394,7 +398,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
-                                <rect key="frame" x="235" y="455" width="130" height="55"/>
+                                <rect key="frame" x="122.5" y="522" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9YW-K0-Pug"/>
@@ -437,7 +441,7 @@
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbD-g9-QX1">
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="797"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
                                         <rect key="frame" x="75" y="90" width="225" height="55"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -613,10 +617,12 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="54p-wz-OVy"/>
-        <segue reference="cLA-m7-zfg"/>
+        <segue reference="tdi-ZX-3er"/>
         <segue reference="1Bx-wP-Azx"/>
     </inferredMetricsTieBreakers>
     <resources>
+        <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="pencil" catalog="system" width="128" height="113"/>
     </resources>
 </document>
