@@ -10,7 +10,7 @@ import UIKit
 
 
 protocol MainSceneRouterProtocol {
-    func prepare<S,D,V>(for segue: S, delegate: D, parentVC: V?)
+    func prepare<S,D,V>(for segue: S, delegate: D, sourceVC: V?)
     func perform<V>(type: LifeCycle, vc: V)
 }
 
@@ -19,8 +19,9 @@ protocol MainSceneRouterProtocol {
 final class MainSceneRouterImpl: MainSceneRouterProtocol {
     
     private var selectIndex: Int?
+    let customTransition = PopCustomTransitioningDelegate()
     
-    func prepare<S,D,V>(for segue: S, delegate: D, parentVC: V?) {
+    func prepare<S,D,V>(for segue: S, delegate: D, sourceVC: V?) {
         guard let segue = segue as? UIStoryboardSegue else { return }
         
         if let detailDreamVC = segue.destination as? DetailDreamSceneViewController {
@@ -38,13 +39,17 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
                 
             } else
                 if let selectVC = segue.destination as? SelectSceneTableViewController,
-                    let parentVC = parentVC as? MainSceneTableViewController {
-//                    selectVC.configurator.configureScene(view: selectVC, delegate: delegate)
-                    selectVC.popoverPresentationController?.delegate = parentVC
+                    let sourceVC = sourceVC as? MainSceneTableViewController {
+                    //                    selectVC.configurator.configureScene(view: selectVC, delegate: delegate)
+                    //                    selectVC.popoverPresentationController?.delegate = parentVC
+                    selectVC.modalPresentationStyle = .custom
+                    selectVC.transitioningDelegate = customTransition
+                    
+                    
                     selectVC.segueCallback = { identifire in
                         switch identifire {
-                        case 0: parentVC.performSegue(withIdentifier: "addNew" + String.init(describing: Dream.self), sender: nil)
-                        case 1: parentVC.performSegue(withIdentifier: "addNew" + String.init(describing: Wake.self), sender: nil)
+                        case 0: sourceVC.performSegue(withIdentifier: "addNew" + String.init(describing: Dream.self), sender: nil)
+                        case 1: sourceVC.performSegue(withIdentifier: "addNew" + String.init(describing: Wake.self), sender: nil)
                         default: print("Error! Input identifire \(identifire) cannot be recognized")
                         }
                     }

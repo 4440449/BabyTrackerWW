@@ -90,7 +90,7 @@
         <scene sceneID="d3X-f0-aLd">
             <objects>
                 <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs" customClass="TestTableView" customModule="BabyTrackerWW" customModuleProvider="target">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -160,9 +160,7 @@
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
                         <segue destination="DZ4-Dy-YXU" kind="presentation" identifier="changeDateButton" id="HJF-h0-FuU"/>
-                        <segue destination="LBA-XT-X1i" kind="popoverPresentation" identifier="addNewLifeCycleButton" popoverAnchorBarButtonItem="7Fw-qo-IY7" id="1gZ-aV-qV9">
-                            <popoverArrowDirection key="popoverArrowDirection" up="YES" down="YES" left="YES" right="YES"/>
-                        </segue>
+                        <segue destination="LBA-XT-X1i" kind="presentation" identifier="addNewLifeCycleButton" id="1gZ-aV-qV9"/>
                         <segue destination="rJu-0z-jb4" kind="presentation" identifier="didSelectDream" id="cnm-e9-8oz"/>
                         <segue destination="7cP-YO-UdJ" kind="presentation" identifier="didSelectWake" id="1Pb-Mk-Qmh"/>
                         <segue destination="rJu-0z-jb4" kind="presentation" identifier="addNewDream" id="1Bx-wP-Azx"/>
@@ -176,7 +174,7 @@
         <!--Select Scene Table View Controller-->
         <scene sceneID="pi8-Ho-dga">
             <objects>
-                <tableViewController id="LBA-XT-X1i" customClass="SelectSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="LBA-XT-X1i" customClass="SelectSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aGu-BG-7ag">
                         <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -200,6 +198,7 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <connections>
                                     <outlet property="label" destination="7GJ-sc-EVj" id="hJF-Wh-D7E"/>
                                 </connections>
@@ -617,7 +616,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="54p-wz-OVy"/>
-        <segue reference="tdi-ZX-3er"/>
+        <segue reference="kb9-cV-kiQ"/>
         <segue reference="1Bx-wP-Azx"/>
     </inferredMetricsTieBreakers>
     <resources>

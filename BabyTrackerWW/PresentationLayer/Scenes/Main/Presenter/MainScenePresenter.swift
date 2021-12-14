@@ -20,7 +20,7 @@ protocol MainScenePresenterProtocol {
     func getCellLabel(at index: Int) -> String
     
     func didSelectRow<V>(at index: Int, vc: V)
-    func prepare<T,V>(for segue: T, parentVC: V)
+    func prepare<T,V>(for segue: T, sourceVC: V)
     func deleteRow(at index: Int)
     func moveRow(source: Int, destination: Int)
     func saveChanges()
@@ -101,8 +101,8 @@ final class MainScenePresenterImpl: MainScenePresenterProtocol {
         router.perform(type: type, vc: vc)
     }
     
-    func prepare<T,V>(for segue: T, parentVC: V) {
-        router.prepare(for: segue, delegate: interactor, parentVC: parentVC)
+    func prepare<T,V>(for segue: T, sourceVC: V) {
+        router.prepare(for: segue, delegate: interactor, sourceVC: sourceVC)
     }
     
     
