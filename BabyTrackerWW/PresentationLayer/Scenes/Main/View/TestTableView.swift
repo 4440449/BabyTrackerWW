@@ -10,15 +10,15 @@ import UIKit
 
 class TestTableView: UITableView {
 
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        print("contentOffset == \(contentOffset)")
-        print("contentSize == \(contentSize)")
-        
-        
-        
-//        print("contentInset == \(contentInset)")
-//        print("contentScaleFactor == \(contentScaleFactor)")
-    }
+//    override func layoutSubviews() {
+//        super.layoutSubviews()
+//        print("contentOffset == \(contentOffset)")
+//        print("contentSize == \(contentSize)")
+//        
+//        
+//        
+////        print("contentInset == \(contentInset)")
+////        print("contentScaleFactor == \(contentScaleFactor)")
+//    }
 
 }

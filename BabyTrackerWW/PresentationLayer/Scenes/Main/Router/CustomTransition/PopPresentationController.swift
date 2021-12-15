@@ -15,19 +15,29 @@ class PopPresentationController: UIPresentationController {
         let view = UIView()
         view.backgroundColor = .clear
         view.addGestureRecognizer(tapGesture)
+        view.addGestureRecognizer(panGesture)
         return view
     }()
     
     private lazy var tapGesture = UITapGestureRecognizer(target: self, action: #selector(didTap))
+    private lazy var panGesture = UIPanGestureRecognizer(target: self, action: #selector(didPan))
+    
     
     @objc private func didTap() {
-       presentedViewController.dismiss(animated: true, completion: nil)
+        presentedViewController.dismiss(animated: true, completion: nil)
+    }
+    
+    @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
+        switch panGesture.state {
+        case .began: presentedViewController.dismiss(animated: true, completion: nil)
+        default: return
+        }
     }
     
     
     override var frameOfPresentedViewInContainerView: CGRect {
         return
-            CGRect(x: 200, y: 100, width: 250, height: 85)
+            CGRect(x: 200, y: 90, width: 200, height: 85)
     }
     
     override func presentationTransitionWillBegin() {
@@ -37,13 +47,14 @@ class PopPresentationController: UIPresentationController {
             let presentedView = presentedView
             else { return }
         
-        presentedView.frame = frameOfPresentedViewInContainerView
-        presentedView.layer.cornerRadius = 5
-        
         dimmView.frame = containerView.frame
-        
+        presentedView.frame = frameOfPresentedViewInContainerView
+
         containerView.addSubview(dimmView)
         containerView.addSubview(presentedView)
     }
     
 }
+
+
+

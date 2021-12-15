@@ -17,6 +17,7 @@
 		5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDE276814550015DD0E /* PopPresentationController.swift */; };
 		5083DCE12768157D0015DD0E /* PopPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */; };
 		5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */; };
+		5083DCE9276960D80015DD0E /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE8276960D80015DD0E /* SelectViewController.swift */; };
 		5084F386276374A900E0FB65 /* TestTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084F385276374A900E0FB65 /* TestTableView.swift */; };
 		508CEE8E274177C70086051A /* DreamGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamGatewayImpl.swift */; };
 		508CEE9027417B2D0086051A /* WakeGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */; };
@@ -41,7 +42,6 @@
 		50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */; };
 		50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175022704C1EF00108B17 /* SelectScenePresenter.swift */; };
 		50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */; };
-		50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */; };
 		50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */; };
 		50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175092704C1EF00108B17 /* SelectSceneRouter.swift */; };
 		50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */; };
@@ -95,6 +95,7 @@
 		5083DCDE276814550015DD0E /* PopPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentationController.swift; sourceTree = "<group>"; };
 		5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentAnimator.swift; sourceTree = "<group>"; };
 		5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopDismissAnimator.swift; sourceTree = "<group>"; };
+		5083DCE8276960D80015DD0E /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
 		5084F385276374A900E0FB65 /* TestTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableView.swift; sourceTree = "<group>"; };
 		508CEE8D274177C70086051A /* DreamGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamGatewayImpl.swift; sourceTree = "<group>"; };
 		508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeGatewayImpl.swift; sourceTree = "<group>"; };
@@ -120,7 +121,6 @@
 		50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
 		50B175022704C1EF00108B17 /* SelectScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScenePresenter.swift; sourceTree = "<group>"; };
 		50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewCell.swift; sourceTree = "<group>"; };
-		50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewController.swift; sourceTree = "<group>"; };
 		50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneConfigurator.swift; sourceTree = "<group>"; };
 		50B175092704C1EF00108B17 /* SelectSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneRouter.swift; sourceTree = "<group>"; };
 		50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScenePresenter.swift; sourceTree = "<group>"; };
@@ -565,7 +565,7 @@
 		50B175032704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B175052704C1EF00108B17 /* SelectSceneTableViewController.swift */,
+				5083DCE8276960D80015DD0E /* SelectViewController.swift */,
 				50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */,
 			);
 			path = View;
@@ -917,6 +917,7 @@
 				508CEE9227417E540086051A /* LifeCyclesCardPersistenceRepository.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
 				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
+				5083DCE9276960D80015DD0E /* SelectViewController.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
 				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,
 				50B1753A2704C1F000108B17 /* DetailWakeSceneViewController.swift in Sources */,
@@ -928,7 +929,6 @@
 				50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
 				508CEEA7274AEA870086051A /* Swipe.swift in Sources */,
-				50B175412704C1F000108B17 /* SelectSceneTableViewController.swift in Sources */,
 				50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

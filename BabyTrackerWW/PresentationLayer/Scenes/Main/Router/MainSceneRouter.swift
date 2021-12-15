@@ -29,7 +29,7 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
             guard selectIndex != nil else { detailDreamVC.presenter.addNewFlow(); return }
             detailDreamVC.presenter.didSelectFlow(at: selectIndex!)
             selectIndex = nil
-
+            
         } else
             if let detailWakeVC = segue.destination as? DetailWakeSceneViewController {
                 detailWakeVC.configurator.configureScene(view: detailWakeVC, delegate: delegate)
@@ -38,7 +38,7 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
                 selectIndex = nil
                 
             } else
-                if let selectVC = segue.destination as? SelectSceneTableViewController,
+                if let selectVC = segue.destination as? SelectViewController,
                     let sourceVC = sourceVC as? MainSceneTableViewController {
                     //                    selectVC.configurator.configureScene(view: selectVC, delegate: delegate)
                     //                    selectVC.popoverPresentationController?.delegate = parentVC
