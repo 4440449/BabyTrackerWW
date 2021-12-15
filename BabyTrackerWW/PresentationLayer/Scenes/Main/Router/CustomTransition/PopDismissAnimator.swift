@@ -12,7 +12,7 @@ import UIKit
 class PopDismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(using transitionContext: UIViewControllerContextTransitioning?) -> TimeInterval {
-        return 0.6
+        return 0.5
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
@@ -22,8 +22,7 @@ class PopDismissAnimator: NSObject, UIViewControllerAnimatedTransitioning {
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.8, initialSpringVelocity: 0.0, options: [.curveLinear], animations: {
             from.transform = CGAffineTransform(scaleX: 0.01, y: 0.01)
             from.alpha = 0
-        }, completion: { isFinished in
-            print(isFinished)
+        }, completion: { _ in
             transitionContext.completeTransition(true)
         })
     }

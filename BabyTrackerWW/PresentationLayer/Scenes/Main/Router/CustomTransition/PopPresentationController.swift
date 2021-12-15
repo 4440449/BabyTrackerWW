@@ -27,6 +27,7 @@ class PopPresentationController: UIPresentationController {
         presentedViewController.dismiss(animated: true, completion: nil)
     }
     
+    
     @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
         case .began: presentedViewController.dismiss(animated: true, completion: nil)
@@ -36,25 +37,31 @@ class PopPresentationController: UIPresentationController {
     
     
     override var frameOfPresentedViewInContainerView: CGRect {
-        return
-            CGRect(x: 200, y: 90, width: 200, height: 85)
+        guard let presentingView = presentingViewController.view else { return .zero }
+        let inset: CGFloat = 20
+        let presentedViewWidth: CGFloat = 200
+        let presentedViewHeight: CGFloat = 85
+        let rect = CGRect(x: presentingView.frame.width - presentedViewWidth - inset,
+                          y: presentingView.safeAreaInsets.top + inset * 2,
+                          width: presentedViewWidth,
+                          height: presentedViewHeight)
+        return rect
     }
     
+    
     override func presentationTransitionWillBegin() {
-        super.presentationTransitionWillBegin() //
+        super.presentationTransitionWillBegin()
         
         guard let containerView = containerView,
             let presentedView = presentedView
             else { return }
         
         dimmView.frame = containerView.frame
+        
         presentedView.frame = frameOfPresentedViewInContainerView
-
+        
         containerView.addSubview(dimmView)
         containerView.addSubview(presentedView)
     }
     
 }
-
-
-

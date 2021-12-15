@@ -22,8 +22,9 @@ class SelectViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupSourceView()
         setupBackgroundView()
-        setupTableView()
+        setupForegroundTableView()
     }
     
     
@@ -64,18 +65,24 @@ class SelectViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
 extension SelectViewController {
     
+    private func setupSourceView() {
+        view.layer.cornerRadius = 13
+        view.layer.anchorPoint = CGPoint(x: 1, y: 0)
+    }
+    
     private func setupBackgroundView() {
         backgroundView.layer.shadowColor = UIColor.black.cgColor
-        backgroundView.layer.shadowOffset = CGSize(width: 20, height: -20)
-        backgroundView.layer.shadowRadius = 130
+        backgroundView.layer.shadowOffset = CGSize(width: 30, height: -20)
+        backgroundView.layer.shadowRadius = 100
         backgroundView.layer.shadowOpacity = 0.5
     }
     
-    private func setupTableView() {
+    private func setupForegroundTableView() {
         foregroundTableView.delegate = self
         foregroundTableView.dataSource = self
         
         foregroundTableView.tableFooterView = UIView(frame: .zero)
         foregroundTableView.layer.cornerRadius = 13
     }
+    
 }

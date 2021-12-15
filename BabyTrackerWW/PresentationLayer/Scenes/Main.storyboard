@@ -219,11 +219,12 @@
             <objects>
                 <viewController id="OLg-sR-vCP" customClass="SelectViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPp-Oa-bDR">
-                        <rect key="frame" x="0.0" y="0.0" width="200" height="85"/>
+                        <rect key="frame" x="0.0" y="0.0" width="200" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="FLH-42-Q4Q">
-                                <rect key="frame" x="25" y="10" width="150" height="65"/>
+                            <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="FLH-42-Q4Q">
+                                <rect key="frame" x="25" y="10.5" width="150" height="65"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <subviews>
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CB8-cO-EIW">
                                         <rect key="frame" x="-25" y="-10" width="200" height="85"/>
@@ -233,20 +234,25 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="VKI-kC-qLu" customClass="SelectSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="200" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="28" width="200" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VKI-kC-qLu" id="hhF-2p-zrU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
-                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1t-1X-UkD">
-                                                            <rect key="frame" x="15" y="5" width="170" height="32"/>
-                                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1t-1X-UkD">
+                                                            <rect key="frame" x="15" y="10" width="170" height="23"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
                                                         </label>
                                                     </subviews>
+                                                    <constraints>
+                                                        <constraint firstItem="d1t-1X-UkD" firstAttribute="leading" secondItem="hhF-2p-zrU" secondAttribute="leading" constant="15" id="1Rr-X0-Hfj"/>
+                                                        <constraint firstAttribute="bottom" secondItem="d1t-1X-UkD" secondAttribute="bottom" constant="10" id="AMh-gr-UJh"/>
+                                                        <constraint firstItem="d1t-1X-UkD" firstAttribute="top" secondItem="hhF-2p-zrU" secondAttribute="top" constant="10" id="BOH-P9-jNy"/>
+                                                        <constraint firstAttribute="trailing" secondItem="d1t-1X-UkD" secondAttribute="trailing" constant="15" id="DxK-o7-Kdn"/>
+                                                    </constraints>
                                                 </tableViewCellContentView>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                                 <connections>
@@ -261,20 +267,12 @@
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="65" id="Vhb-Ql-W0g"/>
-                                    <constraint firstAttribute="width" constant="150" id="f1g-GZ-zbT"/>
-                                </constraints>
                             </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <constraints>
-                            <constraint firstItem="FLH-42-Q4Q" firstAttribute="centerX" secondItem="WPp-Oa-bDR" secondAttribute="centerX" id="BLi-Cz-mSa"/>
-                            <constraint firstItem="FLH-42-Q4Q" firstAttribute="centerY" secondItem="WPp-Oa-bDR" secondAttribute="centerY" id="d9v-TT-5It"/>
-                        </constraints>
                         <viewLayoutGuide key="safeArea" id="LeH-KK-b5I"/>
                     </view>
-                    <size key="freeformSize" width="200" height="85"/>
+                    <size key="freeformSize" width="200" height="86"/>
                     <connections>
                         <outlet property="backgroundView" destination="FLH-42-Q4Q" id="fCd-Yq-xH0"/>
                         <outlet property="foregroundTableView" destination="CB8-cO-EIW" id="YVq-fR-bVz"/>
@@ -282,7 +280,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXy-Xx-MUD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="347" y="754"/>
+            <point key="canvasLocation" x="373" y="750"/>
         </scene>
         <!--Detail Dream Scene View Controller-->
         <scene sceneID="vwd-UJ-vJL">

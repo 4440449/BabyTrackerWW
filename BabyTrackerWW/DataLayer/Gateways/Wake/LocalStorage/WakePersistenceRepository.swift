@@ -109,7 +109,6 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
-            
             fetchResult.forEach { coreDataContainer.viewContext.delete($0) }
 //            print("fetchResult ================= \(fetchResult)")
             let emptyDBArray = wakes.map { _ in WakeDBEntity.init(context: coreDataContainer.viewContext) }
@@ -118,9 +117,9 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
                 emptyDBArray[i].populateEntityWithDate(wake: wakes[i], date: date)
             }
 //            print("Debug: wake emptyDBArray == \(emptyDBArray) -///- count = \(emptyDBArray.count)")
-            callback(.failure(LocalStorageError.parseToDomain("Test")))
-//            try coreDataContainer.viewContext.save()
-//            callback(.success(()))
+//            callback(.failure(LocalStorageError.parseToDomain("Test")))
+            try coreDataContainer.viewContext.save()
+            callback(.success(()))
         } catch let error {
             callback(.failure(LocalStorageError.synchronize(error)))
         }
