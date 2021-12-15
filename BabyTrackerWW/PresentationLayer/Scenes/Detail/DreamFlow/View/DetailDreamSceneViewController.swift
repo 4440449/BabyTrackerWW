@@ -59,6 +59,7 @@ final class DetailDreamSceneViewController: UIViewController {
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
     @IBOutlet weak var putDownOutletButton: UIButton!
     @IBOutlet weak var saveOutletButton: UIButton!
+    @IBOutlet weak var backgroundView: UIView!
     @IBOutlet weak var textView: UITextView!
     @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var placeholderTextViewLabel: UILabel!
@@ -131,7 +132,7 @@ extension DetailDreamSceneViewController: UITextViewDelegate {
     
     private func setupTextView() {
         textView.delegate = self
-        textView.layer.cornerRadius = 10
+        backgroundView.layer.cornerRadius = 10
     }
     
     private func manageTextViewPlaceholder() {
@@ -161,7 +162,7 @@ extension DetailDreamSceneViewController: UITextViewDelegate {
         } else
             if notification.name == UIResponder.keyboardWillShowNotification {
                 scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
-                scrollView.scrollRectToVisible(textView.frame, animated: true)
+                scrollView.scrollRectToVisible(backgroundView.frame, animated: true)
             } else {
                 return
         }
