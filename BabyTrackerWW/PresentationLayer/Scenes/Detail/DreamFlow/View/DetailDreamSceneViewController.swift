@@ -24,6 +24,7 @@ final class DetailDreamSceneViewController: UIViewController {
         setupOutletButtons()
         setupTextView()
         setupObservers()
+        presenter.viewDidLoad()
     }
     
     override func viewWillAppear(_ animated: Bool) {

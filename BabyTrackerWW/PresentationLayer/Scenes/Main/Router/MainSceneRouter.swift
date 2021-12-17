@@ -19,22 +19,25 @@ protocol MainSceneRouterProtocol {
 final class MainSceneRouterImpl: MainSceneRouterProtocol {
     
     private var selectIndex: Int?
-    let customTransition = PopCustomTransitioningDelegate()
+    private let customTransition = PopCustomTransitioningDelegate()
     
     func prepare<S,D,V>(for segue: S, delegate: D, sourceVC: V?) {
         guard let segue = segue as? UIStoryboardSegue else { return }
         
         if let detailDreamVC = segue.destination as? DetailDreamSceneViewController {
             detailDreamVC.configurator.configureScene(view: detailDreamVC, delegate: delegate)
-            guard selectIndex != nil else { detailDreamVC.presenter.addNewFlow(); return }
-            detailDreamVC.presenter.didSelectFlow(at: selectIndex!)
+            guard selectIndex != nil else { return }
+            detailDreamVC.presenter.selectIndex = selectIndex
             selectIndex = nil
+//            guard selectIndex != nil else { detailDreamVC.presenter.addNewFlow(); return }
+//            detailDreamVC.presenter.didSelectFlow(at: selectIndex!)
+//            selectIndex = nil
             
         } else
             if let detailWakeVC = segue.destination as? DetailWakeSceneViewController {
                 detailWakeVC.configurator.configureScene(view: detailWakeVC, delegate: delegate)
-                guard selectIndex != nil else { detailWakeVC.presenter.addNewFlow(); return }
-                detailWakeVC.presenter.didSelectFlow(at: selectIndex!)
+                guard selectIndex != nil else { return }
+                detailWakeVC.presenter.selectIndex = selectIndex
                 selectIndex = nil
                 
             } else
@@ -44,7 +47,6 @@ final class MainSceneRouterImpl: MainSceneRouterProtocol {
                     //                    selectVC.popoverPresentationController?.delegate = parentVC
                     selectVC.modalPresentationStyle = .custom
                     selectVC.transitioningDelegate = customTransition
-                    
                     
                     selectVC.segueCallback = { identifire in
                         switch identifire {

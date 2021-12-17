@@ -11,10 +11,9 @@ import Foundation
 
 protocol DetailDreamScenePresenterProtocol: AnyObject {
     
-//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
     var dream: Publisher<Dream> { get }
-    func didSelectFlow(at index: Int)
-    func addNewFlow() // в отдельный протокол?
+    var selectIndex: Int? { get set }
+    func viewDidLoad()
     func textViewDidChange(text: String)
     func saveButtonTapped()
     func prepare<S>(for segue: S)
@@ -36,23 +35,31 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
         self.router = router
     }
     
+    
     // MARK: - State
     
-    private var selectIndex: Int?
+    var selectIndex: Int?
     var dream = Publisher(value: Dream(index: 0, fallAsleep: .crying, putDown: .brestFeeding))
 
     
     //MARK: - View Output
     
-    func addNewFlow() {
+    private func addNewFlow() {
         dream.value = Dream(index: delegate.shareStateForDetailDreamScene().lifeCycle.endIndex,
                             fallAsleep: .crying,
                             putDown: .brestFeeding)
     }
     
-    func didSelectFlow(at index: Int) {
+    private func didSelectFlow(at index: Int) {
         selectIndex = index
         dream.value = delegate.shareStateForDetailDreamScene().lifeCycle[index] as! Dream
+    }
+    
+    
+        //MARK: - View Output
+    
+    func viewDidLoad() {
+        selectIndex == nil ? addNewFlow() : didSelectFlow(at: selectIndex!)
     }
     
     func textViewDidChange(text: String) {
@@ -60,10 +67,7 @@ final class DetailDreamScenePresenterImpl: DetailDreamScenePresenterProtocol {
     }
     
     func saveButtonTapped() {
-        selectIndex == nil ?
-            delegate.add(new: dream.value)
-        :
-            delegate.change(dream.value)
+        selectIndex == nil ? delegate.add(new: dream.value) : delegate.change(dream.value)
     }
     
     func prepare<S>(for segue: S) {

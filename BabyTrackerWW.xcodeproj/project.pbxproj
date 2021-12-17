@@ -199,17 +199,26 @@
 		5083DCDD2768141E0015DD0E /* CustomTransition */ = {
 			isa = PBXGroup;
 			children = (
+				5085261D276B85FA0078E7A5 /* Pop */,
+			);
+			path = CustomTransition;
+			sourceTree = "<group>";
+		};
+		5085261D276B85FA0078E7A5 /* Pop */ = {
+			isa = PBXGroup;
+			children = (
 				5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */,
 				5083DCDE276814550015DD0E /* PopPresentationController.swift */,
 				5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */,
 				5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */,
 			);
-			path = CustomTransition;
+			path = Pop;
 			sourceTree = "<group>";
 		};
 		508CEE8C274177070086051A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				5083DCDD2768141E0015DD0E /* CustomTransition */,
 				50F6C91927332E5E005648BA /* Publisher.swift */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
@@ -629,7 +638,6 @@
 			isa = PBXGroup;
 			children = (
 				50B175132704C1EF00108B17 /* MainSceneRouter.swift */,
-				5083DCDD2768141E0015DD0E /* CustomTransition */,
 			);
 			path = Router;
 			sourceTree = "<group>";

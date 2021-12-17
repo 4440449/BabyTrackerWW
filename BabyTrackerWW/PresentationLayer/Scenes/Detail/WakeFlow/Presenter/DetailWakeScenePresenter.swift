@@ -11,10 +11,9 @@ import Foundation
 
 protocol DetailWakeScenePresenterProtocol: AnyObject {
     
-//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ())
     var wake: Publisher<Wake> { get }
-    func didSelectFlow(at index: Int)
-    func addNewFlow()
+    var selectIndex: Int? { get set }
+    func viewDidLoad()
     func textViewDidChange(text: String)
     func saveButtonTapped()
     func prepare<S>(for segue: S)
@@ -38,41 +37,29 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     
     // MARK: - State
     
-    private var selectIndex: Int?
+    var selectIndex: Int?
     var wake = Publisher(value: Wake(index: 0, wakeUp: .crying, wakeWindow: .calm, signs: .crying))
-//    {
-//        didSet {
-//            DispatchQueue.main.async {
-//                self.labelStateNotifierStorage.forEach {
-//                    $0.callback([self.wake.wakeUp.rawValue,
-//                                 self.wake.wakeWindow.rawValue,
-//                                 self.wake.signs.rawValue])
-//                }
-//            }
-//        }
-//    }
     
-    // MARK: - View Input (Observing)
     
-    // Отписку не буду делать, т.к. и так все задеинитится
-//    private var labelStateNotifierStorage = [Observer<[String]>]()
-//
-//    func subscribeToLabelState(_ observer: AnyObject, _ callback: @escaping ([String]) -> ()) {
-//        labelStateNotifierStorage.append(Observer(observer, callback))
-//    }
+    //MARK: - Internal setup
+    
+    private func addNewFlow() {
+        wake.value = Wake(index: delegate.shareStateForDetailWakeScene().lifeCycle.endIndex,
+                          wakeUp: .crying,
+                          wakeWindow: .calm,
+                          signs: .crying)
+    }
+    
+    private func didSelectFlow(at index: Int) {
+        selectIndex = index
+        wake.value = delegate.shareStateForDetailWakeScene().lifeCycle[index] as! Wake
+    }
+    
     
     //MARK: - View Output
     
-    func addNewFlow() {
-        wake.value = Wake(index: delegate.shareStateForDetailWakeScene().lifeCycle.endIndex,
-                    wakeUp: .crying,
-                    wakeWindow: .calm,
-                    signs: .crying)
-    }
-    
-    func didSelectFlow(at index: Int) {
-        selectIndex = index
-        wake.value = delegate.shareStateForDetailWakeScene().lifeCycle[index] as! Wake
+    func viewDidLoad() {
+        selectIndex == nil ? addNewFlow() : didSelectFlow(at: selectIndex!)
     }
     
     func textViewDidChange(text: String) {
@@ -80,10 +67,7 @@ final class DetailWakeScenePresenterImpl: DetailWakeScenePresenterProtocol {
     }
     
     func saveButtonTapped() {
-        selectIndex == nil ?
-            delegate.add(new: wake.value)
-            :
-            delegate.change(wake.value)
+        selectIndex == nil ? delegate.add(new: wake.value) : delegate.change(wake.value)
     }
     
     func prepare<S>(for segue: S) {

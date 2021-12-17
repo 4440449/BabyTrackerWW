@@ -24,6 +24,7 @@ class DetailWakeSceneViewController: UIViewController {
         setupOutletButtons()
         setupTextView()
         setupObservers()
+        presenter.viewDidLoad()
     }
     
     
