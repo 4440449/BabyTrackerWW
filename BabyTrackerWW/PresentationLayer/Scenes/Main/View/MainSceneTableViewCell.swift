@@ -11,6 +11,8 @@ import UIKit
 
 final class MainSceneTableViewCell: UITableViewCell {
 
+    static let identifier = String(describing: MainSceneTableViewCell.self)
+    
     @IBOutlet weak var label: UILabel!
     
     override func awakeFromNib() {

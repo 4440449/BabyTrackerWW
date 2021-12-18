@@ -60,15 +60,11 @@ protocol DetailWakeSceneDelegate: AnyObject {
 }
 
 
-protocol SelectSceneDelegate {
-    
-}
-
 
 
 // MARK: - Implementation -
 
-final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailDreamSceneDelegate, DetailWakeSceneDelegate, SelectSceneDelegate {
+final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, DetailDreamSceneDelegate, DetailWakeSceneDelegate {
     
     
     // MARK: - Dependencies
@@ -112,6 +108,8 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
         }
     }
     
+    
+    // MARK: - Interfaces -
     
     //MARK: - Main Scene
     

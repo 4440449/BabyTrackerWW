@@ -27,7 +27,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         setupNavBarGestures()
         setupObservers()
         presenter.viewDidLoad()
-//        tableView.panGestureRecognizer.addTarget(self, action: #selector(scroll))
+        //        tableView.panGestureRecognizer.addTarget(self, action: #selector(scroll))
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -41,34 +41,34 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     
-    
-    @objc func scroll(_ pan: UIPanGestureRecognizer) {
-        
-        switch pan.state {
-            
-        case .began: return//print("began")
-        case .changed: print("changed");
-            print("tableView.contentOffset == \(tableView.contentOffset)")
-            
-        case .ended:
-            print("ended");
-            print("tableView.contentOffset == \(tableView.contentOffset)")
-            
-        case .recognized:
-            print("recognized");
-            print("tableView.contentOffset == \(tableView.contentOffset)")
-            
-        case .possible: print("possible")
-        case .failed: print("failed")
-        case .cancelled: print("cancelled")
-//            sleep(UInt32(0.1))
-//            print("tableView.bounds.height == \(tableView.bounds.height)")
-//            navigationController?.navigationBar.layoutSubviews();
-//            print("navigationController?.navigationBar.bounds.height == \(navigationController?.navigationBar.bounds.height)")
-        default: return
-        }
-        
-    }
+    //
+    //    @objc func scroll(_ pan: UIPanGestureRecognizer) {
+    //
+    //        switch pan.state {
+    //
+    //        case .began: return//print("began")
+    //        case .changed: print("changed");
+    //            print("tableView.contentOffset == \(tableView.contentOffset)")
+    //
+    //        case .ended:
+    //            print("ended");
+    //            print("tableView.contentOffset == \(tableView.contentOffset)")
+    //
+    //        case .recognized:
+    //            print("recognized");
+    //            print("tableView.contentOffset == \(tableView.contentOffset)")
+    //
+    //        case .possible: print("possible")
+    //        case .failed: print("failed")
+    //        case .cancelled: print("cancelled")
+    ////            sleep(UInt32(0.1))
+    ////            print("tableView.bounds.height == \(tableView.bounds.height)")
+    ////            navigationController?.navigationBar.layoutSubviews();
+    ////            print("navigationController?.navigationBar.bounds.height == \(navigationController?.navigationBar.bounds.height)")
+    //        default: return
+    //        }
+    //
+    //    }
     
     
     // MARK: - Input data flow
@@ -78,7 +78,6 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         if let sceneDelegate =
             self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                print("sceneState accepted == \(sceneState)")
                 switch sceneState {
                 case .foreground:
                     self?.setupSuperviewBackgroudColor()
@@ -114,8 +113,13 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     private func reloadData() {
-        tableView.reloadData()
-        navigationController?.navigationBar.topItem?.title = presenter.getDate()
+        navigationController?.navigationBar.topItem?.title = self.presenter.getDate()
+        UIView.transition(with: tableView,
+                          duration: 0.35,
+                          options: .transitionCrossDissolve,
+                          animations: {
+                            self.tableView.reloadData()
+        })
     }
     
     
@@ -143,7 +147,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     
     private lazy var directionPan = PanDirectionGestureRecognizer(direction: .horizontal, target: self, action: #selector(didPan(_:)))
     
- 
+    
     // MARK: - Table view
     
     private func setupTableView() {
@@ -155,7 +159,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "MainSceneCell", for: indexPath) as! MainSceneTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: MainSceneTableViewCell.identifier, for: indexPath) as! MainSceneTableViewCell
         cell.label.text = presenter.getCellLabel(at: indexPath.row)
         return cell
     }
@@ -178,10 +182,23 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
         return true
     }
     
+    
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        print("indexPath == \(indexPath.row)")
+        
+        //        if editingStyle == .delete {
+        //            tableView.beginUpdates()
         presenter.deleteRow(at: indexPath.row)
+        //            tableView.reloadRows(at: [indexPath], with: .automatic)
+        //            tableView.deleteRows(at: [indexPath], with: .automatic)
+        //            tableView.endUpdates()
+        //            }
+        
     }
     
+    //    override func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+    //        <#code#>
+    //    }
     
     // MARK: - Navigation
     
@@ -223,7 +240,6 @@ extension MainSceneTableViewController {
     }
     
     private func manageGestures() {
-        print("navigationController?.navigationBar.bounds.height == \(navigationController?.navigationBar.bounds.height)")
         if (!tableView.isEditing && activityIndicator.isHidden) {
             enableNavBarGestures()
         } else {
@@ -253,7 +269,7 @@ extension MainSceneTableViewController {
         let positiveXOffset = midXbounds + 90
         let negativeXOffset = midXbounds - 90
         let gestureOffset = panGesture.translation(in: navigationController?.navigationBar.superview)
-//        let newXPosition = gestureOffset.x / 1.5 + centerX
+        //        let newXPosition = gestureOffset.x / 1.5 + centerX
         let newXPosition = gestureOffset.x + centerX
         navigationController?.navigationBar.center.x = newXPosition
         panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
@@ -327,9 +343,9 @@ extension MainSceneTableViewController {
     
     @IBAction private func cancelButton(_ sender: Any) {
         tableView.setEditing(false, animated: true)
+        presenter.cancelChanges()
         manageDisplayNavBarButtons()
         manageGestures()
-        presenter.cancelChanges()
     }
     
     @IBAction private func saveButton(_ sender: Any) {
