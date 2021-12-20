@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct LifeCycleNetworkEntity: Codable {
+struct LifeCycleNetworkEntity: Codable, DomainConvertable {
     
     var dreams: [DreamNetworkEntity]?
     var wakes: [WakeNetworkEntity]?

@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct DreamNetworkEntity: Codable {
+struct DreamNetworkEntity: Codable, DomainConvertable {
     
     private let date: String
     let id: UUID

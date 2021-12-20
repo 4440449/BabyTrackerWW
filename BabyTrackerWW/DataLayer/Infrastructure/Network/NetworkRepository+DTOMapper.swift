@@ -12,6 +12,8 @@ import Foundation
 protocol NetworkRepositoryDTOMapperProtocol {
     func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ())
     func request(emptyResult callback: @escaping (Result<Void, Error>) -> ())
+    
+    func request<T: Decodable & DomainConvertable, D>(decoderType: T.Type, _ callback: @escaping (Result<D, Error>) -> ())
 }
 
 
@@ -22,7 +24,26 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
     init(client: ApiClientProtocol) {
         self.client = client
     }
-
+    
+    //TODO: Протестить вручную!!!
+    func request<D: Decodable & DomainConvertable, R>(decoderType: D.Type, _ callback: @escaping (Result<R, Error>) -> ()) {
+        self.client.execute { result in
+                    switch result {
+                    case let .success(data):
+                        do {
+                            let networkEntity = try JSONDecoder().decode(D.self, from: data)
+                            let domainEntity = try networkEntity.parseToDomain()
+                            guard let resultDomainEntity = domainEntity as? R else { callback(.failure(NetworkError.parseToDomainResultTypeCasting("Error typecasting! domainEntity: \(domainEntity) cannot be casting to expect result type: \(R.self) "))); return
+                            }
+                            callback(.success(resultDomainEntity))
+                        } catch {
+                            callback(.failure(error))
+                        }
+                    case let .failure(error): callback(.failure(error))
+                    }
+                }
+    }
+    //
     
     func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         self.client.execute { result in

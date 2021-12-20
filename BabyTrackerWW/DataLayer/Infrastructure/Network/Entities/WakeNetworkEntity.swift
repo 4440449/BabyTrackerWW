@@ -9,7 +9,7 @@
 import Foundation
 
 
-struct WakeNetworkEntity: Codable {
+struct WakeNetworkEntity: Codable, DomainConvertable {
     
     private let date: String
     let id: UUID

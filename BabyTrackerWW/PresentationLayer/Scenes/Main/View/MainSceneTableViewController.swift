@@ -76,7 +76,9 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     private func setupObservers() {
         //Рутовый контроллер - Навигационный; обращаюсь к сцен делегату через него
         if let sceneDelegate =
-            self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
+            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
+//        if let sceneDelegate =
+//            self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
             sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
                 switch sceneState {
                 case .foreground:
@@ -113,7 +115,7 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
     }
     
     private func reloadData() {
-        navigationController?.navigationBar.topItem?.title = self.presenter.getDate()
+        navigationController?.navigationBar.topItem?.title = presenter.getDate()
         UIView.transition(with: tableView,
                           duration: 0.35,
                           options: .transitionCrossDissolve,
@@ -367,11 +369,15 @@ extension MainSceneTableViewController {
     private func setupActivityIndicator() {
         print("setupActivityIndicator")
         let color: UIColor = .systemGray
-        activityIndicator.center = tableView.center
+        print("superView == \(tableView.superview!) ... \(tableView.superview!.center)")
+        print("superView == \(tableView.frame) ... \(tableView.center)")
+        
+        activityIndicator.center = CGPoint(x: 207, y: 448)
         activityIndicator.hidesWhenStopped = true
         activityIndicator.style = .large
         activityIndicator.color = color
         tableView.addSubview(activityIndicator)
+        print(activityIndicator.center)
     }
     
     private func removeActivityIndicator() {

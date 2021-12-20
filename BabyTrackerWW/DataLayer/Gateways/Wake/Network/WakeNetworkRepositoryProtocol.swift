@@ -37,7 +37,8 @@ final class WakeNetworkRepository: WakeNetworkRepositoryProtocol {
             LifeCycleNetworkEntity(domainEntity: [wake], date: date)) )
         let apiSession = APISession.default
         let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
-        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
+        return NetworkRepositoryDTOMapper(client: client).request(decoderType: WakeNetworkEntity.self, callback)
+//        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
     }
     
     func change (_ wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> () {
@@ -47,7 +48,8 @@ final class WakeNetworkRepository: WakeNetworkRepositoryProtocol {
             LifeCycleNetworkEntity(domainEntity: [wake], date: date)) )
         let session = APISession.default
         let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
-        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
+        return NetworkRepositoryDTOMapper(client: client).request(decoderType: WakeNetworkEntity.self, callback)
+//        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
     }
     
 }

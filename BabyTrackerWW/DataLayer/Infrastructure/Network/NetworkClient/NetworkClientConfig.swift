@@ -146,6 +146,7 @@ enum NetworkError: Error {
     case badRequest (Error)
     case badResponse (String)
     case parseToDomain (String)
+    case parseToDomainResultTypeCasting (String)
 }
 
 
