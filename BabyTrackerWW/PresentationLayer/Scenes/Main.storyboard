@@ -171,49 +171,6 @@
             </objects>
             <point key="canvasLocation" x="-392.80000000000001" y="944.07796101949032"/>
         </scene>
-        <!--Select Scene Table View Controller-->
-        <scene sceneID="pi8-Ho-dga">
-            <objects>
-                <tableViewController modalTransitionStyle="crossDissolve" modalPresentationStyle="overCurrentContext" id="LBA-XT-X1i" customClass="SelectSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="aGu-BG-7ag">
-                        <rect key="frame" x="0.0" y="0.0" width="350" height="200"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                        <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
-                        <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="wV5-i1-2dh" customClass="SelectSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="350" height="43.5"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="wV5-i1-2dh" id="t5r-U9-0oF">
-                                    <rect key="frame" x="0.0" y="0.0" width="350" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                    <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7GJ-sc-EVj">
-                                            <rect key="frame" x="16" y="5" width="218" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
-                                            <nil key="textColor"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
-                                    </subviews>
-                                </tableViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemPinkColor" red="1" green="0.1764705882" blue="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="LBA-XT-X1i" id="TG1-mu-vb9"/>
-                            <outlet property="delegate" destination="LBA-XT-X1i" id="ffO-6v-E2d"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" id="fDl-bT-oeC"/>
-                    <value key="contentSizeForViewInPopover" type="size" width="250" height="87"/>
-                    <size key="freeformSize" width="350" height="200"/>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="781-id-q1n" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1707" y="267"/>
-        </scene>
         <!--Select View Controller-->
         <scene sceneID="Tcy-aT-Fsw">
             <objects>
@@ -260,10 +217,6 @@
                                                 </connections>
                                             </tableViewCell>
                                         </prototypes>
-                                        <connections>
-                                            <outlet property="dataSource" destination="LBA-XT-X1i" id="RMf-UA-F1M"/>
-                                            <outlet property="delegate" destination="LBA-XT-X1i" id="00G-yi-Y9z"/>
-                                        </connections>
                                     </tableView>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

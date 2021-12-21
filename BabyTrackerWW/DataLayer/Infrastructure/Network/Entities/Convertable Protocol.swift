@@ -9,6 +9,6 @@
 
 
 protocol DomainConvertable {
-    associatedtype T
-    func parseToDomain() throws -> T
+    associatedtype DomainEntity
+    func parseToDomain() throws -> DomainEntity
 }

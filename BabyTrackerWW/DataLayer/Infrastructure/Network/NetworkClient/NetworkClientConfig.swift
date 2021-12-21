@@ -50,7 +50,6 @@ struct ApiURL {
         self.scheme = scheme.rawValue
         self.host = host
         self.path = path
-        guard endPoint != nil else { self.endPoint = nil; return }
         self.endPoint = endPoint
     }
     
@@ -97,7 +96,6 @@ struct APIRequest {
         self.url = url
         self.method = method.rawValue
         self.header = header
-        guard body != nil else { self.body = nil; return }
         self.body = body
     }
     
@@ -106,7 +104,6 @@ struct APIRequest {
         self.url = url
         self.method = method
         self.header = header
-        guard body != nil else { self.body = nil; return }
         self.body = body
     }
     

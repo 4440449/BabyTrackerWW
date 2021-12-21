@@ -35,7 +35,8 @@ final class LifeCyclesCardNetworkRepositoryImpl: LifeCyclesCardNetworkRepository
         let apiRequest = APIRequest(url: apiURL, method: .get, header: ["apiKey" : apiKey], body: nil)
         let apiSession = APISession.default
         let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
-        return (NetworkRepositoryDTOMapper(client: client).fetchRequest(callback))
+        return (NetworkRepositoryDTOMapper(client: client).request(decoderType: LifeCycleNetworkEntity.self, callback))
+        //        return (NetworkRepositoryDTOMapper(client: client).fetchRequest(callback))
     }
     
     func synchronize(_ lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
@@ -45,7 +46,8 @@ final class LifeCyclesCardNetworkRepositoryImpl: LifeCyclesCardNetworkRepository
             JsonPatchEntity(op: .replace, path: date.webApiFormat(), values:  LifeCycleNetworkEntity(domainEntity: lifeCycles, date: date)))
         let session = APISession.default
         let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
-        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
+        return (NetworkRepositoryDTOMapper(client: client).request(decoderType: LifeCycleNetworkEntity.self, callback))
+        //        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
     }
     
 }

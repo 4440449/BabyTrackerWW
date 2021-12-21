@@ -10,10 +10,9 @@ import Foundation
 
 
 protocol NetworkRepositoryDTOMapperProtocol {
-    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ())
-    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ())
-    
-    func request<T: Decodable & DomainConvertable, D>(decoderType: T.Type, _ callback: @escaping (Result<D, Error>) -> ())
+//    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ())
+//    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ())
+    func request<D: Decodable & DomainConvertable, R>(decoderType: D.Type, _ callback: @escaping (Result<R, Error>) -> ())
 }
 
 
@@ -27,7 +26,7 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
     
     //TODO: Протестить вручную!!!
     func request<D: Decodable & DomainConvertable, R>(decoderType: D.Type, _ callback: @escaping (Result<R, Error>) -> ()) {
-        self.client.execute { result in
+        client.execute { result in
                     switch result {
                     case let .success(data):
                         do {
@@ -43,35 +42,36 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
                     }
                 }
     }
+}
     //
     
-    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        self.client.execute { result in
-            switch result {
-            case let .success(data):
-//                print("json data == \(String(data: data, encoding: .utf8)!)")
-                do {
-                    let networkEntity = try JSONDecoder().decode(LifeCycleNetworkEntity.self, from: data)
-                    let domainEntity = try networkEntity.parseToDomain()
-//                    print("networkEntity == \(networkEntity)")
-//                    print("domainEntity == \(domainEntity)")
-                    callback(.success(domainEntity))
-                } catch {
-                    callback(.failure(error))
-                }
-            case let .failure(error): callback(.failure(error))
-            }
-        }
-    }
+//    func fetchRequest(_ callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
+//        self.client.execute { result in
+//            switch result {
+//            case let .success(data):
+////                print("json data == \(String(data: data, encoding: .utf8)!)")
+//                do {
+//                    let networkEntity = try JSONDecoder().decode(LifeCycleNetworkEntity.self, from: data)
+//                    let domainEntity = try networkEntity.parseToDomain()
+////                    print("networkEntity == \(networkEntity)")
+////                    print("domainEntity == \(domainEntity)")
+//                    callback(.success(domainEntity))
+//                } catch {
+//                    callback(.failure(error))
+//                }
+//            case let .failure(error): callback(.failure(error))
+//            }
+//        }
+//    }
+//
+//
+//    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ()) {
+//        self.client.execute { result in
+//            switch result {
+//            case .success: callback(.success(()))
+//            case let .failure(error): callback(.failure(error))
+//            }
+//        }
+//    }
     
-    
-    func request(emptyResult callback: @escaping (Result<Void, Error>) -> ()) {
-        self.client.execute { result in
-            switch result {
-            case .success: callback(.success(()))
-            case let .failure(error): callback(.failure(error))
-            }
-        }
-    }
-    
-}
+//}
