@@ -45,21 +45,26 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
             
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
-                case let .success(dreams): resultSuccess.append(contentsOf: dreams)
-                case let .failure(error): breakTask = true; callback(.failure(error))
+                case let .success(dreams):
+                    resultSuccess.append(contentsOf: dreams)
+                case let .failure(error):
+                    breakTask = true;
+                    callback(.failure(error))
                 }
             }
             guard !breakTask else { return }
             
             self.wakeRepository.fetchWakes(at: date) { result in
                 switch result {
-                case let .success(wakes): resultSuccess.append(contentsOf: wakes)
-                case let .failure(error): callback(.failure(error))
+                case let .success(wakes):
+                    resultSuccess.append(contentsOf: wakes);
+                    callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
+                case let .failure(error):
+                    callback(.failure(error))
                 }
             }
-            
-            callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
         }
+        
     }
     
     

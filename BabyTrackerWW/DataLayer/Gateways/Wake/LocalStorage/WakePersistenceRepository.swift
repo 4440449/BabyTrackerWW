@@ -44,6 +44,9 @@ final class WakePersistentRepositoryImpl: WakePersistentRepositoryProtocol {
         let request: NSFetchRequest = WakeDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "date >= %@ AND date <= %@", days.0 as NSDate, days.1 as NSDate)
         do {
+            //
+//            callback(.failure(LocalStorageError.parseToDomain("test")))
+//            return
             let fetchResult = try coreDataContainer.viewContext.fetch(request)
             let wakes = try fetchResult.map { try $0.parseToDomain() }
             callback(.success(wakes))
