@@ -28,7 +28,7 @@ struct ApiURL {
     enum Path: String {
         case dream = "/rest/v1/Dream"
         case wake  = "/rest/v1/Wake"
-        case lifeCycles = "rest/v1/LifeCycles"
+        case lifeCycles = "/rest/v1/LifeCycles"
     }
     enum EndPointKeys: String {
         case date = "date"

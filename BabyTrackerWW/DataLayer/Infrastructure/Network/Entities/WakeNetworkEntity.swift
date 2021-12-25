@@ -17,6 +17,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
     let wakeUp: String
     let wakeWindow: String
     let signs: String
+    let note: String
     
     enum CodingKeys: CodingKey {
         case date
@@ -25,6 +26,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
         case wakeUp
         case wakeWindow
         case signs
+        case note
     }
     
     init(from decoder: Decoder) throws {
@@ -35,6 +37,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
         self.wakeUp = try container.decode(String.self, forKey: .wakeUp)
         self.wakeWindow = try container.decode(String.self, forKey: .wakeWindow)
         self.signs = try container.decode(String.self, forKey: .signs)
+        self.note = try container.decode(String.self, forKey: .note)
     }
     
     init(domainEntity: Wake, date: String) {
@@ -44,6 +47,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
         self.wakeUp = domainEntity.wakeUp.rawValue
         self.wakeWindow = domainEntity.wakeWindow.rawValue
         self.signs = domainEntity.signs.rawValue
+        self.note = domainEntity.note
     }
     
     
@@ -55,6 +59,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
         try container.encode(wakeUp, forKey: .wakeUp)
         try container.encode(wakeWindow, forKey: .wakeWindow)
         try container.encode(signs, forKey: .signs)
+        try container.encode(note, forKey: .note)
     }
     
     
@@ -70,7 +75,6 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
                       wakeUp: wakeUp,
                       wakeWindow: wakeWindow,
                       signs: signs,
-                      note: "")
-        //TODO: Обновить Нетворк сущность. Добавилось поле "note"
+                      note: self.note)
     }
 }

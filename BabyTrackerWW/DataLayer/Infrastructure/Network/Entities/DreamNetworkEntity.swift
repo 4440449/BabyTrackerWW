@@ -16,6 +16,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
     let index: Int
     let fallAsleep: String
     let putDown: String
+    let note: String
     
     enum CodingKeys: CodingKey {
         case date
@@ -23,6 +24,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
         case index
         case fallAsleep
         case putDown
+        case note
     }
     
     init(from decoder: Decoder) throws {
@@ -32,6 +34,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
         self.index = try container.decode(Int.self, forKey: .index)
         self.fallAsleep = try container.decode(String.self, forKey: .fallAsleep)
         self.putDown = try container.decode(String.self, forKey: .putDown)
+        self.note = try container.decode(String.self, forKey: .note)
     }
     
     init(domainEntity: Dream, date: String) {
@@ -40,6 +43,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
         self.index = domainEntity.index
         self.fallAsleep = domainEntity.fallAsleep
         self.putDown = domainEntity.putDown
+        self.note = domainEntity.note
     }
     
     
@@ -50,6 +54,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
         try container.encode(index, forKey: .index)
         try container.encode(fallAsleep, forKey: .fallAsleep)
         try container.encode(putDown, forKey: .putDown)
+        try container.encode(note, forKey: .note)
     }
     
     
@@ -61,8 +66,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
                       index: self.index,
                       putDown: putDown,
                       fallAsleep: fallAsleep,
-                      note: "")
-        //TODO: Обновить Нетворк сущность. Добавилось поле "note"
+                      note: self.note)
     }
     
 }

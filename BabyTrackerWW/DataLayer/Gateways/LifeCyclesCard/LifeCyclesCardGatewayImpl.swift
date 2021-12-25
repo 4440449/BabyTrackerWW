@@ -37,7 +37,7 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
 //        network.fetch(at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
 //            switch result {
 //            case let .success(lifeCycle):
-//                self.localStorage.synchronize(new: lifeCycle, date: date) { result in
+//                self.localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
 //                    switch result {
 //                    case .success: callback(.success(lifeCycle))
 //                    case let .failure(localStorageError): callback(.failure(localStorageError))
@@ -56,10 +56,10 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
             }
         }
         
-//        self.network.synchronize(lifeCycles, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//        self.network.synchronize(newValue, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
 //            switch result {
 //            case .success:
-//                self.localStorage.synchronize(new: lifeCycles, date: date) { result in
+//                self.localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
 //                    switch result {
 //                    case .success: callback(.success(()))
 //                    case let .failure(localStorageError): callback(.failure(localStorageError))

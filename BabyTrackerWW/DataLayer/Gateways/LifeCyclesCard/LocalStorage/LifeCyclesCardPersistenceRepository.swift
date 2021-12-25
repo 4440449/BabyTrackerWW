@@ -74,6 +74,7 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
         let newValueWakes = newValue.compactMap { $0 as? Wake }
         
         let oldValueDreams = oldValue.compactMap { $0 as? Dream }
+        // Если пустой массив придет?
         //        let oldValuesWakes = lifeCycles.compactMap { $0 as? Wake }
         //Многопоточный доступ в кор дату - можно?
         
