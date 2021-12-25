@@ -24,7 +24,7 @@ final class NetworkRepositoryDTOMapper: NetworkRepositoryDTOMapperProtocol {
         self.client = client
     }
     
-    //TODO: Протестить вручную!!!
+
     func request<D: Decodable & DomainConvertable, R>(decoderType: D.Type, _ callback: @escaping (Result<R, Error>) -> ()) {
         client.execute { result in
                     switch result {

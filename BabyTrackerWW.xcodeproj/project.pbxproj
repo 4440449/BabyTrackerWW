@@ -14,6 +14,7 @@
 		5078F290277009C700A46BA3 /* Convertable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F28F277009C700A46BA3 /* Convertable Protocol.swift */; };
 		5078F2982775430000A46BA3 /* BabyTrackerWWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F2972775430000A46BA3 /* BabyTrackerWWTests.swift */; };
 		5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */; };
+		5078F2A52777815B00A46BA3 /* NetworkClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */; };
 		507FACB827625F01002773B7 /* GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureExtension.swift */; };
 		5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083ADB5275061BD00F1BF73 /* SceneState.swift */; };
 		5083DCDC27668A020015DD0E /* PopCustomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */; };
@@ -107,6 +108,7 @@
 		5078F2972775430000A46BA3 /* BabyTrackerWWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerWWTests.swift; sourceTree = "<group>"; };
 		5078F2992775430000A46BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapperTest.swift"; sourceTree = "<group>"; };
+		5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTest.swift; sourceTree = "<group>"; };
 		507FACB727625F01002773B7 /* GestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureExtension.swift; sourceTree = "<group>"; };
 		5083ADB5275061BD00F1BF73 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCustomTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */,
+				5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -958,6 +961,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5078F2A52777815B00A46BA3 /* NetworkClientTest.swift in Sources */,
 				5078F2982775430000A46BA3 /* BabyTrackerWWTests.swift in Sources */,
 				5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */,
 			);

@@ -13,7 +13,7 @@ import XCTest
 class NetworkRepositoryDTOMapperTest: XCTestCase {
     
     
-    func test_NetworkRequestWith_LifecyclesResult() throws {
+    func test_networkRequestWith_lifecyclesResult() throws {
         //Given
         let data = lifecyclesResultJson
         let network = NetworkRepositoryDTOMapper(client: ApiCLientStub(result: .success(data)))
@@ -38,11 +38,11 @@ class NetworkRepositoryDTOMapperTest: XCTestCase {
             }
         }
         // When
-        network.request(decoderType: LifeCycleNetworkEntity.self, callback)
+        network.request(decoderType: LifeCycleNetworkEntity.self,callback)
     }
     
     
-  func test_NetworkRequestWith_EmptyArrayResult() throws {
+  func test_networkRequestWith_emptyArrayResult() throws {
          //Given
          let data = emptyResultJson
          let network = NetworkRepositoryDTOMapper(client: ApiCLientStub(result: .success(data)))
