@@ -18,18 +18,20 @@ class NetworkClientTest: XCTestCase {
         let request = APIRequest(url: url, method: .get, header: ["Content-type" : "application/json"], body: nil)
         let config = APISession.default
         let networkClient = ApiClientImpl(requestConfig: request, sessionConfig: config)
-        let expectationCallback = expectation(description: "sdsd")
+        let expectationCallback = expectation(description: #function)
         //When
         networkClient.execute { result in
             // Then
-                // Ожидаю success
+                // Ожидаю:
+                    // - корректную сборку реквеста из составляющих
+                    // - success result
             guard let _ = try? result.get() else {
                 XCTFail("Failed, error");
                 return
             }
             expectationCallback.fulfill()
         }
-        waitForExpectations(timeout: 1, handler: nil)
+        wait(for: [expectationCallback], timeout: 1)
     }
     
 }

@@ -11,8 +11,8 @@ import CoreData
 
 
 protocol DreamPersistentRepositoryProtocol {
-    func update(_ dreams: [Dream], at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
+    func update(_ dreams: [Dream], at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     
     func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func change(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())

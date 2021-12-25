@@ -111,8 +111,8 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
     private func cancelChanges(dreams: [Dream], date: Date) {
         dreamRepository.update(dreams, at: date) { result in
             switch result {
-            case .success: print("Сhanges canceled after failed synchronization")
-            case let .failure(syncError): print("Сhangesare not canceled after failed synchronization :: Error \(syncError)")
+            case .success: print("::: Сhanges canceled after failed synchronization")
+            case let .failure(syncError): print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
             }
         }
     }
@@ -120,8 +120,8 @@ final class LifeCyclesCardPersistentRepositoryImpl: LifeCyclesCardPersistentRepo
     private func cancelChanges(wakes: [Wake], date: Date) {
         wakeRepository.update(wakes: wakes, date: date) { result in
             switch result {
-            case .success: print("Сhanges canceled after failed synchronization")
-            case let .failure(syncError): print("Сhangesare not canceled after failed synchronization :: Error \(syncError)")
+            case .success: print("::: Сhanges canceled after failed synchronization")
+            case let .failure(syncError): print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
             }
         }
     }

@@ -75,6 +75,10 @@
 		50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */; };
 		50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */; };
 		50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistenceRepository.swift */; };
+		50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */; };
+		50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */; };
+		50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */; };
+		50D3FE0A2777C4D40044026C /* PersistenceRepositoryErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */; };
 		50EA4CD427387AC70040D1F3 /* DetailDreamScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter.swift */; };
 		50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */; };
 		50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */; };
@@ -171,6 +175,10 @@
 		50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryGateway.swift; sourceTree = "<group>"; };
 		50B175672704DFC500108B17 /* WakePersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepository.swift; sourceTree = "<group>"; };
+		50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistenceRepositoryTest.swift; sourceTree = "<group>"; };
+		50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepoMock.swift; sourceTree = "<group>"; };
+		50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepoMock.swift; sourceTree = "<group>"; };
+		50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryErrorMock.swift; sourceTree = "<group>"; };
 		50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamScenePresenter.swift; sourceTree = "<group>"; };
 		50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneRouter.swift; sourceTree = "<group>"; };
 		50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeScenePresenter.swift; sourceTree = "<group>"; };
@@ -244,6 +252,7 @@
 		5078F2A227769E3800A46BA3 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				50D3FDFF2777B6990044026C /* Gateways */,
 				5078F2A327769E4300A46BA3 /* Network */,
 			);
 			path = Infrastructure;
@@ -796,6 +805,41 @@
 			path = CoreData;
 			sourceTree = "<group>";
 		};
+		50D3FDFF2777B6990044026C /* Gateways */ = {
+			isa = PBXGroup;
+			children = (
+				50D3FE002777B6D20044026C /* LifeCyclesCard */,
+			);
+			name = Gateways;
+			sourceTree = "<group>";
+		};
+		50D3FE002777B6D20044026C /* LifeCyclesCard */ = {
+			isa = PBXGroup;
+			children = (
+				50D3FE012777B6F60044026C /* LocalStorage */,
+			);
+			path = LifeCyclesCard;
+			sourceTree = "<group>";
+		};
+		50D3FE012777B6F60044026C /* LocalStorage */ = {
+			isa = PBXGroup;
+			children = (
+				50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */,
+				50D3FE0B2777E1320044026C /* Mocks */,
+			);
+			name = LocalStorage;
+			sourceTree = "<group>";
+		};
+		50D3FE0B2777E1320044026C /* Mocks */ = {
+			isa = PBXGroup;
+			children = (
+				50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */,
+				50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */,
+				50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */,
+			);
+			name = Mocks;
+			sourceTree = "<group>";
+		};
 		50EA4CD7273888490040D1F3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
@@ -963,7 +1007,11 @@
 			files = (
 				5078F2A52777815B00A46BA3 /* NetworkClientTest.swift in Sources */,
 				5078F2982775430000A46BA3 /* BabyTrackerWWTests.swift in Sources */,
+				50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */,
+				50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */,
 				5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */,
+				50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */,
+				50D3FE0A2777C4D40044026C /* PersistenceRepositoryErrorMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
