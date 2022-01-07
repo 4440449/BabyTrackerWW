@@ -79,17 +79,17 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
             UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
 //        if let sceneDelegate =
 //            self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.setupSuperviewBackgroudColor()
-                    self?.setupBlureEffect()
-                    self?.setupActivityIndicator()
-                case .background:
-                    self?.removeBlureEffect()
-                    self?.removeActivityIndicator()
-                }
-            }
+//            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
+//                switch sceneState {
+//                case .foreground:
+//                    self?.setupSuperviewBackgroudColor()
+//                    self?.setupBlureEffect()
+//                    self?.setupActivityIndicator()
+//                case .background:
+//                    self?.removeBlureEffect()
+//                    self?.removeActivityIndicator()
+//                }
+//            }
         }
         
         presenter.tempLifeCycle.subscribe(observer: self) { [weak self] _ in
@@ -336,11 +336,11 @@ extension MainSceneTableViewController {
     
     
     @IBAction private func changeDateButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "changeDateButton", sender: nil)
+        performSegue(withIdentifier: "changeDateButton", sender: nil)
     }
     
     @IBAction private func addNewButton(_ sender: Any) {
-        self.performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
+        performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
     }
     
     @IBAction private func cancelButton(_ sender: Any) {

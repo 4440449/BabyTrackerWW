@@ -23,7 +23,7 @@ final class MainSceneConfiguratorImpl {
         let dreamGateway = DreamGatewayImpl(network: dreamNetworkRepository, localStorage: dreamPersistentRepository)
         let wakeGateway = WakeGatewayImpl(network: wakeNetworkRepository, localStorage: wakePersistentRepository)
         let lifeCyclesCardGateway = LifeCyclesCardGatewayImpl(network: lifeCyclesCardNetworkRepository, localStorage: lifeCyclesCardPersistentRepository)
-        
+        // вынести инъекции не относящиеся к презент модулю в отдельную сущность?
         
         let interactor = MainModuleInteractorImpl(dreamRepository: dreamGateway, wakeRepository: wakeGateway, lifecycleCardRepository: lifeCyclesCardGateway)
         let router = MainSceneRouterImpl()

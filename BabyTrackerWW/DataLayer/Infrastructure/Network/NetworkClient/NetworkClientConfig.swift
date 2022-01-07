@@ -139,11 +139,11 @@ enum APISession {
 // MARK: - Errors
 
 enum NetworkError: Error {
-    case urlCreate (String)
-    case badRequest (Error)
-    case badResponse (String)
-    case parseToDomain (String)
-    case parseToDomainResultTypeCasting (String)
+    case urlCreate(String)
+    case badRequest(Error)
+    case badResponse(String)
+    case parseToDomain(String)
+    case parseToDomainResultTypeCasting(String)
 }
 
 

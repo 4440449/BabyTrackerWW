@@ -12,9 +12,7 @@
 		501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */; };
 		501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */; };
 		5078F290277009C700A46BA3 /* Convertable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F28F277009C700A46BA3 /* Convertable Protocol.swift */; };
-		5078F2982775430000A46BA3 /* BabyTrackerWWTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F2972775430000A46BA3 /* BabyTrackerWWTests.swift */; };
 		5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */; };
-		5078F2A52777815B00A46BA3 /* NetworkClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */; };
 		507FACB827625F01002773B7 /* GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureExtension.swift */; };
 		5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083ADB5275061BD00F1BF73 /* SceneState.swift */; };
 		5083DCDC27668A020015DD0E /* PopCustomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */; };
@@ -53,7 +51,7 @@
 		50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */; };
 		50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */; };
 		50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter.swift */; };
-		50B175492704C1F000108B17 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* Main.storyboard */; };
+		50B175492704C1F000108B17 /* BabyTrackerWW_Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* BabyTrackerWW_Main.storyboard */; };
 		50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderState.swift */; };
 		50B1754B2704C1F000108B17 /* MainModuleInteractor+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */; };
 		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
@@ -62,7 +60,7 @@
 		50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */; };
 		50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */; };
 		50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */; };
-		50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* LaunchScreen.storyboard */; };
+		50B175552704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */; };
 		50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175262704C1F000108B17 /* SceneDelegate.swift */; };
 		50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* EntityProtocols.swift */; };
 		50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */; };
@@ -75,6 +73,7 @@
 		50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */; };
 		50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */; };
 		50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistenceRepository.swift */; };
+		50D05CDA2785E9EE00C23B3F /* NetworkClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05CD92785E9ED00C23B3F /* NetworkClientTest.swift */; };
 		50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */; };
 		50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */; };
 		50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */; };
@@ -109,10 +108,8 @@
 		501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTaskConfigurator.swift; sourceTree = "<group>"; };
 		5078F28F277009C700A46BA3 /* Convertable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertable Protocol.swift"; sourceTree = "<group>"; };
 		5078F2952775430000A46BA3 /* BabyTrackerWWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyTrackerWWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		5078F2972775430000A46BA3 /* BabyTrackerWWTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BabyTrackerWWTests.swift; sourceTree = "<group>"; };
 		5078F2992775430000A46BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapperTest.swift"; sourceTree = "<group>"; };
-		5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientTest.swift; sourceTree = "<group>"; };
 		507FACB727625F01002773B7 /* GestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureExtension.swift; sourceTree = "<group>"; };
 		5083ADB5275061BD00F1BF73 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCustomTransitioningDelegate.swift; sourceTree = "<group>"; };
@@ -152,7 +149,7 @@
 		50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewCell.swift; sourceTree = "<group>"; };
 		50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
 		50B175132704C1EF00108B17 /* MainSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
-		50B175142704C1EF00108B17 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		50B175142704C1EF00108B17 /* BabyTrackerWW_Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BabyTrackerWW_Main.storyboard; sourceTree = "<group>"; };
 		50B175162704C1EF00108B17 /* LoaderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
 		50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainModuleInteractor+State.swift"; sourceTree = "<group>"; };
 		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -162,7 +159,7 @@
 		50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepository.swift; sourceTree = "<group>"; };
 		50B175242704C1F000108B17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		50B175252704C1F000108B17 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
+		50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BabyTrackerWW_LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50B175262704C1F000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		50B175292704C1F000108B17 /* EntityProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityProtocols.swift; sourceTree = "<group>"; };
 		50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGateway.swift; sourceTree = "<group>"; };
@@ -175,6 +172,7 @@
 		50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryGateway.swift; sourceTree = "<group>"; };
 		50B175672704DFC500108B17 /* WakePersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepository.swift; sourceTree = "<group>"; };
+		50D05CD92785E9ED00C23B3F /* NetworkClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientTest.swift; sourceTree = "<group>"; };
 		50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistenceRepositoryTest.swift; sourceTree = "<group>"; };
 		50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepoMock.swift; sourceTree = "<group>"; };
 		50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepoMock.swift; sourceTree = "<group>"; };
@@ -234,7 +232,6 @@
 		5078F2962775430000A46BA3 /* BabyTrackerWWTests */ = {
 			isa = PBXGroup;
 			children = (
-				5078F2972775430000A46BA3 /* BabyTrackerWWTests.swift */,
 				5078F2A127769E2000A46BA3 /* DataLayer */,
 				5078F2992775430000A46BA3 /* Info.plist */,
 			);
@@ -244,6 +241,7 @@
 		5078F2A127769E2000A46BA3 /* DataLayer */ = {
 			isa = PBXGroup;
 			children = (
+				50D3FDFF2777B6990044026C /* Gateways */,
 				5078F2A227769E3800A46BA3 /* Infrastructure */,
 			);
 			path = DataLayer;
@@ -252,7 +250,6 @@
 		5078F2A227769E3800A46BA3 /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				50D3FDFF2777B6990044026C /* Gateways */,
 				5078F2A327769E4300A46BA3 /* Network */,
 			);
 			path = Infrastructure;
@@ -262,7 +259,7 @@
 			isa = PBXGroup;
 			children = (
 				5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */,
-				5078F2A42777815B00A46BA3 /* NetworkClientTest.swift */,
+				50D05CD92785E9ED00C23B3F /* NetworkClientTest.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -438,7 +435,7 @@
 				50B175272704C1F000108B17 /* DomainLayer */,
 				50B1751C2704C1F000108B17 /* DataLayer */,
 				50B174E02704C1EF00108B17 /* PresentationLayer */,
-				50B175252704C1F000108B17 /* LaunchScreen.storyboard */,
+				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
 				50B175242704C1F000108B17 /* Info.plist */,
 				50B175182704C1EF00108B17 /* Assets.xcassets */,
 			);
@@ -458,7 +455,7 @@
 		50B174E12704C1EF00108B17 /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
-				50B175142704C1EF00108B17 /* Main.storyboard */,
+				50B175142704C1EF00108B17 /* BabyTrackerWW_Main.storyboard */,
 				50B1750A2704C1EF00108B17 /* Main */,
 				50B175002704C1EF00108B17 /* Select (Popover) */,
 				50B174E22704C1EF00108B17 /* Calendar */,
@@ -811,6 +808,7 @@
 				50D3FE002777B6D20044026C /* LifeCyclesCard */,
 			);
 			name = Gateways;
+			path = Infrastructure;
 			sourceTree = "<group>";
 		};
 		50D3FE002777B6D20044026C /* LifeCyclesCard */ = {
@@ -993,8 +991,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */,
-				50B175552704C1F000108B17 /* LaunchScreen.storyboard in Resources */,
-				50B175492704C1F000108B17 /* Main.storyboard in Resources */,
+				50B175552704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard in Resources */,
+				50B175492704C1F000108B17 /* BabyTrackerWW_Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1005,11 +1003,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5078F2A52777815B00A46BA3 /* NetworkClientTest.swift in Sources */,
-				5078F2982775430000A46BA3 /* BabyTrackerWWTests.swift in Sources */,
 				50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */,
 				50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */,
 				5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */,
+				50D05CDA2785E9EE00C23B3F /* NetworkClientTest.swift in Sources */,
 				50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */,
 				50D3FE0A2777C4D40044026C /* PersistenceRepositoryErrorMock.swift in Sources */,
 			);
@@ -1280,7 +1277,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -1303,7 +1300,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 5.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
