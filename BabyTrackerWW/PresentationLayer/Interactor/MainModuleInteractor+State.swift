@@ -87,6 +87,11 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     var error = Publisher(value: "")
     
     
+    // MARK: Private
+    
+    private var task: Cancellable? { willSet { self.task?.cancel() } }
+    
+    
     // MARK: - Private
     
     private func handleError(error: Error) {
@@ -119,7 +124,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func fetchLifeCycles(at date: Date) {
         isLoading.value = .true
-        lifecycleCardRepository.fetch(at: date) { result in
+        task = lifecycleCardRepository.fetch(at: date) { result in
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error):
@@ -133,7 +138,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func synchronize(newValue: [LifeCycle]) {
         isLoading.value = .true
-        lifecycleCardRepository.update(newValue: newValue, oldValue: lifeCycleCard.value.lifeCycle, date: lifeCycleCard.value.date) { result in
+        task = lifecycleCardRepository.update(newValue: newValue, oldValue: lifeCycleCard.value.lifeCycle, date: lifeCycleCard.value.date) { result in
             switch result {
             case .success(()): self.lifeCycleCard.value.lifeCycle = newValue
             case let .failure(error):
@@ -175,7 +180,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func add(new dream: Dream) {
         isLoading.value = .true
-        dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { result in
+        task = dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle.append(dream)
             case let .failure(error): self.handleError(error: error)
@@ -186,7 +191,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func change(_ dream: Dream) {
         isLoading.value = .true
-        dreamRepository.change(dream, at: lifeCycleCard.value.date) { result in
+        task = dreamRepository.change(dream, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle[dream.index] = dream
             case let .failure(error): self.handleError(error: error)
@@ -204,7 +209,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func add(new wake: Wake) {
         isLoading.value = .true
-        wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { result in
+        task = wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
             case let .failure(error): self.handleError(error: error)
@@ -215,7 +220,7 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
     
     func change(_ wake: Wake) {
         isLoading.value = .true
-        wakeRepository.change(wake, at: lifeCycleCard.value.date) { result in
+        task = wakeRepository.change(wake, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
             case let .failure(error): self.handleError(error: error)

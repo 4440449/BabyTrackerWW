@@ -37,7 +37,8 @@ final class CalendarSceneViewController: UIViewController {
     
     @IBAction func saveButton(_ sender: UIButton) {
         presenter.saveButtonTapped()
-        self.dismiss(animated: true, completion: nil)
+        navigationController?.popViewController(animated: true)
+//        self.dismiss(animated: true, completion: nil)
     }
     
 }

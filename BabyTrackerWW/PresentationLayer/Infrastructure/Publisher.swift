@@ -8,14 +8,14 @@
 
 import Foundation
 
-protocol Observable {
-    associatedtype V
-    func subscribe(observer: AnyObject, callback: @escaping (V) -> ())
-    func unsubscribe(observer: AnyObject)
-}
+//protocol Observable {
+//    associatedtype V
+//    func subscribe(observer: AnyObject, callback: @escaping (V) -> ())
+//    func unsubscribe(observer: AnyObject)
+//}
 
 
-final class Publisher<V>: Observable {
+final class Publisher<V> { // :Observable {
    
     struct Observer<T> {
         weak var observer: AnyObject?
@@ -23,7 +23,7 @@ final class Publisher<V>: Observable {
         
         init(_ observer: AnyObject?, _ callback: @escaping (T) -> () ) {
             self.callback = callback
-            guard observer != nil else { self.observer = nil; return }
+//            guard observer != nil else { self.observer = nil; return }
             self.observer = observer
         }
     }

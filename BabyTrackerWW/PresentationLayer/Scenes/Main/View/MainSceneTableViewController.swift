@@ -79,18 +79,19 @@ final class MainSceneTableViewController: UITableViewController, UIPopoverPresen
             UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
 //        if let sceneDelegate =
 //            self.navigationController?.view.window?.windowScene?.delegate as? SceneDelegate {
-//            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-//                switch sceneState {
-//                case .foreground:
-//                    self?.setupSuperviewBackgroudColor()
-//                    self?.setupBlureEffect()
-//                    self?.setupActivityIndicator()
-//                case .background:
-//                    self?.removeBlureEffect()
-//                    self?.removeActivityIndicator()
-//                }
-//            }
+            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
+                switch sceneState {
+                case .foreground:
+                    self?.setupSuperviewBackgroudColor()
+                    self?.setupBlureEffect()
+                    self?.setupActivityIndicator()
+                case .background:
+                    self?.removeBlureEffect()
+                    self?.removeActivityIndicator()
+                }
+            }
         }
+//        }
         
         presenter.tempLifeCycle.subscribe(observer: self) { [weak self] _ in
             self?.reloadData()

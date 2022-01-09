@@ -25,7 +25,7 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
     // MARK: - Implements
 
     // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
-    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> Cancellable? {
         
         localStorage.fetch(at: date) { result in
             switch result {
@@ -33,8 +33,11 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        // STUB
+        return nil
         
-//        network.fetch(at: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//        let task = RepositoryTask()
+//        task.networkTask = network.fetch(at: date) { result in
 //            switch result {
 //            case let .success(lifeCycle):
 //                self.localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
@@ -46,17 +49,21 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
 //            case let .failure(networkError): callback(.failure(networkError))
 //            }
 //        }
+//       return task
     }
     
-    func update(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func update(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable? {
         localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
             switch result {
             case .success: callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
+        // STUB
+        return nil
         
-//        self.network.synchronize(newValue, date: date) { result in //  let task = TODO: - Реализовать в виде таски с передачей наверх для контроля состояния
+//        let task = RepositoryTask()
+//        task.networkTask = network.synchronize(newValue, date: date) { result in
 //            switch result {
 //            case .success:
 //                self.localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
@@ -69,6 +76,7 @@ final class LifeCyclesCardGatewayImpl: LifeCyclesCardGateway {
 //                callback(.failure(networkError))
 //            }
 //        }
+//       return task
     }
     
 }

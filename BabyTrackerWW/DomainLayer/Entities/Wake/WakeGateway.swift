@@ -12,7 +12,7 @@ import Foundation
 protocol WakeGatewayProtocol {
 
 //    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
-    func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    func change(_ wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable?
+    func change(_ wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable?
 //    func deleteWake(_ dream: Wake, callback: @escaping (Result<Void, Error>) -> ())
 }
