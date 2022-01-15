@@ -7,7 +7,6 @@
 //
 
 
-
 enum Loading {
     case `true`
     case `false`

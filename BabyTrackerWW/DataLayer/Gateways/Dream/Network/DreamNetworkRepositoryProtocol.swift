@@ -7,12 +7,13 @@
 //
 
 import Foundation
+import BabyNet
 
 
 protocol DreamNetworkRepositoryProtocol {
     
-    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> ()
-    func change (_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> ()
+    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask?
+    func change (_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask?
 }
 
 
@@ -22,34 +23,50 @@ final class DreamNetworkRepository: DreamNetworkRepositoryProtocol {
     // MARK: - Dependencies
     
     private let apiKey: String
+    private let client: BabyNetRepositoryProtocol
     
-    init(apiKey: String) {
+    init(apiKey: String, client: BabyNetRepositoryProtocol) {
         self.apiKey = apiKey
+        self.client = client
     }
     
     
     // MARK: - Protocol Implements
-
-    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> () {
-        let apiURL = ApiURL(scheme: .https, host: .supabase, path: .lifeCycles, endPoint: nil)
-        let addHeader = ["apiKey" : self.apiKey, "Content-Type" : "application/json-patch+json", "Prefer" : "return=representation"]
-        let apiRequest = APIRequest(url: apiURL, method: .post, header: addHeader, body: JsonPatchEntity(op: .replace, path: date.webApiFormat(), values:
-            LifeCycleNetworkEntity(domainEntity: [dream], date: date)) )
-        let apiSession = APISession.default
-        let client = ApiClientImpl(requestConfig: apiRequest, sessionConfig: apiSession)
-        return NetworkRepositoryDTOMapper(client: client).request(decoderType: DreamNetworkEntity.self, callback)
-//        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
+    
+    func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask? {
+        let url = BabyNetURL(scheme: .https,
+                             host: "lgrxdkchkrkunwoqiwtl.supabase.co",
+                             path: "/rest/v1/LifeCycles",
+                             endPoint: nil)
+        let request = BabyNetRequest(method: .post,
+                                     header: ["apiKey" : apiKey, "Content-Type" : "application/json-patch+json", "Prefer" : "return=representation"],
+                                     body: JsonPatchEntity(op: .replace, path: date.webApiFormat(), values: LifeCycleNetworkEntity(domainEntity: [dream], date: date)) )
+        let session = BabyNetSession.default
+        let decoderType = DreamNetworkEntity.self
+        
+        return client.connect(url: url,
+                              request: request,
+                              session: session,
+                              decoderType: decoderType,
+                              callback: callback)
     }
     
-    func change (_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> () {
-        let url = ApiURL(scheme: .https, host: .supabase, path: .lifeCycles, endPoint: nil)
-        let changeHeader = ["apiKey" : self.apiKey, "Content-Type" : "application/json-patch+json", "Prefer" : "return=representation"]
-        let request = APIRequest(url: url, method: .patch, header: changeHeader, body: JsonPatchEntity(op: .replace, path: date.webApiFormat(), values:
-            LifeCycleNetworkEntity(domainEntity: [dream], date: date)) )
-        let session = APISession.default
-        let client = ApiClientImpl(requestConfig: request, sessionConfig: session)
-        return NetworkRepositoryDTOMapper(client: client).request(decoderType: DreamNetworkEntity.self, callback)
-//        return NetworkRepositoryDTOMapper(client: client).request(emptyResult: callback)
+    func change (_ dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask? {
+        let url = BabyNetURL(scheme: .https,
+                             host: "lgrxdkchkrkunwoqiwtl.supabase.co",
+                             path: "/rest/v1/LifeCycles",
+                             endPoint: nil)
+        let request = BabyNetRequest(method: .patch,
+                                     header: ["apiKey" : apiKey, "Content-Type" : "application/json-patch+json", "Prefer" : "return=representation"],
+                                     body: JsonPatchEntity(op: .replace, path: date.webApiFormat(), values: LifeCycleNetworkEntity(domainEntity: [dream], date: date)) )
+        let session = BabyNetSession.default
+        let decoderType = DreamNetworkEntity.self
+        
+        return client.connect(url: url,
+                              request: request,
+                              session: session,
+                              decoderType: decoderType,
+                              callback: callback)
     }
     
 }

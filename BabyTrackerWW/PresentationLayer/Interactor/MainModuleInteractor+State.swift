@@ -19,6 +19,7 @@
 // Т.к. основная логика находится в Мейн сцене, решил не делать отдельные модели для Календпрь и Детейл сцен. Для изменения состояния Мейн Модели передаю ее остальным вьюхав в виде делегата закрытого соответствующим протоколом.
 
 import Foundation
+import MommysEye
 
 
 // MARK: - Main Module Use Cases -
@@ -100,12 +101,12 @@ final class MainModuleInteractorImpl: MainSceneDelegate, CalendarSceneDelegate, 
             self.error.value = "Ошибка локального хранилища \(error.localizedDescription)";
             print(error)
             
-        case let networkError as NetworkError:
-            switch networkError {
-            case .badRequest(_): self.error.value = "Кажется проблема с интернет-соединением. Проверьте подключение"
-            case .badResponse(_): self.error.value = "Проблема на стороне сервера. Код ошибки: \(networkError.localizedDescription)"
-            default: self.error.value = "Внутренняя ошибка"
-            }
+//        case let networkError as NetworkError:
+//            switch networkError {
+//            case .badRequest(_): self.error.value = "Кажется проблема с интернет-соединением. Проверьте подключение"
+//            case .badResponse(_): self.error.value = "Проблема на стороне сервера. Код ошибки: \(networkError.localizedDescription)"
+//            default: self.error.value = "Внутренняя ошибка"
+//            }
             
         default:
             self.error.value = "Неизвестная ошибка \(error.localizedDescription)";

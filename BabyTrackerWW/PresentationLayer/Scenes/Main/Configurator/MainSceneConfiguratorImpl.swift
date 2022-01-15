@@ -6,15 +6,18 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
+import BabyNet
+
 
 final class MainSceneConfiguratorImpl {
     
     func configureScene(view: MainSceneTableViewController) {
         
         let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDUwMDIxNiwiZXhwIjoxOTUwMDc2MjE2fQ.7ZAxW0Odek5URLpm5HOfLcD-mI-JJmdKTfbFUZnpBKk"
-        let dreamNetworkRepository = DreamNetworkRepository(apiKey: apiKey)
-        let wakeNetworkRepository = WakeNetworkRepository(apiKey: apiKey)
-        let lifeCyclesCardNetworkRepository = LifeCyclesCardNetworkRepositoryImpl(apiKey: apiKey)
+        let networkClient = BabyNetRepository()
+        let dreamNetworkRepository = DreamNetworkRepository(apiKey: apiKey, client: networkClient)
+        let wakeNetworkRepository = WakeNetworkRepository(apiKey: apiKey, client: networkClient)
+        let lifeCyclesCardNetworkRepository = LifeCyclesCardNetworkRepositoryImpl(apiKey: apiKey, client: networkClient)
         
         let dreamPersistentRepository = DreamPersistentRepositoryImpl()
         let wakePersistentRepository = WakePersistentRepositoryImpl()

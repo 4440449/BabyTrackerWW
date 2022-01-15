@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import BabyNet
 
 
-struct DreamNetworkEntity: Codable, DomainConvertable {
+struct DreamNetworkEntity: Codable, DomainConvertable, DomainRepresentable {
     
     private let date: String
     let id: UUID
@@ -61,7 +62,7 @@ struct DreamNetworkEntity: Codable, DomainConvertable {
     func parseToDomain() throws -> Dream {
         guard let fallAsleep = Dream.FallAsleep.init(rawValue: self.fallAsleep),
               let putDown = Dream.PutDown.init(rawValue: self.putDown)
-        else { throw NetworkError.parseToDomain("Error parseToDomain(Dream)") }
+        else { throw BabyNetError.parseToDomain("Error parseToDomain(Dream)") }
         return .init (id: self.id,
                       index: self.index,
                       putDown: putDown,

@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import BabyNet
 
 
-struct LifeCycleNetworkEntity: Codable, DomainConvertable {
+struct LifeCycleNetworkEntity: Codable, DomainConvertable, DomainRepresentable {
     
     var dreams: [DreamNetworkEntity]?
     var wakes: [WakeNetworkEntity]?

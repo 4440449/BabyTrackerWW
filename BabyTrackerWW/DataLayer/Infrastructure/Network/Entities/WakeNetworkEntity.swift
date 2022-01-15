@@ -7,9 +7,10 @@
 //
 
 import Foundation
+import BabyNet
 
 
-struct WakeNetworkEntity: Codable, DomainConvertable {
+struct WakeNetworkEntity: Codable, DomainConvertable, DomainRepresentable {
     
     private let date: String
     let id: UUID
@@ -68,7 +69,7 @@ struct WakeNetworkEntity: Codable, DomainConvertable {
         guard let wakeUp = Wake.WakeUp.init(rawValue: self.wakeUp),
             let wakeWindow = Wake.WakeWindow.init(rawValue: self.wakeWindow),
             let signs = Wake.Signs.init(rawValue: self.signs)
-            else { throw NetworkError.parseToDomain("Error parseToDomain(Wake)") }
+        else { throw BabyNetError.parseToDomain("Error parseToDomain(Wake)") }
         
         return .init (id: self.id,
                       index: self.index,

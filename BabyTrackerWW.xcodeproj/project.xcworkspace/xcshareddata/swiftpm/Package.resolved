@@ -1,0 +1,25 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "BabyNet",
+        "repositoryURL": "git@github.com:4440449/BabyNet.git",
+        "state": {
+          "branch": "master",
+          "revision": "6bc23db6eec3ee0742136eb5ebeb79e6a1a1f6dc",
+          "version": null
+        }
+      },
+      {
+        "package": "MommysEye",
+        "repositoryURL": "git@github.com:4440449/MommysEye.git",
+        "state": {
+          "branch": "master",
+          "revision": "a443a7adcbb664061094c5bf4221e8467bf54c54",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}

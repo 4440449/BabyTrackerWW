@@ -3,14 +3,11 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5017169D2718C5BC008DD70C /* NetworkClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5017169C2718C5BC008DD70C /* NetworkClient.swift */; };
 		501716A22718C936008DD70C /* LifeCyclesCardGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */; };
-		501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */; };
-		501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */; };
 		5078F290277009C700A46BA3 /* Convertable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F28F277009C700A46BA3 /* Convertable Protocol.swift */; };
 		5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */; };
 		507FACB827625F01002773B7 /* GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureExtension.swift */; };
@@ -30,7 +27,6 @@
 		508CEEA7274AEA870086051A /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEEA6274AEA870086051A /* Swipe.swift */; };
 		50A1CB77278B4564000F9BFC /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB76278B4564000F9BFC /* RepositoryTask.swift */; };
 		50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */; };
-		50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */; };
 		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
 		50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */; };
 		50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */; };
@@ -89,7 +85,8 @@
 		50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */; };
 		50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity.swift */; };
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */; };
-		50F6C91A27332E5E005648BA /* Publisher.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91927332E5E005648BA /* Publisher.swift */; };
+		942F7E8F2793836F0091F865 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E8E2793836F0091F865 /* MommysEye */; };
+		942F7E92279383850091F865 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E91279383850091F865 /* BabyNet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -103,10 +100,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		5017169C2718C5BC008DD70C /* NetworkClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClient.swift; sourceTree = "<group>"; };
 		501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGatewayImpl.swift; sourceTree = "<group>"; };
-		501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkClientConfig.swift; sourceTree = "<group>"; };
-		501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryTaskConfigurator.swift; sourceTree = "<group>"; };
 		5078F28F277009C700A46BA3 /* Convertable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertable Protocol.swift"; sourceTree = "<group>"; };
 		5078F2952775430000A46BA3 /* BabyTrackerWWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyTrackerWWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5078F2992775430000A46BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -128,7 +122,6 @@
 		508CEEA6274AEA870086051A /* Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipe.swift; sourceTree = "<group>"; };
 		50A1CB76278B4564000F9BFC /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		50A3E283271F919B008B2A0B /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
-		50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapper.swift"; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenterswift.swift; sourceTree = "<group>"; };
 		50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController.swift; sourceTree = "<group>"; };
@@ -189,7 +182,6 @@
 		50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryClient.swift; sourceTree = "<group>"; };
 		50F6C9152731883E005648BA /* JsonPatchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions.swift; sourceTree = "<group>"; };
-		50F6C91927332E5E005648BA /* Publisher.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Publisher.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -204,6 +196,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				942F7E92279383850091F865 /* BabyNet in Frameworks */,
+				942F7E8F2793836F0091F865 /* MommysEye in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -222,11 +216,8 @@
 		501716A02718C8F7008DD70C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				50A3E28527218F81008B2A0B /* NetworkRepository+DTOMapper.swift */,
 				50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */,
-				50F6C910272A1662005648BA /* NetworkClient */,
 				50F6C90627272AC5005648BA /* Entities */,
-				508CEEA4274195ED0086051A /* Deprecated */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -289,7 +280,6 @@
 			isa = PBXGroup;
 			children = (
 				5083DCDD2768141E0015DD0E /* CustomTransition */,
-				50F6C91927332E5E005648BA /* Publisher.swift */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
 				5083ADB5275061BD00F1BF73 /* SceneState.swift */,
@@ -390,14 +380,6 @@
 			children = (
 				50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */,
 				50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */,
-			);
-			path = Deprecated;
-			sourceTree = "<group>";
-		};
-		508CEEA4274195ED0086051A /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				501716A7271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift */,
 			);
 			path = Deprecated;
 			sourceTree = "<group>";
@@ -895,15 +877,6 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
-		50F6C910272A1662005648BA /* NetworkClient */ = {
-			isa = PBXGroup;
-			children = (
-				5017169C2718C5BC008DD70C /* NetworkClient.swift */,
-				501716A5271CD6B6008DD70C /* NetworkClientConfig.swift */,
-			);
-			path = NetworkClient;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -938,6 +911,10 @@
 			dependencies = (
 			);
 			name = BabyTrackerWW;
+			packageProductDependencies = (
+				942F7E8E2793836F0091F865 /* MommysEye */,
+				942F7E91279383850091F865 /* BabyNet */,
+			);
 			productName = BabyTrackerWW;
 			productReference = 50B174C92704C0B000108B17 /* BabyTrackerWW.app */;
 			productType = "com.apple.product-type.application";
@@ -949,7 +926,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 1150;
-				LastUpgradeCheck = 1150;
+				LastUpgradeCheck = 1320;
 				ORGANIZATIONNAME = Max;
 				TargetAttributes = {
 					5078F2942775430000A46BA3 = {
@@ -971,6 +948,10 @@
 				Base,
 			);
 			mainGroup = 50B174C02704C0B000108B17;
+			packageReferences = (
+				942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */,
+				942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */,
+			);
 			productRefGroup = 50B174CA2704C0B000108B17 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -1036,15 +1017,11 @@
 				50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */,
 				508CEE9D274186D20086051A /* DreamNetworkRepositoryProtocol.swift in Sources */,
 				508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift in Sources */,
-				5017169D2718C5BC008DD70C /* NetworkClient.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
-				50A3E28627218F81008B2A0B /* NetworkRepository+DTOMapper.swift in Sources */,
 				507FACB827625F01002773B7 /* GestureExtension.swift in Sources */,
 				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
 				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
 				508CEEA02741870C0086051A /* WakeNetworkRepositoryProtocol.swift in Sources */,
-				501716A6271CD6B6008DD70C /* NetworkClientConfig.swift in Sources */,
-				501716A8271F634D008DD70C /* NetworkRepositoryTaskConfigurator.swift in Sources */,
 				50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */,
 				50B175602704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift in Sources */,
 				50A1CB77278B4564000F9BFC /* RepositoryTask.swift in Sources */,
@@ -1075,7 +1052,6 @@
 				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
 				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
 				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
-				50F6C91A27332E5E005648BA /* Publisher.swift in Sources */,
 				508CEE9227417E540086051A /* LifeCyclesCardPersistenceRepository.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
 				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
@@ -1173,6 +1149,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1233,6 +1210,7 @@
 				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -1339,6 +1317,38 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:4440449/MommysEye.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:4440449/BabyNet.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		942F7E8E2793836F0091F865 /* MommysEye */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */;
+			productName = MommysEye;
+		};
+		942F7E91279383850091F865 /* BabyNet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */;
+			productName = BabyNet;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */ = {

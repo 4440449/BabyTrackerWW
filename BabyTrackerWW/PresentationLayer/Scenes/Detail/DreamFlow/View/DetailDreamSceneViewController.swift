@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import MommysEye
 
 
 final class DetailDreamSceneViewController: UIViewController {

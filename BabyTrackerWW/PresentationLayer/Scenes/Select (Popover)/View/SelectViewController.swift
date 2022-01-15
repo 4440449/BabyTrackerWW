@@ -72,9 +72,9 @@ extension SelectViewController {
     
     private func setupBackgroundView() {
         backgroundView.layer.shadowColor = UIColor.black.cgColor
-        backgroundView.layer.shadowOffset = CGSize(width: 30, height: -20)
-        backgroundView.layer.shadowRadius = 100
-        backgroundView.layer.shadowOpacity = 0.5
+        backgroundView.layer.shadowOffset = CGSize(width: -5, height: -20)
+        backgroundView.layer.shadowRadius = 70
+        backgroundView.layer.shadowOpacity = 0.3
     }
     
     private func setupForegroundTableView() {

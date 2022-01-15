@@ -6,8 +6,6 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
-//import Foundation
-
 
 enum Swipe {
     case left
