@@ -1,6 +1,6 @@
 //
-//  WakeWindow.swift
-//  BabyTracker - 2 with WakeWindow
+//  Wake.swift
+//  BabyTrackerWW
 //
 //  Created by Max on 10.09.2021.
 //  Copyright © 2021 Max. All rights reserved.

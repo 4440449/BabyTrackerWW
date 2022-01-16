@@ -1,5 +1,5 @@
 //
-//  DreamPersistenceRepoMock.swift
+//  DreamPersistentRepositoryMock.swift
 //  BabyTrackerWW
 //
 //  Created by Max on 25.12.2021.
@@ -10,7 +10,7 @@ import XCTest
 @testable import BabyTrackerWW
 
 
-class  DreamPersistentRepositoryMock: DreamPersistentRepositoryProtocol {
+class  DreamPersistentRepositoryMock: DreamPersistentRepositoryProtocol_BTWW {
     
     var dreamResult: (Result<[Dream], Error>)
     var emptyResult: (Result<Void, Error>)

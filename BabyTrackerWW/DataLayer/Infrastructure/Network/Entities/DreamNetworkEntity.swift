@@ -10,7 +10,7 @@ import Foundation
 import BabyNet
 
 
-struct DreamNetworkEntity: Codable, DomainConvertable, DomainRepresentable {
+struct DreamNetworkEntity: Codable, DomainRepresentable {
     
     private let date: String
     let id: UUID

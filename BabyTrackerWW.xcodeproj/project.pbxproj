@@ -7,59 +7,55 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		501716A22718C936008DD70C /* LifeCyclesCardGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */; };
-		5078F290277009C700A46BA3 /* Convertable Protocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F28F277009C700A46BA3 /* Convertable Protocol.swift */; };
+		501716A22718C936008DD70C /* LifeCyclesCardRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 501716A12718C936008DD70C /* LifeCyclesCardRepository_BTWW.swift */; };
 		5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */; };
-		507FACB827625F01002773B7 /* GestureExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureExtension.swift */; };
+		507FACB827625F01002773B7 /* GestureDirection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 507FACB727625F01002773B7 /* GestureDirection.swift */; };
 		5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083ADB5275061BD00F1BF73 /* SceneState.swift */; };
 		5083DCDC27668A020015DD0E /* PopCustomTransitioningDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */; };
 		5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDE276814550015DD0E /* PopPresentationController.swift */; };
 		5083DCE12768157D0015DD0E /* PopPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */; };
 		5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */; };
-		5083DCE9276960D80015DD0E /* SelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE8276960D80015DD0E /* SelectViewController.swift */; };
-		5084F386276374A900E0FB65 /* TestTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5084F385276374A900E0FB65 /* TestTableView.swift */; };
-		508CEE8E274177C70086051A /* DreamGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamGatewayImpl.swift */; };
-		508CEE9027417B2D0086051A /* WakeGatewayImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */; };
-		508CEE9227417E540086051A /* LifeCyclesCardPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9127417E540086051A /* LifeCyclesCardPersistenceRepository.swift */; };
-		508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE992741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift */; };
-		508CEE9D274186D20086051A /* DreamNetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9C274186D20086051A /* DreamNetworkRepositoryProtocol.swift */; };
-		508CEEA02741870C0086051A /* WakeNetworkRepositoryProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9F2741870C0086051A /* WakeNetworkRepositoryProtocol.swift */; };
+		5083DCE9276960D80015DD0E /* SelectViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */; };
+		508CEE8E274177C70086051A /* DreamRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamRepository_BTWW.swift */; };
+		508CEE9027417B2D0086051A /* WakeRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeRepository_BTWW.swift */; };
+		508CEE9227417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9127417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift */; };
+		508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE992741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift */; };
+		508CEE9D274186D20086051A /* DreamNetworkRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9C274186D20086051A /* DreamNetworkRepository_BTWW.swift */; };
+		508CEEA02741870C0086051A /* WakeNetworkRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9F2741870C0086051A /* WakeNetworkRepository_BTWW.swift */; };
 		508CEEA7274AEA870086051A /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEEA6274AEA870086051A /* Swipe.swift */; };
 		50A1CB77278B4564000F9BFC /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB76278B4564000F9BFC /* RepositoryTask.swift */; };
 		50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */; };
-		50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */; };
-		50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */; };
-		50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */; };
-		50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */; };
-		50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */; };
-		50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */; };
-		50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */; };
-		50B1753A2704C1F000108B17 /* DetailWakeSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F62704C1EF00108B17 /* DetailWakeSceneViewController.swift */; };
-		50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */; };
-		50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */; };
-		50B1753D2704C1F000108B17 /* DetailDreamSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FD2704C1EF00108B17 /* DetailDreamSceneConfiguratorImpl.swift */; };
-		50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */; };
-		50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175022704C1EF00108B17 /* SelectScenePresenter.swift */; };
-		50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */; };
-		50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */; };
-		50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175092704C1EF00108B17 /* SelectSceneRouter.swift */; };
-		50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */; };
-		50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */; };
-		50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */; };
-		50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */; };
-		50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter.swift */; };
+		50B175332704C1F000108B17 /* CalendarSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */; };
+		50B175342704C1F000108B17 /* CalendarSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController_BTWW.swift */; };
+		50B175352704C1F000108B17 /* CalendarSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator_BTWW.swift */; };
+		50B175362704C1F000108B17 /* PickerSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */; };
+		50B175372704C1F000108B17 /* PickerViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */; };
+		50B175382704C1F000108B17 /* PickerSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EF2704C1EF00108B17 /* PickerSceneConfigurator_BTWW.swift */; };
+		50B1753A2704C1F000108B17 /* DetailWakeSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F62704C1EF00108B17 /* DetailWakeSceneViewController_BTWW.swift */; };
+		50B1753B2704C1F000108B17 /* DetailWakeSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F82704C1EF00108B17 /* DetailWakeSceneConfigurator_BTWW.swift */; };
+		50B1753C2704C1F000108B17 /* DetailDreamSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController_BTWW.swift */; };
+		50B1753D2704C1F000108B17 /* DetailDreamSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FD2704C1EF00108B17 /* DetailDreamSceneConfigurator_BTWW.swift */; };
+		50B1753F2704C1F000108B17 /* SelectSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */; };
+		50B175402704C1F000108B17 /* SelectSceneTableViewCell_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */; };
+		50B175422704C1F000108B17 /* SelectSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */; };
+		50B175432704C1F000108B17 /* SelectSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */; };
+		50B175442704C1F000108B17 /* MainSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */; };
+		50B175452704C1F000108B17 /* MainSceneTableViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */; };
+		50B175462704C1F000108B17 /* MainSceneTableViewCell_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */; };
+		50B175472704C1F000108B17 /* MainSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfigurator_BTWW.swift */; };
+		50B175482704C1F000108B17 /* MainSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter_BTWW.swift */; };
 		50B175492704C1F000108B17 /* BabyTrackerWW.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* BabyTrackerWW.storyboard */; };
 		50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderState.swift */; };
-		50B1754B2704C1F000108B17 /* MainModuleInteractor+State.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */; };
+		50B1754B2704C1F000108B17 /* Actions+State_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */; };
 		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
 		50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751B2704C1EF00108B17 /* AppDelegate.swift */; };
-		50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751E2704C1F000108B17 /* CoreDataStack.swift */; };
+		50B1754F2704C1F000108B17 /* CoreDataStack_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751E2704C1F000108B17 /* CoreDataStack_BTWW.swift */; };
 		50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */; };
 		50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */; };
-		50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */; };
+		50B175532704C1F000108B17 /* DreamPersistentRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175232704C1F000108B17 /* DreamPersistentRepository_BTWW.swift */; };
 		50B175552704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */; };
 		50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175262704C1F000108B17 /* SceneDelegate.swift */; };
-		50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* EntityProtocols.swift */; };
+		50B175572704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175292704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift */; };
 		50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */; };
 		50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752C2704C1F000108B17 /* LifeCyclesCard.swift */; };
 		50B1755A2704C1F000108B17 /* Wake.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1752E2704C1F000108B17 /* Wake.swift */; };
@@ -68,23 +64,21 @@
 		50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175322704C1F000108B17 /* DreamGateway.swift */; };
 		50B175602704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755E2704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift */; };
 		50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */; };
-		50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */; };
-		50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistenceRepository.swift */; };
+		50B175682704DFC500108B17 /* WakePersistentRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175672704DFC500108B17 /* WakePersistentRepository_BTWW.swift */; };
 		50D05CDA2785E9EE00C23B3F /* NetworkClientTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D05CD92785E9ED00C23B3F /* NetworkClientTest.swift */; };
-		50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */; };
+		50D3FE032777B71F0044026C /* LifeCyclesCardPersistentRepositoryTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE022777B71F0044026C /* LifeCyclesCardPersistentRepositoryTest.swift */; };
 		50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */; };
 		50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */; };
-		50D3FE0A2777C4D40044026C /* PersistenceRepositoryErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */; };
-		50EA4CD427387AC70040D1F3 /* DetailDreamScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter.swift */; };
-		50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */; };
-		50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */; };
-		50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter.swift */; };
+		50D3FE0A2777C4D40044026C /* PersistentRepositoryErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE092777C4D40044026C /* PersistentRepositoryErrorMock.swift */; };
+		50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */; };
+		50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift */; };
+		50EA4CDC27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */; };
+		50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift */; };
 		50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */; };
 		50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90927272B83005648BA /* WakeNetworkEntity.swift */; };
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
-		50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */; };
-		50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity.swift */; };
-		50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */; };
+		50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */; };
+		50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */; };
 		942F7E8F2793836F0091F865 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E8E2793836F0091F865 /* MommysEye */; };
 		942F7E92279383850091F865 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E91279383850091F865 /* BabyNet */; };
 /* End PBXBuildFile section */
@@ -100,63 +94,59 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGatewayImpl.swift; sourceTree = "<group>"; };
-		5078F28F277009C700A46BA3 /* Convertable Protocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Convertable Protocol.swift"; sourceTree = "<group>"; };
+		501716A12718C936008DD70C /* LifeCyclesCardRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardRepository_BTWW.swift; sourceTree = "<group>"; };
 		5078F2952775430000A46BA3 /* BabyTrackerWWTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BabyTrackerWWTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5078F2992775430000A46BA3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		5078F29F2775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NetworkRepository+DTOMapperTest.swift"; sourceTree = "<group>"; };
-		507FACB727625F01002773B7 /* GestureExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureExtension.swift; sourceTree = "<group>"; };
+		507FACB727625F01002773B7 /* GestureDirection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GestureDirection.swift; sourceTree = "<group>"; };
 		5083ADB5275061BD00F1BF73 /* SceneState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneState.swift; sourceTree = "<group>"; };
 		5083DCDB27668A020015DD0E /* PopCustomTransitioningDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopCustomTransitioningDelegate.swift; sourceTree = "<group>"; };
 		5083DCDE276814550015DD0E /* PopPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentationController.swift; sourceTree = "<group>"; };
 		5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentAnimator.swift; sourceTree = "<group>"; };
 		5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopDismissAnimator.swift; sourceTree = "<group>"; };
-		5083DCE8276960D80015DD0E /* SelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController.swift; sourceTree = "<group>"; };
-		5084F385276374A900E0FB65 /* TestTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestTableView.swift; sourceTree = "<group>"; };
-		508CEE8D274177C70086051A /* DreamGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamGatewayImpl.swift; sourceTree = "<group>"; };
-		508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeGatewayImpl.swift; sourceTree = "<group>"; };
-		508CEE9127417E540086051A /* LifeCyclesCardPersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistenceRepository.swift; sourceTree = "<group>"; };
-		508CEE992741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardNetworkRepositoryImpl.swift; sourceTree = "<group>"; };
-		508CEE9C274186D20086051A /* DreamNetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
-		508CEE9F2741870C0086051A /* WakeNetworkRepositoryProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkRepositoryProtocol.swift; sourceTree = "<group>"; };
+		5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController_BTWW.swift; sourceTree = "<group>"; };
+		508CEE8D274177C70086051A /* DreamRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamRepository_BTWW.swift; sourceTree = "<group>"; };
+		508CEE8F27417B2D0086051A /* WakeRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeRepository_BTWW.swift; sourceTree = "<group>"; };
+		508CEE9127417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistentRepository_BTWW.swift; sourceTree = "<group>"; };
+		508CEE992741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardNetworkRepository_BTWW.swift; sourceTree = "<group>"; };
+		508CEE9C274186D20086051A /* DreamNetworkRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkRepository_BTWW.swift; sourceTree = "<group>"; };
+		508CEE9F2741870C0086051A /* WakeNetworkRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkRepository_BTWW.swift; sourceTree = "<group>"; };
 		508CEEA6274AEA870086051A /* Swipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swipe.swift; sourceTree = "<group>"; };
 		50A1CB76278B4564000F9BFC /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		50A3E283271F919B008B2A0B /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenterswift.swift; sourceTree = "<group>"; };
-		50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController.swift; sourceTree = "<group>"; };
-		50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneConfigurator.swift; sourceTree = "<group>"; };
-		50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerScenePresenter.swift; sourceTree = "<group>"; };
-		50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneViewController.swift; sourceTree = "<group>"; };
-		50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
-		50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailScenePresenter.swift; sourceTree = "<group>"; };
-		50B174F62704C1EF00108B17 /* DetailWakeSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneViewController.swift; sourceTree = "<group>"; };
-		50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WakeDetailSceneConfigurator.swift; sourceTree = "<group>"; };
-		50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewController.swift; sourceTree = "<group>"; };
-		50B174FD2704C1EF00108B17 /* DetailDreamSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
-		50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailSceneRouter.swift; sourceTree = "<group>"; };
-		50B175022704C1EF00108B17 /* SelectScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectScenePresenter.swift; sourceTree = "<group>"; };
-		50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewCell.swift; sourceTree = "<group>"; };
-		50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneConfigurator.swift; sourceTree = "<group>"; };
-		50B175092704C1EF00108B17 /* SelectSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneRouter.swift; sourceTree = "<group>"; };
-		50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScenePresenter.swift; sourceTree = "<group>"; };
-		50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewController.swift; sourceTree = "<group>"; };
-		50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewCell.swift; sourceTree = "<group>"; };
-		50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfiguratorImpl.swift; sourceTree = "<group>"; };
-		50B175132704C1EF00108B17 /* MainSceneRouter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter.swift; sourceTree = "<group>"; };
+		50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B174E62704C1EF00108B17 /* CalendarSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B174E82704C1EF00108B17 /* CalendarSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B174EF2704C1EF00108B17 /* PickerSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B174F62704C1EF00108B17 /* DetailWakeSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B174F82704C1EF00108B17 /* DetailWakeSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B174FD2704C1EF00108B17 /* DetailDreamSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewCell_BTWW.swift; sourceTree = "<group>"; };
+		50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneRouter_BTWW.swift; sourceTree = "<group>"; };
+		50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewCell_BTWW.swift; sourceTree = "<group>"; };
+		50B175112704C1EF00108B17 /* MainSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
+		50B175132704C1EF00108B17 /* MainSceneRouter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter_BTWW.swift; sourceTree = "<group>"; };
 		50B175142704C1EF00108B17 /* BabyTrackerWW.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BabyTrackerWW.storyboard; sourceTree = "<group>"; };
 		50B175162704C1EF00108B17 /* LoaderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
-		50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MainModuleInteractor+State.swift"; sourceTree = "<group>"; };
+		50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Actions+State_BTWW.swift"; sourceTree = "<group>"; };
 		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50B1751B2704C1EF00108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		50B1751E2704C1F000108B17 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		50B1751E2704C1F000108B17 /* CoreDataStack_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack_BTWW.swift; sourceTree = "<group>"; };
 		50B175212704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		50B175222704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DreamDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepository.swift; sourceTree = "<group>"; };
+		50B175232704C1F000108B17 /* DreamPersistentRepository_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamPersistentRepository_BTWW.swift; sourceTree = "<group>"; };
 		50B175242704C1F000108B17 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BabyTrackerWW_LaunchScreen.storyboard; sourceTree = "<group>"; };
 		50B175262704C1F000108B17 /* SceneDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		50B175292704C1F000108B17 /* EntityProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EntityProtocols.swift; sourceTree = "<group>"; };
+		50B175292704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesProtocols_BTWW.swift; sourceTree = "<group>"; };
 		50B1752B2704C1F000108B17 /* LifeCyclesCardGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardGateway.swift; sourceTree = "<group>"; };
 		50B1752C2704C1F000108B17 /* LifeCyclesCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LifeCyclesCard.swift; sourceTree = "<group>"; };
 		50B1752E2704C1F000108B17 /* Wake.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Wake.swift; sourceTree = "<group>"; };
@@ -165,23 +155,21 @@
 		50B175322704C1F000108B17 /* DreamGateway.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DreamGateway.swift; sourceTree = "<group>"; };
 		50B1755E2704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataClass.swift"; sourceTree = "<group>"; };
 		50B1755F2704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "WakeDBEntity+CoreDataProperties.swift"; sourceTree = "<group>"; };
-		50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryGateway.swift; sourceTree = "<group>"; };
-		50B175672704DFC500108B17 /* WakePersistenceRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepository.swift; sourceTree = "<group>"; };
+		50B175672704DFC500108B17 /* WakePersistentRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistentRepository_BTWW.swift; sourceTree = "<group>"; };
 		50D05CD92785E9ED00C23B3F /* NetworkClientTest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkClientTest.swift; sourceTree = "<group>"; };
-		50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistenceRepositoryTest.swift; sourceTree = "<group>"; };
+		50D3FE022777B71F0044026C /* LifeCyclesCardPersistentRepositoryTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistentRepositoryTest.swift; sourceTree = "<group>"; };
 		50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepoMock.swift; sourceTree = "<group>"; };
 		50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepoMock.swift; sourceTree = "<group>"; };
-		50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryErrorMock.swift; sourceTree = "<group>"; };
-		50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamScenePresenter.swift; sourceTree = "<group>"; };
-		50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneRouter.swift; sourceTree = "<group>"; };
-		50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeScenePresenter.swift; sourceTree = "<group>"; };
-		50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneRouter.swift; sourceTree = "<group>"; };
+		50D3FE092777C4D40044026C /* PersistentRepositoryErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentRepositoryErrorMock.swift; sourceTree = "<group>"; };
+		50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneRouter_BTWW.swift; sourceTree = "<group>"; };
+		50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneRouter_BTWW.swift; sourceTree = "<group>"; };
 		50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90927272B83005648BA /* WakeNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
-		50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistenceRepositoryClient.swift; sourceTree = "<group>"; };
-		50F6C9152731883E005648BA /* JsonPatchEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity.swift; sourceTree = "<group>"; };
-		50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions.swift; sourceTree = "<group>"; };
+		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
+		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -208,7 +196,6 @@
 			isa = PBXGroup;
 			children = (
 				50B175642704DF3000108B17 /* CoreData */,
-				508CEEA3274195A50086051A /* Deprecated */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -216,7 +203,7 @@
 		501716A02718C8F7008DD70C /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				50F6C91727320560005648BA /* NetworkRepositoryExtensions.swift */,
+				50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */,
 				50F6C90627272AC5005648BA /* Entities */,
 			);
 			path = Network;
@@ -283,7 +270,7 @@
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
 				5083ADB5275061BD00F1BF73 /* SceneState.swift */,
-				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
+				507FACB727625F01002773B7 /* GestureDirection.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -291,7 +278,7 @@
 		508CEE93274182EE0086051A /* LifeCyclesCard */ = {
 			isa = PBXGroup;
 			children = (
-				501716A12718C936008DD70C /* LifeCyclesCardGatewayImpl.swift */,
+				501716A12718C936008DD70C /* LifeCyclesCardRepository_BTWW.swift */,
 				508CEE9B274186A30086051A /* Network */,
 				508CEE962741864B0086051A /* LocalStorage */,
 			);
@@ -301,7 +288,7 @@
 		508CEE94274184500086051A /* Dream */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE8D274177C70086051A /* DreamGatewayImpl.swift */,
+				508CEE8D274177C70086051A /* DreamRepository_BTWW.swift */,
 				508CEE9E274186DB0086051A /* Network */,
 				508CEE97274186550086051A /* LocalStorage */,
 			);
@@ -311,7 +298,7 @@
 		508CEE952741845D0086051A /* Wake */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE8F27417B2D0086051A /* WakeGatewayImpl.swift */,
+				508CEE8F27417B2D0086051A /* WakeRepository_BTWW.swift */,
 				508CEEA1274187120086051A /* Network */,
 				508CEE98274186640086051A /* LocalStorage */,
 			);
@@ -321,7 +308,7 @@
 		508CEE962741864B0086051A /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE9127417E540086051A /* LifeCyclesCardPersistenceRepository.swift */,
+				508CEE9127417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -329,7 +316,7 @@
 		508CEE97274186550086051A /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
-				50B175232704C1F000108B17 /* DreamPersistenceRepository.swift */,
+				50B175232704C1F000108B17 /* DreamPersistentRepository_BTWW.swift */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -337,7 +324,7 @@
 		508CEE98274186640086051A /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
-				50B175672704DFC500108B17 /* WakePersistenceRepository.swift */,
+				50B175672704DFC500108B17 /* WakePersistentRepository_BTWW.swift */,
 			);
 			path = LocalStorage;
 			sourceTree = "<group>";
@@ -345,7 +332,7 @@
 		508CEE9B274186A30086051A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE992741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift */,
+				508CEE992741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -353,7 +340,7 @@
 		508CEE9E274186DB0086051A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE9C274186D20086051A /* DreamNetworkRepositoryProtocol.swift */,
+				508CEE9C274186D20086051A /* DreamNetworkRepository_BTWW.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -361,7 +348,7 @@
 		508CEEA1274187120086051A /* Network */ = {
 			isa = PBXGroup;
 			children = (
-				508CEE9F2741870C0086051A /* WakeNetworkRepositoryProtocol.swift */,
+				508CEE9F2741870C0086051A /* WakeNetworkRepository_BTWW.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -373,15 +360,6 @@
 				501716A02718C8F7008DD70C /* Network */,
 			);
 			path = Infrastructure;
-			sourceTree = "<group>";
-		};
-		508CEEA3274195A50086051A /* Deprecated */ = {
-			isa = PBXGroup;
-			children = (
-				50B175652704DF7900108B17 /* PersistenceRepositoryGateway.swift */,
-				50F6C911272AD120005648BA /* PersistenceRepositoryClient.swift */,
-			);
-			path = Deprecated;
 			sourceTree = "<group>";
 		};
 		508CEEA52742957A0086051A /* Gateways */ = {
@@ -455,23 +433,23 @@
 			children = (
 				50B174E72704C1EF00108B17 /* Configurator */,
 				50B174E52704C1EF00108B17 /* View */,
-				50B174E32704C1EF00108B17 /* Presenter */,
+				50B174E32704C1EF00108B17 /* ViewModel */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		50B174E32704C1EF00108B17 /* Presenter */ = {
+		50B174E32704C1EF00108B17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E42704C1EF00108B17 /* CalendarScenePresenterswift.swift */,
+				50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50B174E52704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E62704C1EF00108B17 /* CalendarSceneViewController.swift */,
+				50B174E62704C1EF00108B17 /* CalendarSceneViewController_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -479,7 +457,7 @@
 		50B174E72704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E82704C1EF00108B17 /* CalendarSceneConfigurator.swift */,
+				50B174E82704C1EF00108B17 /* CalendarSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -489,24 +467,23 @@
 			children = (
 				50B174EE2704C1EF00108B17 /* Configurator */,
 				50B174EC2704C1EF00108B17 /* View */,
-				50B174EA2704C1EF00108B17 /* Presenter */,
-				50B174F02704C1EF00108B17 /* Router */,
+				50B174EA2704C1EF00108B17 /* ViewModel */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
 		};
-		50B174EA2704C1EF00108B17 /* Presenter */ = {
+		50B174EA2704C1EF00108B17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50B174EB2704C1EF00108B17 /* PickerScenePresenter.swift */,
+				50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50B174EC2704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B174ED2704C1EF00108B17 /* PickerSceneViewController.swift */,
+				50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -514,16 +491,9 @@
 		50B174EE2704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B174EF2704C1EF00108B17 /* PickerSceneConfiguratorImpl.swift */,
+				50B174EF2704C1EF00108B17 /* PickerSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
-			sourceTree = "<group>";
-		};
-		50B174F02704C1EF00108B17 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		50B174F12704C1EF00108B17 /* Detail */ = {
@@ -531,18 +501,8 @@
 			children = (
 				50B174F92704C1EF00108B17 /* DreamFlow */,
 				50B174F42704C1EF00108B17 /* WakeFlow */,
-				50B174F22704C1EF00108B17 /* Presenter */,
-				50B174FE2704C1EF00108B17 /* Router */,
 			);
 			path = Detail;
-			sourceTree = "<group>";
-		};
-		50B174F22704C1EF00108B17 /* Presenter */ = {
-			isa = PBXGroup;
-			children = (
-				50B174F32704C1EF00108B17 /* DetailScenePresenter.swift */,
-			);
-			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50B174F42704C1EF00108B17 /* WakeFlow */ = {
@@ -550,7 +510,7 @@
 			children = (
 				50B174F72704C1EF00108B17 /* Configurator */,
 				50B174F52704C1EF00108B17 /* View */,
-				50EA4CD927388E080040D1F3 /* Presenter */,
+				50EA4CD927388E080040D1F3 /* ViewModel */,
 				50EA4CDA27388E120040D1F3 /* Router */,
 			);
 			path = WakeFlow;
@@ -559,7 +519,7 @@
 		50B174F52704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B174F62704C1EF00108B17 /* DetailWakeSceneViewController.swift */,
+				50B174F62704C1EF00108B17 /* DetailWakeSceneViewController_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -567,7 +527,7 @@
 		50B174F72704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B174F82704C1EF00108B17 /* WakeDetailSceneConfigurator.swift */,
+				50B174F82704C1EF00108B17 /* DetailWakeSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -577,7 +537,7 @@
 			children = (
 				50B174FC2704C1EF00108B17 /* Configurator */,
 				50B174FA2704C1EF00108B17 /* View */,
-				50EA4CD7273888490040D1F3 /* Presenter */,
+				50EA4CD7273888490040D1F3 /* ViewModel */,
 				50EA4CD82738885E0040D1F3 /* Router */,
 			);
 			path = DreamFlow;
@@ -586,7 +546,7 @@
 		50B174FA2704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController.swift */,
+				50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -594,17 +554,9 @@
 		50B174FC2704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B174FD2704C1EF00108B17 /* DetailDreamSceneConfiguratorImpl.swift */,
+				50B174FD2704C1EF00108B17 /* DetailDreamSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
-			sourceTree = "<group>";
-		};
-		50B174FE2704C1EF00108B17 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				50B174FF2704C1EF00108B17 /* DetailSceneRouter.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		50B175002704C1EF00108B17 /* Select (Popover) */ = {
@@ -612,25 +564,25 @@
 			children = (
 				50B175062704C1EF00108B17 /* Configurator */,
 				50B175032704C1EF00108B17 /* View */,
-				50B175012704C1EF00108B17 /* Presenter */,
+				50B175012704C1EF00108B17 /* ViewModel */,
 				50B175082704C1EF00108B17 /* Router */,
 			);
 			path = "Select (Popover)";
 			sourceTree = "<group>";
 		};
-		50B175012704C1EF00108B17 /* Presenter */ = {
+		50B175012704C1EF00108B17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50B175022704C1EF00108B17 /* SelectScenePresenter.swift */,
+				50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50B175032704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5083DCE8276960D80015DD0E /* SelectViewController.swift */,
-				50B175042704C1EF00108B17 /* SelectSceneTableViewCell.swift */,
+				5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */,
+				50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -638,7 +590,7 @@
 		50B175062704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B175072704C1EF00108B17 /* SelectSceneConfigurator.swift */,
+				50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -646,7 +598,7 @@
 		50B175082704C1EF00108B17 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				50B175092704C1EF00108B17 /* SelectSceneRouter.swift */,
+				50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -656,27 +608,25 @@
 			children = (
 				50B175102704C1EF00108B17 /* Configurator */,
 				50B1750D2704C1EF00108B17 /* View */,
-				50B1750B2704C1EF00108B17 /* Presenter */,
+				50B1750B2704C1EF00108B17 /* ViewModel */,
 				50B175122704C1EF00108B17 /* Router */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		50B1750B2704C1EF00108B17 /* Presenter */ = {
+		50B1750B2704C1EF00108B17 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50B1750C2704C1EF00108B17 /* MainScenePresenter.swift */,
+				50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50B1750D2704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B1750E2704C1EF00108B17 /* MainSceneTableViewController.swift */,
-				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell.swift */,
-				5084F385276374A900E0FB65 /* TestTableView.swift */,
-				507FACB727625F01002773B7 /* GestureExtension.swift */,
+				50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */,
+				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -684,7 +634,7 @@
 		50B175102704C1EF00108B17 /* Configurator */ = {
 			isa = PBXGroup;
 			children = (
-				50B175112704C1EF00108B17 /* MainSceneConfiguratorImpl.swift */,
+				50B175112704C1EF00108B17 /* MainSceneConfigurator_BTWW.swift */,
 			);
 			path = Configurator;
 			sourceTree = "<group>";
@@ -692,7 +642,7 @@
 		50B175122704C1EF00108B17 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				50B175132704C1EF00108B17 /* MainSceneRouter.swift */,
+				50B175132704C1EF00108B17 /* MainSceneRouter_BTWW.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -700,7 +650,8 @@
 		50B175152704C1EF00108B17 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				50B175172704C1EF00108B17 /* MainModuleInteractor+State.swift */,
+				50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */,
+				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -725,7 +676,7 @@
 		50B175282704C1F000108B17 /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				50B175292704C1F000108B17 /* EntityProtocols.swift */,
+				50B175292704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift */,
 				50B1752A2704C1F000108B17 /* LifeCyclesCard */,
 				50B1752D2704C1F000108B17 /* Wake */,
 				50B175302704C1F000108B17 /* Dream */,
@@ -781,7 +732,7 @@
 		50B175642704DF3000108B17 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
-				50B1751E2704C1F000108B17 /* CoreDataStack.swift */,
+				50B1751E2704C1F000108B17 /* CoreDataStack_BTWW.swift */,
 				50F6C90F272A120C005648BA /* Entities */,
 			);
 			path = CoreData;
@@ -807,7 +758,7 @@
 		50D3FE012777B6F60044026C /* LocalStorage */ = {
 			isa = PBXGroup;
 			children = (
-				50D3FE022777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift */,
+				50D3FE022777B71F0044026C /* LifeCyclesCardPersistentRepositoryTest.swift */,
 				50D3FE0B2777E1320044026C /* Mocks */,
 			);
 			name = LocalStorage;
@@ -818,39 +769,39 @@
 			children = (
 				50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */,
 				50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */,
-				50D3FE092777C4D40044026C /* PersistenceRepositoryErrorMock.swift */,
+				50D3FE092777C4D40044026C /* PersistentRepositoryErrorMock.swift */,
 			);
 			name = Mocks;
 			sourceTree = "<group>";
 		};
-		50EA4CD7273888490040D1F3 /* Presenter */ = {
+		50EA4CD7273888490040D1F3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter.swift */,
+				50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50EA4CD82738885E0040D1F3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter.swift */,
+				50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
 		};
-		50EA4CD927388E080040D1F3 /* Presenter */ = {
+		50EA4CD927388E080040D1F3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter.swift */,
+				50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */,
 			);
-			path = Presenter;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50EA4CDA27388E120040D1F3 /* Router */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter.swift */,
+				50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift */,
 			);
 			path = Router;
 			sourceTree = "<group>";
@@ -858,11 +809,10 @@
 		50F6C90627272AC5005648BA /* Entities */ = {
 			isa = PBXGroup;
 			children = (
-				50F6C9152731883E005648BA /* JsonPatchEntity.swift */,
+				50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */,
 				50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */,
 				50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */,
 				50F6C90927272B83005648BA /* WakeNetworkEntity.swift */,
-				5078F28F277009C700A46BA3 /* Convertable Protocol.swift */,
 			);
 			path = Entities;
 			sourceTree = "<group>";
@@ -988,11 +938,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */,
-				50D3FE032777B71F0044026C /* LifeCyclesCardPersistenceRepositoryTest.swift in Sources */,
+				50D3FE032777B71F0044026C /* LifeCyclesCardPersistentRepositoryTest.swift in Sources */,
 				5078F2A02775490300A46BA3 /* NetworkRepository+DTOMapperTest.swift in Sources */,
 				50D05CDA2785E9EE00C23B3F /* NetworkClientTest.swift in Sources */,
 				50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */,
-				50D3FE0A2777C4D40044026C /* PersistenceRepositoryErrorMock.swift in Sources */,
+				50D3FE0A2777C4D40044026C /* PersistentRepositoryErrorMock.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1004,71 +954,65 @@
 				5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */,
 				5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */,
 				50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */,
-				50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter.swift in Sources */,
-				50F6C91827320560005648BA /* NetworkRepositoryExtensions.swift in Sources */,
+				50EA4CDC27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift in Sources */,
+				50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */,
 				5083DCE12768157D0015DD0E /* PopPresentAnimator.swift in Sources */,
-				50B175402704C1F000108B17 /* SelectSceneTableViewCell.swift in Sources */,
-				50B175682704DFC500108B17 /* WakePersistenceRepository.swift in Sources */,
+				50B175402704C1F000108B17 /* SelectSceneTableViewCell_BTWW.swift in Sources */,
+				50B175682704DFC500108B17 /* WakePersistentRepository_BTWW.swift in Sources */,
 				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
 				50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */,
-				50B1753E2704C1F000108B17 /* DetailSceneRouter.swift in Sources */,
-				50B175372704C1F000108B17 /* PickerSceneViewController.swift in Sources */,
-				50B1754F2704C1F000108B17 /* CoreDataStack.swift in Sources */,
-				50F6C912272AD120005648BA /* PersistenceRepositoryClient.swift in Sources */,
-				508CEE9D274186D20086051A /* DreamNetworkRepositoryProtocol.swift in Sources */,
-				508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepositoryImpl.swift in Sources */,
+				50B175372704C1F000108B17 /* PickerViewController_BTWW.swift in Sources */,
+				50B1754F2704C1F000108B17 /* CoreDataStack_BTWW.swift in Sources */,
+				508CEE9D274186D20086051A /* DreamNetworkRepository_BTWW.swift in Sources */,
+				508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift in Sources */,
 				50B1755B2704C1F000108B17 /* WakeGateway.swift in Sources */,
-				507FACB827625F01002773B7 /* GestureExtension.swift in Sources */,
+				507FACB827625F01002773B7 /* GestureDirection.swift in Sources */,
 				50B175612704DD4200108B17 /* WakeDBEntity+CoreDataProperties.swift in Sources */,
-				50B175472704C1F000108B17 /* MainSceneConfiguratorImpl.swift in Sources */,
-				508CEEA02741870C0086051A /* WakeNetworkRepositoryProtocol.swift in Sources */,
-				50B175352704C1F000108B17 /* CalendarSceneConfigurator.swift in Sources */,
+				50B175472704C1F000108B17 /* MainSceneConfigurator_BTWW.swift in Sources */,
+				508CEEA02741870C0086051A /* WakeNetworkRepository_BTWW.swift in Sources */,
+				50B175352704C1F000108B17 /* CalendarSceneConfigurator_BTWW.swift in Sources */,
 				50B175602704DD4200108B17 /* WakeDBEntity+CoreDataClass.swift in Sources */,
 				50A1CB77278B4564000F9BFC /* RepositoryTask.swift in Sources */,
-				50B1753C2704C1F000108B17 /* DetailDreamSceneViewController.swift in Sources */,
-				50B175482704C1F000108B17 /* MainSceneRouter.swift in Sources */,
+				50B1753C2704C1F000108B17 /* DetailDreamSceneViewController_BTWW.swift in Sources */,
+				50B175482704C1F000108B17 /* MainSceneRouter_BTWW.swift in Sources */,
 				50B1755C2704C1F000108B17 /* Dream.swift in Sources */,
-				501716A22718C936008DD70C /* LifeCyclesCardGatewayImpl.swift in Sources */,
+				501716A22718C936008DD70C /* LifeCyclesCardRepository_BTWW.swift in Sources */,
 				5083DCDC27668A020015DD0E /* PopCustomTransitioningDelegate.swift in Sources */,
-				5084F386276374A900E0FB65 /* TestTableView.swift in Sources */,
-				508CEE8E274177C70086051A /* DreamGatewayImpl.swift in Sources */,
-				50B1753B2704C1F000108B17 /* WakeDetailSceneConfigurator.swift in Sources */,
-				50B175532704C1F000108B17 /* DreamPersistenceRepository.swift in Sources */,
+				508CEE8E274177C70086051A /* DreamRepository_BTWW.swift in Sources */,
+				50B1753B2704C1F000108B17 /* DetailWakeSceneConfigurator_BTWW.swift in Sources */,
+				50B175532704C1F000108B17 /* DreamPersistentRepository_BTWW.swift in Sources */,
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
-				50EA4CD427387AC70040D1F3 /* DetailDreamScenePresenter.swift in Sources */,
-				50B175392704C1F000108B17 /* DetailScenePresenter.swift in Sources */,
+				50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */,
 				50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */,
-				508CEE9027417B2D0086051A /* WakeGatewayImpl.swift in Sources */,
-				50B175432704C1F000108B17 /* SelectSceneRouter.swift in Sources */,
+				508CEE9027417B2D0086051A /* WakeRepository_BTWW.swift in Sources */,
+				50B175432704C1F000108B17 /* SelectSceneRouter_BTWW.swift in Sources */,
 				50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */,
 				50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */,
-				50B175572704C1F000108B17 /* EntityProtocols.swift in Sources */,
-				50B175442704C1F000108B17 /* MainScenePresenter.swift in Sources */,
-				50B175362704C1F000108B17 /* PickerScenePresenter.swift in Sources */,
+				50B175572704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift in Sources */,
+				50B175442704C1F000108B17 /* MainSceneViewModel_BTWW.swift in Sources */,
+				50B175362704C1F000108B17 /* PickerSceneViewModel_BTWW.swift in Sources */,
 				50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */,
 				50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */,
 				50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */,
-				50B175382704C1F000108B17 /* PickerSceneConfiguratorImpl.swift in Sources */,
-				50B175452704C1F000108B17 /* MainSceneTableViewController.swift in Sources */,
-				50B175422704C1F000108B17 /* SelectSceneConfigurator.swift in Sources */,
-				508CEE9227417E540086051A /* LifeCyclesCardPersistenceRepository.swift in Sources */,
+				50B175382704C1F000108B17 /* PickerSceneConfigurator_BTWW.swift in Sources */,
+				50B175452704C1F000108B17 /* MainSceneTableViewController_BTWW.swift in Sources */,
+				50B175422704C1F000108B17 /* SelectSceneConfigurator_BTWW.swift in Sources */,
+				508CEE9227417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
-				50B175662704DF7900108B17 /* PersistenceRepositoryGateway.swift in Sources */,
-				5083DCE9276960D80015DD0E /* SelectViewController.swift in Sources */,
+				5083DCE9276960D80015DD0E /* SelectViewController_BTWW.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
-				50B175332704C1F000108B17 /* CalendarScenePresenterswift.swift in Sources */,
-				50B1753A2704C1F000108B17 /* DetailWakeSceneViewController.swift in Sources */,
-				50B1753D2704C1F000108B17 /* DetailDreamSceneConfiguratorImpl.swift in Sources */,
-				50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter.swift in Sources */,
-				50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter.swift in Sources */,
-				50B1754B2704C1F000108B17 /* MainModuleInteractor+State.swift in Sources */,
-				50B1753F2704C1F000108B17 /* SelectScenePresenter.swift in Sources */,
-				50F6C9162731883E005648BA /* JsonPatchEntity.swift in Sources */,
-				50B175462704C1F000108B17 /* MainSceneTableViewCell.swift in Sources */,
-				5078F290277009C700A46BA3 /* Convertable Protocol.swift in Sources */,
+				50B175332704C1F000108B17 /* CalendarSceneViewModel_BTWW.swift in Sources */,
+				50B1753A2704C1F000108B17 /* DetailWakeSceneViewController_BTWW.swift in Sources */,
+				50B1753D2704C1F000108B17 /* DetailDreamSceneConfigurator_BTWW.swift in Sources */,
+				50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift in Sources */,
+				50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift in Sources */,
+				50B1754B2704C1F000108B17 /* Actions+State_BTWW.swift in Sources */,
+				50B1753F2704C1F000108B17 /* SelectSceneViewModel_BTWW.swift in Sources */,
+				50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */,
+				50B175462704C1F000108B17 /* MainSceneTableViewCell_BTWW.swift in Sources */,
 				508CEEA7274AEA870086051A /* Swipe.swift in Sources */,
-				50B175342704C1F000108B17 /* CalendarSceneViewController.swift in Sources */,
+				50B175342704C1F000108B17 /* CalendarSceneViewController_BTWW.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

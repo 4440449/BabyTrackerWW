@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="umT-Rc-EHo">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="umT-Rc-EHo">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,9 +16,9 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="mhC-5s-RDn">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
-                        <color key="barTintColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PgN-82-yLN">
                         <autoresizingMask key="autoresizingMask"/>
@@ -30,10 +32,10 @@
             </objects>
             <point key="canvasLocation" x="-1219" y="945"/>
         </scene>
-        <!--Calendar Scene View Controller-->
+        <!--Calendar Scene View ControllerBTWW-->
         <scene sceneID="AJD-1S-sWc">
             <objects>
-                <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B95-aI-t9R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="571"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -50,9 +52,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-ug-EFf">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-ug-EFf">
                                 <rect key="frame" x="122.5" y="446" width="130" height="55"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="aI3-c9-ued"/>
                                     <constraint firstAttribute="width" constant="130" id="mfN-zZ-Sdu"/>
@@ -64,7 +66,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="UXq-Vz-aDI"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="cYA-0C-eYy" firstAttribute="leading" secondItem="UXq-Vz-aDI" secondAttribute="leading" constant="20" id="9j9-iJ-zaP"/>
                             <constraint firstItem="cYA-0C-eYy" firstAttribute="top" secondItem="UXq-Vz-aDI" secondAttribute="top" constant="130" id="Btl-81-QCW"/>
@@ -75,7 +78,6 @@
                             <constraint firstItem="UXq-Vz-aDI" firstAttribute="trailing" secondItem="cYA-0C-eYy" secondAttribute="trailing" constant="20" id="mcq-fj-gKx"/>
                             <constraint firstItem="5jN-ug-EFf" firstAttribute="centerX" secondItem="B95-aI-t9R" secondAttribute="centerX" id="yr9-FR-brb"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="UXq-Vz-aDI"/>
                     </view>
                     <navigationItem key="navigationItem" id="Jql-aw-AFa"/>
                     <connections>
@@ -87,17 +89,17 @@
             </objects>
             <point key="canvasLocation" x="374" y="120"/>
         </scene>
-        <!--Main Scene Table View Controller-->
+        <!--Main Scene Table View ControllerBTWW-->
         <scene sceneID="d3X-f0-aLd">
             <objects>
-                <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs" customClass="TestTableView" customModule="BabyTrackerWW" customModuleProvider="target">
+                <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainSceneTableViewCell" rowHeight="100" id="fh0-rt-naf" customClass="MainSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="28" width="375" height="100"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainSceneTableViewCell_BTWW" rowHeight="100" id="fh0-rt-naf" customClass="MainSceneTableViewCell_BTWW" customModule="BabyTrackerWW" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="44.5" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fh0-rt-naf" id="TNt-0N-vMx">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -117,17 +119,13 @@
                                         <constraint firstAttribute="trailing" secondItem="5KJ-3t-Hdi" secondAttribute="trailing" constant="16" id="l2C-El-dSC"/>
                                     </constraints>
                                 </tableViewCellContentView>
-                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                 <gestureRecognizers/>
                                 <connections>
                                     <outlet property="label" destination="5KJ-3t-Hdi" id="xGj-SB-58K"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="8nP-1y-YUj" id="L7r-D0-Um2"/>
-                            <outlet property="delegate" destination="8nP-1y-YUj" id="qtf-Td-zIb"/>
-                        </connections>
                     </tableView>
                     <navigationItem key="navigationItem" id="G6K-J5-4QK">
                         <barButtonItem key="leftBarButtonItem" title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
@@ -172,10 +170,10 @@
             </objects>
             <point key="canvasLocation" x="-392.80000000000001" y="944.07796101949032"/>
         </scene>
-        <!--Select View Controller-->
+        <!--Select View ControllerBTWW-->
         <scene sceneID="Tcy-aT-Fsw">
             <objects>
-                <viewController id="OLg-sR-vCP" customClass="SelectViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OLg-sR-vCP" customClass="SelectViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPp-Oa-bDR">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -187,19 +185,19 @@
                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" scrollEnabled="NO" dataMode="prototypes" style="plain" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="CB8-cO-EIW">
                                         <rect key="frame" x="-25" y="-10" width="200" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
-                                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
-                                        <color key="separatorColor" systemColor="separatorColor" red="0.23529411759999999" green="0.23529411759999999" blue="0.26274509800000001" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        <color key="separatorColor" systemColor="separatorColor"/>
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
-                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="VKI-kC-qLu" customClass="SelectSceneTableViewCell" customModule="BabyTrackerWW" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="28" width="200" height="43"/>
+                                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="VKI-kC-qLu" customClass="SelectSceneTableViewCell_BTWW" customModule="BabyTrackerWW" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="44.5" width="200" height="43.5"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VKI-kC-qLu" id="hhF-2p-zrU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1t-1X-UkD">
-                                                            <rect key="frame" x="15" y="10" width="170" height="23"/>
+                                                            <rect key="frame" x="15" y="10" width="170" height="23.5"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -212,7 +210,7 @@
                                                         <constraint firstAttribute="trailing" secondItem="d1t-1X-UkD" secondAttribute="trailing" constant="15" id="DxK-o7-Kdn"/>
                                                     </constraints>
                                                 </tableViewCellContentView>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <connections>
                                                     <outlet property="label" destination="d1t-1X-UkD" id="Dy2-FX-S5m"/>
                                                 </connections>
@@ -220,11 +218,11 @@
                                         </prototypes>
                                     </tableView>
                                 </subviews>
-                                <color key="backgroundColor" systemColor="systemTealColor" red="0.35294117650000001" green="0.7843137255" blue="0.98039215690000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" systemColor="systemTealColor"/>
                             </view>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="LeH-KK-b5I"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                     <size key="freeformSize" width="200" height="86"/>
                     <connections>
@@ -236,10 +234,10 @@
             </objects>
             <point key="canvasLocation" x="373" y="750"/>
         </scene>
-        <!--Detail Dream Scene View Controller-->
+        <!--Detail Dream Scene View ControllerBTWW-->
         <scene sceneID="vwd-UJ-vJL">
             <objects>
-                <viewController id="rJu-0z-jb4" customClass="DetailDreamSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="rJu-0z-jb4" customClass="DetailDreamSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1e-mN-Mv8">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -254,12 +252,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
                                         <rect key="frame" x="130" y="125.5" width="115" height="39"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Плакал">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="fallAsleepButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="M6b-57-G6I"/>
@@ -272,12 +270,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
                                         <rect key="frame" x="130" y="250" width="115" height="39"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="На груди">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="putDownButton:" destination="rJu-0z-jb4" eventType="touchUpInside" id="XmU-BR-y5W"/>
@@ -289,7 +287,7 @@
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVv-up-3sd">
                                                 <rect key="frame" x="10" y="0.0" width="315" height="150"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="h3B-cN-HWJ"/>
                                                 </constraints>
@@ -297,7 +295,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="aVv-up-3sd" secondAttribute="bottom" id="6JA-HJ-0Tb"/>
                                             <constraint firstAttribute="trailing" secondItem="aVv-up-3sd" secondAttribute="trailing" constant="10" id="C3W-xf-u2l"/>
@@ -305,9 +303,9 @@
                                             <constraint firstItem="aVv-up-3sd" firstAttribute="leading" secondItem="xBy-6Q-kgV" secondAttribute="leading" constant="10" id="rDk-ap-Atl"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
                                         <rect key="frame" x="122.5" y="539" width="130" height="55"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="EPG-Gj-bwj"/>
                                             <constraint firstAttribute="width" constant="130" id="ug5-3V-fW9"/>
@@ -378,7 +376,8 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="NU4-Sc-z8i"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="kvO-qv-ce7" firstAttribute="top" secondItem="NU4-Sc-z8i" secondAttribute="top" id="8U6-B3-3c0"/>
                             <constraint firstItem="GHU-os-GMi" firstAttribute="leading" secondItem="NU4-Sc-z8i" secondAttribute="leading" id="IO6-si-weU"/>
@@ -388,7 +387,6 @@
                             <constraint firstItem="GHU-os-GMi" firstAttribute="top" secondItem="NU4-Sc-z8i" secondAttribute="top" id="bvu-Un-qs9"/>
                             <constraint firstItem="kvO-qv-ce7" firstAttribute="trailing" secondItem="NU4-Sc-z8i" secondAttribute="trailing" id="mxM-Zr-U2V"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="NU4-Sc-z8i"/>
                     </view>
                     <size key="freeformSize" width="375" height="667"/>
                     <connections>
@@ -411,10 +409,10 @@
             </objects>
             <point key="canvasLocation" x="-768.79999999999995" y="1788.7556221889056"/>
         </scene>
-        <!--Picker View Controller-->
+        <!--Picker View ControllerBTWW-->
         <scene sceneID="qh4-Ze-wmv">
             <objects>
-                <viewController id="Hoi-qQ-SGb" customClass="PickerViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Hoi-qQ-SGb" customClass="PickerViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgL-ro-dBi">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -428,9 +426,9 @@
                                     <outlet property="delegate" destination="Hoi-qQ-SGb" id="AQh-g4-jPo"/>
                                 </connections>
                             </pickerView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
                                 <rect key="frame" x="122.5" y="522" width="130" height="55"/>
-                                <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9YW-K0-Pug"/>
                                     <constraint firstAttribute="width" constant="130" id="B1k-K0-Ws9"/>
@@ -442,7 +440,8 @@
                                 </connections>
                             </button>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="evm-QQ-wgq"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="VVt-pp-6TI" firstAttribute="top" secondItem="evm-QQ-wgq" secondAttribute="top" constant="130" id="8Nk-0D-7L1"/>
                             <constraint firstItem="VVt-pp-6TI" firstAttribute="trailing" secondItem="evm-QQ-wgq" secondAttribute="trailing" id="CDN-Rn-lji"/>
@@ -450,7 +449,6 @@
                             <constraint firstItem="evm-QQ-wgq" firstAttribute="bottom" secondItem="r9w-By-OOb" secondAttribute="bottom" constant="70" id="ZRn-D1-gpM"/>
                             <constraint firstItem="r9w-By-OOb" firstAttribute="centerX" secondItem="kgL-ro-dBi" secondAttribute="centerX" id="hNW-eG-e6H"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="evm-QQ-wgq"/>
                     </view>
                     <navigationItem key="navigationItem" id="aJR-Xs-C3Q"/>
                     <connections>
@@ -464,7 +462,7 @@
         <!--Detail Wake Window Scene View Controller-->
         <scene sceneID="P8P-7p-NH3">
             <objects>
-                <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="DetailWakeSceneViewController" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="DetailWakeSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4j-3h-5UQ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="797"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -478,12 +476,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ7-IN-Xix">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qJ7-IN-Xix">
                                         <rect key="frame" x="130" y="153" width="115" height="39"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Спокойный">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="wakeUpButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="yAf-o5-zJd"/>
@@ -496,12 +494,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFt-gR-L5p">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UFt-gR-L5p">
                                         <rect key="frame" x="120" y="305" width="135" height="39"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Капризничал">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="wakeWindowButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="lIU-Yp-gbb"/>
@@ -514,12 +512,12 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-aV-PMP">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r2b-aV-PMP">
                                         <rect key="frame" x="120" y="457" width="135" height="39"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Замедлился">
-                                            <color key="titleColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                            <color key="titleColor" systemColor="systemBackgroundColor"/>
                                         </state>
                                         <connections>
                                             <action selector="signsButton:" destination="7cP-YO-UdJ" eventType="touchUpInside" id="jzJ-5I-W81"/>
@@ -531,7 +529,7 @@
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J27-iz-chv">
                                                 <rect key="frame" x="10" y="0.0" width="315" height="150"/>
-                                                <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" systemColor="systemGray5Color"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="150" id="MSE-0z-SFb"/>
                                                 </constraints>
@@ -539,7 +537,7 @@
                                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                             </textView>
                                         </subviews>
-                                        <color key="backgroundColor" systemColor="systemGray5Color" red="0.8980392157" green="0.8980392157" blue="0.91764705879999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" systemColor="systemGray5Color"/>
                                         <constraints>
                                             <constraint firstItem="J27-iz-chv" firstAttribute="top" secondItem="wg8-dO-HoI" secondAttribute="top" id="1M2-7u-bo1"/>
                                             <constraint firstAttribute="bottom" secondItem="J27-iz-chv" secondAttribute="bottom" id="W2e-nb-LzS"/>
@@ -547,9 +545,9 @@
                                             <constraint firstItem="J27-iz-chv" firstAttribute="leading" secondItem="wg8-dO-HoI" secondAttribute="leading" constant="10" id="ikR-3J-m6a"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
                                         <rect key="frame" x="122.5" y="746" width="130" height="55"/>
-                                        <color key="backgroundColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="hNj-Yc-7lU"/>
                                             <constraint firstAttribute="height" constant="55" id="wq0-Mm-vgK"/>
@@ -623,7 +621,8 @@
                                 </items>
                             </navigationBar>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="kuQ-KD-LwS"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="bAv-7r-rcy" firstAttribute="trailing" secondItem="kuQ-KD-LwS" secondAttribute="trailing" id="23h-6D-VKd"/>
                             <constraint firstItem="jbD-g9-QX1" firstAttribute="trailing" secondItem="kuQ-KD-LwS" secondAttribute="trailing" id="AgZ-Ji-Aex"/>
@@ -633,7 +632,6 @@
                             <constraint firstItem="jbD-g9-QX1" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" id="cbw-ye-W4h"/>
                             <constraint firstItem="bAv-7r-rcy" firstAttribute="leading" secondItem="kuQ-KD-LwS" secondAttribute="leading" id="h0j-Kr-qz1"/>
                         </constraints>
-                        <viewLayoutGuide key="safeArea" id="kuQ-KD-LwS"/>
                     </view>
                     <toolbarItems/>
                     <size key="freeformSize" width="375" height="817"/>
@@ -668,5 +666,20 @@
         <image name="calendar" catalog="system" width="128" height="106"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
+        <systemColor name="labelColor">
+            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="separatorColor">
+            <color red="0.23529411764705882" green="0.23529411764705882" blue="0.2627450980392157" alpha="0.28999999999999998" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemGray5Color">
+            <color red="0.89803921568627454" green="0.89803921568627454" blue="0.91764705882352937" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+        <systemColor name="systemTealColor">
+            <color red="0.18823529411764706" green="0.69019607843137254" blue="0.7803921568627451" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
     </resources>
 </document>

@@ -1,5 +1,5 @@
 //
-//  WakePersistenceRepoMock.swift
+//  WakePersistentRepositoryMock.swift
 //  BabyTrackerWWTests
 //
 //  Created by Max on 25.12.2021.
@@ -10,7 +10,7 @@ import XCTest
 @testable import BabyTrackerWW
 
 
-class  WakePersistentRepositoryMock: WakePersistentRepositoryProtocol {
+class  WakePersistentRepositoryMock: WakePersistentRepositoryProtocol_BTWW {
     
     var wakeResult: (Result<[Wake], Error>)
     var emptyResult: (Result<Void, Error>)
