@@ -23,7 +23,9 @@ final class CalendarSceneViewController_BTWW: UIViewController {
         
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ru_RU")
-        datePicker.preferredDatePickerStyle = .compact
+        if #available(iOS 13.4, *) {
+            datePicker.preferredDatePickerStyle = .compact
+        }
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         datePicker.date = viewModel.getCurrentDate() // get :(
         dateLabel.text = viewModel.format(date:datePicker.date)

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="19529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="umT-Rc-EHo">
-    <device id="retina4_7" orientation="portrait" appearance="light"/>
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="19519"/>
@@ -14,16 +14,12 @@
             <objects>
                 <navigationController storyboardIdentifier="BabyTrackerStoryboard" id="umT-Rc-EHo" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="mhC-5s-RDn">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="96"/>
+                        <rect key="frame" x="0.0" y="44" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <gestureRecognizers/>
                         <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
-                    <toolbar key="toolbar" opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="PgN-82-yLN">
-                        <autoresizingMask key="autoresizingMask"/>
-                        <gestureRecognizers/>
-                    </toolbar>
                     <connections>
                         <segue destination="8nP-1y-YUj" kind="relationship" relationship="rootViewController" id="5eR-lK-n0p"/>
                     </connections>
@@ -37,14 +33,14 @@
             <objects>
                 <viewController id="DZ4-Dy-YXU" customClass="CalendarSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="B95-aI-t9R">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="571"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="704"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <datePicker contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="dateAndTime" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="3dh-IZ-MYP">
-                                <rect key="frame" x="0.0" y="190" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="190" width="390" height="216"/>
                             </datePicker>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cYA-0C-eYy">
-                                <rect key="frame" x="20" y="130" width="335" height="35"/>
+                                <rect key="frame" x="20" y="130" width="350" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="eZk-FG-Xsb"/>
                                 </constraints>
@@ -53,7 +49,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5jN-ug-EFf">
-                                <rect key="frame" x="122.5" y="446" width="130" height="55"/>
+                                <rect key="frame" x="130" y="545" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="aI3-c9-ued"/>
@@ -94,12 +90,12 @@
             <objects>
                 <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="623"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MainSceneTableViewCell_BTWW" rowHeight="100" id="fh0-rt-naf" customClass="MainSceneTableViewCell_BTWW" customModule="BabyTrackerWW" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="44.5" width="375" height="100"/>
+                                <rect key="frame" x="0.0" y="44.666666030883789" width="375" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="fh0-rt-naf" id="TNt-0N-vMx">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="100"/>
@@ -190,14 +186,14 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="VKI-kC-qLu" customClass="SelectSceneTableViewCell_BTWW" customModule="BabyTrackerWW" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.5" width="200" height="43.5"/>
+                                                <rect key="frame" x="0.0" y="44.666666030883789" width="200" height="42.666667938232422"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VKI-kC-qLu" id="hhF-2p-zrU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.5"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="42.666667938232422"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1t-1X-UkD">
-                                                            <rect key="frame" x="15" y="10" width="170" height="23.5"/>
+                                                            <rect key="frame" x="15" y="10.000000000000002" width="170" height="22.666666666666671"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -239,21 +235,21 @@
             <objects>
                 <viewController id="rJu-0z-jb4" customClass="DetailDreamSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="V1e-mN-Mv8">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="613"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GHU-os-GMi">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="613"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
-                                        <rect key="frame" x="70" y="90" width="235" height="27.5"/>
+                                        <rect key="frame" x="70" y="90" width="235" height="27.666666666666671"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0OC-h9-VxV">
-                                        <rect key="frame" x="130" y="125.5" width="115" height="39"/>
+                                        <rect key="frame" x="130" y="125.66666666666669" width="115" height="39"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="Плакал">
@@ -265,13 +261,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
-                                        <rect key="frame" x="80" y="214.5" width="215" height="27.5"/>
+                                        <rect key="frame" x="80" y="214.66666666666666" width="215" height="27.666666666666657"/>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wGe-ue-ZBw">
-                                        <rect key="frame" x="130" y="250" width="115" height="39"/>
+                                        <rect key="frame" x="130" y="250.33333333333337" width="115" height="39"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="22"/>
                                         <state key="normal" title="На груди">
@@ -283,7 +279,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xBy-6Q-kgV">
-                                        <rect key="frame" x="20" y="339" width="335" height="150"/>
+                                        <rect key="frame" x="20" y="339.33333333333331" width="335" height="150"/>
                                         <subviews>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aVv-up-3sd">
                                                 <rect key="frame" x="10" y="0.0" width="315" height="150"/>
@@ -304,7 +300,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZID-iq-Fhv">
-                                        <rect key="frame" x="122.5" y="539" width="130" height="55"/>
+                                        <rect key="frame" x="122.66666666666669" y="539.33333333333337" width="130" height="55"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="55" id="EPG-Gj-bwj"/>
@@ -317,14 +313,14 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Введите текст" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="I9E-Ff-ed0">
-                                        <rect key="frame" x="34" y="349" width="114" height="21"/>
+                                        <rect key="frame" x="34" y="349.33333333333331" width="114" height="21"/>
                                         <edgeInsets key="layoutMargins" top="8" left="8" bottom="8" right="8"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" alpha="0.5" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" preservesSuperviewLayoutMargins="YES" text="500" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sXy-6n-2De">
-                                        <rect key="frame" x="306" y="460" width="29" height="19"/>
+                                        <rect key="frame" x="306" y="460.33333333333331" width="29" height="19"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                         <color key="highlightedColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </label>
@@ -414,11 +410,11 @@
             <objects>
                 <viewController id="Hoi-qQ-SGb" customClass="PickerViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="kgL-ro-dBi">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="647"/>
+                        <rect key="frame" x="0.0" y="0.0" width="390" height="790"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="130" width="375" height="216"/>
+                                <rect key="frame" x="0.0" y="130" width="390" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -427,7 +423,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
-                                <rect key="frame" x="122.5" y="522" width="130" height="55"/>
+                                <rect key="frame" x="130" y="631" width="130" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9YW-K0-Pug"/>
@@ -464,11 +460,11 @@
             <objects>
                 <viewController id="7cP-YO-UdJ" userLabel="Detail Wake Window Scene View Controller" customClass="DetailWakeSceneViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="n4j-3h-5UQ">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="797"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="763"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jbD-g9-QX1">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="797"/>
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="756"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
                                         <rect key="frame" x="75" y="90" width="225" height="55"/>
@@ -546,7 +542,7 @@
                                         </constraints>
                                     </view>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zvz-Oj-TY3">
-                                        <rect key="frame" x="122.5" y="746" width="130" height="55"/>
+                                        <rect key="frame" x="122.66666666666669" y="746" width="130" height="55"/>
                                         <color key="backgroundColor" systemColor="labelColor"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="130" id="hNj-Yc-7lU"/>

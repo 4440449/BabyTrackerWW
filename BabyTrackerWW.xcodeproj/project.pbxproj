@@ -81,6 +81,7 @@
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */; };
 		942F7E8F2793836F0091F865 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E8E2793836F0091F865 /* MommysEye */; };
 		942F7E92279383850091F865 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E91279383850091F865 /* BabyNet */; };
+		948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,6 +171,7 @@
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
+		948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewControllerUI_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -626,6 +628,7 @@
 			isa = PBXGroup;
 			children = (
 				50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */,
+				948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */,
 				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */,
 			);
 			path = View;
@@ -981,6 +984,7 @@
 				508CEE8E274177C70086051A /* DreamRepository_BTWW.swift in Sources */,
 				50B1753B2704C1F000108B17 /* DetailWakeSceneConfigurator_BTWW.swift in Sources */,
 				50B175532704C1F000108B17 /* DreamPersistentRepository_BTWW.swift in Sources */,
+				948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */,
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
 				50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */,
@@ -1118,7 +1122,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1173,7 +1177,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;

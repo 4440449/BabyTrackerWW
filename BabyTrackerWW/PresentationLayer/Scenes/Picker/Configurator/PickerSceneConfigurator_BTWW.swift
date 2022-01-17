@@ -9,9 +9,7 @@
 
 final class PickerSceneConfigurator_BTWW {
     
-    func configureScene<T: CaseIterable & RawRepresentable & LifeCycleProperty>(view: PickerViewController_BTWW,
-                                                                                type: T.Type,
-                                                                                callback: @escaping (T) -> ()) {
+    func configureScene<T: CaseIterable & RawRepresentable & LifeCycleProperty>(view: PickerViewController_BTWW, type: T.Type, callback: @escaping (T) -> ()) {
         let viewModel = PickerSceneViewModel_BTWW(lifeCyclePropertyType: type, callback: callback)
         view.viewModel = viewModel
     }

@@ -17,7 +17,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     var viewModel: MainSceneViewModelProtocol_BTWW!
     
     
-    // MARK: - Lifecycle View
+    // MARK: - View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,11 +27,17 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         setupNavBarGestures()
         setupObservers()
         viewModel.viewDidLoad()
+        //        navigationController?.navigationBar.shadowImage = UIImage()
+        //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         //        tableView.panGestureRecognizer.addTarget(self, action: #selector(scroll))
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        
+        //        UIView.animate(withDuration: 3.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
+        //            self.navigationController?.navigationBar.center.x = CGFloat(-100)
+        //        })
         //Set obs
     }
     
@@ -84,7 +90,6 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
                     self?.setupActivityIndicator()
                 case .background:
                     self?.removeBlureEffect()
-                    self?.removeActivityIndicator()
                 }
             }
         }
@@ -96,11 +101,11 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
             switch isLoading {
             case .true:
-                self?.startActivity();
+                self?.startLoadingMode();
                 self?.manageDisplayNavBarButtons();
                 self?.manageGestures()
             case .false:
-                self?.stopActivity();
+                self?.stopLoadingMode();
                 self?.manageDisplayNavBarButtons();
                 self?.manageGestures()
             }
@@ -117,34 +122,36 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
                           duration: 0.35,
                           options: .transitionCrossDissolve,
                           animations: {
-                            self.tableView.reloadData()
+            self.tableView.reloadData()
         })
     }
     
     
-    // MARK: - UI
+    // MARK: - Activity + VisualEffects
     
-    private let activityIndicator = UIActivityIndicatorView()
-    private let blure = UIVisualEffectView()
+    let activityIndicator = UIActivityIndicatorView()
+    let blure = UIVisualEffectView()
     
     
     // MARK: - Navigation Bar
     
-    private var changeDateOutletButton: UIBarButtonItem!
-    private var addNewOutletButton: UIBarButtonItem!
-    private var cancelOutletButton: UIBarButtonItem!
-    private var saveOutletButton: UIBarButtonItem!
-    private var editOutletButton: UIBarButtonItem!
+    var changeDateOutletButton = UIBarButtonItem()
+    var addNewOutletButton = UIBarButtonItem()
+    var cancelOutletButton = UIBarButtonItem()
+    var saveOutletButton = UIBarButtonItem()
+    var editOutletButton = UIBarButtonItem()
     
     
     // MARK: - System
     
-    private let feedbackGenerator = UISelectionFeedbackGenerator()
+    let feedbackGenerator = UISelectionFeedbackGenerator()
     
     
     // MARK: - Gestures
     
-    private lazy var directionPan = PanDirectionGestureRecognizer(direction: .horizontal, target: self, action: #selector(didPan(_:)))
+    lazy var directionPan = PanDirectionGestureRecognizer(direction: .horizontal,
+                                                          target: self,
+                                                          action: #selector(didPan(_:)))
     
     
     // MARK: - Table view
@@ -183,7 +190,6 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-//        print("indexPath == \(indexPath.row)")
         viewModel.deleteRow(at: indexPath.row)
     }
     
@@ -194,9 +200,40 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         viewModel.prepare(for: segue, sourceVC: self)
     }
     
-    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-        return .none
+    
+    // MARK: - Navigation bar buttons
+    
+    @IBAction func changeDateButton(_ sender: Any) {
+        performSegue(withIdentifier: "changeDateButton", sender: nil)
     }
+    
+    @IBAction func addNewButton(_ sender: Any) {
+        performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
+    }
+    
+    @IBAction func cancelButton(_ sender: Any) {
+        tableView.setEditing(false, animated: true)
+        viewModel.cancelChanges()
+        manageDisplayNavBarButtons()
+        manageGestures()
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        tableView.setEditing(false, animated: true)
+        manageDisplayNavBarButtons()
+        manageGestures()
+        viewModel.saveChanges()
+    }
+    
+    @IBAction func editButton(_ sender: Any) {
+        tableView.setEditing(true, animated: true)
+        manageDisplayNavBarButtons()
+        manageGestures()
+    }
+    
+    //    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
+    //        return .none
+    //    }
     
     
     // MARK: - UIAlert
@@ -205,7 +242,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         let alert = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: .alert)
         let action = UIAlertAction(title: "Ок", style: .default, handler: nil)
         alert.addAction(action)
-        self.present(alert, animated: true)
+        present(alert, animated: true)
     }
     
     deinit {
@@ -217,211 +254,8 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
 
 
 
-// MARK: - Internal setup - Behaviours -
 
-extension MainSceneTableViewController_BTWW {
-    
-    // MARK: - Gestures
-    
-    private func setupNavBarGestures() {
-        navigationController?.navigationBar.addGestureRecognizer(directionPan)
-    }
-    
-    private func manageGestures() {
-        if (!tableView.isEditing && activityIndicator.isHidden) {
-            enableNavBarGestures()
-        } else {
-            disableNavBarGestures()
-        }
-    }
-    
-    private func enableNavBarGestures() {
-        navigationController?.navigationBar.gestureRecognizers?.forEach {
-            if $0 == directionPan {
-                $0.isEnabled = true
-            }
-        }
-    }
-    
-    private func disableNavBarGestures() {
-        navigationController?.navigationBar.gestureRecognizers?.forEach {
-            if $0 == directionPan {
-                $0.isEnabled = false
-            }
-        }
-    }
-    
-    @objc func didPan(_ panGesture: UIPanGestureRecognizer) {
-        guard let centerX = navigationController?.navigationBar.center.x else { return }
-        guard let midXbounds = navigationController?.navigationBar.bounds.midX else { return }
-        let positiveXOffset = midXbounds + 90
-        let negativeXOffset = midXbounds - 90
-        let gestureOffset = panGesture.translation(in: navigationController?.navigationBar.superview)
-        //        let newXPosition = gestureOffset.x / 1.5 + centerX
-        let newXPosition = gestureOffset.x + centerX
-        navigationController?.navigationBar.center.x = newXPosition
-        panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
-        
-        switch panGesture.state {
-        case .ended, .cancelled:
-            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
-                self.navigationController?.navigationBar.frame.origin.x = .zero
-                if newXPosition > positiveXOffset {
-                    self.feedbackGenerator.selectionChanged()
-                    self.viewModel.swipe(gesture: .left)
-                } else if newXPosition < negativeXOffset {
-                    self.feedbackGenerator.selectionChanged()
-                    self.viewModel.swipe(gesture: .right)
-                } else {
-                    return
-                }
-            })
-        default:
-            return
-        }
-    }
-    
-    
-    // MARK: - Navigation bar
-    
-    private func setupNavBarButtons() {
-        changeDateOutletButton = UIBarButtonItem(title: "Изменить дату", style: .plain, target: self, action: #selector(changeDateButton))
-        changeDateOutletButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(changeDateButton))
-        addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
-        cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
-        saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
-        editOutletButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(editButton))
-    }
-    
-    private func manageDisplayNavBarButtons() {
-        guard activityIndicator.isHidden else { showLoadingModeNavBarButtons(); return }
-        switch tableView.isEditing {
-        case true: showEditModeNavBarButtons()
-        case false: showNotEditModeNavBarButtons()
-        }
-    }
-    
-    private func showEditModeNavBarButtons() {
-        navigationItem.leftBarButtonItems = [cancelOutletButton]
-        navigationItem.rightBarButtonItems = [saveOutletButton]
-        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
-        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
-    }
-    
-    private func showNotEditModeNavBarButtons() {
-        navigationItem.leftBarButtonItems = [changeDateOutletButton]
-        navigationItem.rightBarButtonItems = viewModel.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
-        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
-        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
-    }
-    
-    private func showLoadingModeNavBarButtons() {
-        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = false }
-        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = false }
-    }
-    
-    
-    @IBAction private func changeDateButton(_ sender: Any) {
-        performSegue(withIdentifier: "changeDateButton", sender: nil)
-    }
-    
-    @IBAction private func addNewButton(_ sender: Any) {
-        performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
-    }
-    
-    @IBAction private func cancelButton(_ sender: Any) {
-        tableView.setEditing(false, animated: true)
-        viewModel.cancelChanges()
-        manageDisplayNavBarButtons()
-        manageGestures()
-    }
-    
-    @IBAction private func saveButton(_ sender: Any) {
-        tableView.setEditing(false, animated: true)
-        manageDisplayNavBarButtons()
-        manageGestures()
-        viewModel.saveChanges()
-    }
-    
-    @IBAction private func editButton(_ sender: Any) {
-        tableView.setEditing(true, animated: true)
-        manageDisplayNavBarButtons()
-        manageGestures()
-    }
-    
-    
-    // MARK: - Activity indicator
-    
-    private func setupActivityIndicator() {
-        print("setupActivityIndicator")
-        let color: UIColor = .systemGray
-//        print("superView == \(tableView.superview!) ... \(tableView.superview!.center)")
-//        print("superView == \(tableView.frame) ... \(tableView.center)")
-        
-        activityIndicator.center = CGPoint(x: 207, y: 448)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = .large
-        activityIndicator.color = color
-        tableView.addSubview(activityIndicator)
-//        print(activityIndicator.center)
-    }
-    
-    private func removeActivityIndicator() {
-        print("removeActivityIndicator")
-        activityIndicator.removeFromSuperview()
-    }
-    
-    private func startActivity() {
-        //        showBlure()
-        activityIndicator.startAnimating()
-    }
-    
-    private func stopActivity() {
-        hideBlure()
-        activityIndicator.stopAnimating()
-    }
-    
-    
-    // MARK: - Blure effect
-    
-    private func setupBlureEffect() {
-        print("setupBlureEffect")
-        // if #available(iOS 13.0, *)
-        let style: UIBlurEffect.Style = self.traitCollection.userInterfaceStyle == .dark ?
-            .systemThinMaterialDark : .systemThinMaterialLight
-        let blurEffect = UIBlurEffect(style: style)
-        blure.effect = blurEffect
-        //        blure.frame = tableView.frame
-        blure.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blure.alpha = 0.7
-        //        tableView.addSubview(blure)
-        //        navigationController?.navigationBar.addSubview(blure)
-        
-    }
-    
-    private func removeBlureEffect() {
-        print("removeBlureEffect")
-        blure.removeFromSuperview()
-    }
-    
-    private func showBlure() {
-        blure.isHidden = false
-    }
-    
-    private func hideBlure() {
-        blure.isHidden = true
-    }
-    
-    
-    // MARK: -
-    
-    private func setupSuperviewBackgroudColor() {
-        let color: UIColor = .systemBackground
-        tableView.superview?.backgroundColor = color
-    }
-    
-    
-}
+
 
 
 

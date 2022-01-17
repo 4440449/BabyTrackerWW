@@ -12,7 +12,6 @@ import BabyNet
 final class MainSceneConfigurator_BTWW {
     
     func configureScene(view: MainSceneTableViewController_BTWW) {
-        
         let apiKey = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyb2xlIjoiYW5vbiIsImlhdCI6MTYzNDUwMDIxNiwiZXhwIjoxOTUwMDc2MjE2fQ.7ZAxW0Odek5URLpm5HOfLcD-mI-JJmdKTfbFUZnpBKk"
         let networkClient = BabyNetRepository()
         let dreamNetworkRepository = DreamNetworkRepository_BTWW(apiKey: apiKey, client: networkClient)
