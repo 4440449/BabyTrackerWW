@@ -71,6 +71,7 @@ final class DetailDreamSceneViewController_BTWW: UIViewController {
     @IBAction func fallAsleepButton(_ sender: Any) {
         self.performSegue(withIdentifier: String.init(describing: Dream.FallAsleep.self), sender: nil)
     }
+    
     @IBAction func putDownButton(_ sender: Any) {
         self.performSegue(withIdentifier: String.init(describing: Dream.PutDown.self), sender: nil)
     }

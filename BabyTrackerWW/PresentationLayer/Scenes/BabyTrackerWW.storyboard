@@ -189,14 +189,14 @@
                                         <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <prototypes>
                                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SelectSceneCell" id="VKI-kC-qLu" customClass="SelectSceneTableViewCell_BTWW" customModule="BabyTrackerWW" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="44.666666030883789" width="200" height="43.666667938232422"/>
+                                                <rect key="frame" x="0.0" y="44.666666030883789" width="200" height="43"/>
                                                 <autoresizingMask key="autoresizingMask"/>
                                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="VKI-kC-qLu" id="hhF-2p-zrU">
-                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43.666667938232422"/>
+                                                    <rect key="frame" x="0.0" y="0.0" width="200" height="43"/>
                                                     <autoresizingMask key="autoresizingMask"/>
                                                     <subviews>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="d1t-1X-UkD">
-                                                            <rect key="frame" x="15" y="10.000000000000002" width="170" height="23.666666666666671"/>
+                                                            <rect key="frame" x="15" y="10" width="170" height="23"/>
                                                             <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="19"/>
                                                             <nil key="textColor"/>
                                                             <nil key="highlightedColor"/>
@@ -368,7 +368,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem id="HaA-Pe-gq8">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.left" catalog="system" id="Okn-y0-2ts">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.down" catalog="system" id="Okn-y0-2ts">
                                             <connections>
                                                 <action selector="backButton:" destination="rJu-0z-jb4" id="NhT-Zy-A7e"/>
                                             </connections>
@@ -616,7 +616,7 @@
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <items>
                                     <navigationItem id="mIU-FL-IY5">
-                                        <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.left" catalog="system" id="kxP-Jo-8F0">
+                                        <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.down" catalog="system" id="kxP-Jo-8F0">
                                             <connections>
                                                 <action selector="backButton:" destination="7cP-YO-UdJ" id="cLH-HT-H2A"/>
                                             </connections>
@@ -668,7 +668,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
-        <image name="chevron.left" catalog="system" width="96" height="128"/>
+        <image name="chevron.down" catalog="system" width="128" height="72"/>
         <image name="pencil" catalog="system" width="128" height="113"/>
         <systemColor name="labelColor">
             <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
