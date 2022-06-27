@@ -12,8 +12,8 @@ import BabyNet
 
 protocol LifeCyclesCardNetworkRepositoryProtocol_BTWW {
     
-    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> URLSessionTask?
-    func synchronize(_ lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask?
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycleNetworkEntity], Error>) -> ()) -> URLSessionTask?
+    func synchronize(_ lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Data, Error>) -> ()) -> URLSessionTask?
 }
 
 
@@ -33,23 +33,25 @@ final class LifeCyclesCardNetworkRepository_BTWW: LifeCyclesCardNetworkRepositor
     
     // MARK: - Implementation
     
-    func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> URLSessionTask? {
+    func fetch(at date: Date, callback: @escaping (Result<[LifeCycleNetworkEntity], Error>) -> ()) -> URLSessionTask? {
         let url = BabyNetURL(scheme: .https,
                              host: "lgrxdkchkrkunwoqiwtl.supabase.co",
                              path: "/rest/v1/LifeCycles",
                              endPoint: ["date" : date.urlFormat()])
         let request = BabyNetRequest(method: .get, header: ["apiKey" : apiKey], body: nil)
         let session = BabyNetSession.default
-        let decoderType = LifeCycleNetworkEntity.self
+        let decoderType = [LifeCycleNetworkEntity].self
         
         return client.connect(url: url,
                               request: request,
                               session: session,
                               decoderType: decoderType,
-                              callback: callback)
+                              observationCallback: nil,
+                              taskProgressCallback: nil,
+                              responseCallback: callback)
     }
     
-    func synchronize(_ lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> URLSessionTask? {
+    func synchronize(_ lifeCycles: [LifeCycle], date: Date, callback: @escaping (Result<Data, Error>) -> ()) -> URLSessionTask? {
         let url = BabyNetURL(scheme: .https,
                              host: "lgrxdkchkrkunwoqiwtl.supabase.co",
                              path: "/rest/v1/LifeCycles",
@@ -58,13 +60,14 @@ final class LifeCyclesCardNetworkRepository_BTWW: LifeCyclesCardNetworkRepositor
                                      header: ["apiKey" : apiKey, "Content-Type" : "application/json-patch+json", "Prefer" : "return=representation"],
                                      body: JsonPatchEntity_BTWW(op: .replace, path: date.webApiFormat(), values:  LifeCycleNetworkEntity(domainEntity: lifeCycles, date: date)) )
         let session = BabyNetSession.default
-        let decoderType = LifeCycleNetworkEntity.self
         
         return client.connect(url: url,
                               request: request,
                               session: session,
-                              decoderType: decoderType,
-                              callback: callback)
+                              decoderType: nil,
+                              observationCallback: nil,
+                              taskProgressCallback: nil,
+                              responseCallback: callback)
     }
     
 }

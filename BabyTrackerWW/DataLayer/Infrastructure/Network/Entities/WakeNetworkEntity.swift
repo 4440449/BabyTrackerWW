@@ -10,7 +10,7 @@ import Foundation
 import BabyNet
 
 
-struct WakeNetworkEntity: Codable, DomainRepresentable {
+struct WakeNetworkEntity: Codable {
     
     private let date: String
     let id: UUID

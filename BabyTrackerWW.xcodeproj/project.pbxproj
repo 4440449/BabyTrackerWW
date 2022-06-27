@@ -79,10 +79,10 @@
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 		50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */; };
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */; };
-		942F7E8F2793836F0091F865 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E8E2793836F0091F865 /* MommysEye */; };
-		942F7E92279383850091F865 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E91279383850091F865 /* BabyNet */; };
 		948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */; };
 		94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0CA02869DB5800742A33 /* Test_BTWW.swift */; };
+		94AB0CA52869E80E00742A33 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA42869E80E00742A33 /* MommysEye */; };
+		94AB0CA82869E88600742A33 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA72869E88600742A33 /* BabyNet */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,8 +188,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				942F7E92279383850091F865 /* BabyNet in Frameworks */,
-				942F7E8F2793836F0091F865 /* MommysEye in Frameworks */,
+				94AB0CA82869E88600742A33 /* BabyNet in Frameworks */,
+				94AB0CA52869E80E00742A33 /* MommysEye in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -383,6 +383,7 @@
 				50B174CB2704C0B000108B17 /* BabyTrackerWW */,
 				5078F2962775430000A46BA3 /* BabyTrackerWWTests */,
 				50B174CA2704C0B000108B17 /* Products */,
+				94AB0CA62869E88600742A33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -833,6 +834,13 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		94AB0CA62869E88600742A33 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -868,8 +876,8 @@
 			);
 			name = BabyTrackerWW;
 			packageProductDependencies = (
-				942F7E8E2793836F0091F865 /* MommysEye */,
-				942F7E91279383850091F865 /* BabyNet */,
+				94AB0CA42869E80E00742A33 /* MommysEye */,
+				94AB0CA72869E88600742A33 /* BabyNet */,
 			);
 			productName = BabyTrackerWW;
 			productReference = 50B174C92704C0B000108B17 /* BabyTrackerWW.app */;
@@ -905,8 +913,8 @@
 			);
 			mainGroup = 50B174C02704C0B000108B17;
 			packageReferences = (
-				942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */,
-				942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */,
+				94AB0CA22869E6E600742A33 /* XCRemoteSwiftPackageReference "BabyNet" */,
+				94AB0CA32869E80E00742A33 /* XCRemoteSwiftPackageReference "MommysEye" */,
 			);
 			productRefGroup = 50B174CA2704C0B000108B17 /* Products */;
 			projectDirPath = "";
@@ -1271,17 +1279,17 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */ = {
+		94AB0CA22869E6E600742A33 /* XCRemoteSwiftPackageReference "BabyNet" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:4440449/MommysEye.git";
+			repositoryURL = "https://github.com/4440449/BabyNet";
 			requirement = {
 				branch = master;
 				kind = branch;
 			};
 		};
-		942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */ = {
+		94AB0CA32869E80E00742A33 /* XCRemoteSwiftPackageReference "MommysEye" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "git@github.com:4440449/BabyNet.git";
+			repositoryURL = "https://github.com/4440449/MommysEye";
 			requirement = {
 				branch = master;
 				kind = branch;
@@ -1290,14 +1298,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		942F7E8E2793836F0091F865 /* MommysEye */ = {
+		94AB0CA42869E80E00742A33 /* MommysEye */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 942F7E8D2793836F0091F865 /* XCRemoteSwiftPackageReference "MommysEye" */;
+			package = 94AB0CA32869E80E00742A33 /* XCRemoteSwiftPackageReference "MommysEye" */;
 			productName = MommysEye;
 		};
-		942F7E91279383850091F865 /* BabyNet */ = {
+		94AB0CA72869E88600742A33 /* BabyNet */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 942F7E90279383850091F865 /* XCRemoteSwiftPackageReference "BabyNet" */;
+			package = 94AB0CA22869E6E600742A33 /* XCRemoteSwiftPackageReference "BabyNet" */;
 			productName = BabyNet;
 		};
 /* End XCSwiftPackageProductDependency section */

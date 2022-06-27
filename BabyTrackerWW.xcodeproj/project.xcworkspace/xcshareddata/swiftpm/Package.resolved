@@ -3,16 +3,16 @@
     "pins": [
       {
         "package": "BabyNet",
-        "repositoryURL": "git@github.com:4440449/BabyNet.git",
+        "repositoryURL": "https://github.com/4440449/BabyNet",
         "state": {
           "branch": "master",
-          "revision": "6bc23db6eec3ee0742136eb5ebeb79e6a1a1f6dc",
+          "revision": "6010175c4223c35b82a778725c920e6695ef6fac",
           "version": null
         }
       },
       {
         "package": "MommysEye",
-        "repositoryURL": "git@github.com:4440449/MommysEye.git",
+        "repositoryURL": "https://github.com/4440449/MommysEye",
         "state": {
           "branch": "master",
           "revision": "a443a7adcbb664061094c5bf4221e8467bf54c54",
