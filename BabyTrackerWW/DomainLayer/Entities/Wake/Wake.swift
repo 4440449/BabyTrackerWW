@@ -18,7 +18,8 @@ struct Wake: LifeCycle {
     var signs: Signs
     var note: String = ""
     
-    enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty { //в каком настроении проснулся?
+    enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty {
+        //в каком настроении проснулся?
         case crying = "😭"// "Плакал"
         case upSet  = "😒"// "Расстроенный"
         case calm   = "🙂"// "Спокойный"
@@ -32,7 +33,8 @@ struct Wake: LifeCycle {
         case happy = "Активно"
     }
     
-    enum Signs: String, CaseIterable, RawRepresentable, LifeCycleProperty { // По каким признакам начала укладывать?
+    enum Signs: String, CaseIterable, RawRepresentable, LifeCycleProperty {
+        // По каким признакам начала укладывать?
         case crying = "Плакал"
         case hold   = "Сидел на руках"
         case freeze = "Замедлился"

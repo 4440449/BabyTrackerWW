@@ -35,7 +35,7 @@ extension MainSceneTableViewController_BTWW {
         }
     }
     
-    private func disableNavBarGestures() {
+     func disableNavBarGestures() {
         navigationController?.navigationBar.gestureRecognizers?.forEach {
             if $0 == directionPan {
                 $0.isEnabled = false
@@ -51,13 +51,21 @@ extension MainSceneTableViewController_BTWW {
         let gestureOffset = panGesture.translation(in: navigationController?.navigationBar.superview)
         //        let newXPosition = gestureOffset.x / 1.5 + centerX
         let newXPosition = gestureOffset.x + centerX
-        navigationController?.navigationBar.center.x = newXPosition
-        panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
+        if #available(iOS 15, *) {
+            navigationController?.view.center.x = newXPosition
+        } else {
+            navigationController?.navigationBar.center.x = newXPosition
+            panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
+        }
         
         switch panGesture.state {
         case .ended, .cancelled:
             UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
-                self.navigationController?.navigationBar.frame.origin.x = .zero
+                if #available(iOS 15, *) {
+                    self.navigationController?.view.frame.origin.x = .zero
+                } else {
+                    self.navigationController?.navigationBar.frame.origin.x = .zero
+                }
                 if newXPosition > positiveXOffset {
                     self.feedbackGenerator.selectionChanged()
                     self.viewModel.swipe(gesture: .left)
@@ -116,55 +124,20 @@ extension MainSceneTableViewController_BTWW {
     // MARK: - Activity indicator
     
     func setupActivityIndicator() {
-        activityIndicator.center = CGPoint(x: UIScreen.main.bounds.midX,
-                                           y: UIScreen.main.bounds.midY)
-        activityIndicator.hidesWhenStopped = true
-        activityIndicator.style = .medium
+        activityIndicator.center = CGPoint(x: tableView.bounds.midX,
+                                           y: tableView.bounds.midY/1.5)
+        activityIndicator.style = .large
         activityIndicator.color = .systemGray
+        activityIndicator.hidesWhenStopped = true
         tableView.addSubview(activityIndicator)
     }
     
     func startLoadingMode() {
-        //                showBlure()
         activityIndicator.startAnimating()
     }
     
     func stopLoadingMode() {
-        hideBlure()
         activityIndicator.stopAnimating()
     }
-    
-    
-    // MARK: - Blure effect
-    
-    func setupBlureEffect() {
-        let style: UIBlurEffect.Style = traitCollection.userInterfaceStyle == .dark ?
-            .systemThinMaterialDark : .systemThinMaterialLight
-        blure.effect = UIBlurEffect(style: style)
-        //        blure.frame = tableView.bounds
-        //        blure.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        blure.alpha = 0.7
-        //        tableView.addSubview(blure)
-    }
-    
-    func removeBlureEffect() {
-        blure.removeFromSuperview()
-    }
-    
-    private func showBlure() {
-        blure.isHidden = false
-    }
-    
-    private func hideBlure() {
-        blure.isHidden = true
-    }
-    
-    
-    // MARK: - Background
-    
-    func setupSuperviewBackgroudColor() {
-        tableView.superview?.backgroundColor = .systemBackground
-    }
-    
     
 }

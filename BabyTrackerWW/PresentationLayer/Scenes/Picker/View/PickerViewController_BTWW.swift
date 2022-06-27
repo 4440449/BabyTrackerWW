@@ -15,10 +15,12 @@ final class PickerViewController_BTWW: UIViewController, UIPickerViewDataSource,
     var configurator = PickerSceneConfigurator_BTWW()
     
     @IBOutlet weak var picker: UIPickerView!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         pickerView(picker, didSelectRow: 0, inComponent: 0)
+        saveButton.layer.cornerRadius = 5
     }
     
     @IBAction func saveButton(_ sender: Any) {

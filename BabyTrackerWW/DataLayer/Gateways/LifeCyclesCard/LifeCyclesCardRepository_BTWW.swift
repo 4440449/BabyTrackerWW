@@ -24,9 +24,7 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
     
     // MARK: - Implementation
 
-    // Таску можно возвращать в презент для обратной связи, чтобы пользователь мог скипать задачу
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> Cancellable? {
-        
         localStorage.fetch(at: date) { result in
             switch result {
             case let .success(lifecycles): callback(.success(lifecycles))
@@ -35,7 +33,6 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
         }
         // STUB
         return nil
-        
 //        let task = RepositoryTask()
 //        task.networkTask = network.fetch(at: date) { result in
 //            switch result {
@@ -61,7 +58,6 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
         }
         // STUB
         return nil
-        
 //        let task = RepositoryTask()
 //        task.networkTask = network.synchronize(newValue, date: date) { result in
 //            switch result {

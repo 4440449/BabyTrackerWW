@@ -25,20 +25,9 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         setupTableView()
         setupNavBarButtons()
         setupNavBarGestures()
+        setupActivityIndicator()
         setupObservers()
         viewModel.viewDidLoad()
-        //        navigationController?.navigationBar.shadowImage = UIImage()
-        //        navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        //        tableView.panGestureRecognizer.addTarget(self, action: #selector(scroll))
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        //        UIView.animate(withDuration: 3.5, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
-        //            self.navigationController?.navigationBar.center.x = CGFloat(-100)
-        //        })
-        //Set obs
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -47,53 +36,9 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     }
     
     
-    //
-    //    @objc func scroll(_ pan: UIPanGestureRecognizer) {
-    //
-    //        switch pan.state {
-    //
-    //        case .began: return//print("began")
-    //        case .changed: print("changed");
-    //            print("tableView.contentOffset == \(tableView.contentOffset)")
-    //
-    //        case .ended:
-    //            print("ended");
-    //            print("tableView.contentOffset == \(tableView.contentOffset)")
-    //
-    //        case .recognized:
-    //            print("recognized");
-    //            print("tableView.contentOffset == \(tableView.contentOffset)")
-    //
-    //        case .possible: print("possible")
-    //        case .failed: print("failed")
-    //        case .cancelled: print("cancelled")
-    ////            sleep(UInt32(0.1))
-    ////            print("tableView.bounds.height == \(tableView.bounds.height)")
-    ////            navigationController?.navigationBar.layoutSubviews();
-    ////            print("navigationController?.navigationBar.bounds.height == \(navigationController?.navigationBar.bounds.height)")
-    //        default: return
-    //        }
-    //
-    //    }
-    
-    
     // MARK: - Input data flow
     
     private func setupObservers() {
-        if let sceneDelegate =
-            UIApplication.shared.connectedScenes.first?.delegate as? SceneDelegate {
-            sceneDelegate.sceneState.subscribe(observer: self) { [weak self] sceneState in
-                switch sceneState {
-                case .foreground:
-                    self?.setupSuperviewBackgroudColor()
-                    self?.setupBlureEffect()
-                    self?.setupActivityIndicator()
-                case .background:
-                    self?.removeBlureEffect()
-                }
-            }
-        }
-        
         viewModel.tempLifeCycle.subscribe(observer: self) { [weak self] _ in
             self?.reloadData()
         }
@@ -231,10 +176,6 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         manageGestures()
     }
     
-    //    func adaptivePresentationStyle(for controller: UIPresentationController) -> UIModalPresentationStyle {
-    //        return .none
-    //    }
-    
     
     // MARK: - UIAlert
     
@@ -250,13 +191,3 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     }
     
 }
-
-
-
-
-
-
-
-
-
-

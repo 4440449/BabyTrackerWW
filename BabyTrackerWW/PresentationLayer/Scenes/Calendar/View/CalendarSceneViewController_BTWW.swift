@@ -17,18 +17,22 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
+    @IBOutlet weak var saveButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         datePicker.datePickerMode = .date
-        datePicker.locale = Locale(identifier: "ru_RU")
-        if #available(iOS 13.4, *) {
-            datePicker.preferredDatePickerStyle = .compact
-        }
+        datePicker.locale = Locale(identifier: "ru")
+//        datePicker.locale = Locale(identifier: "ru_RU")
+//        if #available(iOS 13.4, *) {
+//            datePicker.preferredDatePickerStyle = .compact
+//        }
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-        datePicker.date = viewModel.getCurrentDate() // get :(
+        datePicker.date = viewModel.getCurrentDate()
         dateLabel.text = viewModel.format(date:datePicker.date)
+        
+        saveButton.layer.cornerRadius = 5
     }
     
     @objc func dateChanged() {
@@ -39,8 +43,8 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     
     @IBAction func saveButton(_ sender: UIButton) {
         viewModel.saveButtonTapped()
-        navigationController?.popViewController(animated: true)
-//        self.dismiss(animated: true, completion: nil)
+//        navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true, completion: nil)
     }
     
 }

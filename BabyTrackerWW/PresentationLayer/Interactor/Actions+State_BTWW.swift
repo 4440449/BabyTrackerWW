@@ -88,14 +88,6 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         case _ where error is LocalStorageError:
             self.error.value = "Ошибка локального хранилища \(error.localizedDescription)";
             print(error)
-            
-//        case let networkError as NetworkError:
-//            switch networkError {
-//            case .badRequest(_): self.error.value = "Кажется проблема с интернет-соединением. Проверьте подключение"
-//            case .badResponse(_): self.error.value = "Проблема на стороне сервера. Код ошибки: \(networkError.localizedDescription)"
-//            default: self.error.value = "Внутренняя ошибка"
-//            }
-            
         default:
             self.error.value = "Неизвестная ошибка \(error.localizedDescription)";
             print(error)

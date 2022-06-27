@@ -40,7 +40,7 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
         
         let serialQ = DispatchQueue.init(label: "serialQ")
         serialQ.async {
-            sleep(1)
+//            sleep(1)
             var breakTask = false
             
             self.dreamRepository.fetchDreams(at: date) { result in

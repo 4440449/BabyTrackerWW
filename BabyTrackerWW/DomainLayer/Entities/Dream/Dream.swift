@@ -17,7 +17,6 @@ struct Dream: LifeCycle {
     var fallAsleep: String
     var putDown: String
     var note: String = ""
-//    var wakeUp: WakeUp
     
     enum FallAsleep: String, CaseIterable, RawRepresentable, LifeCycleProperty {
         case crying = "😭" //"Плакал"
@@ -32,19 +31,11 @@ struct Dream: LifeCycle {
         case themSelfs    = "Самостоятельно"
     }
 
-//    enum WakeUp: String, CaseIterable, RawRepresentable, LifeCycleProperty { // Удалить
-//        case happy  = "Веселый"
-//        case crying = "Плакал"
-//        case upSet  = "Расстроенный"
-//        case calm   = "Спокойный"
-//    }
-
     init (index: Int, fallAsleep: FallAsleep, putDown: PutDown) {
         self.id = UUID()
         self.index = index
         self.fallAsleep = fallAsleep.rawValue
         self.putDown = putDown.rawValue
-//        self.wakeUp = wakeUp
     }
     
     init (id: UUID, index: Int, putDown: PutDown, fallAsleep: FallAsleep, note: String) {
@@ -53,7 +44,6 @@ struct Dream: LifeCycle {
         self.putDown = putDown.rawValue
         self.fallAsleep = fallAsleep.rawValue
         self.note = note
-//        self.wakeUp = wakeUp
     }
     
 }

@@ -82,6 +82,7 @@
 		942F7E8F2793836F0091F865 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E8E2793836F0091F865 /* MommysEye */; };
 		942F7E92279383850091F865 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 942F7E91279383850091F865 /* BabyNet */; };
 		948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */; };
+		94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0CA02869DB5800742A33 /* Test_BTWW.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -172,6 +173,7 @@
 		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
 		948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewControllerUI_BTWW.swift; sourceTree = "<group>"; };
+		94AB0CA02869DB5800742A33 /* Test_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -273,6 +275,7 @@
 				508CEEA6274AEA870086051A /* Swipe.swift */,
 				5083ADB5275061BD00F1BF73 /* SceneState.swift */,
 				507FACB727625F01002773B7 /* GestureDirection.swift */,
+				94AB0CA02869DB5800742A33 /* Test_BTWW.swift */,
 			);
 			path = Infrastructure;
 			sourceTree = "<group>";
@@ -989,6 +992,7 @@
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
 				50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */,
 				50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */,
+				94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */,
 				508CEE9027417B2D0086051A /* WakeRepository_BTWW.swift in Sources */,
 				50B175432704C1F000108B17 /* SelectSceneRouter_BTWW.swift in Sources */,
 				50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */,
