@@ -80,6 +80,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     // MARK: - Navigation Bar
     
+    var closeSceneOutletButton = UIBarButtonItem()
     var changeDateOutletButton = UIBarButtonItem()
     var addNewOutletButton = UIBarButtonItem()
     var cancelOutletButton = UIBarButtonItem()
@@ -147,6 +148,12 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     
     // MARK: - Navigation bar buttons
+    
+    
+    @IBAction func closeSceneButton(_ sender: Any) {
+        print("closeSceneButton")
+        presentingViewController?.dismiss(animated: false, completion: nil)
+    }
     
     @IBAction func changeDateButton(_ sender: Any) {
         performSegue(withIdentifier: "changeDateButton", sender: nil)

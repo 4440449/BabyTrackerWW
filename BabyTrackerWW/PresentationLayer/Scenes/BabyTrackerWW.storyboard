@@ -13,7 +13,7 @@
         <scene sceneID="peO-r7-I3Y">
             <objects>
                 <navigationController storyboardIdentifier="BabyTrackerStoryboard" id="umT-Rc-EHo" sceneMemberID="viewController">
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" largeTitles="YES" id="mhC-5s-RDn">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" largeTitles="YES" id="mhC-5s-RDn">
                         <rect key="frame" x="0.0" y="44" width="390" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -93,7 +93,7 @@
             <objects>
                 <tableViewController id="8nP-1y-YUj" customClass="MainSceneTableViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelectionDuringEditing="YES" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Sab-ha-5bs">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="579"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
@@ -127,9 +127,9 @@
                         </prototypes>
                     </tableView>
                     <navigationItem key="navigationItem" id="G6K-J5-4QK">
-                        <barButtonItem key="leftBarButtonItem" title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.down" catalog="system" id="fDC-W3-KME">
                             <connections>
-                                <action selector="changeDateButton:" destination="8nP-1y-YUj" id="9eF-C9-s9m"/>
+                                <action selector="closeSceneButton:" destination="8nP-1y-YUj" id="J7A-zF-qBY"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
@@ -137,6 +137,11 @@
                                 <connections>
                                     <action selector="addNewButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
                                     <segue destination="OLg-sR-vCP" kind="presentation" identifier="addNewLifeCycleButton" id="E1r-H4-Sg8"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
+                                <connections>
+                                    <action selector="changeDateButton:" destination="8nP-1y-YUj" id="9eF-C9-s9m"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="pencil" catalog="system" id="P0K-mG-vAO">

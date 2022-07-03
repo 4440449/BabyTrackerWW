@@ -270,6 +270,7 @@
 		508CEE8C274177070086051A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
+				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
 				5083DCDD2768141E0015DD0E /* CustomTransition */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
@@ -404,7 +405,6 @@
 				50B175272704C1F000108B17 /* DomainLayer */,
 				50B1751C2704C1F000108B17 /* DataLayer */,
 				50B174E02704C1EF00108B17 /* PresentationLayer */,
-				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
 				50B175242704C1F000108B17 /* Info.plist */,
 				50B175182704C1EF00108B17 /* Assets.xcassets */,
 			);
@@ -632,8 +632,8 @@
 			isa = PBXGroup;
 			children = (
 				50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */,
-				948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */,
-				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */,
+				94A50DDF2871B50900C2C246 /* UI */,
+				94A50DDE2871B50200C2C246 /* Cell */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -832,6 +832,22 @@
 				50B175632704DD7D00108B17 /* WakeDBEntity */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		94A50DDE2871B50200C2C246 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */,
+			);
+			path = Cell;
+			sourceTree = "<group>";
+		};
+		94A50DDF2871B50900C2C246 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		94AB0CA62869E88600742A33 /* Frameworks */ = {

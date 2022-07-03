@@ -85,7 +85,7 @@ extension MainSceneTableViewController_BTWW {
     // MARK: - Navigation bar
     
     func setupNavBarButtons() {
-        changeDateOutletButton = UIBarButtonItem(title: "Изменить дату", style: .plain, target: self, action: #selector(changeDateButton))
+        closeSceneOutletButton = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(closeSceneButton))
         changeDateOutletButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(changeDateButton))
         addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
         cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
@@ -109,8 +109,8 @@ extension MainSceneTableViewController_BTWW {
     }
     
     private func showNotEditModeNavBarButtons() {
-        navigationItem.leftBarButtonItems = [changeDateOutletButton]
-        navigationItem.rightBarButtonItems = viewModel.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton] : [addNewOutletButton]
+        navigationItem.leftBarButtonItems = [closeSceneOutletButton]
+        navigationItem.rightBarButtonItems = viewModel.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton, changeDateOutletButton] : [addNewOutletButton, changeDateOutletButton]
         navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
         navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
     }
