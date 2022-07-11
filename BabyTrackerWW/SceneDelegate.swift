@@ -13,12 +13,13 @@ import MommysEye
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
-    let sceneState = Publisher(value: SceneState.background)
+//    let sceneState = Publisher(value: SceneState.background)
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let _ = (scene as? UIWindowScene) else { return }
         window?.backgroundColor = .systemBackground
+//        window?.backgroundColor = .green
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
@@ -35,13 +36,13 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     func sceneWillEnterForeground(_ scene: UIScene) {
 //        print("sceneWillEnterForeground")
-        sceneState.value = .foreground
+//        sceneState.value = .foreground
         // Развернул полностью
     }
 
     func sceneDidEnterBackground(_ scene: UIScene) {
 //        print("sceneDidEnterBackground")
-        sceneState.value = .background
+//        sceneState.value = .background
         // Свернул
         CoreDataStack_BTWW.shared.saveContext()
     }
