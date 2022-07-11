@@ -26,6 +26,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         setupNavBarButtons()
         setupNavBarGestures()
         setupActivityIndicator()
+        setupAlert()
         setupObservers()
         viewModel.viewDidLoad()
     }
@@ -57,7 +58,11 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         }
         
         viewModel.error.subscribe(observer: self) { [weak self] error in
-            self?.showErrorAlert(errorMessage: error)
+            guard !error.isEmpty else { return }
+            guard let strongSelf = self else { return }
+            strongSelf.present(strongSelf.alert,
+                          animated: true,
+                          completion: nil)
         }
     }
     
@@ -70,6 +75,10 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
             self.tableView.reloadData()
         })
     }
+    
+    // MARK: - Activity + VisualEffects
+    
+    private var alert = UIAlertController()
     
     
     // MARK: - Activity + VisualEffects
@@ -151,8 +160,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     
     @IBAction func closeSceneButton(_ sender: Any) {
-        print("closeSceneButton")
-        presentingViewController?.dismiss(animated: false, completion: nil)
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     @IBAction func changeDateButton(_ sender: Any) {
@@ -186,12 +194,16 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     // MARK: - UIAlert
     
-    private func showErrorAlert(errorMessage: String) {
-        let alert = UIAlertController(title: "Ошибка", message: errorMessage, preferredStyle: .alert)
-        let action = UIAlertAction(title: "Ок", style: .default, handler: nil)
+    private func setupAlert() {
+        alert = UIAlertController(title: "Ошибка",
+                                  message: viewModel.error.value,
+                                  preferredStyle: .alert)
+        let action = UIAlertAction(title: "Закрыть",
+                                   style: .default,
+                                   handler: nil)
         alert.addAction(action)
-        present(alert, animated: true)
     }
+
     
     deinit {
         // Root VC
