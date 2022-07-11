@@ -15,7 +15,7 @@ import MommysEye
 protocol MainSceneDelegate_BTWW: AnyObject {
     
     var lifeCycleCard: Publisher<LifeCyclesCard> { get }
-    var isLoading: Publisher<Loading> { get }
+    var isLoading: Publisher<Bool> { get }
     var error: Publisher<String> { get }
     func shareStateForMainScene() -> LifeCyclesCard
     
@@ -72,7 +72,7 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     // MARK: - State
     
     var lifeCycleCard = Publisher(value: LifeCyclesCard(date: Date()))
-    var isLoading = Publisher(value: Loading.false)
+    var isLoading = Publisher(value: false)
     var error = Publisher(value: "")
     
     
@@ -104,7 +104,7 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     }
     
     func fetchLifeCycles(at date: Date) {
-        isLoading.value = .true
+        isLoading.value = true
         task = lifecycleCardRepository.fetch(at: date) { result in
             switch result {
             case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
@@ -113,12 +113,12 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
                 self.handleError(error: error)
             }
             self.lifeCycleCard.value.date = date
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     
     func synchronize(newValue: [LifeCycle]) {
-        isLoading.value = .true
+        isLoading.value = true
         task = lifecycleCardRepository.update(newValue: newValue, oldValue: lifeCycleCard.value.lifeCycle, date: lifeCycleCard.value.date) { result in
             switch result {
             case .success(()): self.lifeCycleCard.value.lifeCycle = newValue
@@ -126,7 +126,7 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
                 self.lifeCycleCard.notify();
                 self.handleError(error: error)
             }
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     
@@ -150,24 +150,24 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     }
     
     func add(new dream: Dream) {
-        isLoading.value = .true
+        isLoading.value = true
         task = dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle.append(dream)
             case let .failure(error): self.handleError(error: error)
             }
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     
     func change(_ dream: Dream) {
-        isLoading.value = .true
+        isLoading.value = true
         task = dreamRepository.change(dream, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle[dream.index] = dream
             case let .failure(error): self.handleError(error: error)
             }
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     
@@ -179,24 +179,24 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     }
     
     func add(new wake: Wake) {
-        isLoading.value = .true
+        isLoading.value = true
         task = wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
             case let .failure(error): self.handleError(error: error)
             }
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     
     func change(_ wake: Wake) {
-        isLoading.value = .true
+        isLoading.value = true
         task = wakeRepository.change(wake, at: lifeCycleCard.value.date) { result in
             switch result {
             case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
             case let .failure(error): self.handleError(error: error)
             }
-            self.isLoading.value = .false
+            self.isLoading.value = false
         }
     }
     

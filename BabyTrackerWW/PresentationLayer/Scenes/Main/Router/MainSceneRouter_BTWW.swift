@@ -18,31 +18,35 @@ protocol MainSceneRouterProtocol_BTWW {
 
 final class MainSceneRouter_BTWW: MainSceneRouterProtocol_BTWW {
     
-    private var selectIndex: Int?
+    private var selectedIndex: Int?
     private let customTransition = PopCustomTransitioningDelegate()
     
     func prepare<S,D,V>(for segue: S, delegate: D, sourceVC: V?) {
         guard let segue = segue as? UIStoryboardSegue else { return }
         
         if let detailDreamVC = segue.destination as? DetailDreamSceneViewController_BTWW {
-            detailDreamVC.configurator.configureScene(view: detailDreamVC, delegate: delegate)
-            guard selectIndex != nil else { return }
-            detailDreamVC.viewModel.selectIndex = selectIndex
-            selectIndex = nil
+            detailDreamVC.configurator.configureScene(view: detailDreamVC,
+                                                      delegate: delegate,
+                                                      selectedIndex: selectedIndex)
+//            guard selectIndex != nil else { return }
+//            detailDreamVC.presenter.selectIndex = selectIndex
+            selectedIndex = nil
             
         } else
             if let detailWakeVC = segue.destination as? DetailWakeSceneViewController_BTWW {
-                detailWakeVC.configurator.configureScene(view: detailWakeVC, delegate: delegate)
-                guard selectIndex != nil else { return }
-                detailWakeVC.viewModel.selectIndex = selectIndex
-                selectIndex = nil
+            detailWakeVC.configurator.configureScene(view: detailWakeVC,
+                                                     delegate: delegate,
+                                                     selectedIndex: selectedIndex)
+//                guard selectedIndex != nil else { return }
+//                detailWakeVC.presenter.selectIndex = selectedIndex
+                selectedIndex = nil
                 
             } else
-                if let selectVC = segue.destination as? SelectViewController_BTWW,
+                if let selectVC = segue.destination as? SelectSceneViewController_BTWW,
                     let sourceVC = sourceVC as? MainSceneTableViewController_BTWW {
                     selectVC.modalPresentationStyle = .custom
                     selectVC.transitioningDelegate = customTransition
-                    selectVC.segueCallback = { identifire in
+                    selectVC.setupSegueCallback { identifire in
                         switch identifire {
                         case 0: sourceVC.performSegue(withIdentifier: "addNew" + String.init(describing: Dream.self), sender: nil)
                         case 1: sourceVC.performSegue(withIdentifier: "addNew" + String.init(describing: Wake.self), sender: nil)
@@ -59,7 +63,7 @@ final class MainSceneRouter_BTWW: MainSceneRouterProtocol_BTWW {
     
     func perform<V>(type: LifeCycle, vc: V) {
         guard let vc = vc as? MainSceneTableViewController_BTWW else { return }
-        selectIndex = type.index
+        selectedIndex = type.index
         switch type {
         case _ where type is Dream: vc.performSegue(withIdentifier: "didSelect" + String.init(describing: Dream.self), sender: nil)
         case _ where type is Wake: vc.performSegue(withIdentifier: "didSelect" + String.init(describing: Wake.self), sender: nil)

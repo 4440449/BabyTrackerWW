@@ -9,13 +9,18 @@
 import UIKit
 
 
-final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverPresentationControllerDelegate {
+final class MainSceneTableViewController_BTWW: UITableViewController,
+                                               UIPopoverPresentationControllerDelegate,
+                                               MainScenePresenterOutputPrtotocol_BTWW {
     
     // MARK: - Dependencies
     
     private let configurator = MainSceneConfigurator_BTWW()
-    var viewModel: MainSceneViewModelProtocol_BTWW!
+    private var presenter: MainScenePresenterInputProtocol!
     
+    func setupPresenter(_ presenter: MainScenePresenterInputProtocol) {
+        self.presenter = presenter
+    }
     
     // MARK: - View lifecycle
     
@@ -27,8 +32,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         setupNavBarGestures()
         setupActivityIndicator()
         setupAlert()
-        setupObservers()
-        viewModel.viewDidLoad()
+        presenter.viewDidLoad()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -37,37 +41,14 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     }
     
     
-    // MARK: - Input data flow
-    
-    private func setupObservers() {
-        viewModel.tempLifeCycle.subscribe(observer: self) { [weak self] _ in
-            self?.reloadData()
-        }
-        
-        viewModel.isLoading.subscribe(observer: self) { [weak self] isLoading in
-            switch isLoading {
-            case .true:
-                self?.startLoadingMode();
-                self?.manageDisplayNavBarButtons();
-                self?.manageGestures()
-            case .false:
-                self?.stopLoadingMode();
-                self?.manageDisplayNavBarButtons();
-                self?.manageGestures()
-            }
-        }
-        
-        viewModel.error.subscribe(observer: self) { [weak self] error in
-            guard !error.isEmpty else { return }
-            guard let strongSelf = self else { return }
-            strongSelf.present(strongSelf.alert,
-                          animated: true,
-                          completion: nil)
-        }
+    // MARK: - Input data flow / PresenterOutput interface
+
+    func reloadData() {
+        self.internalReloadData()
     }
     
-    private func reloadData() {
-        navigationController?.navigationBar.topItem?.title = viewModel.getDate()
+    private func internalReloadData() {
+        navigationController?.navigationBar.topItem?.title = presenter.getDate()
         UIView.transition(with: tableView,
                           duration: 0.35,
                           options: .transitionCrossDissolve,
@@ -76,6 +57,26 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         })
     }
     
+    
+    func newLoadingState(_ isLoading: Bool) {
+        switch isLoading {
+        case true:
+            self.startLoadingMode();
+            self.manageDisplayNavBarButtons();
+            self.manageGestures()
+        case false:
+            self.stopLoadingMode();
+            self.manageDisplayNavBarButtons();
+            self.manageGestures()
+        }
+    }
+    
+    func newError(_ message: String) {
+        guard !message.isEmpty else { return }
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+
     // MARK: - Activity + VisualEffects
     
     private var alert = UIAlertController()
@@ -108,6 +109,19 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
                                                           target: self,
                                                           action: #selector(didPan(_:)))
     
+    // MARK: - UIAlert
+    
+    //TODO: - Исправить! + Перенести в Extension?
+    private func setupAlert(_ message: String = "") {
+        alert = UIAlertController(title: "Ошибка",
+                                  message: message,
+                                  preferredStyle: .alert)
+        let action = UIAlertAction(title: "Закрыть",
+                                   style: .default,
+                                   handler: nil)
+        alert.addAction(action)
+    }
+    
     
     // MARK: - Table view
     
@@ -116,23 +130,23 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     }
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return viewModel.getNumberOfLifeCycles()
+        return presenter.getNumberOfLifeCycles()
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: MainSceneTableViewCell_BTWW.identifier, for: indexPath) as! MainSceneTableViewCell_BTWW
-        cell.label.text = viewModel.getCellLabel(at: indexPath.row)
+        cell.label.text = presenter.getCellLabel(at: indexPath.row)
         return cell
     }
     
     override func tableView(_ tableView: UITableView, moveRowAt sourceIndexPath: IndexPath, to destinationIndexPath: IndexPath) {
-        viewModel.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
+        presenter.moveRow(source: sourceIndexPath.row, destination: destinationIndexPath.row)
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if !tableView.isEditing {
             tableView.deselectRow(at: indexPath, animated: true)
-            viewModel.didSelectRow(at: indexPath.row, vc: self)
+            presenter.didSelectRow(at: indexPath.row, vc: self)
         } else {
             tableView.deselectRow(at: indexPath, animated: true)
         }
@@ -145,19 +159,15 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        viewModel.deleteRow(at: indexPath.row)
+        presenter.deleteRow(at: indexPath.row)
     }
     
     
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        viewModel.prepare(for: segue, sourceVC: self)
+        presenter.prepare(for: segue, sourceVC: self)
     }
-    
-    
-    // MARK: - Navigation bar buttons
-    
     
     @IBAction func closeSceneButton(_ sender: Any) {
         presentingViewController?.dismiss(animated: true, completion: nil)
@@ -171,9 +181,12 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         performSegue(withIdentifier: "addNewLifeCycleButton", sender: nil)
     }
     
+    
+    // MARK: - Edit mode management
+    
     @IBAction func cancelButton(_ sender: Any) {
         tableView.setEditing(false, animated: true)
-        viewModel.cancelChanges()
+        presenter.cancelChanges()
         manageDisplayNavBarButtons()
         manageGestures()
     }
@@ -182,7 +195,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
         tableView.setEditing(false, animated: true)
         manageDisplayNavBarButtons()
         manageGestures()
-        viewModel.saveChanges()
+        presenter.saveChanges()
     }
     
     @IBAction func editButton(_ sender: Any) {
@@ -192,21 +205,140 @@ final class MainSceneTableViewController_BTWW: UITableViewController, UIPopoverP
     }
     
     
-    // MARK: - UIAlert
-    
-    private func setupAlert() {
-        alert = UIAlertController(title: "Ошибка",
-                                  message: viewModel.error.value,
-                                  preferredStyle: .alert)
-        let action = UIAlertAction(title: "Закрыть",
-                                   style: .default,
-                                   handler: nil)
-        alert.addAction(action)
-    }
-
-    
     deinit {
         // Root VC
+    }
+    
+}
+
+// MARK: - UI
+
+extension MainSceneTableViewController_BTWW {
+    
+    // MARK: - Gestures
+    
+    func setupNavBarGestures() {
+        navigationController?.navigationBar.addGestureRecognizer(directionPan)
+    }
+    
+    func manageGestures() {
+        if (!tableView.isEditing && activityIndicator.isHidden) {
+            enableNavBarGestures()
+        } else {
+            disableNavBarGestures()
+        }
+    }
+    
+    private func enableNavBarGestures() {
+        navigationController?.navigationBar.gestureRecognizers?.forEach {
+            if $0 == directionPan {
+                $0.isEnabled = true
+            }
+        }
+    }
+    
+     func disableNavBarGestures() {
+        navigationController?.navigationBar.gestureRecognizers?.forEach {
+            if $0 == directionPan {
+                $0.isEnabled = false
+            }
+        }
+    }
+    
+    @objc func didPan(_ panGesture: UIPanGestureRecognizer) {
+        guard let centerX = navigationController?.navigationBar.center.x else { return }
+        guard let midXbounds = navigationController?.navigationBar.bounds.midX else { return }
+        let positiveXOffset = midXbounds + 90
+        let negativeXOffset = midXbounds - 90
+        let gestureOffset = panGesture.translation(in: navigationController?.navigationBar.superview)
+        //        let newXPosition = gestureOffset.x / 1.5 + centerX
+        let newXPosition = gestureOffset.x + centerX
+        if #available(iOS 15, *) {
+            navigationController?.view.center.x = newXPosition
+        } else {
+            navigationController?.navigationBar.center.x = newXPosition
+            panGesture.setTranslation(.zero, in: navigationController?.navigationBar.superview)
+        }
+        
+        switch panGesture.state {
+        case .ended, .cancelled:
+            UIView.animate(withDuration: 0.7, delay: 0, usingSpringWithDamping: 0.6, initialSpringVelocity: 0.5, options: [.curveEaseInOut], animations: {
+                if #available(iOS 15, *) {
+                    self.navigationController?.view.frame.origin.x = .zero
+                } else {
+                    self.navigationController?.navigationBar.frame.origin.x = .zero
+                }
+                if newXPosition > positiveXOffset {
+                    self.feedbackGenerator.selectionChanged()
+                    self.presenter.swipe(gesture: .left)
+                } else if newXPosition < negativeXOffset {
+                    self.feedbackGenerator.selectionChanged()
+                    self.presenter.swipe(gesture: .right)
+                } else {
+                    return
+                }
+            })
+        default:
+            return
+        }
+    }
+    
+    // MARK: - Navigation bar
+    
+    func setupNavBarButtons() {
+        closeSceneOutletButton = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(closeSceneButton))
+        changeDateOutletButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(changeDateButton))
+        addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
+        cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
+        saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
+        editOutletButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(editButton))
+    }
+    
+    func manageDisplayNavBarButtons() {
+        guard activityIndicator.isHidden else { showLoadingModeNavBarButtons(); return }
+        switch tableView.isEditing {
+        case true: showEditModeNavBarButtons()
+        case false: showNotEditModeNavBarButtons()
+        }
+    }
+    
+    private func showEditModeNavBarButtons() {
+        navigationItem.leftBarButtonItems = [cancelOutletButton]
+        navigationItem.rightBarButtonItems = [saveOutletButton]
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
+    }
+    
+    private func showNotEditModeNavBarButtons() {
+        navigationItem.leftBarButtonItems = [closeSceneOutletButton]
+        navigationItem.rightBarButtonItems = presenter.getNumberOfLifeCycles() != 0 ? [addNewOutletButton, editOutletButton, changeDateOutletButton] : [addNewOutletButton, changeDateOutletButton]
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = true }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = true }
+    }
+    
+    private func showLoadingModeNavBarButtons() {
+        navigationItem.leftBarButtonItems?.forEach { $0.isEnabled = false }
+        navigationItem.rightBarButtonItems?.forEach { $0.isEnabled = false }
+    }
+    
+    
+    // MARK: - Activity indicator
+    
+    func setupActivityIndicator() {
+        activityIndicator.center = CGPoint(x: tableView.bounds.midX,
+                                           y: tableView.bounds.midY/1.5)
+        activityIndicator.style = .large
+        activityIndicator.color = .systemGray
+        activityIndicator.hidesWhenStopped = true
+        tableView.addSubview(activityIndicator)
+    }
+    
+    func startLoadingMode() {
+        activityIndicator.startAnimating()
+    }
+    
+    func stopLoadingMode() {
+        activityIndicator.stopAnimating()
     }
     
 }

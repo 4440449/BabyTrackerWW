@@ -7,15 +7,19 @@
 //
 
 import UIKit
-import MommysEye
 
 
-final class DetailDreamSceneViewController_BTWW: UIViewController {
+final class DetailDreamSceneViewController_BTWW: UIViewController,
+                                                 DetailDreamScenePresenterOutputProtocol_BTWW {
     
     // MARK: - Dependencies
     
     let configurator = DetailDreamSceneConfigurator_BTWW()
-    var viewModel: DetailDreamSceneViewModelProtocol_BTWW!
+    private var presenter: DetailDreamScenePresenterInputProtocol_BTWW!
+    
+    func setupPresenter(_ presenter: DetailDreamScenePresenterInputProtocol_BTWW) {
+        self.presenter = presenter
+    }
     
     
     // MARK: - Lifecycle View
@@ -25,34 +29,18 @@ final class DetailDreamSceneViewController_BTWW: UIViewController {
         setupOutletButtons()
         setupTextView()
         setupObservers()
-        viewModel.viewDidLoad()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-    }
-    
-    override func viewWillDisappear(_ animated: Bool) {
-        super.viewWillDisappear(animated)
-        //        viewModel.dream.unsubscribe(observer: self)
+        presenter.viewDidLoad()
     }
     
     
-    // MARK: - Input data flow
+    // MARK: - Input data flow / Presenter Output interface
     
-    private func setupObservers() {
-        viewModel.dream.subscribe(observer: self) { [weak self] dream in
-            guard let self = self else { return }
-            self.fallAsleepOutletButton.setTitle(dream.fallAsleep, for: .normal)
-            self.putDownOutletButton.setTitle(dream.putDown, for: .normal)
-            self.textView.text = dream.note
-            self.counterTextViewLabel.text = "\(self.maxTextViewLenghtCount - dream.note.count)"
-            self.manageTextViewPlaceholder()
-        }
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
+    func reloadData() {
+        fallAsleepOutletButton.setTitle(presenter.getFallAsleepOutletButtonLabel(), for: .normal)
+        putDownOutletButton.setTitle(presenter.getPutDownOutletButtonLabel(), for: .normal)
+        textView.text = presenter.getTexForTextView()
+        counterTextViewLabel.text = "\(maxTextViewLenghtCount - presenter.getCounterForTextViewLabel())"
+        manageTextViewPlaceholder()
     }
     
     
@@ -67,24 +55,16 @@ final class DetailDreamSceneViewController_BTWW: UIViewController {
     @IBOutlet weak var placeholderTextViewLabel: UILabel!
     @IBOutlet weak var counterTextViewLabel: UILabel!
     
-    
-    @IBAction func fallAsleepButton(_ sender: Any) {
-        self.performSegue(withIdentifier: String.init(describing: Dream.FallAsleep.self), sender: nil)
+    private func setupOutletButtons() {
+        fallAsleepOutletButton.layer.cornerRadius = 5
+        putDownOutletButton.layer.cornerRadius = 5
+        saveOutletButton.layer.cornerRadius = 5
     }
     
-    @IBAction func putDownButton(_ sender: Any) {
-        self.performSegue(withIdentifier: String.init(describing: Dream.PutDown.self), sender: nil)
+    private func setupTextView() {
+        textView.delegate = self
+        backgroundView.layer.cornerRadius = 10
     }
-    
-    @IBAction func saveButton(_ sender: Any) {
-        viewModel.saveButtonTapped()
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
-    @IBAction func backButton(_ sender: Any) {
-        presentingViewController?.dismiss(animated: true, completion: nil)
-    }
-    
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         super.touchesBegan(touches, with: event)
@@ -99,7 +79,24 @@ final class DetailDreamSceneViewController_BTWW: UIViewController {
     // MARK: - Navigation
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        viewModel.prepare(for: segue)
+        presenter.prepare(for: segue)
+    }
+    
+    @IBAction func fallAsleepButton(_ sender: Any) {
+        self.performSegue(withIdentifier: String.init(describing: Dream.FallAsleep.self), sender: nil)
+    }
+    
+    @IBAction func putDownButton(_ sender: Any) {
+        self.performSegue(withIdentifier: String.init(describing: Dream.PutDown.self), sender: nil)
+    }
+    
+    @IBAction func saveButton(_ sender: Any) {
+        presenter.saveButtonTapped()
+        presentingViewController?.dismiss(animated: true, completion: nil)
+    }
+    
+    @IBAction func backButton(_ sender: Any) {
+        presentingViewController?.dismiss(animated: true, completion: nil)
     }
     
     override func performSegue(withIdentifier identifier: String, sender: Any?) {
@@ -116,29 +113,40 @@ final class DetailDreamSceneViewController_BTWW: UIViewController {
 
 
 
-// MARK: - UI Setup
+
+// MARK: - TextView Delegate
 
 extension DetailDreamSceneViewController_BTWW: UITextViewDelegate {
     
-    // MARK: - Buttons
-    
-    private func setupOutletButtons() {
-        fallAsleepOutletButton.layer.cornerRadius = 5
-        putDownOutletButton.layer.cornerRadius = 5
-        saveOutletButton.layer.cornerRadius = 5
+    //Keyboard frame observing
+    func setupObservers() {
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustKeyboardFrame(notification:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     
-    
-    // MARK: - TextView
-    
-    private var maxTextViewLenghtCount: Int { get { 500 } }
-    
-    private func setupTextView() {
-        textView.delegate = self
-        backgroundView.layer.cornerRadius = 10
+    @objc func adjustKeyboardFrame(notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String : Any],
+              let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
+        //if rotation enabled {
+        //        let keyboardViewFrame = view.convert(keyboardFrame, from: view.window)
+        //    }
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            scrollView.contentInset.bottom = .zero
+        } else
+        if notification.name == UIResponder.keyboardWillShowNotification {
+            scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
+            scrollView.scrollRectToVisible(backgroundView.frame, animated: true)
+        } else {
+            return
+        }
     }
     
-    private func manageTextViewPlaceholder() {
+    // Initial setup
+    var maxTextViewLenghtCount: Int { get { 500 } }
+    
+    // UI Logic
+    func manageTextViewPlaceholder() {
         if textView.text.isEmpty {
             placeholderTextViewLabel.isHidden = false
         } else {
@@ -146,6 +154,7 @@ extension DetailDreamSceneViewController_BTWW: UITextViewDelegate {
         }
     }
     
+    // Delegate
     func textViewDidBeginEditing(_ textView: UITextView) {
         placeholderTextViewLabel.isHidden = true
     }
@@ -154,27 +163,10 @@ extension DetailDreamSceneViewController_BTWW: UITextViewDelegate {
         manageTextViewPlaceholder()
     }
     
-    @objc func adjustKeyboardFrame(notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String : Any],
-            let keyboardFrame = (userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue)?.cgRectValue else { return }
-        //if rotation enabled {
-        //        let keyboardViewFrame = view.convert(keyboardFrame, from: view.window)
-        //    }
-        if notification.name == UIResponder.keyboardWillHideNotification {
-            scrollView.contentInset.bottom = .zero
-        } else
-            if notification.name == UIResponder.keyboardWillShowNotification {
-                scrollView.contentInset.bottom = (keyboardFrame.height - view.safeAreaInsets.bottom) + 3
-                scrollView.scrollRectToVisible(backgroundView.frame, animated: true)
-            } else {
-                return
-        }
-    }
-    
     func textViewDidChange(_ textView: UITextView) {
         //Text validation
         let validatedText = String(textView.text.prefix(maxTextViewLenghtCount))
-        viewModel.textViewDidChange(text: validatedText)
+        presenter.textViewDidChange(text: validatedText)
     }
     
     func textView(_ textView: UITextView, shouldChangeTextIn range: NSRange, replacementText text: String) -> Bool {
@@ -186,3 +178,4 @@ extension DetailDreamSceneViewController_BTWW: UITextViewDelegate {
     }
     
 }
+

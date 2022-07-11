@@ -19,7 +19,7 @@ final class DetailWakeSceneRouter_BTWW: DetailWakeSceneRouterProtocol_BTWW {
     
     func prepare<S>(for segue: S, callback: @escaping (LifeCycleProperty) -> ()) {
         guard let segue = segue as? UIStoryboardSegue else { return }
-        guard let vc = segue.destination as? PickerViewController_BTWW else { return }
+        guard let vc = segue.destination as? PickerSceneViewController_BTWW else { return }
         
         switch segue {
         case _ where segue.identifier == String.init(describing: Wake.WakeUp.self): vc.configurator.configureScene(view: vc, type: Wake.WakeUp.self, callback: callback)

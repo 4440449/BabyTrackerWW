@@ -1,5 +1,5 @@
 //
-//  PickerSceneViewModel_BTWW.swift
+//  PickerScenePresenter_BTWW.swift
 //  Baby tracker
 //
 //  Created by Max on 12.07.2021.
@@ -7,8 +7,7 @@
 //
 
 
-protocol PickerSceneViewModelProtocol_BTWW {
-    
+protocol PickerScenePresenterInputProtocol_BTWW {
     func numberOfRowsInComponent() -> Int
     func titleForRow(row: Int) -> String
     func didSelectRow(row: Int)
@@ -18,17 +17,22 @@ protocol PickerSceneViewModelProtocol_BTWW {
 
 //MARK: - Implementation -
 
-final class PickerSceneViewModel_BTWW<T: CaseIterable & RawRepresentable & LifeCycleProperty>: PickerSceneViewModelProtocol_BTWW {
+final class PickerScenePresenter_BTWW<T: CaseIterable & RawRepresentable & LifeCycleProperty>: PickerScenePresenterInputProtocol_BTWW {
     
+    //MARK: - Dependencies
+
     private let lifeCyclePropertyRequest: T.Type
-    private var lifeCyclePropertyResponse: T!
-    private let callback: (T) -> ()
+    private var lifeCyclePropertyResponse: T?
+    private let selectedValueCallback: (T) -> ()
     
     init(lifeCyclePropertyType: T.Type, callback: @escaping (T) -> ()) {
         self.lifeCyclePropertyRequest = lifeCyclePropertyType.self
-        self.callback = callback
+        self.selectedValueCallback = callback
     }
     
+    
+    // MARK: - Input interface
+
     func numberOfRowsInComponent() -> Int {
         numberOfRows(value: lifeCyclePropertyRequest.self)
     }
@@ -42,7 +46,8 @@ final class PickerSceneViewModel_BTWW<T: CaseIterable & RawRepresentable & LifeC
     }
     
     func saveButtonCliked() {
-        callback(lifeCyclePropertyResponse)
+        guard let value = lifeCyclePropertyResponse else { return }
+        selectedValueCallback(value)
     }
     
     func numberOfRows(value: T.Type) -> Int {
@@ -50,17 +55,18 @@ final class PickerSceneViewModel_BTWW<T: CaseIterable & RawRepresentable & LifeC
     }
     
     func titleRow(value: T.Type, row: Int) -> String {
-        let rowTitle = value.allCases.map { $0.rawValue } [row]
+        let rowTitle = value.allCases.map { $0.rawValue }[row]
         return rowTitle as! String
     }
     
     func didSelect(value: T.Type, row: Int) {
-        let rowTitle = value.allCases.map { $0 } [row]
+        let rowTitle = value.allCases.map { $0 }[row]
         lifeCyclePropertyResponse = rowTitle
     }
     
+    
     deinit {
-//        print("PickerSceneViewModel_BTWW - is Deinit!")
+//        print("PickerScenePresenter_BTWW - is Deinit!")
     }
     
 }

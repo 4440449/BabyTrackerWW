@@ -9,11 +9,16 @@
 
 
 final class DetailWakeSceneConfigurator_BTWW {
-    func configureScene<D>(view: DetailWakeSceneViewController_BTWW, delegate: D) {
+    func configureScene<D>(view: DetailWakeSceneViewController_BTWW,
+                           delegate: D,
+                           selectedIndex: Int?) {
         guard let delegate = delegate as? DetailWakeSceneDelegate_BTWW else { return }
         let router = DetailWakeSceneRouter_BTWW()
-        let viewModel = DetailWakeSceneViewModel_BTWW(delegate: delegate, router: router)
-        view.viewModel = viewModel
+        let presenter = DetailWakeScenePresenter_BTWW(view: view,
+                                                      delegate: delegate,
+                                                      router: router,
+                                                      selectedIndex: selectedIndex)
+        view.setupPresenter(presenter)
     }
     
     deinit {

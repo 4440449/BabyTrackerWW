@@ -12,16 +12,32 @@ import UIKit
 
 final class CalendarSceneViewController_BTWW: UIViewController {
     
-    var configurator = CalendarSceneConfigurator_BTWW()
-    var viewModel: CalendarSceneViewModelProtocol_BTWW!
+    // MARK: - Dependencies
+    
+    let configurator = CalendarSceneConfigurator_BTWW()
+    private var presenter: CalendarScenePresenterInputProtocol_BTWW!
+    
+    func setupPresenter(_ presenter: CalendarScenePresenterInputProtocol_BTWW) {
+        self.presenter = presenter
+    }
+    
+    
+    // MARK: - Lifecycle View
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupDatePicker()
+        saveButton.layer.cornerRadius = 5
+    }
+    
+    
+    // MARK: - UI
     
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    private func setupDatePicker() {
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ru")
 //        datePicker.locale = Locale(identifier: "ru_RU")
@@ -29,21 +45,17 @@ final class CalendarSceneViewController_BTWW: UIViewController {
 //            datePicker.preferredDatePickerStyle = .compact
 //        }
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
-        datePicker.date = viewModel.getCurrentDate()
-        dateLabel.text = viewModel.format(date:datePicker.date)
-        
-        saveButton.layer.cornerRadius = 5
+        datePicker.date = presenter.getCurrentDate()
+        dateLabel.text = presenter.format(date:datePicker.date)
     }
     
     @objc func dateChanged() {
-        dateLabel.text = viewModel.format(date:datePicker.date)
-        viewModel.dateSelected(new: datePicker.date)
-        
+        dateLabel.text = presenter.format(date:datePicker.date)
+        presenter.dateSelected(new: datePicker.date)
     }
     
     @IBAction func saveButton(_ sender: UIButton) {
-        viewModel.saveButtonTapped()
-//        navigationController?.popViewController(animated: true)
+        presenter.saveButtonTapped()
         self.dismiss(animated: true, completion: nil)
     }
     

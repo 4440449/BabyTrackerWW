@@ -19,12 +19,15 @@ final class DetailDreamSceneRouter_BTWW: DetailDreamSceneRouterProtocol_BTWW {
     
     func prepare<S>(for segue: S, callback: @escaping (LifeCycleProperty) -> ()) {
         guard let segue = segue as? UIStoryboardSegue else { return }
-        guard let vc = segue.destination as? PickerViewController_BTWW else { return }
+        guard let vc = segue.destination as? PickerSceneViewController_BTWW else { return }
         
         switch segue {
-        case _ where segue.identifier == String.init(describing: Dream.FallAsleep.self): vc.configurator.configureScene(view: vc, type: Dream.FallAsleep.self, callback: callback)
-        case _ where segue.identifier == String.init(describing: Dream.PutDown.self): vc.configurator.configureScene(view: vc, type: Dream.PutDown.self, callback: callback)
-        default: print("Segue has not identifier")
+        case _ where segue.identifier == String.init(describing: Dream.FallAsleep.self):
+            vc.configurator.configureScene(view: vc, type: Dream.FallAsleep.self, callback: callback)
+        case _ where segue.identifier == String.init(describing: Dream.PutDown.self):
+            vc.configurator.configureScene(view: vc, type: Dream.PutDown.self, callback: callback)
+        default:
+            print("Segue has not identifier")
         }
     }
     

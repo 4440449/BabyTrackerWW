@@ -9,13 +9,22 @@
 import UIKit
 
 
-class SelectViewController_BTWW: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
+class SelectSceneViewController_BTWW: UIViewController,
+                                 UITableViewDelegate,
+                                 UITableViewDataSource {
     
     // MARK: - State
     
     private let typeDescriptions = ["Сон", "Бодрствование"]
-    var segueCallback: ((Int) -> ())!
+    
+    
+    // MARK: - Dependencies
+
+    private var segueCallback: ((Int) -> ())?
+    
+    func setupSegueCallback(_ callback: @escaping (Int) -> ()) {
+        self.segueCallback = callback
+    }
     
     
     // MARK: - Lifecycle View
@@ -41,7 +50,7 @@ class SelectViewController_BTWW: UIViewController, UITableViewDelegate, UITableV
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "SelectSceneCell", for: indexPath) as! SelectSceneTableViewCell_BTWW
+        let cell = tableView.dequeueReusableCell(withIdentifier: SelectSceneTableViewCell_BTWW.identifier, for: indexPath) as! SelectSceneTableViewCell_BTWW
         cell.label.text = typeDescriptions[indexPath.row]
         return cell
     }
@@ -49,21 +58,25 @@ class SelectViewController_BTWW: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
         switch indexPath.row {
-        case 0: presentingViewController?.dismiss(animated: false, completion: nil);
-        segueCallback(0)
-        case 1: presentingViewController?.dismiss(animated: false, completion: nil);
-        segueCallback(1)
-        default: print("Error! SelectSceneTableViewController.didSelectRowAt \\ Invalid index -- \(indexPath.row)")
+        case 0:
+            presentingViewController?.dismiss(animated: false, completion: nil)
+            guard let callback = segueCallback else { return }
+            callback(0)
+        case 1:
+            presentingViewController?.dismiss(animated: false, completion: nil)
+            guard let callback = segueCallback else { return }
+            callback(1)
+        default:
+            print("Error! SelectSceneTableViewController.didSelectRowAt \\ Invalid index -- \(indexPath.row)")
         }
     }
     
 }
 
 
-
 // MARK: - Internal setup -
 
-extension SelectViewController_BTWW {
+extension SelectSceneViewController_BTWW {
     
     private func setupSourceView() {
         view.layer.cornerRadius = 13

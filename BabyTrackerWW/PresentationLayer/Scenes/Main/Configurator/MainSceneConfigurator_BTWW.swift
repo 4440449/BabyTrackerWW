@@ -28,7 +28,7 @@ final class MainSceneConfigurator_BTWW {
         
         let interactor = Interactor_BTWW(dreamRepository: dreamGateway, wakeRepository: wakeGateway, lifecycleCardRepository: lifeCyclesCardGateway)
         let router = MainSceneRouter_BTWW()
-        let viewModel = MainSceneViewModel_BTWW(router: router, interactor: interactor)
-        view.viewModel = viewModel
+        let presenter = MainScenePresenter_BTWW(view: view, router: router, interactor: interactor)
+        view.setupPresenter(presenter)
     }
 }

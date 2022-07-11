@@ -1,5 +1,5 @@
 //
-//  MainSceneViewModel_BTWW.swift
+//  MainScenePresenter_BTWW.swift
 //  Baby tracker
 //
 //  Created by Max on 11.07.2021.
@@ -7,19 +7,19 @@
 //
 
 import Foundation
-import MommysEye
 
 
-protocol MainSceneViewModelProtocol_BTWW {
-    
-    var tempLifeCycle: Publisher<[LifeCycle]> { get }
-    var isLoading: Publisher<Loading> { get }
-    var error: Publisher<String> { get }
+protocol MainScenePresenterOutputPrtotocol_BTWW: AnyObject {
+    func reloadData()
+    func newLoadingState(_ isLoading: Bool)
+    func newError(_ message: String)
+}
+
+protocol MainScenePresenterInputProtocol {
     func viewDidLoad()
     func getDate() -> String
     func getNumberOfLifeCycles() -> Int
     func getCellLabel(at index: Int) -> String
-    
     func didSelectRow<V>(at index: Int, vc: V)
     func prepare<T,V>(for segue: T, sourceVC: V)
     func deleteRow(at index: Int)
@@ -29,41 +29,47 @@ protocol MainSceneViewModelProtocol_BTWW {
     func swipe(gesture: Swipe)
 }
 
+
 //MARK: - Implementation -
 
-final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
-    
+final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     
     //MARK: - Dependencies
     
+    private unowned var view: MainScenePresenterOutputPrtotocol_BTWW
     private let router: MainSceneRouterProtocol_BTWW
     private let interactor: MainSceneDelegate_BTWW
     
-    init (router: MainSceneRouterProtocol_BTWW, interactor: MainSceneDelegate_BTWW) {
+    init(view: MainScenePresenterOutputPrtotocol_BTWW,
+         router: MainSceneRouterProtocol_BTWW,
+         interactor: MainSceneDelegate_BTWW) {
+        self.view = view
         self.router = router
         self.interactor = interactor
         setObservers()
     }
     
     
-    //MARK: - State
+    //MARK: - Buffer
     
-    var tempLifeCycle = Publisher(value: [LifeCycle]())
-    var isLoading = Publisher(value: Loading.false)
-    var error = Publisher(value: "")
+    private var lifeCycles = [LifeCycle]() {
+        didSet {
+            self.view.reloadData()
+        }
+    }
     
     
     //MARK: - Private
     
     private func setObservers() {
         interactor.lifeCycleCard.subscribe(observer: self) { [weak self] card in
-            self?.tempLifeCycle.value = card.lifeCycle
+            self?.lifeCycles = card.lifeCycle
         }
         interactor.isLoading.subscribe(observer: self) { [weak self] isLoading in
-            self?.isLoading.value = isLoading
+            self?.view.newLoadingState(isLoading)
         }
         interactor.error.subscribe(observer: self) { [weak self] error in
-            self?.error.value = error
+            self?.view.newError(error)
         }
     }
     
@@ -73,7 +79,7 @@ final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
     }
     
     
-    // MARK: - View Input
+    // MARK: - Input interface
     
     func viewDidLoad() {
         interactor.fetchLifeCycles(at: interactor.shareStateForMainScene().date)
@@ -87,15 +93,13 @@ final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
     }
     
     func getNumberOfLifeCycles() -> Int {
-        return tempLifeCycle.value.count
+        return lifeCycles.count
     }
     
     func getCellLabel(at index: Int) -> String {
-        return tempLifeCycle.value[index].title
+        return lifeCycles[index].title
     }
     
-    
-    //MARK: - View Output
     
     func didSelectRow<V>(at index: Int, vc: V) {
         let type = interactor.shareStateForMainScene().lifeCycle[index]
@@ -108,26 +112,26 @@ final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
     
     
     func deleteRow(at index: Int) {
-        tempLifeCycle.value.remove(at: index)
+        lifeCycles.remove(at: index)
     }
     
     func moveRow(source: Int, destination: Int) {
-        var lc = tempLifeCycle.value
+        var lc = lifeCycles
         lc.rearrange(from: source, to: destination)
         for i in 0..<lc.count {
             lc[i].index = i
         }
-        tempLifeCycle.value = lc
+        lifeCycles = lc
     }
     
     func cancelChanges() {
-        tempLifeCycle.value = interactor.shareStateForMainScene().lifeCycle
+        lifeCycles = interactor.shareStateForMainScene().lifeCycle
     }
     
     func saveChanges() {
-        for i in 0..<(tempLifeCycle.value.count != 0 ? tempLifeCycle.value.count : 1) {
-            if tempLifeCycle.value.count != interactor.lifeCycleCard.value.lifeCycle.count || tempLifeCycle.value[i].id != interactor.lifeCycleCard.value.lifeCycle[i].id {
-                interactor.synchronize(newValue: tempLifeCycle.value)
+        for i in 0..<(lifeCycles.count != 0 ? lifeCycles.count : 1) {
+            if lifeCycles.count != interactor.lifeCycleCard.value.lifeCycle.count || lifeCycles[i].id != interactor.lifeCycleCard.value.lifeCycle[i].id {
+                interactor.synchronize(newValue: lifeCycles)
                 return
             }
         }
@@ -136,12 +140,17 @@ final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
     func swipe(gesture: Swipe) {
         switch gesture {
         case .left:
-            guard let previousDay = interactor.shareStateForMainScene().date.previousDay() else { print("Error fetch date"); return }
+            guard let previousDay = interactor.shareStateForMainScene().date.previousDay() else {
+                print("Error fetch date")
+                return
+            }
             interactor.fetchLifeCycles(at: previousDay)
             
         case .right:
             guard let nextDay = interactor.shareStateForMainScene().date.nextDay() else {
-             print("Error fetch date"); return }
+                print("Error fetch date")
+                return
+            }
             interactor.fetchLifeCycles(at: nextDay)
         }
     }
@@ -154,6 +163,7 @@ final class MainSceneViewModel_BTWW: MainSceneViewModelProtocol_BTWW {
     
 }
 
+//TODO: - перенести!
 //MARK: - Extensions
 
 extension Array {

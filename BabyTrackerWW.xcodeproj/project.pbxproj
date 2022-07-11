@@ -15,7 +15,7 @@
 		5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCDE276814550015DD0E /* PopPresentationController.swift */; };
 		5083DCE12768157D0015DD0E /* PopPresentAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */; };
 		5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */; };
-		5083DCE9276960D80015DD0E /* SelectViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */; };
+		5083DCE9276960D80015DD0E /* SelectSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5083DCE8276960D80015DD0E /* SelectSceneViewController_BTWW.swift */; };
 		508CEE8E274177C70086051A /* DreamRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8D274177C70086051A /* DreamRepository_BTWW.swift */; };
 		508CEE9027417B2D0086051A /* WakeRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE8F27417B2D0086051A /* WakeRepository_BTWW.swift */; };
 		508CEE9227417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEE9127417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift */; };
@@ -25,21 +25,18 @@
 		508CEEA7274AEA870086051A /* Swipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = 508CEEA6274AEA870086051A /* Swipe.swift */; };
 		50A1CB77278B4564000F9BFC /* RepositoryTask.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50A1CB76278B4564000F9BFC /* RepositoryTask.swift */; };
 		50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 50A3E282271F919B008B2A0B /* Baby_tracker.xcdatamodeld */; };
-		50B175332704C1F000108B17 /* CalendarSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */; };
+		50B175332704C1F000108B17 /* CalendarScenePresenter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E42704C1EF00108B17 /* CalendarScenePresenter_BTWW.swift */; };
 		50B175342704C1F000108B17 /* CalendarSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E62704C1EF00108B17 /* CalendarSceneViewController_BTWW.swift */; };
 		50B175352704C1F000108B17 /* CalendarSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174E82704C1EF00108B17 /* CalendarSceneConfigurator_BTWW.swift */; };
-		50B175362704C1F000108B17 /* PickerSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */; };
-		50B175372704C1F000108B17 /* PickerViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */; };
+		50B175362704C1F000108B17 /* PickerScenePresenter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EB2704C1EF00108B17 /* PickerScenePresenter_BTWW.swift */; };
+		50B175372704C1F000108B17 /* PickerSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174ED2704C1EF00108B17 /* PickerSceneViewController_BTWW.swift */; };
 		50B175382704C1F000108B17 /* PickerSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174EF2704C1EF00108B17 /* PickerSceneConfigurator_BTWW.swift */; };
 		50B1753A2704C1F000108B17 /* DetailWakeSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F62704C1EF00108B17 /* DetailWakeSceneViewController_BTWW.swift */; };
 		50B1753B2704C1F000108B17 /* DetailWakeSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174F82704C1EF00108B17 /* DetailWakeSceneConfigurator_BTWW.swift */; };
 		50B1753C2704C1F000108B17 /* DetailDreamSceneViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController_BTWW.swift */; };
 		50B1753D2704C1F000108B17 /* DetailDreamSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B174FD2704C1EF00108B17 /* DetailDreamSceneConfigurator_BTWW.swift */; };
-		50B1753F2704C1F000108B17 /* SelectSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */; };
 		50B175402704C1F000108B17 /* SelectSceneTableViewCell_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */; };
-		50B175422704C1F000108B17 /* SelectSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */; };
-		50B175432704C1F000108B17 /* SelectSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */; };
-		50B175442704C1F000108B17 /* MainSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */; };
+		50B175442704C1F000108B17 /* MainScenePresenter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750C2704C1EF00108B17 /* MainScenePresenter_BTWW.swift */; };
 		50B175452704C1F000108B17 /* MainSceneTableViewController_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */; };
 		50B175462704C1F000108B17 /* MainSceneTableViewCell_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */; };
 		50B175472704C1F000108B17 /* MainSceneConfigurator_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175112704C1EF00108B17 /* MainSceneConfigurator_BTWW.swift */; };
@@ -70,16 +67,15 @@
 		50D3FE062777BCA80044026C /* DreamPersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */; };
 		50D3FE082777BCBF0044026C /* WakePersistenceRepoMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */; };
 		50D3FE0A2777C4D40044026C /* PersistentRepositoryErrorMock.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50D3FE092777C4D40044026C /* PersistentRepositoryErrorMock.swift */; };
-		50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */; };
+		50EA4CD427387AC70040D1F3 /* DetailDreamScenePresenter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter_BTWW.swift */; };
 		50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift */; };
-		50EA4CDC27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */; };
+		50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift */; };
 		50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift */; };
 		50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */; };
 		50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90927272B83005648BA /* WakeNetworkEntity.swift */; };
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 		50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */; };
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */; };
-		948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */; };
 		94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0CA02869DB5800742A33 /* Test_BTWW.swift */; };
 		94AB0CA52869E80E00742A33 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA42869E80E00742A33 /* MommysEye */; };
 		94AB0CA82869E88600742A33 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA72869E88600742A33 /* BabyNet */; };
@@ -106,7 +102,7 @@
 		5083DCDE276814550015DD0E /* PopPresentationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentationController.swift; sourceTree = "<group>"; };
 		5083DCE02768157D0015DD0E /* PopPresentAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopPresentAnimator.swift; sourceTree = "<group>"; };
 		5083DCE2276816CD0015DD0E /* PopDismissAnimator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopDismissAnimator.swift; sourceTree = "<group>"; };
-		5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectViewController_BTWW.swift; sourceTree = "<group>"; };
+		5083DCE8276960D80015DD0E /* SelectSceneViewController_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSceneViewController_BTWW.swift; sourceTree = "<group>"; };
 		508CEE8D274177C70086051A /* DreamRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamRepository_BTWW.swift; sourceTree = "<group>"; };
 		508CEE8F27417B2D0086051A /* WakeRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeRepository_BTWW.swift; sourceTree = "<group>"; };
 		508CEE9127417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCyclesCardPersistentRepository_BTWW.swift; sourceTree = "<group>"; };
@@ -117,21 +113,18 @@
 		50A1CB76278B4564000F9BFC /* RepositoryTask.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryTask.swift; sourceTree = "<group>"; };
 		50A3E283271F919B008B2A0B /* Baby_tracker.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Baby_tracker.xcdatamodel; sourceTree = "<group>"; };
 		50B174C92704C0B000108B17 /* BabyTrackerWW.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BabyTrackerWW.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B174E42704C1EF00108B17 /* CalendarScenePresenter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarScenePresenter_BTWW.swift; sourceTree = "<group>"; };
 		50B174E62704C1EF00108B17 /* CalendarSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneViewController_BTWW.swift; sourceTree = "<group>"; };
 		50B174E82704C1EF00108B17 /* CalendarSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CalendarSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
-		50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
-		50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerViewController_BTWW.swift; sourceTree = "<group>"; };
+		50B174EB2704C1EF00108B17 /* PickerScenePresenter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerScenePresenter_BTWW.swift; sourceTree = "<group>"; };
+		50B174ED2704C1EF00108B17 /* PickerSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneViewController_BTWW.swift; sourceTree = "<group>"; };
 		50B174EF2704C1EF00108B17 /* PickerSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PickerSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
 		50B174F62704C1EF00108B17 /* DetailWakeSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneViewController_BTWW.swift; sourceTree = "<group>"; };
 		50B174F82704C1EF00108B17 /* DetailWakeSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
 		50B174FB2704C1EF00108B17 /* DetailDreamSceneViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewController_BTWW.swift; sourceTree = "<group>"; };
 		50B174FD2704C1EF00108B17 /* DetailDreamSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
-		50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
 		50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneTableViewCell_BTWW.swift; sourceTree = "<group>"; };
-		50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
-		50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SelectSceneRouter_BTWW.swift; sourceTree = "<group>"; };
-		50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50B1750C2704C1EF00108B17 /* MainScenePresenter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainScenePresenter_BTWW.swift; sourceTree = "<group>"; };
 		50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewController_BTWW.swift; sourceTree = "<group>"; };
 		50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewCell_BTWW.swift; sourceTree = "<group>"; };
 		50B175112704C1EF00108B17 /* MainSceneConfigurator_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneConfigurator_BTWW.swift; sourceTree = "<group>"; };
@@ -163,16 +156,15 @@
 		50D3FE042777BC9E0044026C /* DreamPersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamPersistenceRepoMock.swift; sourceTree = "<group>"; };
 		50D3FE072777BCBF0044026C /* WakePersistenceRepoMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakePersistenceRepoMock.swift; sourceTree = "<group>"; };
 		50D3FE092777C4D40044026C /* PersistentRepositoryErrorMock.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersistentRepositoryErrorMock.swift; sourceTree = "<group>"; };
-		50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamScenePresenter_BTWW.swift; sourceTree = "<group>"; };
 		50EA4CD52738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailDreamSceneRouter_BTWW.swift; sourceTree = "<group>"; };
-		50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneViewModel_BTWW.swift; sourceTree = "<group>"; };
+		50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeScenePresenter_BTWW.swift; sourceTree = "<group>"; };
 		50EA4CDD27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailWakeSceneRouter_BTWW.swift; sourceTree = "<group>"; };
 		50F6C90727272AF0005648BA /* DreamNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DreamNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90927272B83005648BA /* WakeNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WakeNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
-		948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainSceneTableViewControllerUI_BTWW.swift; sourceTree = "<group>"; };
 		94AB0CA02869DB5800742A33 /* Test_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -271,6 +263,7 @@
 			isa = PBXGroup;
 			children = (
 				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
+				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
 				5083DCDD2768141E0015DD0E /* CustomTransition */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
@@ -439,17 +432,17 @@
 			children = (
 				50B174E72704C1EF00108B17 /* Configurator */,
 				50B174E52704C1EF00108B17 /* View */,
-				50B174E32704C1EF00108B17 /* ViewModel */,
+				50B174E32704C1EF00108B17 /* Presenter */,
 			);
 			path = Calendar;
 			sourceTree = "<group>";
 		};
-		50B174E32704C1EF00108B17 /* ViewModel */ = {
+		50B174E32704C1EF00108B17 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				50B174E42704C1EF00108B17 /* CalendarSceneViewModel_BTWW.swift */,
+				50B174E42704C1EF00108B17 /* CalendarScenePresenter_BTWW.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50B174E52704C1EF00108B17 /* View */ = {
@@ -473,23 +466,23 @@
 			children = (
 				50B174EE2704C1EF00108B17 /* Configurator */,
 				50B174EC2704C1EF00108B17 /* View */,
-				50B174EA2704C1EF00108B17 /* ViewModel */,
+				50B174EA2704C1EF00108B17 /* Presenter */,
 			);
 			path = Picker;
 			sourceTree = "<group>";
 		};
-		50B174EA2704C1EF00108B17 /* ViewModel */ = {
+		50B174EA2704C1EF00108B17 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				50B174EB2704C1EF00108B17 /* PickerSceneViewModel_BTWW.swift */,
+				50B174EB2704C1EF00108B17 /* PickerScenePresenter_BTWW.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50B174EC2704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				50B174ED2704C1EF00108B17 /* PickerViewController_BTWW.swift */,
+				50B174ED2704C1EF00108B17 /* PickerSceneViewController_BTWW.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -516,7 +509,7 @@
 			children = (
 				50B174F72704C1EF00108B17 /* Configurator */,
 				50B174F52704C1EF00108B17 /* View */,
-				50EA4CD927388E080040D1F3 /* ViewModel */,
+				50EA4CD927388E080040D1F3 /* Presenter */,
 				50EA4CDA27388E120040D1F3 /* Router */,
 			);
 			path = WakeFlow;
@@ -543,7 +536,7 @@
 			children = (
 				50B174FC2704C1EF00108B17 /* Configurator */,
 				50B174FA2704C1EF00108B17 /* View */,
-				50EA4CD7273888490040D1F3 /* ViewModel */,
+				50EA4CD7273888490040D1F3 /* Presenter */,
 				50EA4CD82738885E0040D1F3 /* Router */,
 			);
 			path = DreamFlow;
@@ -568,45 +561,18 @@
 		50B175002704C1EF00108B17 /* Select (Popover) */ = {
 			isa = PBXGroup;
 			children = (
-				50B175062704C1EF00108B17 /* Configurator */,
 				50B175032704C1EF00108B17 /* View */,
-				50B175012704C1EF00108B17 /* ViewModel */,
-				50B175082704C1EF00108B17 /* Router */,
 			);
 			path = "Select (Popover)";
-			sourceTree = "<group>";
-		};
-		50B175012704C1EF00108B17 /* ViewModel */ = {
-			isa = PBXGroup;
-			children = (
-				50B175022704C1EF00108B17 /* SelectSceneViewModel_BTWW.swift */,
-			);
-			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		50B175032704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				5083DCE8276960D80015DD0E /* SelectViewController_BTWW.swift */,
-				50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */,
+				5083DCE8276960D80015DD0E /* SelectSceneViewController_BTWW.swift */,
+				94E119F6287C58250010C122 /* Cell */,
 			);
 			path = View;
-			sourceTree = "<group>";
-		};
-		50B175062704C1EF00108B17 /* Configurator */ = {
-			isa = PBXGroup;
-			children = (
-				50B175072704C1EF00108B17 /* SelectSceneConfigurator_BTWW.swift */,
-			);
-			path = Configurator;
-			sourceTree = "<group>";
-		};
-		50B175082704C1EF00108B17 /* Router */ = {
-			isa = PBXGroup;
-			children = (
-				50B175092704C1EF00108B17 /* SelectSceneRouter_BTWW.swift */,
-			);
-			path = Router;
 			sourceTree = "<group>";
 		};
 		50B1750A2704C1EF00108B17 /* Main */ = {
@@ -614,25 +580,24 @@
 			children = (
 				50B175102704C1EF00108B17 /* Configurator */,
 				50B1750D2704C1EF00108B17 /* View */,
-				50B1750B2704C1EF00108B17 /* ViewModel */,
+				50B1750B2704C1EF00108B17 /* Presenter */,
 				50B175122704C1EF00108B17 /* Router */,
 			);
 			path = Main;
 			sourceTree = "<group>";
 		};
-		50B1750B2704C1EF00108B17 /* ViewModel */ = {
+		50B1750B2704C1EF00108B17 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				50B1750C2704C1EF00108B17 /* MainSceneViewModel_BTWW.swift */,
+				50B1750C2704C1EF00108B17 /* MainScenePresenter_BTWW.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50B1750D2704C1EF00108B17 /* View */ = {
 			isa = PBXGroup;
 			children = (
 				50B1750E2704C1EF00108B17 /* MainSceneTableViewController_BTWW.swift */,
-				94A50DDF2871B50900C2C246 /* UI */,
 				94A50DDE2871B50200C2C246 /* Cell */,
 			);
 			path = View;
@@ -658,7 +623,6 @@
 			isa = PBXGroup;
 			children = (
 				50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */,
-				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -781,12 +745,12 @@
 			name = Mocks;
 			sourceTree = "<group>";
 		};
-		50EA4CD7273888490040D1F3 /* ViewModel */ = {
+		50EA4CD7273888490040D1F3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CD327387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift */,
+				50EA4CD327387AC70040D1F3 /* DetailDreamScenePresenter_BTWW.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50EA4CD82738885E0040D1F3 /* Router */ = {
@@ -797,12 +761,12 @@
 			path = Router;
 			sourceTree = "<group>";
 		};
-		50EA4CD927388E080040D1F3 /* ViewModel */ = {
+		50EA4CD927388E080040D1F3 /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
-				50EA4CDB27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift */,
+				50EA4CDB27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift */,
 			);
-			path = ViewModel;
+			path = Presenter;
 			sourceTree = "<group>";
 		};
 		50EA4CDA27388E120040D1F3 /* Router */ = {
@@ -842,19 +806,19 @@
 			path = Cell;
 			sourceTree = "<group>";
 		};
-		94A50DDF2871B50900C2C246 /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				948008652795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift */,
-			);
-			path = UI;
-			sourceTree = "<group>";
-		};
 		94AB0CA62869E88600742A33 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		94E119F6287C58250010C122 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				50B175042704C1EF00108B17 /* SelectSceneTableViewCell_BTWW.swift */,
+			);
+			path = Cell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -984,14 +948,14 @@
 				5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */,
 				5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */,
 				50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */,
-				50EA4CDC27388E4D0040D1F3 /* DetailWakeSceneViewModel_BTWW.swift in Sources */,
+				50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift in Sources */,
 				50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */,
 				5083DCE12768157D0015DD0E /* PopPresentAnimator.swift in Sources */,
 				50B175402704C1F000108B17 /* SelectSceneTableViewCell_BTWW.swift in Sources */,
 				50B175682704DFC500108B17 /* WakePersistentRepository_BTWW.swift in Sources */,
 				50B1755A2704C1F000108B17 /* Wake.swift in Sources */,
 				50F6C90A27272B83005648BA /* WakeNetworkEntity.swift in Sources */,
-				50B175372704C1F000108B17 /* PickerViewController_BTWW.swift in Sources */,
+				50B175372704C1F000108B17 /* PickerSceneViewController_BTWW.swift in Sources */,
 				50B1754F2704C1F000108B17 /* CoreDataStack_BTWW.swift in Sources */,
 				508CEE9D274186D20086051A /* DreamNetworkRepository_BTWW.swift in Sources */,
 				508CEE9A2741869D0086051A /* LifeCyclesCardNetworkRepository_BTWW.swift in Sources */,
@@ -1011,36 +975,32 @@
 				508CEE8E274177C70086051A /* DreamRepository_BTWW.swift in Sources */,
 				50B1753B2704C1F000108B17 /* DetailWakeSceneConfigurator_BTWW.swift in Sources */,
 				50B175532704C1F000108B17 /* DreamPersistentRepository_BTWW.swift in Sources */,
-				948008662795EDF600D34D4B /* MainSceneTableViewControllerUI_BTWW.swift in Sources */,
 				50B175522704C1F000108B17 /* DreamDBEntity+CoreDataProperties.swift in Sources */,
 				50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */,
-				50EA4CD427387AC70040D1F3 /* DetailDreamSceneViewModel_BTWW.swift in Sources */,
+				50EA4CD427387AC70040D1F3 /* DetailDreamScenePresenter_BTWW.swift in Sources */,
 				50B175592704C1F000108B17 /* LifeCyclesCard.swift in Sources */,
 				94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */,
 				508CEE9027417B2D0086051A /* WakeRepository_BTWW.swift in Sources */,
-				50B175432704C1F000108B17 /* SelectSceneRouter_BTWW.swift in Sources */,
 				50B175582704C1F000108B17 /* LifeCyclesCardGateway.swift in Sources */,
 				50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */,
 				50B175572704C1F000108B17 /* LifeCyclesProtocols_BTWW.swift in Sources */,
-				50B175442704C1F000108B17 /* MainSceneViewModel_BTWW.swift in Sources */,
-				50B175362704C1F000108B17 /* PickerSceneViewModel_BTWW.swift in Sources */,
+				50B175442704C1F000108B17 /* MainScenePresenter_BTWW.swift in Sources */,
+				50B175362704C1F000108B17 /* PickerScenePresenter_BTWW.swift in Sources */,
 				50B175512704C1F000108B17 /* DreamDBEntity+CoreDataClass.swift in Sources */,
 				50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */,
 				50B1755D2704C1F000108B17 /* DreamGateway.swift in Sources */,
 				50B175382704C1F000108B17 /* PickerSceneConfigurator_BTWW.swift in Sources */,
 				50B175452704C1F000108B17 /* MainSceneTableViewController_BTWW.swift in Sources */,
-				50B175422704C1F000108B17 /* SelectSceneConfigurator_BTWW.swift in Sources */,
 				508CEE9227417E540086051A /* LifeCyclesCardPersistentRepository_BTWW.swift in Sources */,
 				50F6C90827272AF0005648BA /* DreamNetworkEntity.swift in Sources */,
-				5083DCE9276960D80015DD0E /* SelectViewController_BTWW.swift in Sources */,
+				5083DCE9276960D80015DD0E /* SelectSceneViewController_BTWW.swift in Sources */,
 				50B175562704C1F000108B17 /* SceneDelegate.swift in Sources */,
-				50B175332704C1F000108B17 /* CalendarSceneViewModel_BTWW.swift in Sources */,
+				50B175332704C1F000108B17 /* CalendarScenePresenter_BTWW.swift in Sources */,
 				50B1753A2704C1F000108B17 /* DetailWakeSceneViewController_BTWW.swift in Sources */,
 				50B1753D2704C1F000108B17 /* DetailDreamSceneConfigurator_BTWW.swift in Sources */,
 				50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift in Sources */,
 				50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift in Sources */,
 				50B1754B2704C1F000108B17 /* Actions+State_BTWW.swift in Sources */,
-				50B1753F2704C1F000108B17 /* SelectSceneViewModel_BTWW.swift in Sources */,
 				50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell_BTWW.swift in Sources */,
 				508CEEA7274AEA870086051A /* Swipe.swift in Sources */,

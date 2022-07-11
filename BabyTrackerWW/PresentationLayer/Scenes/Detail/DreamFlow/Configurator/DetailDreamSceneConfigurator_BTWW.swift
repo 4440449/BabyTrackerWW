@@ -9,11 +9,16 @@
 
 
 final class DetailDreamSceneConfigurator_BTWW {
-    func configureScene<D>(view: DetailDreamSceneViewController_BTWW, delegate: D) {
+    func configureScene<D>(view: DetailDreamSceneViewController_BTWW,
+                           delegate: D,
+                           selectedIndex: Int?) {
         guard let delegate = delegate as? DetailDreamSceneDelegate_BTWW else { return }
         let router = DetailDreamSceneRouter_BTWW()
-        let viewModel = DetailDreamSceneViewModel_BTWW(delegate: delegate, router: router)
-        view.viewModel = viewModel
+        let presenter = DetailDreamScenePresenter_BTWW(view: view,
+                                                       delegate: delegate,
+                                                       router: router,
+                                                       selectedIndex: selectedIndex)
+        view.setupPresenter(presenter)
     }
     
     deinit {
