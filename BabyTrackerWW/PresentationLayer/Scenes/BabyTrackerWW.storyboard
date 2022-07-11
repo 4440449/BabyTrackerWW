@@ -21,7 +21,7 @@
                         <color key="barTintColor" systemColor="systemBackgroundColor"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="8nP-1y-YUj" kind="relationship" relationship="rootViewController" id="5eR-lK-n0p"/>
+                        <segue destination="8nP-1y-YUj" kind="relationship" relationship="rootViewController" id="1iV-of-xAe"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AYB-cs-by8" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -136,7 +136,6 @@
                             <barButtonItem style="done" systemItem="add" id="7Fw-qo-IY7">
                                 <connections>
                                     <action selector="addNewButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
-                                    <segue destination="OLg-sR-vCP" kind="presentation" identifier="addNewLifeCycleButton" id="E1r-H4-Sg8"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
@@ -168,6 +167,7 @@
                         <segue destination="7cP-YO-UdJ" kind="presentation" identifier="didSelectWake" id="1Pb-Mk-Qmh"/>
                         <segue destination="rJu-0z-jb4" kind="presentation" identifier="addNewDream" id="1Bx-wP-Azx"/>
                         <segue destination="7cP-YO-UdJ" kind="presentation" identifier="addNewWake" id="54p-wz-OVy"/>
+                        <segue destination="OLg-sR-vCP" kind="presentation" identifier="addNewLifeCycleButton" id="nTV-9I-QIs"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uwi-Hq-ej5" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -177,7 +177,7 @@
         <!--Select View ControllerBTWW-->
         <scene sceneID="Tcy-aT-Fsw">
             <objects>
-                <viewController id="OLg-sR-vCP" customClass="SelectViewController_BTWW" customModule="BabyTrackerWW" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="OLg-sR-vCP" customClass="SelectViewController_BTWW" customModule="BabyTrackerWW" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="WPp-Oa-bDR">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="86"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -236,7 +236,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TXy-Xx-MUD" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="373" y="750"/>
+            <point key="canvasLocation" x="269" y="764"/>
         </scene>
         <!--Detail Dream Scene View ControllerBTWW-->
         <scene sceneID="vwd-UJ-vJL">
