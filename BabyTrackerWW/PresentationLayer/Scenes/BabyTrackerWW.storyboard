@@ -435,7 +435,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <pickerView clipsSubviews="YES" tag="1" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="VVt-pp-6TI">
-                                <rect key="frame" x="0.0" y="130" width="390" height="216"/>
+                                <rect key="frame" x="5" y="270" width="380" height="216"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <connections>
@@ -444,7 +444,7 @@
                                 </connections>
                             </pickerView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="r9w-By-OOb">
-                                <rect key="frame" x="125" y="631" width="140" height="55"/>
+                                <rect key="frame" x="125" y="556" width="140" height="55"/>
                                 <color key="backgroundColor" systemColor="labelColor"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="55" id="9YW-K0-Pug"/>
@@ -462,11 +462,11 @@
                         <viewLayoutGuide key="safeArea" id="evm-QQ-wgq"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstItem="VVt-pp-6TI" firstAttribute="top" secondItem="evm-QQ-wgq" secondAttribute="top" constant="130" id="8Nk-0D-7L1"/>
-                            <constraint firstItem="VVt-pp-6TI" firstAttribute="trailing" secondItem="evm-QQ-wgq" secondAttribute="trailing" id="CDN-Rn-lji"/>
-                            <constraint firstItem="VVt-pp-6TI" firstAttribute="leading" secondItem="evm-QQ-wgq" secondAttribute="leading" id="UeY-xn-fL9"/>
-                            <constraint firstItem="evm-QQ-wgq" firstAttribute="bottom" secondItem="r9w-By-OOb" secondAttribute="bottom" constant="70" id="ZRn-D1-gpM"/>
+                            <constraint firstItem="r9w-By-OOb" firstAttribute="top" secondItem="VVt-pp-6TI" secondAttribute="bottom" constant="70" id="3Hp-ho-mY2"/>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="trailing" secondItem="evm-QQ-wgq" secondAttribute="trailing" constant="-5" id="CDN-Rn-lji"/>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="leading" secondItem="evm-QQ-wgq" secondAttribute="leading" constant="5" id="UeY-xn-fL9"/>
                             <constraint firstItem="r9w-By-OOb" firstAttribute="centerX" secondItem="kgL-ro-dBi" secondAttribute="centerX" id="hNW-eG-e6H"/>
+                            <constraint firstItem="VVt-pp-6TI" firstAttribute="centerY" secondItem="evm-QQ-wgq" secondAttribute="centerY" id="zBe-Zi-eBR"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="aJR-Xs-C3Q"/>
@@ -477,7 +477,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Zfi-rF-zaP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-550" y="2844"/>
+            <point key="canvasLocation" x="-550.76923076923072" y="2842.1800947867296"/>
         </scene>
         <!--Detail Wake Window Scene View Controller-->
         <scene sceneID="P8P-7p-NH3">
