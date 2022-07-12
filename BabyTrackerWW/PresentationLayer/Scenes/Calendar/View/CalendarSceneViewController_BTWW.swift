@@ -38,12 +38,13 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     @IBOutlet weak var saveButton: UIButton!
     
     private func setupDatePicker() {
+        if #available(iOS 14.0, *) {
+            datePicker.preferredDatePickerStyle = .inline
+        } else {
+            datePicker.preferredDatePickerStyle = .wheels
+        }
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ru")
-//        datePicker.locale = Locale(identifier: "ru_RU")
-//        if #available(iOS 13.4, *) {
-//            datePicker.preferredDatePickerStyle = .compact
-//        }
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         datePicker.date = presenter.getCurrentDate()
         dateLabel.text = presenter.format(date:datePicker.date)
