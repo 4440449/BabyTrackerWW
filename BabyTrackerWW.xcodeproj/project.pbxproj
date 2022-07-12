@@ -43,7 +43,7 @@
 		50B175482704C1F000108B17 /* MainSceneRouter_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175132704C1EF00108B17 /* MainSceneRouter_BTWW.swift */; };
 		50B175492704C1F000108B17 /* BabyTrackerWW.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 50B175142704C1EF00108B17 /* BabyTrackerWW.storyboard */; };
 		50B1754A2704C1F000108B17 /* LoaderState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175162704C1EF00108B17 /* LoaderState.swift */; };
-		50B1754B2704C1F000108B17 /* Actions+State_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */; };
+		50B1754B2704C1F000108B17 /* Interactor_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B175172704C1EF00108B17 /* Interactor_BTWW.swift */; };
 		50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 50B175182704C1EF00108B17 /* Assets.xcassets */; };
 		50B1754E2704C1F000108B17 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751B2704C1EF00108B17 /* AppDelegate.swift */; };
 		50B1754F2704C1F000108B17 /* CoreDataStack_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B1751E2704C1F000108B17 /* CoreDataStack_BTWW.swift */; };
@@ -79,6 +79,7 @@
 		94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0CA02869DB5800742A33 /* Test_BTWW.swift */; };
 		94AB0CA52869E80E00742A33 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA42869E80E00742A33 /* MommysEye */; };
 		94AB0CA82869E88600742A33 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA72869E88600742A33 /* BabyNet */; };
+		94F2ED32287D727D00BE5AF6 /* DateExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94F2ED31287D727D00BE5AF6 /* DateExtensions_BTWW.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -131,7 +132,7 @@
 		50B175132704C1EF00108B17 /* MainSceneRouter_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainSceneRouter_BTWW.swift; sourceTree = "<group>"; };
 		50B175142704C1EF00108B17 /* BabyTrackerWW.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = BabyTrackerWW.storyboard; sourceTree = "<group>"; };
 		50B175162704C1EF00108B17 /* LoaderState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoaderState.swift; sourceTree = "<group>"; };
-		50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Actions+State_BTWW.swift"; sourceTree = "<group>"; };
+		50B175172704C1EF00108B17 /* Interactor_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Interactor_BTWW.swift; sourceTree = "<group>"; };
 		50B175182704C1EF00108B17 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		50B1751B2704C1EF00108B17 /* AppDelegate.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		50B1751E2704C1F000108B17 /* CoreDataStack_BTWW.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack_BTWW.swift; sourceTree = "<group>"; };
@@ -166,6 +167,7 @@
 		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
 		94AB0CA02869DB5800742A33 /* Test_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_BTWW.swift; sourceTree = "<group>"; };
+		94F2ED31287D727D00BE5AF6 /* DateExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -264,6 +266,7 @@
 			children = (
 				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
 				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
+				94F2ED31287D727D00BE5AF6 /* DateExtensions_BTWW.swift */,
 				5083DCDD2768141E0015DD0E /* CustomTransition */,
 				50B175162704C1EF00108B17 /* LoaderState.swift */,
 				508CEEA6274AEA870086051A /* Swipe.swift */,
@@ -622,7 +625,7 @@
 		50B175152704C1EF00108B17 /* Interactor */ = {
 			isa = PBXGroup;
 			children = (
-				50B175172704C1EF00108B17 /* Actions+State_BTWW.swift */,
+				50B175172704C1EF00108B17 /* Interactor_BTWW.swift */,
 			);
 			path = Interactor;
 			sourceTree = "<group>";
@@ -947,6 +950,7 @@
 				5083ADB6275061BD00F1BF73 /* SceneState.swift in Sources */,
 				5083DCE3276816CD0015DD0E /* PopDismissAnimator.swift in Sources */,
 				5083DCDF276814550015DD0E /* PopPresentationController.swift in Sources */,
+				94F2ED32287D727D00BE5AF6 /* DateExtensions_BTWW.swift in Sources */,
 				50A3E284271F919B008B2A0B /* Baby_tracker.xcdatamodeld in Sources */,
 				50EA4CDC27388E4D0040D1F3 /* DetailWakeScenePresenter_BTWW.swift in Sources */,
 				50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */,
@@ -1000,7 +1004,7 @@
 				50B1753D2704C1F000108B17 /* DetailDreamSceneConfigurator_BTWW.swift in Sources */,
 				50EA4CDE27388E5B0040D1F3 /* DetailWakeSceneRouter_BTWW.swift in Sources */,
 				50EA4CD62738879C0040D1F3 /* DetailDreamSceneRouter_BTWW.swift in Sources */,
-				50B1754B2704C1F000108B17 /* Actions+State_BTWW.swift in Sources */,
+				50B1754B2704C1F000108B17 /* Interactor_BTWW.swift in Sources */,
 				50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */,
 				50B175462704C1F000108B17 /* MainSceneTableViewCell_BTWW.swift in Sources */,
 				508CEEA7274AEA870086051A /* Swipe.swift in Sources */,

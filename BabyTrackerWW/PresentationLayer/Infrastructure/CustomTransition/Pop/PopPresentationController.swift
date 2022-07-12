@@ -30,8 +30,10 @@ class PopPresentationController: UIPresentationController {
     
     @objc private func didPan(_ panGesture: UIPanGestureRecognizer) {
         switch panGesture.state {
-        case .began: presentedViewController.dismiss(animated: true, completion: nil)
-        default: return
+        case .began:
+            presentedViewController.dismiss(animated: true, completion: nil)
+        default:
+            return
         }
     }
     

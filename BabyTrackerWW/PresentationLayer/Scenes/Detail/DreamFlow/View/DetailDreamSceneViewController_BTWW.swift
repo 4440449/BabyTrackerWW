@@ -106,7 +106,7 @@ final class DetailDreamSceneViewController_BTWW: UIViewController,
     // MARK: - Deinit
     
     deinit {
-        print("DreamDetailSceneViewController - is Deinit!")
+//        print("DreamDetailSceneViewController - is Deinit!")
     }
     
 }

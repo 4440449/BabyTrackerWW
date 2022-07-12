@@ -20,11 +20,11 @@ protocol CalendarScenePresenterInputProtocol_BTWW {
 final class CalendarScenePresenter_BTWW: CalendarScenePresenterInputProtocol_BTWW {
  
     //MARK: - Dependencies
-    //dataSource
-    private let delegate: CalendarSceneDelegate_BTWW
     
-    init(delegate: CalendarSceneDelegate_BTWW) {
-        self.delegate = delegate
+    private let interactor: CalendarSceneInteractor_BTWW
+    
+    init(interactor: CalendarSceneInteractor_BTWW) {
+        self.interactor = interactor
     }
     
     
@@ -36,7 +36,7 @@ final class CalendarScenePresenter_BTWW: CalendarScenePresenterInputProtocol_BTW
     // MARK: - Input interface
 
     func getCurrentDate() -> Date {
-        date = delegate.shareStateForCalendarScene().date
+        date = interactor.shareStateForCalendarScene().date
         return date
     }
     
@@ -53,7 +53,7 @@ final class CalendarScenePresenter_BTWW: CalendarScenePresenterInputProtocol_BTW
     }
     
     func saveButtonTapped() {
-        delegate.changeDate(new: date)
+        interactor.changeDate(new: date)
     }
 
 }

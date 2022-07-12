@@ -38,11 +38,11 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     
     private unowned var view: MainScenePresenterOutputPrtotocol_BTWW
     private let router: MainSceneRouterProtocol_BTWW
-    private let interactor: MainSceneDelegate_BTWW
+    private let interactor: MainSceneInteractor_BTWW
     
     init(view: MainScenePresenterOutputPrtotocol_BTWW,
          router: MainSceneRouterProtocol_BTWW,
-         interactor: MainSceneDelegate_BTWW) {
+         interactor: MainSceneInteractor_BTWW) {
         self.view = view
         self.router = router
         self.interactor = interactor
@@ -82,14 +82,15 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     // MARK: - Input interface
     
     func viewDidLoad() {
-        interactor.fetchLifeCycles(at: interactor.shareStateForMainScene().date)
+        interactor.fetchLifeCycles(at: Date())
     }
     
     func getDate() -> String {
         let formatter = DateFormatter()
         formatter.locale = Locale(identifier: "ru_RU")
         formatter.dateFormat = "dd MMMM YYYY"
-        return formatter.string(from: interactor.shareStateForMainScene().date)
+        let stringRepresentation = formatter.string(from: interactor.lifeCycleCard.value.date)
+        return stringRepresentation
     }
     
     func getNumberOfLifeCycles() -> Int {
@@ -102,12 +103,12 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     
     
     func didSelectRow<V>(at index: Int, vc: V) {
-        let type = interactor.shareStateForMainScene().lifeCycle[index]
+        let type = interactor.lifeCycleCard.value.lifeCycle[index]
         router.perform(type: type, vc: vc)
     }
     
     func prepare<T,V>(for segue: T, sourceVC: V) {
-        router.prepare(for: segue, delegate: interactor, sourceVC: sourceVC)
+        router.prepare(for: segue, interactor: interactor, sourceVC: sourceVC)
     }
     
     
@@ -125,7 +126,7 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     }
     
     func cancelChanges() {
-        lifeCycles = interactor.shareStateForMainScene().lifeCycle
+        lifeCycles = interactor.lifeCycleCard.value.lifeCycle
     }
     
     func saveChanges() {
@@ -140,14 +141,14 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     func swipe(gesture: Swipe) {
         switch gesture {
         case .left:
-            guard let previousDay = interactor.shareStateForMainScene().date.previousDay() else {
+            guard let previousDay = interactor.lifeCycleCard.value.date.previousDay() else {
                 print("Error fetch date")
                 return
             }
             interactor.fetchLifeCycles(at: previousDay)
             
         case .right:
-            guard let nextDay = interactor.shareStateForMainScene().date.nextDay() else {
+            guard let nextDay = interactor.lifeCycleCard.value.date.nextDay() else {
                 print("Error fetch date")
                 return
             }
@@ -159,35 +160,5 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     deinit {
         removeObservers()
     }
-    
-    
-}
-
-//TODO: - перенести!
-//MARK: - Extensions
-
-extension Array {
-    
-    mutating func rearrange(from: Int, to: Int) {
-        insert(remove(at: from), at: to)
-    }
-}
-
-extension Date {
-    
-    func nextDay() -> Date? {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone.current
-        let nextDay = calendar.date(byAdding: .hour, value: 24, to: self)
-        return nextDay
-    }
-    
-    func previousDay() -> Date? {
-        var calendar = Calendar(identifier: .gregorian)
-        calendar.timeZone = TimeZone.current
-        let previousDay = calendar.date(byAdding: .hour, value: -24, to: self)
-        return previousDay
-    }
-    
     
 }

@@ -114,7 +114,7 @@ class DetailWakeSceneViewController_BTWW: UIViewController,
     // MARK: - Deinit
     
     deinit {
-        print("WakeDetailSceneViewController - is Deinit!")
+//        print("WakeDetailSceneViewController - is Deinit!")
     }
     
 }

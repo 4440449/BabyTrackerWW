@@ -33,15 +33,15 @@ final class DetailWakeScenePresenter_BTWW: DetailWakeScenePresenterInputProtocol
     // MARK: - Dependencies
     
     private unowned var view: DetailWakeScenePresenterOutputProtocol_BTWW
-    private let delegate: DetailWakeSceneDelegate_BTWW
+    private let interactor: DetailWakeSceneInteractor_BTWW
     private let router: DetailWakeSceneRouterProtocol_BTWW
     
     init (view: DetailWakeScenePresenterOutputProtocol_BTWW,
-          delegate: DetailWakeSceneDelegate_BTWW,
+          interactor: DetailWakeSceneInteractor_BTWW,
           router: DetailWakeSceneRouterProtocol_BTWW,
           selectedIndex: Int?) {
         self.view = view
-        self.delegate = delegate
+        self.interactor = interactor
         self.router = router
         self.selectedIndex = selectedIndex
     }
@@ -63,7 +63,7 @@ final class DetailWakeScenePresenter_BTWW: DetailWakeScenePresenterInputProtocol
     //MARK: - Internal setup
     
     private func addNewFlow() {
-        wake = Wake(index: delegate.shareStateForDetailWakeScene().lifeCycle.endIndex,
+        wake = Wake(index: interactor.shareStateForDetailWakeScene().lifeCycle.endIndex,
                     wakeUp: .crying,
                     wakeWindow: .calm,
                     signs: .crying)
@@ -71,7 +71,7 @@ final class DetailWakeScenePresenter_BTWW: DetailWakeScenePresenterInputProtocol
     
     private func didSelectFlow(at index: Int) {
         selectedIndex = index
-        wake = delegate.shareStateForDetailWakeScene().lifeCycle[index] as? Wake
+        wake = interactor.shareStateForDetailWakeScene().lifeCycle[index] as? Wake
     }
     
     
@@ -106,23 +106,27 @@ final class DetailWakeScenePresenter_BTWW: DetailWakeScenePresenterInputProtocol
     }
     
     func saveButtonTapped() {
-        selectedIndex == nil ? delegate.add(new: wake) : delegate.change(wake)
+        selectedIndex == nil ? interactor.add(new: wake) : interactor.change(wake)
     }
     
     func prepare<S>(for segue: S) {
         router.prepare(for: segue) { [unowned self] result in
             switch result {
-            case let result as Wake.WakeUp: self.wake.wakeUp = result
-            case let result as Wake.WakeWindow: self.wake.wakeWindow = result
-            case let result as Wake.Signs: self.wake.signs = result
-            default: print("Error! Result type \(result) is not be recognized")
+            case let result as Wake.WakeUp:
+                self.wake.wakeUp = result
+            case let result as Wake.WakeWindow:
+                self.wake.wakeWindow = result
+            case let result as Wake.Signs:
+                self.wake.signs = result
+            default:
+                print("Error! Result type \(result) is not be recognized")
             }
         }
     }
     
     
     deinit {
-        print("DetailWakeScenePresenter_BTWW - is Deinit!")
+//        print("DetailWakeScenePresenter_BTWW - is Deinit!")
     }
     
 }

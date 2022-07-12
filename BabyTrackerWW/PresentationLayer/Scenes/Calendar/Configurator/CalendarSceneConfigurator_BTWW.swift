@@ -9,9 +9,9 @@
 
 final class CalendarSceneConfigurator_BTWW {
     
-    func configureScene<D>(view: CalendarSceneViewController_BTWW, delegate: D) {
-        guard let delegate = delegate as? CalendarSceneDelegate_BTWW else { return }
-        let presenter = CalendarScenePresenter_BTWW(delegate: delegate)
+    func configureScene<D>(view: CalendarSceneViewController_BTWW, interactor: D) {
+        guard let interactor = interactor as? CalendarSceneInteractor_BTWW else { return }
+        let presenter = CalendarScenePresenter_BTWW(interactor: interactor)
         view.setupPresenter(presenter)
     }
     

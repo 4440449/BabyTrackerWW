@@ -297,8 +297,10 @@ extension MainSceneTableViewController_BTWW {
     func manageDisplayNavBarButtons() {
         guard activityIndicator.isHidden else { showLoadingModeNavBarButtons(); return }
         switch tableView.isEditing {
-        case true: showEditModeNavBarButtons()
-        case false: showNotEditModeNavBarButtons()
+        case true:
+            showEditModeNavBarButtons()
+        case false:
+            showNotEditModeNavBarButtons()
         }
     }
     

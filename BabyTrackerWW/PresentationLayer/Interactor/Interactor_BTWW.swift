@@ -9,52 +9,44 @@
 import Foundation
 import MommysEye
 
+// MARK: - Actions + State -
 
-// MARK: - Main Module Use Cases -
-
-protocol MainSceneDelegate_BTWW: AnyObject {
-    
+protocol MainSceneInteractor_BTWW: AnyObject {
     var lifeCycleCard: Publisher<LifeCyclesCard> { get }
     var isLoading: Publisher<Bool> { get }
     var error: Publisher<String> { get }
-    func shareStateForMainScene() -> LifeCyclesCard
-    
     func fetchLifeCycles(at date: Date)
     func synchronize(newValue: [LifeCycle])
 }
 
 
-protocol CalendarSceneDelegate_BTWW: AnyObject {
-    
+protocol CalendarSceneInteractor_BTWW: AnyObject {
     func shareStateForCalendarScene() -> LifeCyclesCard
     func changeDate(new date: Date)
 }
 
 
-protocol DetailDreamSceneDelegate_BTWW: AnyObject {
-    
+protocol DetailDreamSceneInteractor_BTWW: AnyObject {
     func shareStateForDetailDreamScene() -> LifeCyclesCard
-    
     func add(new dream: Dream)
     func change(_ dream: Dream)
 }
 
 
-protocol DetailWakeSceneDelegate_BTWW: AnyObject {
-    
+protocol DetailWakeSceneInteractor_BTWW: AnyObject {
     func shareStateForDetailWakeScene() -> LifeCyclesCard
-    
     func add(new wake: Wake)
     func change(_ wake: Wake)
 }
 
 
 
+// MARK: - Implementation
 
-// MARK: - Implementation -
-
-final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW, DetailDreamSceneDelegate_BTWW, DetailWakeSceneDelegate_BTWW {
-    
+final class Interactor_BTWW: MainSceneInteractor_BTWW,
+                             CalendarSceneInteractor_BTWW,
+                             DetailDreamSceneInteractor_BTWW,
+                             DetailWakeSceneInteractor_BTWW {
     
     // MARK: - Dependencies
     
@@ -62,7 +54,9 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     private let wakeRepository: WakeGateway
     private let lifecycleCardRepository: LifeCyclesCardGateway
     
-    init(dreamRepository: DreamGateway, wakeRepository: WakeGateway, lifecycleCardRepository: LifeCyclesCardGateway) {
+    init(dreamRepository: DreamGateway,
+         wakeRepository: WakeGateway,
+         lifecycleCardRepository: LifeCyclesCardGateway) {
         self.dreamRepository = dreamRepository
         self.wakeRepository = wakeRepository
         self.lifecycleCardRepository = lifecycleCardRepository
@@ -77,8 +71,11 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     
     
     // MARK: Private
-    
-    private var task: Cancellable? { willSet { self.task?.cancel() } }
+    private var task: Cancellable? {
+        willSet {
+            self.task?.cancel()
+        }
+    }
     
     
     // MARK: - Private
@@ -95,7 +92,7 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
     }
     
     
-    // MARK: - Interfaces -
+    // MARK: - Interfaces
     
     //MARK: - Main Scene
     
@@ -107,7 +104,8 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = lifecycleCardRepository.fetch(at: date) { result in
             switch result {
-            case let .success(lifeCycles): self.lifeCycleCard.value.lifeCycle = lifeCycles
+            case let .success(lifeCycles):
+                self.lifeCycleCard.value.lifeCycle = lifeCycles
             case let .failure(error):
                 self.lifeCycleCard.value.lifeCycle = []
                 self.handleError(error: error)
@@ -121,7 +119,8 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = lifecycleCardRepository.update(newValue: newValue, oldValue: lifeCycleCard.value.lifeCycle, date: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(()): self.lifeCycleCard.value.lifeCycle = newValue
+            case .success(()):
+                self.lifeCycleCard.value.lifeCycle = newValue
             case let .failure(error):
                 self.lifeCycleCard.notify();
                 self.handleError(error: error)
@@ -153,8 +152,10 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = dreamRepository.add(new: dream, at: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle.append(dream)
-            case let .failure(error): self.handleError(error: error)
+            case .success():
+                self.lifeCycleCard.value.lifeCycle.append(dream)
+            case let .failure(error):
+                self.handleError(error: error)
             }
             self.isLoading.value = false
         }
@@ -164,8 +165,10 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = dreamRepository.change(dream, at: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle[dream.index] = dream
-            case let .failure(error): self.handleError(error: error)
+            case .success():
+                self.lifeCycleCard.value.lifeCycle[dream.index] = dream
+            case let .failure(error):
+                self.handleError(error: error)
             }
             self.isLoading.value = false
         }
@@ -182,8 +185,10 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = wakeRepository.add(new: wake, at: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle.append(wake)
-            case let .failure(error): self.handleError(error: error)
+            case .success():
+                self.lifeCycleCard.value.lifeCycle.append(wake)
+            case let .failure(error):
+                self.handleError(error: error)
             }
             self.isLoading.value = false
         }
@@ -193,8 +198,10 @@ final class Interactor_BTWW: MainSceneDelegate_BTWW, CalendarSceneDelegate_BTWW,
         isLoading.value = true
         task = wakeRepository.change(wake, at: lifeCycleCard.value.date) { result in
             switch result {
-            case .success(): self.lifeCycleCard.value.lifeCycle[wake.index] = wake
-            case let .failure(error): self.handleError(error: error)
+            case .success():
+                self.lifeCycleCard.value.lifeCycle[wake.index] = wake
+            case let .failure(error):
+                self.handleError(error: error)
             }
             self.isLoading.value = false
         }

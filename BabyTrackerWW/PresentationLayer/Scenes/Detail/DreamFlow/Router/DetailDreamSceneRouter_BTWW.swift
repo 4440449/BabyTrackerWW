@@ -33,7 +33,7 @@ final class DetailDreamSceneRouter_BTWW: DetailDreamSceneRouterProtocol_BTWW {
     
     
     deinit {
-        print("DetailDreamSceneRouterProtocol_BTWW - is Deinit!")
+//        print("DetailDreamSceneRouterProtocol_BTWW - is Deinit!")
     }
     
 }

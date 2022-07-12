@@ -17,7 +17,7 @@ class SelectSceneTableViewCell_BTWW: UITableViewCell {
 
     
     deinit {
-        print("SelectSceneTableViewCell - is Deinit!")
+//        print("SelectSceneTableViewCell - is Deinit!")
     }
 
 }

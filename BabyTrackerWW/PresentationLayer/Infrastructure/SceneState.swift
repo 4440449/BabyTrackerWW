@@ -6,8 +6,8 @@
 //  Copyright © 2021 Max. All rights reserved.
 //
 
-
-enum SceneState {
-    case foreground
-    case background
-}
+//
+//enum SceneState {
+//    case foreground
+//    case background
+//}

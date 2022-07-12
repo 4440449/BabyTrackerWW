@@ -10,8 +10,8 @@ import UIKit
 
 
 class SelectSceneViewController_BTWW: UIViewController,
-                                 UITableViewDelegate,
-                                 UITableViewDataSource {
+                                      UITableViewDelegate,
+                                      UITableViewDataSource {
     
     // MARK: - State
     
@@ -19,7 +19,7 @@ class SelectSceneViewController_BTWW: UIViewController,
     
     
     // MARK: - Dependencies
-
+    
     private var segueCallback: ((Int) -> ())?
     
     func setupSegueCallback(_ callback: @escaping (Int) -> ()) {
@@ -93,7 +93,6 @@ extension SelectSceneViewController_BTWW {
     private func setupForegroundTableView() {
         foregroundTableView.delegate = self
         foregroundTableView.dataSource = self
-        
         foregroundTableView.tableFooterView = UIView(frame: .zero)
         foregroundTableView.layer.cornerRadius = 13
     }

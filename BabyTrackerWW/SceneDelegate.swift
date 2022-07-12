@@ -7,7 +7,7 @@
 //
 
 import UIKit
-import MommysEye
+//import MommysEye
 
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

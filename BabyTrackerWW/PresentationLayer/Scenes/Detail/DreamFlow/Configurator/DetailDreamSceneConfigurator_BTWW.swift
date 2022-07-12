@@ -10,19 +10,19 @@
 
 final class DetailDreamSceneConfigurator_BTWW {
     func configureScene<D>(view: DetailDreamSceneViewController_BTWW,
-                           delegate: D,
+                           interactor: D,
                            selectedIndex: Int?) {
-        guard let delegate = delegate as? DetailDreamSceneDelegate_BTWW else { return }
+        guard let interactor = interactor as? DetailDreamSceneInteractor_BTWW else { return }
         let router = DetailDreamSceneRouter_BTWW()
         let presenter = DetailDreamScenePresenter_BTWW(view: view,
-                                                       delegate: delegate,
+                                                       interactor: interactor,
                                                        router: router,
                                                        selectedIndex: selectedIndex)
         view.setupPresenter(presenter)
     }
     
     deinit {
-        print("DetailDreamSceneConfigurator_BTWW - is Deinit!")
+//        print("DetailDreamSceneConfigurator_BTWW - is Deinit!")
     }
     
 }
