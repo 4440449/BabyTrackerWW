@@ -35,7 +35,6 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
     // MARK: - Implementation
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
-        
         var resultSuccess = [LifeCycle]()
         
         let serialQ = DispatchQueue.init(label: "serialQ")
@@ -69,14 +68,11 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
     
     
     func synchronize(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
-        
         let newValueDreams = newValue.compactMap { $0 as? Dream }
         let newValueWakes = newValue.compactMap { $0 as? Wake }
         
         let oldValueDreams = oldValue.compactMap { $0 as? Dream }
-        // Если пустой массив придет?
         //        let oldValuesWakes = lifeCycles.compactMap { $0 as? Wake }
-        //Многопоточный доступ в кор дату - можно?
         
         let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
         serialQ.async {
@@ -84,7 +80,8 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
             
             self.dreamRepository.update(newValueDreams, at: date) { result in
                 switch result {
-                case .success(): return
+                case .success():
+                    return
                 case let .failure(dreamRepoError):
                     breakTask = true;
                     callback(.failure(dreamRepoError))
@@ -95,7 +92,8 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
             
             self.wakeRepository.update(wakes: newValueWakes, date: date) { result in
                 switch result {
-                case .success(): callback(.success(()))
+                case .success():
+                    callback(.success(()))
                 case let .failure(wakeRepoError):
                     self.cancelChanges(dreams: oldValueDreams, date: date);
                     callback(.failure(wakeRepoError))
@@ -111,8 +109,10 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
     private func cancelChanges(dreams: [Dream], date: Date) {
         dreamRepository.update(dreams, at: date) { result in
             switch result {
-            case .success: print("::: Сhanges canceled after failed synchronization")
-            case let .failure(syncError): print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
+            case .success:
+                print("::: Сhanges canceled after failed synchronization")
+            case let .failure(syncError):
+                print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
             }
         }
     }
@@ -120,8 +120,10 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
     private func cancelChanges(wakes: [Wake], date: Date) {
         wakeRepository.update(wakes: wakes, date: date) { result in
             switch result {
-            case .success: print("::: Сhanges canceled after failed synchronization")
-            case let .failure(syncError): print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
+            case .success:
+                print("::: Сhanges canceled after failed synchronization")
+            case let .failure(syncError):
+                print("Сhanges are not canceled after failed synchronization :: Error \(syncError)")
             }
         }
     }

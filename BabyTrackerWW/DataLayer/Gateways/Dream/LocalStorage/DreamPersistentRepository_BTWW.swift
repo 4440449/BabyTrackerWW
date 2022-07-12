@@ -13,11 +13,9 @@ import CoreData
 protocol DreamPersistentRepositoryProtocol_BTWW {
     func fetchDreams(at date: Date, callback: @escaping (Result<[Dream], Error>) -> ())
     func update(_ dreams: [Dream], at date: Date, callback: @escaping (Result<Void, Error>) -> ())
-    
     func add(new dream: Dream, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func change(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
-    
-    func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
+    func delete(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ())
 }
 
 
@@ -86,7 +84,7 @@ final class DreamPersistentRepository_BTWW: DreamPersistentRepositoryProtocol_BT
     }
     
     
-    func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         let request: NSFetchRequest = DreamDBEntity.fetchRequest()
         request.predicate = NSPredicate(format: "id == %@", dream.id as NSUUID)

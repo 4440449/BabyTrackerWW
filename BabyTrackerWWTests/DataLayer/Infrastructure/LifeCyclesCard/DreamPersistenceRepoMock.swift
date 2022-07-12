@@ -36,7 +36,7 @@ class  DreamPersistentRepositoryMock: DreamPersistentRepositoryProtocol_BTWW {
         callback(emptyResult)
     }
     
-    func deleteDream(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
+    func delete(_ dream: Dream, callback: @escaping (Result<Void, Error>) -> ()) {
         callback(emptyResult)
     }
     

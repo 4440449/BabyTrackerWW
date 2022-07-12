@@ -23,10 +23,10 @@ final class WakeRepository_BTWW: WakeGateway {
     }
     
     func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable? {
-        
             localStorage.add(new: wake, at: date) { result in
                 switch result {
-                case .success: callback(.success(()))
+                case .success:
+                    callback(.success(()))
                 case let .failure(localStorageError): callback(.failure(localStorageError))
                 }
             }
@@ -52,10 +52,10 @@ final class WakeRepository_BTWW: WakeGateway {
     
     
     func change(_ wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable? {
-        
         localStorage.change(wake) { result in
             switch result {
-            case .success(): callback(.success(()))
+            case .success():
+                callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }

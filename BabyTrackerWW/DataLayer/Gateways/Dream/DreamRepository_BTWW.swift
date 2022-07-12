@@ -29,7 +29,8 @@ final class DreamRepository_BTWW: DreamGateway {
         
         localStorage.add(new: dream, at: date) { result in
             switch result {
-            case .success: callback(.success(()))
+            case .success:
+                callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
@@ -58,7 +59,8 @@ final class DreamRepository_BTWW: DreamGateway {
         
         localStorage.change(dream) { result in
             switch result {
-            case .success(): callback(.success(()))
+            case .success():
+                callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }

@@ -16,7 +16,8 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
     private let network: LifeCyclesCardNetworkRepositoryProtocol_BTWW
     private let localStorage: LifeCyclesCardPersistentRepositoryProtocol_BTWW
     
-    init(network: LifeCyclesCardNetworkRepositoryProtocol_BTWW, localStorage: LifeCyclesCardPersistentRepositoryProtocol_BTWW) {
+    init(network: LifeCyclesCardNetworkRepositoryProtocol_BTWW,
+         localStorage: LifeCyclesCardPersistentRepositoryProtocol_BTWW) {
         self.network = network
         self.localStorage = localStorage
     }
@@ -27,7 +28,8 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) -> Cancellable? {
         localStorage.fetch(at: date) { result in
             switch result {
-            case let .success(lifecycles): callback(.success(lifecycles))
+            case let .success(lifecycles):
+                callback(.success(lifecycles))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
@@ -52,7 +54,8 @@ final class LifeCyclesCardRepository_BTWW: LifeCyclesCardGateway {
     func update(newValue: [LifeCycle], oldValue: [LifeCycle], date: Date, callback: @escaping (Result<Void, Error>) -> ()) -> Cancellable? {
         localStorage.synchronize(newValue: newValue, oldValue: oldValue, date: date) { result in
             switch result {
-            case .success: callback(.success(()))
+            case .success:
+                callback(.success(()))
             case let .failure(localStorageError): callback(.failure(localStorageError))
             }
         }
