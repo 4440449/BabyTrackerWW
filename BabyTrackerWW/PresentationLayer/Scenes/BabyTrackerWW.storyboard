@@ -129,32 +129,38 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="G6K-J5-4QK">
                         <barButtonItem key="leftBarButtonItem" title="Item" image="chevron.down" catalog="system" id="fDC-W3-KME">
+                            <color key="tintColor" systemColor="labelColor"/>
                             <connections>
                                 <action selector="closeSceneButton:" destination="8nP-1y-YUj" id="J7A-zF-qBY"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem style="done" systemItem="add" id="7Fw-qo-IY7">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="addNewButton:" destination="8nP-1y-YUj" id="p2q-Md-Q75"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Изменить дату" image="calendar" catalog="system" style="done" id="0pa-fU-XIu">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="changeDateButton:" destination="8nP-1y-YUj" id="9eF-C9-s9m"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem title="Item" image="pencil" catalog="system" id="P0K-mG-vAO">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="editButton:" destination="8nP-1y-YUj" id="BW3-8U-qPU"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="save" id="zs7-Rm-ypi">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="saveButton:" destination="8nP-1y-YUj" id="obZ-on-XOx"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem systemItem="cancel" id="hM3-6N-WTL">
+                                <color key="tintColor" systemColor="labelColor"/>
                                 <connections>
                                     <action selector="cancelButton:" destination="8nP-1y-YUj" id="pKb-qR-Nfi"/>
                                 </connections>
@@ -251,10 +257,10 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="613"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как засыпал малыш?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ufL-7i-iXL">
-                                        <rect key="frame" x="72.666666666666686" y="90" width="230" height="27.666666666666671"/>
+                                        <rect key="frame" x="62.666666666666657" y="90" width="249.99999999999997" height="27.666666666666671"/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="z0c-zj-Fjq"/>
+                                            <constraint firstAttribute="width" constant="250" id="z0c-zj-Fjq"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -277,9 +283,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как укладывала?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cA9-ml-Jyd">
-                                        <rect key="frame" x="72.666666666666686" y="225.66666666666666" width="230" height="27.666666666666657"/>
+                                        <rect key="frame" x="62.666666666666657" y="225.66666666666666" width="249.99999999999997" height="27.666666666666657"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="cN6-MY-Nss"/>
+                                            <constraint firstAttribute="width" constant="250" id="cN6-MY-Nss"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -385,6 +391,7 @@
                                 <items>
                                     <navigationItem id="HaA-Pe-gq8">
                                         <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.down" catalog="system" id="Okn-y0-2ts">
+                                            <color key="tintColor" systemColor="labelColor"/>
                                             <connections>
                                                 <action selector="backButton:" destination="rJu-0z-jb4" id="NhT-Zy-A7e"/>
                                             </connections>
@@ -409,8 +416,10 @@
                     <connections>
                         <outlet property="backgroundView" destination="xBy-6Q-kgV" id="2FS-91-xUh"/>
                         <outlet property="counterTextViewLabel" destination="sXy-6n-2De" id="Y38-TZ-hbz"/>
+                        <outlet property="fallAsleepLabel" destination="ufL-7i-iXL" id="dRL-WV-raI"/>
                         <outlet property="fallAsleepOutletButton" destination="0OC-h9-VxV" id="GtV-X3-P5s"/>
                         <outlet property="placeholderTextViewLabel" destination="I9E-Ff-ed0" id="rTh-Jf-ZAd"/>
+                        <outlet property="putDownLabel" destination="cA9-ml-Jyd" id="xxz-DF-Kvh"/>
                         <outlet property="putDownOutletButton" destination="wGe-ue-ZBw" id="MZC-Sl-lKp"/>
                         <outlet property="saveOutletButton" destination="ZID-iq-Fhv" id="5gL-K7-hep"/>
                         <outlet property="scrollView" destination="GHU-os-GMi" id="BRC-uq-AkI"/>
@@ -491,9 +500,9 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="756"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В каком настроении проснулся?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Z7g-PK-kK4">
-                                        <rect key="frame" x="72.666666666666686" y="90" width="230" height="55"/>
+                                        <rect key="frame" x="62.666666666666657" y="90" width="249.99999999999997" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="dKD-Yu-7uu"/>
+                                            <constraint firstAttribute="width" constant="250" id="dKD-Yu-7uu"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -516,9 +525,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Как прошло бодрствование?" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FXQ-VT-M62">
-                                        <rect key="frame" x="72.666666666666686" y="253" width="230" height="55"/>
+                                        <rect key="frame" x="62.666666666666657" y="253" width="249.99999999999997" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="x9r-kv-Yzj"/>
+                                            <constraint firstAttribute="width" constant="250" id="x9r-kv-Yzj"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -541,9 +550,9 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Сигналы к укладыванию" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fF9-hf-HII">
-                                        <rect key="frame" x="72.666666666666686" y="416" width="230" height="55"/>
+                                        <rect key="frame" x="62.666666666666657" y="416" width="249.99999999999997" height="55"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="230" id="TKw-pL-Pva"/>
+                                            <constraint firstAttribute="width" constant="250" id="TKw-pL-Pva"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" weight="medium" pointSize="23"/>
                                         <nil key="textColor"/>
@@ -653,6 +662,7 @@
                                 <items>
                                     <navigationItem id="mIU-FL-IY5">
                                         <barButtonItem key="leftBarButtonItem" title="Back" image="chevron.down" catalog="system" id="kxP-Jo-8F0">
+                                            <color key="tintColor" systemColor="labelColor"/>
                                             <connections>
                                                 <action selector="backButton:" destination="7cP-YO-UdJ" id="cLH-HT-H2A"/>
                                             </connections>
@@ -681,9 +691,12 @@
                         <outlet property="placeholderTextViewLabel" destination="Xxe-aW-SX3" id="cle-F5-aus"/>
                         <outlet property="saveOutletButton" destination="Zvz-Oj-TY3" id="VuF-bn-zqw"/>
                         <outlet property="scrollView" destination="jbD-g9-QX1" id="P5R-CI-uaw"/>
+                        <outlet property="signsLabel" destination="fF9-hf-HII" id="2Jw-qx-kJd"/>
                         <outlet property="signsOutletButton" destination="r2b-aV-PMP" id="6eW-yY-6bs"/>
                         <outlet property="textView" destination="J27-iz-chv" id="WUY-zb-PMh"/>
+                        <outlet property="wakeUpLabel" destination="Z7g-PK-kK4" id="Pfd-0u-oKf"/>
                         <outlet property="wakeUpOutletButton" destination="qJ7-IN-Xix" id="v0j-tP-dVg"/>
+                        <outlet property="wakeWindowLabel" destination="FXQ-VT-M62" id="MZ6-5E-jb8"/>
                         <outlet property="wakeWindowOutletButton" destination="UFt-gR-L5p" id="1yA-jM-cv4"/>
                     </connections>
                 </viewController>
@@ -699,7 +712,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="54p-wz-OVy"/>
-        <segue reference="cLA-m7-zfg"/>
+        <segue reference="Dot-2p-8B9"/>
         <segue reference="1Bx-wP-Azx"/>
     </inferredMetricsTieBreakers>
     <resources>

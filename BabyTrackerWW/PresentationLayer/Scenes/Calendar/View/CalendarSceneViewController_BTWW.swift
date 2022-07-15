@@ -26,8 +26,9 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLabels()
         setupDatePicker()
-        saveButton.layer.cornerRadius = 5
+        setupOutletButtons()
     }
     
     
@@ -36,6 +37,11 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     @IBOutlet weak var datePicker: UIDatePicker!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var saveButton: UIButton!
+    
+    private func setupLabels() {
+        dateLabel.text = presenter.format(date:datePicker.date)
+        dateLabel.font = UIFont(name: "Montserrat-Bold", size: 24)!
+    }
     
     private func setupDatePicker() {
         if #available(iOS 14.0, *) {
@@ -47,7 +53,11 @@ final class CalendarSceneViewController_BTWW: UIViewController {
         datePicker.locale = Locale(identifier: "ru")
         datePicker.addTarget(self, action: #selector(dateChanged), for: .valueChanged)
         datePicker.date = presenter.getCurrentDate()
-        dateLabel.text = presenter.format(date:datePicker.date)
+    }
+    
+    private func setupOutletButtons() {
+        saveButton.layer.cornerRadius = 5
+        saveButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)!
     }
     
     @objc func dateChanged() {

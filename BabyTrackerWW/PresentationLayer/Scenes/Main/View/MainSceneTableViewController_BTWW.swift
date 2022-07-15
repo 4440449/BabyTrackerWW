@@ -28,6 +28,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController,
         super.viewDidLoad()
         configurator.configureScene(view: self)
         setupTableView()
+        setupNavBarAppearance()
         setupNavBarButtons()
         setupNavBarGestures()
         setupActivityIndicator()
@@ -73,6 +74,7 @@ final class MainSceneTableViewController_BTWW: UITableViewController,
     
     func newError(_ message: String) {
         guard !message.isEmpty else { return }
+        //TODO: - fix alert
         self.present(alert, animated: true, completion: nil)
     }
     
@@ -285,13 +287,24 @@ extension MainSceneTableViewController_BTWW {
     
     // MARK: - Navigation bar
     
+    func setupNavBarAppearance() {
+        navigationController?.navigationBar.largeTitleTextAttributes = [.font : UIFont(name: "Montserrat-Black", size: 34)!]
+        navigationController?.navigationBar.titleTextAttributes = [.font : UIFont(name: "Montserrat-Regular", size: 17)!]
+    }
+    
     func setupNavBarButtons() {
         closeSceneOutletButton = UIBarButtonItem(image: UIImage(systemName: "chevron.down"), style: .plain, target: self, action: #selector(closeSceneButton))
+        closeSceneOutletButton.tintColor = .label
         changeDateOutletButton = UIBarButtonItem(image: UIImage(systemName: "calendar"), style: .plain, target: self, action: #selector(changeDateButton))
+        changeDateOutletButton.tintColor = .label
         addNewOutletButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector (addNewButton))
+        addNewOutletButton.tintColor = .label
         cancelOutletButton = UIBarButtonItem (title: "Отменить", style: .plain, target: self, action: #selector(cancelButton))
+        cancelOutletButton.tintColor = .label
         saveOutletButton = UIBarButtonItem (title: "Сохранить", style: .plain, target: self, action: #selector(saveButton))
+        saveOutletButton.tintColor = .label
         editOutletButton = UIBarButtonItem(image: UIImage(systemName: "pencil"), style: .plain, target: self, action: #selector(editButton))
+        editOutletButton.tintColor = .label
     }
     
     func manageDisplayNavBarButtons() {

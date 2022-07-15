@@ -27,7 +27,7 @@ final class PickerSceneViewController_BTWW: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        saveButton.layer.cornerRadius = 5
+        setupOutletButtons()
     }
     
     
@@ -40,6 +40,15 @@ final class PickerSceneViewController_BTWW: UIViewController,
         presenter.saveButtonCliked()
         self.dismiss(animated: true, completion: nil)
     }
+    
+    private func setupOutletButtons() {
+        saveButton.layer.cornerRadius = 5
+        saveButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)!
+    }
+    
+//    private func setupPicker() {
+//        picker.font
+//    }
     
     //PickerView
     func numberOfComponents(in pickerView: UIPickerView) -> Int {

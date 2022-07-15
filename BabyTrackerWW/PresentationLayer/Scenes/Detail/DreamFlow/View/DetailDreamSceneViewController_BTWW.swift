@@ -26,6 +26,7 @@ final class DetailDreamSceneViewController_BTWW: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLabels()
         setupOutletButtons()
         setupTextView()
         setupObservers()
@@ -46,6 +47,8 @@ final class DetailDreamSceneViewController_BTWW: UIViewController,
     
     // MARK: - UI
     
+    @IBOutlet weak var fallAsleepLabel: UILabel!
+    @IBOutlet weak var putDownLabel: UILabel!
     @IBOutlet weak var fallAsleepOutletButton: UIButton!
     @IBOutlet weak var putDownOutletButton: UIButton!
     @IBOutlet weak var saveOutletButton: UIButton!
@@ -55,10 +58,18 @@ final class DetailDreamSceneViewController_BTWW: UIViewController,
     @IBOutlet weak var placeholderTextViewLabel: UILabel!
     @IBOutlet weak var counterTextViewLabel: UILabel!
     
+    private func setupLabels() {
+        fallAsleepLabel.font = UIFont(name: "Montserrat-Regular", size: 22)!
+        putDownLabel.font = UIFont(name: "Montserrat-Regular", size: 22)!
+    }
+    
     private func setupOutletButtons() {
         fallAsleepOutletButton.layer.cornerRadius = 5
+        fallAsleepOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 22)!
         putDownOutletButton.layer.cornerRadius = 5
+        putDownOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 22)!
         saveOutletButton.layer.cornerRadius = 5
+        saveOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)!
     }
     
     private func setupTextView() {

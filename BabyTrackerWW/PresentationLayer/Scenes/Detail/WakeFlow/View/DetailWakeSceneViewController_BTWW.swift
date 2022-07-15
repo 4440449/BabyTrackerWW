@@ -27,6 +27,7 @@ class DetailWakeSceneViewController_BTWW: UIViewController,
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupLabels()
         setupOutletButtons()
         setupTextView()
         setupObservers()
@@ -47,7 +48,9 @@ class DetailWakeSceneViewController_BTWW: UIViewController,
     
     
     // MARK: - UI
-    
+    @IBOutlet weak var wakeUpLabel: UILabel!
+    @IBOutlet weak var wakeWindowLabel: UILabel!
+    @IBOutlet weak var signsLabel: UILabel!
     @IBOutlet weak var wakeUpOutletButton: UIButton!
     @IBOutlet weak var wakeWindowOutletButton: UIButton!
     @IBOutlet weak var signsOutletButton: UIButton!
@@ -58,11 +61,21 @@ class DetailWakeSceneViewController_BTWW: UIViewController,
     @IBOutlet weak var placeholderTextViewLabel: UILabel!
     @IBOutlet weak var counterTextViewLabel: UILabel!
     
+    private func setupLabels() {
+        wakeUpLabel.font = UIFont(name: "Montserrat-Regular", size: 22)!
+        wakeWindowLabel.font = UIFont(name: "Montserrat-Regular", size: 22)!
+        signsLabel.font = UIFont(name: "Montserrat-Regular", size: 22)!
+    }
+    
     private func setupOutletButtons() {
         wakeUpOutletButton.layer.cornerRadius = 5
+        wakeUpOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 22)!
         wakeWindowOutletButton.layer.cornerRadius = 5
+        wakeWindowOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 22)!
         signsOutletButton.layer.cornerRadius = 5
+        signsOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 22)!
         saveOutletButton.layer.cornerRadius = 5
+        saveOutletButton.titleLabel?.font = UIFont(name: "Montserrat-Regular", size: 20)!
     }
     
     private func setupTextView() {

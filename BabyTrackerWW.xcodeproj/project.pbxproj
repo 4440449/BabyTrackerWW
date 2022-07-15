@@ -76,6 +76,12 @@
 		50F6C90E27276DA4005648BA /* LifeCycleNetworkEntity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */; };
 		50F6C9162731883E005648BA /* JsonPatchEntity_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */; };
 		50F6C91827320560005648BA /* NetworkRepositoryExtensions_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */; };
+		949C5FB228816E1C00700E54 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */; };
+		949C5FB328816E1C00700E54 /* Montserrat-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */; };
+		949C5FB52881722300700E54 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB42881722300700E54 /* Montserrat-Regular.ttf */; };
+		949C5FB62881722300700E54 /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB42881722300700E54 /* Montserrat-Regular.ttf */; };
+		949C5FB8288172AC00700E54 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */; };
+		949C5FB9288172AC00700E54 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */; };
 		94AB0CA12869DB5800742A33 /* Test_BTWW.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94AB0CA02869DB5800742A33 /* Test_BTWW.swift */; };
 		94AB0CA52869E80E00742A33 /* MommysEye in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA42869E80E00742A33 /* MommysEye */; };
 		94AB0CA82869E88600742A33 /* BabyNet in Frameworks */ = {isa = PBXBuildFile; productRef = 94AB0CA72869E88600742A33 /* BabyNet */; };
@@ -166,6 +172,9 @@
 		50F6C90D27276DA4005648BA /* LifeCycleNetworkEntity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LifeCycleNetworkEntity.swift; sourceTree = "<group>"; };
 		50F6C9152731883E005648BA /* JsonPatchEntity_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JsonPatchEntity_BTWW.swift; sourceTree = "<group>"; };
 		50F6C91727320560005648BA /* NetworkRepositoryExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkRepositoryExtensions_BTWW.swift; sourceTree = "<group>"; };
+		949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Black.ttf"; sourceTree = "<group>"; };
+		949C5FB42881722300700E54 /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
 		94AB0CA02869DB5800742A33 /* Test_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Test_BTWW.swift; sourceTree = "<group>"; };
 		94F2ED31287D727D00BE5AF6 /* DateExtensions_BTWW.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateExtensions_BTWW.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -403,6 +412,9 @@
 				50B174E02704C1EF00108B17 /* PresentationLayer */,
 				50B175242704C1F000108B17 /* Info.plist */,
 				50B175182704C1EF00108B17 /* Assets.xcassets */,
+				949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */,
+				949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */,
+				949C5FB42881722300700E54 /* Montserrat-Regular.ttf */,
 			);
 			path = BabyTrackerWW;
 			sourceTree = "<group>";
@@ -914,6 +926,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				949C5FB62881722300700E54 /* Montserrat-Regular.ttf in Resources */,
+				949C5FB328816E1C00700E54 /* Montserrat-Black.ttf in Resources */,
+				949C5FB9288172AC00700E54 /* Montserrat-Bold.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -922,7 +937,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				50B1754C2704C1F000108B17 /* Assets.xcassets in Resources */,
+				949C5FB228816E1C00700E54 /* Montserrat-Black.ttf in Resources */,
+				949C5FB8288172AC00700E54 /* Montserrat-Bold.ttf in Resources */,
 				50B175552704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard in Resources */,
+				949C5FB52881722300700E54 /* Montserrat-Regular.ttf in Resources */,
 				50B175492704C1F000108B17 /* BabyTrackerWW.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
