@@ -36,34 +36,31 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
     
     func fetch(at date: Date, callback: @escaping (Result<[LifeCycle], Error>) -> ()) {
         var resultSuccess = [LifeCycle]()
-        
-        let serialQ = DispatchQueue.init(label: "serialQ")
-        serialQ.async {
-//            sleep(1)
-            var breakTask = false
-            
+        let serialQ = DispatchQueue(label: "serialQ")
+        let taskItem2 = DispatchWorkItem {
+                self.wakeRepository.fetchWakes(at: date) { result in
+                    switch result {
+                    case let .success(wakes):
+                        resultSuccess.append(contentsOf: wakes);
+                        callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
+                    case let .failure(error):
+                        callback(.failure(error))
+                    }
+                }
+        }
+        let taskItem1 = DispatchWorkItem {
             self.dreamRepository.fetchDreams(at: date) { result in
                 switch result {
                 case let .success(dreams):
                     resultSuccess.append(contentsOf: dreams)
                 case let .failure(error):
-                    breakTask = true;
-                    callback(.failure(error))
-                }
-            }
-            guard !breakTask else { return }
-            
-            self.wakeRepository.fetchWakes(at: date) { result in
-                switch result {
-                case let .success(wakes):
-                    resultSuccess.append(contentsOf: wakes);
-                    callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
-                case let .failure(error):
+                    taskItem2.cancel()
                     callback(.failure(error))
                 }
             }
         }
-        
+        serialQ.async(execute: taskItem1)
+        serialQ.sync(execute: taskItem2)
     }
     
     
@@ -74,33 +71,31 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
         let oldValueDreams = oldValue.compactMap { $0 as? Dream }
         //        let oldValuesWakes = lifeCycles.compactMap { $0 as? Wake }
         
-        let serialQ = DispatchQueue.init(label: "localStorageSerialQ")
-        serialQ.async {
-            var breakTask = false
-            
-            self.dreamRepository.update(newValueDreams, at: date) { result in
-                switch result {
-                case .success():
-                    return
-                case let .failure(dreamRepoError):
-                    breakTask = true;
-                    callback(.failure(dreamRepoError))
-                }
-            }
-            
-            guard !breakTask else { return }
-            
+        let serialQ = DispatchQueue(label: "serialQ")
+        let taskItem2 = DispatchWorkItem {
             self.wakeRepository.update(wakes: newValueWakes, date: date) { result in
                 switch result {
                 case .success():
                     callback(.success(()))
                 case let .failure(wakeRepoError):
-                    self.cancelChanges(dreams: oldValueDreams, date: date);
+                    self.cancelChanges(dreams: oldValueDreams, date: date)
                     callback(.failure(wakeRepoError))
                 }
             }
         }
-        
+        let taskItem1 = DispatchWorkItem {
+            self.dreamRepository.update(newValueDreams, at: date) { result in
+                switch result {
+                case .success():
+                    return
+                case let .failure(dreamRepoError):
+                    taskItem2.cancel()
+                    callback(.failure(dreamRepoError))
+                }
+            }
+        }
+        serialQ.async(execute: taskItem1)
+        serialQ.async(execute: taskItem2)
     }
     
     
