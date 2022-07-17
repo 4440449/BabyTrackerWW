@@ -12,8 +12,8 @@ import CoreData
 
 protocol WakePersistentRepositoryProtocol_BTWW {
     
-    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ())
-    func update(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ())
+    func fetchWakes(at date: Date, callback: (Result<[Wake], Error>) -> ())
+    func update(wakes: [Wake], date: Date, callback: (Result<Void, Error>) -> ())
     func add(new wake: Wake, at date: Date, callback: @escaping (Result<Void, Error>) -> ())
     func change(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ())
     func delete(_ wake: Wake, callback: @escaping (Result<Void, Error>) -> ())
@@ -37,7 +37,7 @@ final class WakePersistentRepository_BTWW: WakePersistentRepositoryProtocol_BTWW
     
     // MARK: - Protocol Implementation
     
-    func fetchWakes(at date: Date, callback: @escaping (Result<[Wake], Error>) -> ()) {
+    func fetchWakes(at date: Date, callback: (Result<[Wake], Error>) -> ()) {
         
         let days: (Date, Date) = dateInterval(with: date)
         
@@ -101,7 +101,7 @@ final class WakePersistentRepository_BTWW: WakePersistentRepositoryProtocol_BTWW
     }
     
     
-    func update(wakes: [Wake], date: Date, callback: @escaping (Result<Void, Error>) -> ()) {
+    func update(wakes: [Wake], date: Date, callback: (Result<Void, Error>) -> ()) {
         //        coreDataContainer.performBackgroundTask { backgroundContext in
         let days: (Date, Date) = self.dateInterval(with: date)
         let request: NSFetchRequest = WakeDBEntity.fetchRequest()
