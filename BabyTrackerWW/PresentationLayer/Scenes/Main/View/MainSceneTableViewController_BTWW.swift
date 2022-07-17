@@ -74,8 +74,8 @@ final class MainSceneTableViewController_BTWW: UITableViewController,
     
     func newError(_ message: String) {
         guard !message.isEmpty else { return }
-        //TODO: - fix alert
-        self.present(alert, animated: true, completion: nil)
+        alert.message = message
+        present(alert, animated: true, completion: nil)
     }
     
 
@@ -114,9 +114,9 @@ final class MainSceneTableViewController_BTWW: UITableViewController,
     // MARK: - UIAlert
     
     //TODO: - Исправить! + Перенести в Extension?
-    private func setupAlert(_ message: String = "") {
+    private func setupAlert() {
         alert = UIAlertController(title: "Ошибка",
-                                  message: message,
+                                  message: "",
                                   preferredStyle: .alert)
         let action = UIAlertAction(title: "Закрыть",
                                    style: .default,
