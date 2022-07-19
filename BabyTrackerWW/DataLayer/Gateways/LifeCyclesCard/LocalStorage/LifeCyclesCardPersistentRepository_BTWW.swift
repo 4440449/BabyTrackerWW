@@ -38,15 +38,15 @@ final class LifeCyclesCardPersistentRepository_BTWW: LifeCyclesCardPersistentRep
         var resultSuccess = [LifeCycle]()
         let serialQ = DispatchQueue(label: "serialQ")
         let taskItem2 = DispatchWorkItem {
-                self.wakeRepository.fetchWakes(at: date) { result in
-                    switch result {
-                    case let .success(wakes):
-                        resultSuccess.append(contentsOf: wakes);
-                        callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
-                    case let .failure(error):
-                        callback(.failure(error))
-                    }
+            self.wakeRepository.fetchWakes(at: date) { result in
+                switch result {
+                case let .success(wakes):
+                    resultSuccess.append(contentsOf: wakes);
+                    callback(.success(resultSuccess.sorted { $0.index < $1.index } ))
+                case let .failure(error):
+                    callback(.failure(error))
                 }
+            }
         }
         let taskItem1 = DispatchWorkItem {
             self.dreamRepository.fetchDreams(at: date) { result in

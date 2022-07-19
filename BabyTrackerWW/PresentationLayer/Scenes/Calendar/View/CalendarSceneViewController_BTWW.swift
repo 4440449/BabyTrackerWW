@@ -26,8 +26,8 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupLabels()
         setupDatePicker()
+        setupLabels()
         setupOutletButtons()
     }
     
@@ -46,8 +46,6 @@ final class CalendarSceneViewController_BTWW: UIViewController {
     private func setupDatePicker() {
         if #available(iOS 14.0, *) {
             datePicker.preferredDatePickerStyle = .inline
-        } else {
-            datePicker.preferredDatePickerStyle = .wheels
         }
         datePicker.datePickerMode = .date
         datePicker.locale = Locale(identifier: "ru")

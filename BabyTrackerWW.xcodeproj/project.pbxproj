@@ -273,7 +273,6 @@
 		508CEE8C274177070086051A /* Infrastructure */ = {
 			isa = PBXGroup;
 			children = (
-				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
 				50A1CB76278B4564000F9BFC /* RepositoryTask.swift */,
 				94F2ED31287D727D00BE5AF6 /* DateExtensions_BTWW.swift */,
 				5083DCDD2768141E0015DD0E /* CustomTransition */,
@@ -389,7 +388,6 @@
 				50B174CB2704C0B000108B17 /* BabyTrackerWW */,
 				5078F2962775430000A46BA3 /* BabyTrackerWWTests */,
 				50B174CA2704C0B000108B17 /* Products */,
-				94AB0CA62869E88600742A33 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -405,16 +403,12 @@
 		50B174CB2704C0B000108B17 /* BabyTrackerWW */ = {
 			isa = PBXGroup;
 			children = (
-				50B1751B2704C1EF00108B17 /* AppDelegate.swift */,
-				50B175262704C1F000108B17 /* SceneDelegate.swift */,
+				9478418D2886D71A0043C326 /* Source */,
 				50B175272704C1F000108B17 /* DomainLayer */,
 				50B1751C2704C1F000108B17 /* DataLayer */,
 				50B174E02704C1EF00108B17 /* PresentationLayer */,
+				9478418C2886D6AB0043C326 /* Resources */,
 				50B175242704C1F000108B17 /* Info.plist */,
-				50B175182704C1EF00108B17 /* Assets.xcassets */,
-				949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */,
-				949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */,
-				949C5FB42881722300700E54 /* Montserrat-Regular.ttf */,
 			);
 			path = BabyTrackerWW;
 			sourceTree = "<group>";
@@ -813,19 +807,33 @@
 			path = Entities;
 			sourceTree = "<group>";
 		};
+		9478418C2886D6AB0043C326 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				50B175182704C1EF00108B17 /* Assets.xcassets */,
+				949C5FB128816E1C00700E54 /* Montserrat-Black.ttf */,
+				949C5FB7288172AC00700E54 /* Montserrat-Bold.ttf */,
+				949C5FB42881722300700E54 /* Montserrat-Regular.ttf */,
+				50B175252704C1F000108B17 /* BabyTrackerWW_LaunchScreen.storyboard */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9478418D2886D71A0043C326 /* Source */ = {
+			isa = PBXGroup;
+			children = (
+				50B1751B2704C1EF00108B17 /* AppDelegate.swift */,
+				50B175262704C1F000108B17 /* SceneDelegate.swift */,
+			);
+			path = Source;
+			sourceTree = "<group>";
+		};
 		94A50DDE2871B50200C2C246 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
 				50B1750F2704C1EF00108B17 /* MainSceneTableViewCell_BTWW.swift */,
 			);
 			path = Cell;
-			sourceTree = "<group>";
-		};
-		94AB0CA62869E88600742A33 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
 			sourceTree = "<group>";
 		};
 		94E119F6287C58250010C122 /* Cell */ = {
@@ -1132,7 +1140,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -1187,7 +1195,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
