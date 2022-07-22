@@ -114,6 +114,9 @@ final class MainScenePresenter_BTWW: MainScenePresenterInputProtocol {
     
     func deleteRow(at index: Int) {
         lifeCycles.remove(at: index)
+        for i in 0..<lifeCycles.count {
+            lifeCycles[i].index = i
+        }
     }
     
     func moveRow(source: Int, destination: Int) {
